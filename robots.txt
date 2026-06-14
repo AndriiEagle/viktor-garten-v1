@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://viktor-baumarchitektur.ch/sitemap.xml

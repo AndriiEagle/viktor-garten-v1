@@ -1,0 +1,17 @@
+{
+  "name": "Viktor Baumarchitektur",
+  "short_name": "Baumarchitektur",
+  "lang": "de-CH",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8F7F2",
+  "theme_color": "#24452F",
+  "icons": [
+    {
+      "src": "/assets/img/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
