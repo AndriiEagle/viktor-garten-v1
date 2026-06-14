@@ -8,7 +8,7 @@ const required = [
   "kontakt.html","impressum.html","datenschutz.html","themes.html",
   "en/index.html","en/leistungen.html","en/philosophie.html","en/galerie.html","en/preise.html",
   "en/blog/index.html","en/blog/topiarschere.html","en/blog/boden-wurzeln.html",
-  "en/kontakt.html","en/impressum.html","en/datenschutz.html",
+  "en/kontakt.html","en/impressum.html","en/datenschutz.html","en/themes.html",
   "assets/base.css","assets/main.js","assets/theme-v1.css","assets/theme-v2.css","assets/theme-v3.css","assets/theme-v4.css","assets/theme-v5.css",
   "assets/img/logo.png","assets/img/MANIFEST.md","site.webmanifest","robots.txt","sitemap.xml","llms.txt","vercel.json","README.md"
 ];
