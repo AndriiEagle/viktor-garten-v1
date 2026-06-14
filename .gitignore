@@ -1,0 +1,16 @@
+# Raw source media and transcription work products
+/audio_*.ogg
+/transcripts/
+/_transcribe/
+
+# Local/generated scratch
+/.tmp/
+/tmp/
+*.tmp
+*.log
+
+# Node and editor noise
+/node_modules/
+/.vercel/
+.DS_Store
+Thumbs.db
