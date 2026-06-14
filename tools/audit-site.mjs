@@ -31,6 +31,12 @@ for (const file of htmlFiles) {
   if (!html.includes("application/ld+json") && !file.includes("impressum") && !file.includes("datenschutz") && !file.includes("themes")) {
     errors.push(file + " missing JSON-LD");
   }
+  if (!html.includes("class=\"brand-logo\"") || !html.includes("assets/img/logo.png")) {
+    errors.push(file + " header missing assets/img/logo.png brand logo");
+  }
+  if (!html.includes("&lt;БРЕНД&gt;")) {
+    errors.push(file + " missing visible <БРЕНД> wordmark placeholder");
+  }
   const hrefs = [...html.matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
   for (const href of hrefs) {
     if (/^(https?:|mailto:|tel:|#)/.test(href)) continue;

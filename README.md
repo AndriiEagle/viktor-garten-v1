@@ -7,12 +7,13 @@ Static multipage DE/EN site for Viktor Baumarchitektur. It opens directly from `
 - Replace WhatsApp `PLACEHOLDER_NUMBER` in `tools/generate-site.mjs` or directly in generated HTML.
 - Replace phone `+41000000000` and visible `[PLATZHALTER]` phone/contact data.
 - Replace GA4 `G-XXXXXXX`, Google Ads `AW-XXXXXXX`, Search Console verification and form backend.
+- Replace the visible header/footer wordmark placeholder `&lt;БРЕНД&gt;` when the final displayed brand lockup is approved.
 - Complete `impressum.html` and `datenschutz.html` with Viktor's legal data before publication.
 - Swap real images using filenames in `assets/img/MANIFEST.md`.
 
 ## Logo / wordmark assumption
 
-The confirmed business/entity name in `project_brief` is **Viktor Baumarchitektur**. The supplied `Лого.jpg` was converted to a real PNG at `assets/img/logo.png`, but the image wordmark says **Viktor Bonsai**. The header therefore uses a text wordmark **Viktor Baumarchitektur** and keeps `logo.png` as an available asset until the final wordmark is redrawn or approved.
+The confirmed SEO/business/entity name in `project_brief` is **Viktor Baumarchitektur**. The supplied `Лого.jpg` was converted to a real PNG at `assets/img/logo.png`, but the image wordmark says **Viktor Bonsai**. Per the active build objective, the header uses `assets/img/logo.png` and the visible header/footer wordmark placeholder `&lt;БРЕНД&gt;`. Keep SEO, JSON-LD and canonical entity names as **Viktor Baumarchitektur** until Viktor changes the business name.
 
 ## Change theme
 

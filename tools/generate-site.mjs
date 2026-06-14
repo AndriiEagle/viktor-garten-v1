@@ -3,6 +3,7 @@ import path from "node:path";
 
 const root = process.cwd();
 const brand = "Viktor Baumarchitektur";
+const brandWordmark = "&lt;БРЕНД&gt;";
 const domain = "https://viktor-baumarchitektur.ch";
 const phone = "+41 [PLATZHALTER]";
 const telHref = "tel:+41000000000";
@@ -274,10 +275,10 @@ function layout({ file, lang = "de", title, description, body, jsonLd = [], page
 <body class="${pageClass}">
   <a class="skip-link" href="#main">${lang === "de" ? "Zum Inhalt springen" : "Skip to content"}</a>
   <header class="site-header" data-header>
-    <a class="brand" href="${home}" aria-label="${brand}">
-      <span class="brand-symbol" aria-hidden="true"></span>
+    <a class="brand" href="${home}" aria-label="${brandWordmark}">
+      <img class="brand-logo" src="${prefix}assets/img/logo.png" alt="${brandWordmark}" width="44" height="44">
       <span class="brand-text">
-        <span class="brand-name">${brand}</span>
+        <span class="brand-name">${brandWordmark}</span>
         <span class="brand-line">Formgehölze · Niwaki · Evergreen Design</span>
       </span>
     </a>
@@ -298,7 +299,7 @@ function layout({ file, lang = "de", title, description, body, jsonLd = [], page
   <footer class="site-footer">
     <div class="footer-grid">
       <div>
-        <a class="footer-brand" href="${home}">${brand}</a>
+        <a class="footer-brand" href="${home}">${brandWordmark}</a>
         <p>Japanische Baumkunst, Niwaki, Garten-Bonsai und Formschnitt in der Region Zürich.</p>
         <p class="trust-chip">27 Jahre Erfahrung · ★ 4.x Google [PLATZHALTER]</p>
       </div>
@@ -771,7 +772,7 @@ function cssBase() {
 }
 
 function cssResponsiveFixes() {
-  return `html,body{max-width:100%;overflow-x:hidden}h1,h2,h3,p,.brand-name{overflow-wrap:break-word}.hero-panel,.card,.form-card,.note-block,.price-teaser,.image-slot,.site-nav{min-width:0}.hero-slot>div{place-content:center end;text-align:right;padding-right:max(24px,10vw)}.hero-slot span,.hero-slot strong,.hero-slot small{max-width:280px}.cookie-banner .btn{white-space:nowrap;min-width:110px}@media (max-width:620px){.site-header{width:100%;min-height:69px;padding:12px 76px 12px 16px;gap:10px}.nav-toggle{display:block;position:fixed;right:16px;top:12px;width:44px;height:44px;z-index:40}.brand{flex:1 1 auto;max-width:none;min-width:0}.brand-symbol{flex:0 0 42px}.brand-text{min-width:0;max-width:calc(100vw - 144px)}.brand-name{display:block;font-size:.96rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hero{display:block;padding:32px 16px 50px}.hero>*{grid-column:auto}.hero-media{display:block;min-height:180px;margin:0 0 14px}.hero-slot{border-radius:var(--radius)}.hero-panel{width:100%;max-width:none;margin:0;padding:22px;overflow:hidden}.hero-panel h1{font-size:1.85rem;line-height:1.08}.hero-panel .motto{font-size:1.15rem}.hero-services{grid-template-columns:1fr;margin-top:14px}.hero-slot>div{place-content:center;text-align:center;padding-right:22px}.cookie-banner div{flex-direction:column}.cookie-banner .btn{width:100%;white-space:normal}}`;
+  return `html,body{max-width:100%;overflow-x:hidden}h1,h2,h3,p,.brand-name{overflow-wrap:break-word}.hero-panel,.card,.form-card,.note-block,.price-teaser,.image-slot,.site-nav{min-width:0}.brand-logo{width:44px;height:44px;border-radius:50%;object-fit:cover;background:var(--surface);border:1px solid var(--line);box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--surface) 70%,transparent)}.hero-slot>div{place-content:center end;text-align:right;padding-right:max(24px,10vw)}.hero-slot span,.hero-slot strong,.hero-slot small{max-width:280px}.cookie-banner .btn{white-space:nowrap;min-width:110px}@media (max-width:620px){.site-header{width:100%;min-height:69px;padding:12px 76px 12px 16px;gap:10px}.nav-toggle{display:block;position:fixed;right:16px;top:12px;width:44px;height:44px;z-index:40;background:var(--primary);border-color:var(--primary);box-shadow:var(--shadow)}.nav-toggle span:not(.sr-only){background:var(--primary-ink)}.brand{flex:1 1 auto;max-width:none;min-width:0}.brand-logo{flex:0 0 44px}.brand-text{min-width:0;max-width:calc(100vw - 144px)}.brand-name{display:block;font-size:.96rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hero{display:block;padding:32px 16px 50px}.hero>*{grid-column:auto}.hero-media{display:block;min-height:180px;margin:0 0 14px}.hero-slot{border-radius:var(--radius)}.hero-panel{width:100%;max-width:none;margin:0;padding:22px;overflow:hidden}.hero-panel h1{font-size:1.85rem;line-height:1.08}.hero-panel .motto{font-size:1.15rem}.hero-services{grid-template-columns:1fr;margin-top:14px}.hero-slot>div{place-content:center;text-align:center;padding-right:22px}.cookie-banner div{flex-direction:column}.cookie-banner .btn{width:100%;white-space:normal}}`;
 }
 
 function jsMain() {
@@ -993,12 +994,13 @@ Static multipage DE/EN site for Viktor Baumarchitektur. It opens directly from \
 - Replace WhatsApp \`PLACEHOLDER_NUMBER\` in \`tools/generate-site.mjs\` or directly in generated HTML.
 - Replace phone \`+41000000000\` and visible \`[PLATZHALTER]\` phone/contact data.
 - Replace GA4 \`G-XXXXXXX\`, Google Ads \`AW-XXXXXXX\`, Search Console verification and form backend.
+- Replace the visible header/footer wordmark placeholder \`&lt;БРЕНД&gt;\` when the final displayed brand lockup is approved.
 - Complete \`impressum.html\` and \`datenschutz.html\` with Viktor's legal data before publication.
 - Swap real images using filenames in \`assets/img/MANIFEST.md\`.
 
 ## Logo / wordmark assumption
 
-The confirmed business/entity name in \`project_brief\` is **Viktor Baumarchitektur**. The supplied \`Лого.jpg\` was converted to a real PNG at \`assets/img/logo.png\`, but the image wordmark says **Viktor Bonsai**. The header therefore uses a text wordmark **Viktor Baumarchitektur** and keeps \`logo.png\` as an available asset until the final wordmark is redrawn or approved.
+The confirmed SEO/business/entity name in \`project_brief\` is **Viktor Baumarchitektur**. The supplied \`Лого.jpg\` was converted to a real PNG at \`assets/img/logo.png\`, but the image wordmark says **Viktor Bonsai**. Per the active build objective, the header uses \`assets/img/logo.png\` and the visible header/footer wordmark placeholder \`&lt;БРЕНД&gt;\`. Keep SEO, JSON-LD and canonical entity names as **Viktor Baumarchitektur** until Viktor changes the business name.
 
 ## Change theme
 
@@ -1063,6 +1065,12 @@ for (const file of htmlFiles) {
   }
   if (!html.includes("application/ld+json") && !file.includes("impressum") && !file.includes("datenschutz") && !file.includes("themes")) {
     errors.push(file + " missing JSON-LD");
+  }
+  if (!html.includes("class=\\"brand-logo\\"") || !html.includes("assets/img/logo.png")) {
+    errors.push(file + " header missing assets/img/logo.png brand logo");
+  }
+  if (!html.includes("&lt;БРЕНД&gt;")) {
+    errors.push(file + " missing visible <БРЕНД> wordmark placeholder");
   }
   const hrefs = [...html.matchAll(/href=\"([^\"]+)\"/g)].map((m) => m[1]);
   for (const href of hrefs) {
