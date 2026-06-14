@@ -1,0 +1,18 @@
+/* Theme V4: Improved Hybrid. Same variable names across all themes. */
+:root{
+  --bg:#F8F7F2;
+  --surface:#FFFFFF;
+  --text:#1E2A22;
+  --muted:#5B6B60;
+  --primary:#24452F;
+  --primary-ink:#FFFFFF;
+  --accent:#BE9B4E;
+  --leaf:#7FA45B;
+  --line:#E3E0D6;
+  --radius:14px;
+  --shadow:0 6px 24px rgba(20,30,24,.08);
+  --font-head:"Cormorant Garamond",Georgia,serif;
+  --font-body:system-ui,"Inter",sans-serif;
+  --maxw:1140px;
+  --space:clamp(16px,4vw,40px);
+}

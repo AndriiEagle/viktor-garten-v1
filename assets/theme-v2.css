@@ -1,0 +1,18 @@
+/* Theme V2: Caesar Luxe. Same variable names across all themes. */
+:root{
+  --bg:#1F3D2E;
+  --surface:#274A38;
+  --text:#F4F1E8;
+  --muted:#D4CCB7;
+  --primary:#C9A24B;
+  --primary-ink:#132218;
+  --accent:#86B985;
+  --leaf:#98C06A;
+  --line:rgba(244,241,232,.22);
+  --radius:12px;
+  --shadow:0 10px 30px rgba(0,0,0,.25);
+  --font-head:"Cormorant Garamond",Georgia,serif;
+  --font-body:system-ui,"Inter",sans-serif;
+  --maxw:1140px;
+  --space:clamp(16px,4vw,40px);
+}

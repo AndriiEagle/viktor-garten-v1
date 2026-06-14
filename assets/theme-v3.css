@@ -1,0 +1,18 @@
+/* Theme V3: Zen Editorial. Same variable names across all themes. */
+:root{
+  --bg:#F2EDE3;
+  --surface:#FFFDF8;
+  --text:#14110E;
+  --muted:#6C6259;
+  --primary:#2F4F3A;
+  --primary-ink:#FFFFFF;
+  --accent:#B23A2E;
+  --leaf:#6D8D4E;
+  --line:#DDD3C5;
+  --radius:8px;
+  --shadow:0 8px 28px rgba(60,45,30,.08);
+  --font-head:"Cormorant Garamond",Georgia,serif;
+  --font-body:system-ui,"Inter",sans-serif;
+  --maxw:1140px;
+  --space:clamp(16px,4vw,40px);
+}

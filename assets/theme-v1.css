@@ -1,0 +1,18 @@
+/* Theme V1: Robert Clean. Same variable names across all themes. */
+:root{
+  --bg:#FAFAF7;
+  --surface:#FFFFFF;
+  --text:#1E1E1E;
+  --muted:#60665F;
+  --primary:#3E5C3A;
+  --primary-ink:#FFFFFF;
+  --accent:#8A9A5B;
+  --leaf:#86A567;
+  --line:#E6E4DD;
+  --radius:10px;
+  --shadow:0 6px 24px rgba(30,30,30,.07);
+  --font-head:system-ui,"Inter",sans-serif;
+  --font-body:system-ui,"Inter",sans-serif;
+  --maxw:1140px;
+  --space:clamp(16px,4vw,40px);
+}
