@@ -1,43 +1,23 @@
 # Image Manifest
 
-Most visual slots are placeholders until real files are provided. AI files are allowed for mood, education and Baum-Vision concepts, but never as proof of completed client work. Preferred final formats: AVIF/WebP with JPEG fallback.
+The public site now uses Viktor's supplied real WebP photo set for hero, services, gallery, trust, blog and garden-context imagery. Educational Baumarchitektur diagrams remain supplied graphics, not client proof. Legacy AI/concept JPG files stay in the archive but are no longer used by generated public pages.
 
-| File | Aspect | Source | Used for | Status |
-|---|---:|---|---|---|
-| logo.png | 1:1 source PNG from existing logo | Existing legacy logo, reads Viktor Bonsai | Header symbol crop only; text wordmark rendered beside it | PRESENT_BUT_WORDMARK_CONFLICT |
-| hero-garten-alt.jpg | 16:9 | AI concept, needs Viktor botanical review | Primary home hero background | PRESENT_AI_CONCEPT_NEEDS_VIKTOR_REVIEW |
-| hero-garten.jpg | 16:9 | AI concept, needs Viktor botanical review | Secondary hero/archive | PRESENT_AI_CONCEPT_NEEDS_VIKTOR_REVIEW |
-| og-share.jpg | 1200x630 | Temporary branded static JPG | Link previews | PRESENT_TEMPORARY |
-| section-bg-vision.jpg | 16:9 | AI concept, needs Viktor botanical review | Personal tree vision block | PRESENT_AI_CONCEPT_NEEDS_VIKTOR_REVIEW |
-| section-bg-soft.jpg | 16:9 | AI concept, needs Viktor botanical review | Concept recovery / soft section | PRESENT_AI_CONCEPT_NOT_PROOF |
-| baumarchitektur-energiefluss-verstehen.png | 4:3 | Supplied educational graphic | Home Meisterarbeit energy-flow block | PRESENT_SUPPLIED_GRAPHIC |
-| baumarchitektur-korrektur.png | 4:3 | Supplied educational graphic | Home Meisterarbeit carousel | PRESENT_SUPPLIED_GRAPHIC |
-| baumarchitektur-live-crown-ratio.png | 4:3 | Supplied educational graphic | Home Meisterarbeit carousel | PRESENT_SUPPLIED_GRAPHIC |
-| sanctuary-coffee.jpg | 16:9 | AI concept, looks like problem tree | Climate stress / concept before state | PRESENT_AI_CONCEPT_NOT_PROOF |
-| vision-jahr1.jpg | 1:1 | AI concept, needs Viktor botanical review | Year 1 Baum-Vision | PRESENT_AI_CONCEPT_NOT_PROOF |
-| vision-jahr2.jpg | 1:1 | AI concept, needs Viktor botanical review | Year 2 Baum-Vision | PRESENT_AI_CONCEPT_NOT_PROOF |
-| vision-jahr3.jpg | 1:1 | AI concept, needs Viktor botanical review | Year 3 Baum-Vision | PRESENT_AI_CONCEPT_NOT_PROOF |
-| niwaki-service.jpg | 4:3 | AI concept, needs Viktor botanical review | Niwaki service / crown article | PRESENT_AI_CONCEPT_NOT_PROOF |
-| ahorn-service.jpg | 4:3 | Real Viktor work photo supplied by Andrii | Acer service | PRESENT_REAL_SUPPLIED_NEEDS_FINAL_APPROVAL |
-| kiefer-service.jpg | 4:3 | AI concept, needs Viktor botanical review | Pine service / candle article | PRESENT_AI_CONCEPT_NOT_PROOF |
-| detail-ahorn-blatt.jpg | 3:2 | AI concept detail | Crown/light article | PRESENT_AI_CONCEPT_NOT_PROOF |
-| detail-kerzen.jpg | 3:2 | AI concept detail | Pine candle article | PRESENT_AI_CONCEPT_NOT_PROOF |
-| detail-moos.jpg | 3:2 | AI concept detail | Soil/moisture article | PRESENT_AI_CONCEPT_NOT_PROOF |
-| detail-schnitt.jpg | 3:2 | AI concept detail | Topiary scissors article | PRESENT_AI_CONCEPT_NOT_PROOF |
-| werkzeug.jpg | 4:3 | AI concept flatlay | Tool article | PRESENT_AI_CONCEPT_NOT_PROOF |
-| meister-hands-01.jpg | 3:2 / 16:9 | Real Viktor work photo supplied by Andrii | Topiary scissors proof slot | PRESENT_REAL_SUPPLIED_NEEDS_FINAL_APPROVAL |
-| meister-hands-01-v2.jpg | 3:2 / 16:9 | Real Viktor work photo supplied by Andrii | Handwork / article hero | PRESENT_REAL_SUPPLIED_NEEDS_FINAL_APPROVAL |
-| boden-wurzeln.jpg | 16:9 / 3:2 | AI concept educational photo | Blog soil article archive | PRESENT_AI_CONCEPT_NOT_PROOF |
-| boden-wurzeln-v2.jpg | 16:9 / 3:2 | AI concept educational photo | Roots / soil article hero | PRESENT_AI_CONCEPT_NOT_PROOF |
-| concepts/vorher-dying-concept.jpg | 4:3 | AI concept visualization only | Dossier/gallery concept before | PRESENT_AI_CONCEPT_NOT_PROOF |
-| concepts/nachher-concept.jpg | 4:3 | AI concept visualization only | Dossier/gallery concept after | PRESENT_AI_CONCEPT_NOT_PROOF |
-| concepts/japan-postkarte-concept.jpg | 4:3 | AI concept visualization only, not real recognition | Dossier/gallery Japan trust concept | PRESENT_AI_CONCEPT_NOT_PROOF |
-| vorher-dying-01.jpg..06.jpg | 4:3 | Real Viktor photos preferred | Gallery before states | MISSING_REAL_REQUIRED |
-| nachher-01.jpg..06.jpg | 4:3 | Real Viktor photos | Gallery after states | MISSING_REAL_REQUIRED |
-| nachher-06.jpg | 4:3 | Real Viktor photos | Explicit audit marker for final gallery pair | MISSING_REAL_REQUIRED |
-| vorher-nachher-01.jpg..03.jpg | 4:3 | Real Viktor photos | Home teaser | MISSING_REAL_REQUIRED |
-| meister-01.jpg | 3:2 | Real Viktor portrait/work photo supplied by Andrii | Philosophy / gallery | PRESENT_REAL_SUPPLIED_NEEDS_FINAL_APPROVAL |
-| meister-02.jpg | 3:2 | Real Viktor work photo supplied by Andrii | Philosophy / gallery | PRESENT_REAL_SUPPLIED_NEEDS_FINAL_APPROVAL |
-| meister-03.jpg | 3:2 | Real Viktor work photo supplied by Andrii | Gallery / trust proof | PRESENT_REAL_SUPPLIED_NEEDS_FINAL_APPROVAL |
-| japan-postkarte.jpg | 4:3 | Real only | Anerkennung aus Japan | MISSING_REAL_REQUIRED |
+| File / folder | Source | Used for | Status |
+|---|---|---|---|
+| logo.png | Existing legacy logo | Header/footer mark | PRESENT_LEGACY_LOGO |
+| foto/01_hero/hero-sad-02.webp | Supplied real photo | Home hero and social preview | PRESENT_REAL_PHOTO |
+| foto/01_hero/hero-sad-01.webp | Supplied real photo | Alternate hero/social preview | PRESENT_REAL_PHOTO |
+| foto/02_pryklady-robit/*.webp | Supplied real photos | Before/after direction, timeline, gallery | PRESENT_REAL_PHOTO_SET |
+| foto/03_galereya/*.webp | Supplied real photos | Gallery grid | PRESENT_REAL_PHOTO_SET |
+| foto/04_khvoyni/*.webp | Supplied real photos | Conifer service and articles | PRESENT_REAL_PHOTO_SET |
+| foto/05_nivaki-khmarky/*.webp | Supplied real photos | Niwaki service and crown article | PRESENT_REAL_PHOTO_SET |
+| foto/06_yaponski-kleny/klen-yaponskyi-01.webp | Supplied real photo, species-confirmed subset | Ahorn service | PRESENT_REAL_PHOTO_WITH_LIMITS |
+| foto/07_viktor/*.webp | Supplied real photos | Viktor/trust/topiary article | PRESENT_REAL_PHOTO_SET |
+| foto/08_fonovi/*.webp | Supplied real photos | Garden context backgrounds | PRESENT_REAL_PHOTO_SET |
+| foto/09_pomylky/*.webp | Supplied real photos | Pine candle/detail article | PRESENT_REAL_PHOTO_SET |
+| foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp | Supplied real photo | Japan trust/soil context | PRESENT_REAL_PHOTO |
+| baumarchitektur-korrektur.png | Supplied educational graphic | Home Meisterarbeit carousel | PRESENT_SUPPLIED_GRAPHIC |
+| baumarchitektur-live-crown-ratio.png | Supplied educational graphic | Home Meisterarbeit carousel | PRESENT_SUPPLIED_GRAPHIC |
+| _video/video-sosna-bila-01.mp4 / 02.mp4 | Supplied video files | Potential before-frame source | PRESENT_BUT_UNUSABLE_FFMPEG_MOOV_MISSING |
+| assets/img/concepts/*.jpg | Legacy archive | Not used in generated public pages | ARCHIVE_NOT_PUBLIC_PROOF |
 

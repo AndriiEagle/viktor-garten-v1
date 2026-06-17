@@ -178,7 +178,7 @@ async function waitReady(cdp) {
 
 async function waitVisibleImages(cdp) {
   await evaluate(cdp, `new Promise((resolve) => {
-    const timeout = window.setTimeout(() => resolve(false), 1800);
+    const timeout = window.setTimeout(() => resolve(false), 6000);
     const visibleImages = Array.from(document.images).filter((img) => {
       const rect = img.getBoundingClientRect();
       return rect.width > 0 && rect.height > 0 && rect.bottom >= 0 && rect.top <= window.innerHeight && rect.right >= 0 && rect.left <= window.innerWidth;
@@ -189,7 +189,7 @@ async function waitVisibleImages(cdp) {
       return new Promise((done) => {
         img.addEventListener("load", done, { once: true });
         img.addEventListener("error", done, { once: true });
-        window.setTimeout(done, 1200);
+        window.setTimeout(done, 5000);
       });
     })).then(() => {
       window.clearTimeout(timeout);
@@ -237,7 +237,7 @@ const pageAuditExpression = `(() => {
   const brokenImages = imgs.filter((img) => img.visible && img.complete && img.naturalWidth === 0).map((img) => img.src);
   const imageAttrIssues = imgs
     .filter((img) => img.visible && !img.src.startsWith("data:"))
-    .filter((img) => !img.width || !img.height || img.loading !== "lazy" || img.decoding !== "async")
+    .filter((img) => !img.width || !img.height || !["lazy", "eager"].includes(img.loading) || img.decoding !== "async")
     .map((img) => ({ src: img.src, loading: img.loading, decoding: img.decoding, width: img.width, height: img.height }));
   const forms = Array.from(document.forms).map((form) => ({
     action: form.action,

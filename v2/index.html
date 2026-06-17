@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
   VIKTOR - Version 2 preview. Wabi-sabi / sumi-e visual direction.
-  Missing final client assets: japan-postkarte, before/after proof, face/portrait.
+  Public preview uses Viktor's supplied real WebP photos. Diagrams remain supplied graphics.
   Type: Shippori Mincho + Zen Kaku Gothic New. Mobile-first, CSS-only motion, reduced-motion safe.
 -->
 <html lang="de-CH">
@@ -10,6 +10,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Viktor Baumarchitektur — Niwaki & japanische Baumkunst | Zürich</title>
 <meta name="description" content="Meister für Niwaki, japanische Ahorne und Nadelgehölze in der Region Zürich. 27 Jahre Erfahrung. Kostenlose Foto-Diagnose.">
+<meta property="og:image" content="https://viktor-baumarchitektur.ch/assets/img/foto/01_hero/hero-sad-02.webp">
+<link rel="preload" as="image" href="../assets/img/foto/01_hero/hero-sad-02.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
@@ -67,7 +69,7 @@
   .lang{border:1px solid var(--line);border-radius:999px;padding:8px 13px;font:700 .78rem/1 var(--body)}
 
   .hero{position:relative;color:var(--washi);overflow:hidden;min-height:96vh;display:flex;align-items:center;
-    background:linear-gradient(180deg,rgba(14,31,21,.34) 0%,rgba(11,24,16,.78) 100%),url("../assets/img/hero-garten.jpg") center/cover no-repeat}
+    background:linear-gradient(180deg,rgba(14,31,21,.34) 0%,rgba(11,24,16,.78) 100%),url("../assets/img/foto/01_hero/hero-sad-02.webp") center/cover no-repeat}
   .enso{position:absolute;top:50%;right:-6%;transform:translateY(-50%);width:min(72vw,640px);opacity:.85;pointer-events:none}
   .enso path{fill:none;stroke:var(--gold);stroke-width:9;stroke-linecap:round;stroke-dasharray:1700;stroke-dashoffset:1700;animation:draw 2.4s var(--ease) .3s forwards}
   .tate{position:absolute;left:clamp(10px,3vw,34px);top:18%;writing-mode:vertical-rl;font-family:var(--disp);font-size:clamp(1rem,2.4vw,1.5rem);letter-spacing:.5em;color:rgba(241,236,223,.55)}
@@ -98,13 +100,13 @@
   .tl article{border:1px solid rgba(241,236,223,.2);overflow:hidden;transition:transform .3s var(--ease)} .tl article:hover{transform:translateY(-6px)}
   .tl .cap{padding:18px 20px} .tl h3{font-size:1.55rem;color:var(--gold)} .tl .media{--r:1/1;border:0}
 
-  .sig{position:relative;color:var(--washi);overflow:hidden;background:linear-gradient(135deg,rgba(20,45,30,.86),rgba(14,31,21,.92)),url("../assets/img/section-bg-vision.jpg") center/cover}
+  .sig{position:relative;color:var(--washi);overflow:hidden;background:linear-gradient(135deg,rgba(20,45,30,.86),rgba(14,31,21,.92)),url("../assets/img/foto/08_fonovi/fon-foto-02.webp") center/cover}
   .sig .enso{top:auto;bottom:-30%;right:-10%;width:min(60vw,520px);opacity:.4}
   .sig h2{font-size:clamp(2.1rem,5.4vw,3.6rem);max-width:16ch}
   .sig .pill{display:inline-block;margin-top:16px;border:1px solid var(--gold);color:var(--gold);border-radius:999px;padding:9px 18px;font:700 .76rem/1 var(--body);letter-spacing:.16em;text-transform:uppercase}
 
   .sanctuary{position:relative;min-height:60vh;display:flex;align-items:flex-end;color:var(--washi);overflow:hidden;
-    background:linear-gradient(180deg,rgba(14,31,21,.1),rgba(11,24,16,.7)),url("../assets/img/sanctuary-coffee.jpg") center/cover}
+    background:linear-gradient(180deg,rgba(14,31,21,.1),rgba(11,24,16,.7)),url("../assets/img/foto/08_fonovi/fon-sosna-bila-01.webp") center/cover}
   .sanctuary .wrap{padding:8vh 0}
 
   .stamp{display:inline-flex;align-items:center;gap:12px;font:700 .74rem/1 var(--body);letter-spacing:.18em;text-transform:uppercase;color:var(--shu)}
@@ -174,7 +176,7 @@
       <p class="muted"><strong>Es liegt nicht an Ihnen.</strong> Sie giessen, Sie pflegen — und trotzdem leidet der Baum. Es liegt am Schnitt: Wer vor mir an Ihrem Baum gearbeitet hat, hat gegen die Naturgesetze geschnitten.</p>
       <p class="quote">Einen Ast abzuschneiden dauert eine Sekunde. Einen neuen wachsen zu lassen — Jahre.</p>
     </div>
-    <figure class="media reveal" style="--r:4/5"><img src="../assets/img/detail-schnitt.jpg" alt="Sauberer Schnitt an einem Ast — Feinarbeit" loading="lazy" decoding="async" width="1536" height="1024"></figure>
+    <figure class="media reveal" style="--r:4/5"><img src="../assets/img/foto/07_viktor/viktor-02.webp" alt="Sauberer Schnitt an einem Ast — Feinarbeit" loading="lazy" decoding="async" width="1536" height="1024"></figure>
   </div></section>
 
   <section class="band"><div class="wrap two rev energy">
@@ -201,9 +203,9 @@
   <section id="leistungen"><div class="wrap">
     <span class="eyebrow reveal">三 Leistungen</span>
     <p class="lede reveal" style="margin:14px 0 22px">Drei Kernbereiche — kompromisslos.</p>
-    <div class="svc-row reveal"><div class="no">01</div><div><h3>Niwaki — Garten-Bonsai</h3><p class="muted">Pflege und Formung von Niwaki — Bäumen im Garten, nicht im Topf. Jede Wolke erhält Raum für Licht, Luft und Kraft.</p></div><figure class="media"><img src="../assets/img/niwaki-service.jpg" alt="Geformter Niwaki mit Wolkenpads" loading="lazy" decoding="async" width="1448" height="1086"></figure></div>
-    <div class="svc-row reveal"><div class="no">02</div><div><h3>Japanische Ahorne</h3><p class="muted">Saisonale Formung, Totholz aus dem Kroneninneren, Handarbeit gegen Pilze und Moos — bevor der Schaden bleibt.</p></div><figure class="media"><img src="../assets/img/ahorn-service.jpg" alt="Japanischer Ahorn Acer palmatum" loading="lazy" decoding="async" width="1448" height="1086"></figure></div>
-    <div class="svc-row reveal"><div class="no">03</div><div><h3>Nadelgehölze</h3><p class="muted">Schwerpunkt Kiefer. Sauberer Schnitt von Hand mit feinsten japanischen Werkzeugen.</p></div><figure class="media"><img src="../assets/img/kiefer-service.jpg" alt="Kiefer Formschnitt" loading="lazy" decoding="async" width="1448" height="1086"></figure></div>
+    <div class="svc-row reveal"><div class="no">01</div><div><h3>Niwaki — Garten-Bonsai</h3><p class="muted">Pflege und Formung von Niwaki — Bäumen im Garten, nicht im Topf. Jede Wolke erhält Raum für Licht, Luft und Kraft.</p></div><figure class="media"><img src="../assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-01.webp" alt="Geformter Niwaki mit Wolkenpads" loading="lazy" decoding="async" width="1448" height="1086"></figure></div>
+    <div class="svc-row reveal"><div class="no">02</div><div><h3>Japanische Ahorne</h3><p class="muted">Saisonale Formung, Totholz aus dem Kroneninneren, Handarbeit gegen Pilze und Moos — bevor der Schaden bleibt.</p></div><figure class="media"><img src="../assets/img/foto/06_yaponski-kleny/klen-yaponskyi-01.webp" alt="Japanischer Ahorn Acer palmatum" loading="lazy" decoding="async" width="1448" height="1086"></figure></div>
+    <div class="svc-row reveal"><div class="no">03</div><div><h3>Nadelgehölze</h3><p class="muted">Schwerpunkt Kiefer. Sauberer Schnitt von Hand mit feinsten japanischen Werkzeugen.</p></div><figure class="media"><img src="../assets/img/foto/04_khvoyni/sosna-chorna-01.webp" alt="Kiefer Formschnitt" loading="lazy" decoding="async" width="1448" height="1086"></figure></div>
     <p class="muted reveal" style="margin-top:24px">Bäume bis 3 m; grösser nach Absprache. <strong>Ich nehme pro Saison nur eine begrenzte Zahl an Gärten an.</strong></p>
   </div></section>
 
@@ -211,10 +213,10 @@
     <span class="eyebrow reveal">細部 Feinarbeit</span>
     <p class="lede reveal" style="margin:14px 0 0">Im Detail liegt der Unterschied.</p>
     <div class="dgrid">
-      <figure class="reveal"><div class="media"><img src="../assets/img/detail-kerzen.jpg" alt="Kiefernkerzen im Frühling" loading="lazy" decoding="async" width="1536" height="1024"></div><figcaption>Kerzenarbeit im Mai/Juni — der richtige Moment.</figcaption></figure>
-      <figure class="reveal"><div class="media"><img src="../assets/img/detail-ahorn-blatt.jpg" alt="Acer palmatum Blätter im Gegenlicht" loading="lazy" decoding="async" width="1536" height="1024"></div><figcaption>Acer palmatum — Licht durch jedes Blatt.</figcaption></figure>
-      <figure class="reveal"><div class="media"><img src="../assets/img/werkzeug.jpg" alt="Japanische Topiarschere" loading="lazy" decoding="async" width="1448" height="1086"></div><figcaption>Nur feinste japanische Werkzeuge.</figcaption></figure>
-      <figure class="reveal"><div class="media"><img src="../assets/img/detail-moos.jpg" alt="Moos und Rinde — Wabi-Sabi" loading="lazy" decoding="async" width="1536" height="1024"></div><figcaption>Boden, Moos, Rinde — Gesundheit von unten.</figcaption></figure>
+      <figure class="reveal"><div class="media"><img src="../assets/img/foto/09_pomylky/pomylka-svichka-01.webp" alt="Kiefernkerzen im Frühling" loading="lazy" decoding="async" width="1536" height="1024"></div><figcaption>Kerzenarbeit im Mai/Juni — der richtige Moment.</figcaption></figure>
+      <figure class="reveal"><div class="media"><img src="../assets/img/foto/06_yaponski-kleny/klen-yaponskyi-01.webp" alt="Acer palmatum Blätter im Gegenlicht" loading="lazy" decoding="async" width="1536" height="1024"></div><figcaption>Acer palmatum — Licht durch jedes Blatt.</figcaption></figure>
+      <figure class="reveal"><div class="media"><img src="../assets/img/foto/07_viktor/viktor-01.webp" alt="Japanische Topiarschere" loading="lazy" decoding="async" width="1448" height="1086"></div><figcaption>Nur feinste japanische Werkzeuge.</figcaption></figure>
+      <figure class="reveal"><div class="media"><img src="../assets/img/foto/08_fonovi/fon-foto-01.webp" alt="Moos und Rinde — Wabi-Sabi" loading="lazy" decoding="async" width="1536" height="1024"></div><figcaption>Boden, Moos, Rinde — Gesundheit von unten.</figcaption></figure>
     </div>
   </div></section>
 
@@ -223,9 +225,9 @@
     <p class="lede reveal" style="margin:14px 0 0">Wie Ihr Baum über die Jahre Form annimmt.</p>
     <p class="muted reveal" style="max-width:58ch;margin-top:16px">Ich forme nicht für den Moment, sondern für die Jahre. Schon vor dem ersten Schnitt sehe ich, wohin Ihr Baum wachsen kann.</p>
     <div class="tl">
-      <article class="reveal"><div class="media"><img src="../assets/img/vision-jahr1.jpg" alt="Jahr 1 — Struktur" loading="lazy" decoding="async" width="1200" height="1200"></div><div class="cap"><h3>Jahr 1</h3><p class="muted">Struktur — Totholz raus, Kraft neu verteilt.</p></div></article>
-      <article class="reveal"><div class="media"><img src="../assets/img/vision-jahr2.jpg" alt="Jahr 2 — Richtung" loading="lazy" decoding="async" width="1200" height="1200"></div><div class="cap"><h3>Jahr 2</h3><p class="muted">Richtung — die richtigen Triebe bleiben.</p></div></article>
-      <article class="reveal"><div class="media"><img src="../assets/img/vision-jahr3.jpg" alt="Jahr 3 — Charakter" loading="lazy" decoding="async" width="1200" height="1200"></div><div class="cap"><h3>Jahr 3</h3><p class="muted">Charakter — die Form trägt sich selbst.</p></div></article>
+      <article class="reveal"><div class="media"><img src="../assets/img/foto/02_pryklady-robit/sosna-bila-23.webp" alt="Jahr 1 — Struktur" loading="lazy" decoding="async" width="1200" height="1200"></div><div class="cap"><h3>Jahr 1</h3><p class="muted">Struktur — Totholz raus, Kraft neu verteilt.</p></div></article>
+      <article class="reveal"><div class="media"><img src="../assets/img/foto/09_pomylky/pomylka-svichka-01.webp" alt="Jahr 2 — Richtung" loading="lazy" decoding="async" width="1200" height="1200"></div><div class="cap"><h3>Jahr 2</h3><p class="muted">Richtung — die richtigen Triebe bleiben.</p></div></article>
+      <article class="reveal"><div class="media"><img src="../assets/img/foto/02_pryklady-robit/sosna-bila-17.webp" alt="Jahr 3 — Charakter" loading="lazy" decoding="async" width="1200" height="1200"></div><div class="cap"><h3>Jahr 3</h3><p class="muted">Charakter — die Form trägt sich selbst.</p></div></article>
     </div>
   </div></section>
 
@@ -240,7 +242,7 @@
   </section>
 
   <section id="philosophie"><div class="wrap two">
-    <figure class="slot reveal"><span class="k">Foto — echt (von Viktor)</span><b>Anerkennung aus Japan</b><small>handsignierte Dankeskarte · japan-postkarte.jpg</small></figure>
+    <figure class="media reveal" style="--r:4/3"><img src="../assets/img/foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp" alt="Handsignierte Dankeskarte aus Japan" loading="lazy" decoding="async" width="1448" height="1086"></figure>
     <div class="reveal">
       <span class="stamp"><span class="seal">朱</span> Anerkennung aus Japan</span>
       <h2 style="font-size:clamp(2rem,4.6vw,3.1rem);margin:18px 0 18px">In Japan kennt man meine Arbeit.</h2>
