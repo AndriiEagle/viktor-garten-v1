@@ -13,7 +13,7 @@ const required = [
   "uk/blog/index.html","uk/blog/topiarschere.html","uk/blog/energie-krone.html","uk/blog/kiefer-kerzen.html","uk/blog/boden-wurzeln.html","uk/blog/klimastress.html",
   "uk/kontakt.html","uk/impressum.html","uk/datenschutz.html","uk/themes.html",
   "assets/base.css","assets/main.js","assets/theme-v1.css","assets/theme-v2.css","assets/theme-v3.css","assets/theme-v4.css","assets/theme-v5.css",
-  "assets/img/logo.png","assets/img/og-share.jpg","assets/img/MANIFEST.md","site.webmanifest","robots.txt","sitemap.xml","llms.txt","vercel.json","README.md",".env.example","api/voice-lead.js"
+  "assets/img/logo.png","assets/img/og-share.jpg","assets/img/MANIFEST.md","site.webmanifest","robots.txt","sitemap.xml","llms.txt","vercel.json","README.md",".env.example","api/contact.js","api/voice-lead.js"
 ];
 
 const errors = [];
@@ -78,6 +78,22 @@ for (const file of htmlFiles) {
   for (const forbidden of ["БРЕНД", "PLATZHALTER", "PLACEHOLDER"]) {
     if (bodyText.includes(forbidden)) errors.push(file + " visible body text contains " + forbidden);
   }
+  const removedPublicMarkers = [
+    "Konzept" + "-Labels",
+    "Concept " + "labels",
+    "Formular " + "inaktiv",
+    "Formspree" + "-Endpunkt muss",
+    "AI-" + "Konzeptvisualisierung",
+    "AI " + "concept only",
+    "AI-" + "концепт"
+  ];
+  for (const forbidden of removedPublicMarkers) {
+    if (html.includes(forbidden) || bodyText.includes(forbidden)) errors.push(file + " public page still contains removed marker: " + forbidden);
+  }
+  const removedToggleAttr = "data-" + "presentation-toggle";
+  const removedCaptionClass = "asset" + "-caption";
+  if (html.includes(removedToggleAttr)) errors.push(file + " still renders presentation toggle");
+  if (html.includes(removedCaptionClass)) errors.push(file + " still renders asset caption labels");
   if (file === "index.html" || file === "en/index.html" || file === "uk/index.html") {
     for (const deadSignal of ["FOTO - echt", "Google-Bewertung folgt", "Google rating follows", "Referenztext folgt"]) {
       if (bodyText.includes(deadSignal)) errors.push(file + " home page still shows dead demo signal: " + deadSignal);
@@ -99,9 +115,9 @@ for (const file of htmlFiles) {
   }
   const forms = [...html.matchAll(/<form\b[^>]*>/gi)].map((m) => m[0]);
   for (const form of forms) {
-    if (!form.includes('action="https://formspree.io/f/REPLACE"')) errors.push(file + " form is not Formspree-ready");
+    if (!form.includes('action="/api/contact"')) errors.push(file + " form does not submit to /api/contact");
     if (!form.includes('method="post"')) errors.push(file + " form missing POST method");
-    if (!form.includes('enctype="multipart/form-data"')) errors.push(file + " form missing multipart enctype");
+    if (!form.includes("data-contact-form")) errors.push(file + " form missing data-contact-form marker");
   }
   const hrefs = [...html.matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
   for (const href of hrefs) {
@@ -134,6 +150,16 @@ for (const file of previewFiles) {
   if (!html.includes("Version 2") || !html.includes("V2")) errors.push(file + " missing V2 marker");
   if (!html.includes("<title>") || !html.includes('name="description"')) errors.push(file + " missing basic meta tags");
   if (html.includes('href="#"')) errors.push(file + ' contains dead href="#" link');
+  const removedPreviewMarkers = [
+    "generated " + "image",
+    "AI-" + "Bilder",
+    "Konzept" + "-Labels",
+    "Concept " + "labels",
+    "asset" + "-caption"
+  ];
+  for (const forbidden of removedPreviewMarkers) {
+    if (html.includes(forbidden)) errors.push(file + " preview still contains removed public marker: " + forbidden);
+  }
   for (const marker of ["data-voice-lead", "MediaRecorder", "getUserMedia", "/api/voice-lead", "data-voice-consent"]) {
     if (!html.includes(marker)) errors.push(file + " missing voice lead marker " + marker);
   }
@@ -169,4 +195,3 @@ if (errors.length) {
   process.exit(1);
 }
 console.log("AUDIT PASSED: required files, SEO tags, JSON-LD, internal links, events and image manifest are present.");
-

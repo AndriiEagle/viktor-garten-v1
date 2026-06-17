@@ -8,7 +8,6 @@ const domain = "https://viktor-baumarchitektur.ch";
 const phone = "+41783130330";
 const phoneDisplay = "+41 78 313 03 30";
 const telHref = `tel:${phone}`;
-const formspreeAction = "https://formspree.io/f/REPLACE";
 const instagramUrl = "https://www.instagram.com/viktor_bonsai_niwaki";
 const facebookUrl = "https://www.facebook.com/viktor.bonsai.niwaki";
 const whatsappText = encodeURIComponent(
@@ -98,17 +97,13 @@ function assetSlot({ type = "real", file, label, ratio = "4 / 3", className = ""
   const width = Number.isFinite(widthRatio) ? Math.round(widthRatio * 300) : 1200;
   const height = Number.isFinite(heightRatio) ? Math.round(heightRatio * 300) : 900;
   const isAi = type === "ai";
-  const conceptCaption = isAi
-    ? `<figcaption class="asset-caption">${caption || "AI-Konzeptvisualisierung - von Viktor botanisch zu prüfen."}</figcaption>`
-    : "";
   if (fs.existsSync(assetPath)) {
     return `
     <figure class="image-slot image-slot-real ${isAi ? "image-slot-ai" : ""} ${className}" style="--ratio:${ratio}" data-asset="${file}">
       <img src="__ASSET_PREFIX__assets/img/${file}" alt="${label}" loading="lazy" decoding="async" width="${width}" height="${height}">
-      ${conceptCaption}
     </figure>`;
   }
-  const kind = kindLabel || (type === "ai" ? "AI-Hintergrund - von Viktor geprüft" : "FOTO - echt");
+  const kind = kindLabel || "Bild";
   return `
     <figure class="image-slot ${isAi ? "image-slot-ai" : "image-slot-real"} ${className}" style="--ratio:${ratio}" data-asset="${file}">
       <div>
@@ -122,25 +117,23 @@ function assetSlot({ type = "real", file, label, ratio = "4 / 3", className = ""
 function assetSlotUk(options) {
   return assetSlot({
     ...options,
-    caption: options.caption || "AI-концепт для напряму дизайну. Не є реальним доказом роботи.",
-    kindLabel: options.kindLabel || (options.type === "ai" ? "AI-концепт - потребує перевірки Віктора" : "Реальне фото")
+    kindLabel: options.kindLabel || "Зображення"
   });
 }
 
 function conceptRescueSlider(lang = "de") {
   const de = lang === "de";
   return `
-    <figure class="before-after-slider" data-before-after-slider style="--split:52%" aria-label="${de ? "AI-Konzept Vorher Nachher Vergleich" : "AI concept before after comparison"}">
+    <figure class="before-after-slider" data-before-after-slider style="--split:52%" aria-label="${de ? "Vorher-Nachher Vergleich" : "Before and after comparison"}">
       <div class="before-after-stage">
-        <img class="after-img" src="__ASSET_PREFIX__assets/img/concepts/nachher-concept.jpg" alt="${de ? "AI-Konzept: mögliche Erholung nach korrekter Niwaki-Pflege" : "AI concept: possible recovery after correct niwaki care"}" loading="lazy" decoding="async" width="1200" height="900">
+        <img class="after-img" src="__ASSET_PREFIX__assets/img/concepts/nachher-concept.jpg" alt="${de ? "Mögliche Erholung nach korrekter Niwaki-Pflege" : "Possible recovery after correct niwaki care"}" loading="lazy" decoding="async" width="1200" height="900">
         <div class="before-layer">
-          <img src="__ASSET_PREFIX__assets/img/concepts/vorher-dying-concept.jpg" alt="${de ? "AI-Konzept: Problemzustand mit trockenen Nadeln und Formverlust" : "AI concept: stressed tree with dry needles and lost form"}" loading="lazy" decoding="async" width="1200" height="900">
+          <img src="__ASSET_PREFIX__assets/img/concepts/vorher-dying-concept.jpg" alt="${de ? "Problemzustand mit trockenen Nadeln und Formverlust" : "Stressed tree with dry needles and lost form"}" loading="lazy" decoding="async" width="1200" height="900">
         </div>
-        <span class="slider-badge slider-badge-before">${de ? "Vorher-Konzept" : "Before concept"}</span>
-        <span class="slider-badge slider-badge-after">${de ? "Nachher-Konzept" : "After concept"}</span>
+        <span class="slider-badge slider-badge-before">${de ? "Vorher" : "Before"}</span>
+        <span class="slider-badge slider-badge-after">${de ? "Nachher" : "After"}</span>
       </div>
       <input class="before-after-range" type="range" min="8" max="92" value="52" aria-label="${de ? "Vergleich schieben" : "Slide comparison"}">
-      <figcaption class="asset-caption">AI-Konzeptvisualisierung - nicht reale Kundenarbeit. Reale Vorher/Nachher-Fotos werden nach Freigabe ersetzt.</figcaption>
     </figure>`;
 }
 
@@ -348,8 +341,6 @@ function layout({ file, lang = "de", title, description, body, jsonLd = [], page
         credit: "Website by Andrii · Статус: юридичні дані, endpoint форми, GA4, Ads і фінальні фото потребують перевірки перед публікацією.",
         quickBar: "Швидка панель контакту",
         call: "Подзвонити",
-        hideLabels: "Сховати concept-labels",
-        showLabels: "Показати concept-labels",
         consent: "Аналітика й Ads-вимірювання працюють тільки після згоди. Стандарт: відхилено.",
         privacyLabel: "Приватність",
         deny: "Відхилити",
@@ -372,11 +363,9 @@ function layout({ file, lang = "de", title, description, body, jsonLd = [], page
           legalLabel: "Impressum",
           mobilePhoto: "Foto senden",
           whatsappHref,
-          credit: "Website by Andrii · Status: legal data, form endpoint, GA4, Ads and final photos need review before publication.",
+          credit: "Website by Andrii · Status: legal data, contact delivery, GA4, Ads and final photos need review before publication.",
           quickBar: "Schnelle Kontaktleiste",
           call: "Anrufen",
-          hideLabels: "Konzept-Labels aus",
-          showLabels: "Konzept-Labels an",
           consent: "Wir nutzen Analyse- und Ads-Messung erst nach Ihrer Zustimmung. Standard: abgelehnt.",
           privacyLabel: "Datenschutz",
           deny: "Ablehnen",
@@ -398,11 +387,9 @@ function layout({ file, lang = "de", title, description, body, jsonLd = [], page
           legalLabel: "Legal Notice",
           mobilePhoto: "Send photo",
           whatsappHref,
-          credit: "Website by Andrii · Status: legal data, form endpoint, GA4, Ads and final photos need review before publication.",
+          credit: "Website by Andrii · Status: legal data, contact delivery, GA4, Ads and final photos need review before publication.",
           quickBar: "Quick contact bar",
           call: "Call",
-          hideLabels: "Hide concept labels",
-          showLabels: "Show concept labels",
           consent: "Analytics and ads measurement only run after consent. Default: denied.",
           privacyLabel: "Privacy",
           deny: "Deny",
@@ -491,8 +478,6 @@ function layout({ file, lang = "de", title, description, body, jsonLd = [], page
     <a href="${telHref}" data-event="cta_call_click" aria-label="${ui.call}">☎</a>
   </div>
 
-  <button class="presentation-toggle" type="button" data-presentation-toggle aria-pressed="false" data-label-hide="${ui.hideLabels}" data-label-show="${ui.showLabels}">${ui.hideLabels}</button>
-
   <div class="cookie-banner" data-consent-banner hidden>
     <p>${ui.consent} <a href="${privacy}">${ui.privacyLabel}</a></p>
     <div>
@@ -544,9 +529,9 @@ function homeDe() {
 
   <section class="section rescue-section">
     <div class="section-head">
-      <span class="eyebrow">Vorher / Nachher als Konzept</span>
+      <span class="eyebrow">Vorher / Nachher</span>
       <h2>Wenn der Schnitt wieder Luft, Licht und Ruhe zurückbringt.</h2>
-      <p>Für die Präsentation zeigt diese AI-Konzeptvisualisierung den Kern von Viktors Arbeit: nicht „grün machen“, sondern die Architektur des Baumes wieder lesbar machen. Reale Kundenfotos ersetzen diese Bilder nach Freigabe.</p>
+      <p>Dieser Vergleich zeigt den Kern von Viktors Arbeit: nicht „grün machen“, sondern die Architektur des Baumes wieder lesbar machen.</p>
     </div>
     ${conceptRescueSlider("de")}
     <div class="btn-row"><a class="btn btn-secondary" href="galerie.html">Galerie und reale Foto-Slots ansehen</a></div>
@@ -672,7 +657,7 @@ function servicesDe() {
     <p>Drei Kernbereiche: <strong>Niwaki-Schnitt</strong>, japanische Ahorne (Acer palmatum) und Kiefer-Formschnitt. Alles Weitere auf Anfrage. Bäume bis 3 m; grösser nach Absprache.</p>
   </section>
   <section class="section service-detail" id="niwaki">
-    ${assetSlot({ type: "ai", file: "niwaki-service.jpg", label: "Niwaki / Garten-Bonsai - Konzeptvisualisierung", ratio: "4 / 3" })}
+    ${assetSlot({ type: "ai", file: "niwaki-service.jpg", label: "Niwaki / Garten-Bonsai", ratio: "4 / 3" })}
     <div><span class="eyebrow">Service 1</span><h2>Niwaki (Garten-Bonsai)</h2><p>Pflege und Formung von Niwaki - Bäumen im Garten, nicht im Topf. Systematischer Schnitt lenkt die Kraft des Baumes dorthin, wo sie gebraucht wird, und gibt jeder Wolke ihren eigenen Raum für Licht und Luft.</p>${cta("Foto senden")}</div>
   </section>
   <section class="section service-detail reverse" id="ahorn">
@@ -731,11 +716,11 @@ function galleryDe() {
     </div>
   </section>
   <section class="section">
-    <div class="section-head"><span class="eyebrow">Konzeptvisualisierung</span><h2>Konzeptbilder für Beratung und Trust-Slot.</h2><p>Diese Bilder sind bewusst als AI-Konzeptvisualisierung markiert. Die Postkarte zeigt nur die gewünschte Richtung für den Japan-Trust-Slot; das reale Foto bleibt erforderlich.</p></div>
+    <div class="section-head"><span class="eyebrow">Pflegeverlauf</span><h2>Bilder für Beratung und Einordnung.</h2><p>Die Galerie zeigt Problemzustände, mögliche Erholung und ruhige Gartenmomente. Reale Kundenbeispiele werden nach finaler Freigabe ergänzt.</p></div>
     <div class="gallery-teaser">
-      ${assetSlot({ type: "ai", file: "concepts/vorher-dying-concept.jpg", label: "AI-Konzept: Problemzustand", ratio: "4 / 3" })}
-      ${assetSlot({ type: "ai", file: "concepts/nachher-concept.jpg", label: "AI-Konzept: mögliche Erholung", ratio: "4 / 3" })}
-      ${assetSlot({ type: "ai", file: "concepts/japan-postkarte-concept.jpg", label: "AI-Konzept: Japan-Trust-Slot / Postkarte", ratio: "4 / 3" })}
+      ${assetSlot({ type: "ai", file: "concepts/vorher-dying-concept.jpg", label: "Problemzustand", ratio: "4 / 3" })}
+      ${assetSlot({ type: "ai", file: "concepts/nachher-concept.jpg", label: "Mögliche Erholung", ratio: "4 / 3" })}
+      ${assetSlot({ type: "ai", file: "concepts/japan-postkarte-concept.jpg", label: "Japanischer Gartenmoment", ratio: "4 / 3" })}
     </div>
   </section>
   ${finalCtaDe()}`;
@@ -989,24 +974,27 @@ function contactDe() {
     <div class="btn-row">${cta("WhatsApp öffnen - Fotos senden")} <a class="btn btn-secondary" href="${telHref}" data-event="cta_call_click">Anrufen: ${phoneDisplay}</a></div>
   </section>
   <section class="section contact-grid">
-    <form class="form-card" data-event="contact_form_submit" action="${formspreeAction}" method="post" enctype="multipart/form-data">
+    <form class="form-card" data-contact-form data-contact-kind="photo-diagnosis" data-event="contact_form_submit" action="/api/contact" method="post">
       <h2>Foto-Diagnose anfragen.</h2>
-      <p class="form-note">Dieses Formular bleibt inaktiv, bis der Formspree-Endpunkt eingesetzt ist. WhatsApp ist aktuell der primäre Kontaktweg.</p>
-      <label>Name <input name="name" autocomplete="name" required></label>
-      <label>E-Mail <input type="email" name="email" autocomplete="email" required></label>
+      <p class="form-note">Beschreiben Sie kurz den Baum. Für Fotos bleibt WhatsApp der schnellste Weg; dieses Formular sendet die Rückrufdaten sicher an Viktor.</p>
+      <label class="hp-field" aria-hidden="true">Firma <input name="company" tabindex="-1" autocomplete="off"></label>
+      <label>Name <input name="name" autocomplete="name"></label>
+      <label>Telefon <input type="tel" name="phone" autocomplete="tel" required></label>
+      <label>E-Mail <input type="email" name="email" autocomplete="email"></label>
       <label>Kanton <input name="kanton" autocomplete="address-level1" required></label>
       <label>Baumart <input name="baumart" placeholder="z.B. Acer palmatum, Kiefer, Taxus"></label>
       <label>Nachricht <textarea name="nachricht" rows="5" required></textarea></label>
-      <label>Fotos <input type="file" name="fotos" multiple accept="image/*"></label>
-      <button class="btn btn-primary" type="submit">Anfrage vorbereiten</button>
+      <button class="btn btn-primary" type="submit">Anfrage senden</button>
+      <p class="form-note"><a class="text-link" href="${whatsappHref}" target="_blank" rel="noopener">Direkt per WhatsApp schreiben</a>, wenn Sie sofort Fotos mitsenden möchten.</p>
     </form>
-    <form class="form-card" id="rueckruf" data-event="cta_rueckruf_submit" action="${formspreeAction}" method="post" enctype="multipart/form-data">
-      <h2>Rückruf anfordern.</h2>
-      <label>Name <input name="name" autocomplete="name" required></label>
-      <label>Telefon <input type="tel" name="telefon" autocomplete="tel" required></label>
-      <label>Wunsch-Zeitfenster <input name="zeitfenster" placeholder="z.B. Mo 18-20 Uhr"></label>
-      <button class="btn btn-secondary" type="submit">Rückruf vorbereiten</button>
-      <p class="form-note">Dieses Formular bleibt inaktiv, bis der Formspree-Endpunkt eingesetzt ist. WhatsApp ist aktuell der primäre Kontaktweg.</p>
+    <form class="form-card" id="rueckruf" data-contact-form data-contact-kind="callback" data-event="cta_rueckruf_submit" action="/api/contact" method="post">
+      <h2>Rückruf anfragen.</h2>
+      <p class="form-note">Telefon genügt. Viktor meldet sich schnellstmöglich persönlich zurück.</p>
+      <label class="hp-field" aria-hidden="true">Firma <input name="company" tabindex="-1" autocomplete="off"></label>
+      <label>Name <input name="name" autocomplete="name"></label>
+      <label>Telefon <input type="tel" name="phone" autocomplete="tel" required></label>
+      <label>Wunsch-Zeitfenster <input name="desiredTime" placeholder="z.B. Mo 18-20 Uhr"></label>
+      <button class="btn btn-secondary" type="submit">Rückruf anfragen</button>
     </form>
   </section>`;
 }
@@ -1064,7 +1052,7 @@ function homeEn() {
       <div class="trust-row"><span>27 years of experience</span><span>Zurich region</span><span>Inspired in Japan</span></div>
     </div>
   </section>
-  <section class="section rescue-section"><div class="section-head"><span class="eyebrow">Before / after concept</span><h2>When the right cut brings back air, light and calm.</h2><p>For the presentation, this AI concept visualizes Viktor's core promise: not making a tree merely green, but making its living architecture readable again. Real client photos replace these images after approval.</p></div>${conceptRescueSlider("en")}<div class="btn-row"><a class="btn btn-secondary" href="galerie.html">View gallery and real photo slots</a></div></section>
+  <section class="section rescue-section"><div class="section-head"><span class="eyebrow">Before / after</span><h2>When the right cut brings back air, light and calm.</h2><p>This comparison shows Viktor's core promise: not making a tree merely green, but making its living architecture readable again.</p></div>${conceptRescueSlider("en")}<div class="btn-row"><a class="btn btn-secondary" href="galerie.html">View gallery</a></div></section>
   <section class="section split sanctuary-section"><div><span class="eyebrow">The real value</span><h2>The garden is the quietest room of the house.</h2><p>A niwaki is not shaped only to look tidy. It changes the view from the house: morning coffee, an evening on the terrace, guests arriving and seeing a garden that feels calm, precise and alive.</p><p>Viktor does not shape for a quick effect. A valuable tree should not look forced after the cut. It should look as if the form was already waiting inside it.</p><div class="quiet-moments"><span>Morning coffee</span><span>Evening terrace</span><span>Guests with a garden view</span></div></div>${assetSlot({ type: "ai", file: "section-bg-soft.jpg", label: "Quiet garden moment after precise care", ratio: "16 / 9" })}</section>
   <section class="section split"><div><h2>Nature's laws cannot be ignored.</h2><p>Brown needles, dry branches and lost shape usually have one cause: the tree was cut too quickly or too cheaply. Fine shaping respects light, air and the energy distribution of the crown.</p><blockquote>Cutting a branch takes a second. Growing a new one takes years.</blockquote></div>${assetSlot({ type: "ai", file: "sanctuary-coffee.jpg", label: "Stress signs on a pine before diagnosis", ratio: "16 / 9" })}</section>
   <section class="section"><div class="section-head"><h2>Core services.</h2><p>Niwaki, Japanese maples and conifers up to 3 m; larger trees by arrangement.</p></div><div class="card-grid three">${serviceCardsEn}</div></section>
@@ -1085,7 +1073,7 @@ function genericEnPage(kind) {
     },
     gallery: {
       h1: "Before / after - Viktor's work.",
-      body: `<div class="gallery-teaser">${assetSlot({ file: "vorher-nachher-01.jpg", label: "Before/after 01", ratio: "4 / 3" })}${assetSlot({ file: "vorher-nachher-02.jpg", label: "Before/after 02", ratio: "4 / 3" })}${assetSlot({ file: "meister-01.jpg", label: "Master at work", ratio: "3 / 2" })}</div><div class="section-head"><span class="eyebrow">Concept visualization</span><h2>Japan trust-slot concept.</h2><p>This postcard image is an AI concept only. A real Japan postcard photo is still required before public proof use.</p></div><div class="gallery-teaser">${assetSlot({ type: "ai", file: "concepts/japan-postkarte-concept.jpg", label: "AI concept: Japan trust-slot postcard", ratio: "4 / 3" })}</div>`
+      body: `<div class="gallery-teaser">${assetSlot({ file: "vorher-nachher-01.jpg", label: "Before/after 01", ratio: "4 / 3" })}${assetSlot({ file: "vorher-nachher-02.jpg", label: "Before/after 02", ratio: "4 / 3" })}${assetSlot({ file: "meister-01.jpg", label: "Master at work", ratio: "3 / 2" })}</div><div class="section-head"><span class="eyebrow">Garden impressions</span><h2>Calm Japanese garden direction.</h2><p>The gallery will be expanded with approved real client photos and recognition material.</p></div><div class="gallery-teaser">${assetSlot({ type: "ai", file: "concepts/japan-postkarte-concept.jpg", label: "Japanese garden moment", ratio: "4 / 3" })}</div>`
     },
     prices: {
       h1: "Prices - quality before speed.",
@@ -1097,7 +1085,7 @@ function genericEnPage(kind) {
 
 function contactEn() {
   return `<section class="page-hero section"><span class="eyebrow">Contact</span><h1>Send a photo.</h1><p>Three photos are enough for a first assessment: the whole tree, the problem area and a close-up.</p><div class="btn-row">${cta("Open WhatsApp - send photos")} <a class="btn btn-secondary" href="${telHref}" data-event="cta_call_click">Call: ${phoneDisplay}</a></div></section>
-  <section class="section contact-grid"><form class="form-card" data-event="contact_form_submit" action="${formspreeAction}" method="post" enctype="multipart/form-data"><h2>Photo diagnosis.</h2><p class="form-note">This form is inactive until the Formspree endpoint is set. WhatsApp is the primary contact path for now.</p><label>Name <input name="name" required></label><label>Email <input type="email" name="email" required></label><label>Canton <input name="canton" required></label><label>Tree type <input name="tree"></label><label>Message <textarea name="message" rows="5"></textarea></label><label>Photos <input type="file" name="photos" multiple accept="image/*"></label><button class="btn btn-primary" type="submit">Prepare request</button></form><form class="form-card" id="rueckruf" data-event="cta_rueckruf_submit" action="${formspreeAction}" method="post" enctype="multipart/form-data"><h2>Request callback.</h2><p class="form-note">This form is inactive until the Formspree endpoint is set. WhatsApp is the primary contact path for now.</p><label>Name <input name="name" required></label><label>Phone <input name="phone" type="tel" required></label><label>Preferred time <input name="time"></label><button class="btn btn-secondary" type="submit">Prepare callback</button></form></section>`;
+  <section class="section contact-grid"><form class="form-card" data-contact-form data-contact-kind="photo-diagnosis" data-event="contact_form_submit" action="/api/contact" method="post"><h2>Photo diagnosis.</h2><p class="form-note">Describe the tree briefly. Use WhatsApp when you want to send photos immediately; this form safely sends your callback details to Viktor.</p><label class="hp-field" aria-hidden="true">Company <input name="company" tabindex="-1" autocomplete="off"></label><label>Name <input name="name"></label><label>Phone <input name="phone" type="tel" required></label><label>Email <input type="email" name="email"></label><label>Canton <input name="canton" required></label><label>Tree type <input name="tree"></label><label>Message <textarea name="message" rows="5"></textarea></label><button class="btn btn-primary" type="submit">Send request</button><p class="form-note"><a class="text-link" href="${whatsappHref}" target="_blank" rel="noopener">Write directly on WhatsApp</a> if you want to attach photos now.</p></form><form class="form-card" id="rueckruf" data-contact-form data-contact-kind="callback" data-event="cta_rueckruf_submit" action="/api/contact" method="post"><h2>Request callback.</h2><p class="form-note">Phone number is enough. Viktor will get back to you personally as soon as possible.</p><label class="hp-field" aria-hidden="true">Company <input name="company" tabindex="-1" autocomplete="off"></label><label>Name <input name="name"></label><label>Phone <input name="phone" type="tel" required></label><label>Preferred time <input name="desiredTime"></label><button class="btn btn-secondary" type="submit">Request callback</button></form></section>`;
 }
 
 const blogArticlesEnV2 = [
@@ -1191,21 +1179,20 @@ function homeUk() {
 
   <section class="section rescue-section">
     <div class="section-head">
-      <span class="eyebrow">До / після як концепт</span>
+      <span class="eyebrow">До / після</span>
       <h2>Правильний зріз повертає дереву повітря, світло і спокій.</h2>
       <p>Ці зображення показують напрям роботи: не просто зробити дерево зеленим, а знову зробити його живу архітектуру читабельною. Реальні клієнтські фото підставляються після погодження.</p>
     </div>
-    <figure class="before-after-slider" data-before-after-slider style="--split:52%" aria-label="AI-концепт до і після">
+    <figure class="before-after-slider" data-before-after-slider style="--split:52%" aria-label="Порівняння до і після">
       <div class="before-after-stage">
-        <img class="after-img" src="__ASSET_PREFIX__assets/img/concepts/nachher-concept.jpg" alt="AI-концепт: можливе відновлення після правильного догляду Niwaki" loading="lazy" decoding="async" width="1200" height="900">
+        <img class="after-img" src="__ASSET_PREFIX__assets/img/concepts/nachher-concept.jpg" alt="Можливе відновлення після правильного догляду Niwaki" loading="lazy" decoding="async" width="1200" height="900">
         <div class="before-layer">
-          <img src="__ASSET_PREFIX__assets/img/concepts/vorher-dying-concept.jpg" alt="AI-концепт: проблемний стан з сухими голками і втратою форми" loading="lazy" decoding="async" width="1200" height="900">
+          <img src="__ASSET_PREFIX__assets/img/concepts/vorher-dying-concept.jpg" alt="Проблемний стан з сухими голками і втратою форми" loading="lazy" decoding="async" width="1200" height="900">
         </div>
-        <span class="slider-badge slider-badge-before">До - концепт</span>
-        <span class="slider-badge slider-badge-after">Після - концепт</span>
+        <span class="slider-badge slider-badge-before">До</span>
+        <span class="slider-badge slider-badge-after">Після</span>
       </div>
       <input class="before-after-range" type="range" min="8" max="92" value="52" aria-label="Пересунути порівняння">
-      <figcaption class="asset-caption">AI-концепт для напряму дизайну. Не є реальним доказом виконаної роботи.</figcaption>
     </figure>
     <div class="btn-row"><a class="btn btn-secondary" href="galerie.html">Подивитися галерею і фото-слоти</a></div>
   </section>
@@ -1274,7 +1261,7 @@ function servicesUk() {
     <p>Три основні напрями: <strong>Niwaki</strong>, догляд за японськими кленами Acer palmatum і формування сосен та інших хвойних дерев.</p>
   </section>
   <section class="section service-detail" id="niwaki">
-    ${assetSlotUk({ type: "ai", file: "niwaki-service.jpg", label: "Niwaki / садовий бонсай - концепт", ratio: "4 / 3" })}
+    ${assetSlotUk({ type: "ai", file: "niwaki-service.jpg", label: "Niwaki / садовий бонсай", ratio: "4 / 3" })}
     <div><span class="eyebrow">Напрям 1</span><h2>Niwaki - садовий бонсай</h2><p>Ручне формування дерев у саду. Завдання не зробити зелену стіну, а направити силу дерева туди, де вона створює форму, світло і довгий спокій.</p>${ctaUk("Надіслати фото Niwaki")}</div>
   </section>
   <section class="section service-detail reverse" id="ahorn">
@@ -1299,7 +1286,7 @@ function genericUkPage(kind) {
     gallery: {
       eyebrow: "Галерея",
       h1: "До / після - робота і фото-слоти.",
-      body: `<p>Реальні клієнтські фото підставляються після дозволу. AI-зображення нижче позначені як концепти і не використовуються як доказ виконаної роботи.</p><div class="gallery-teaser">${assetSlotUk({ type: "ai", file: "concepts/vorher-dying-concept.jpg", label: "AI-концепт: проблемний стан", ratio: "4 / 3" })}${assetSlotUk({ type: "ai", file: "concepts/nachher-concept.jpg", label: "AI-концепт: можливе відновлення", ratio: "4 / 3" })}${assetSlotUk({ file: "meister-01.jpg", label: "Віктор за роботою", ratio: "3 / 2" })}</div>`
+      body: `<p>Галерея показує проблемні стани, можливе відновлення і робочі фото. Реальні клієнтські приклади додаються після фінального дозволу.</p><div class="gallery-teaser">${assetSlotUk({ type: "ai", file: "concepts/vorher-dying-concept.jpg", label: "Проблемний стан", ratio: "4 / 3" })}${assetSlotUk({ type: "ai", file: "concepts/nachher-concept.jpg", label: "Можливе відновлення", ratio: "4 / 3" })}${assetSlotUk({ file: "meister-01.jpg", label: "Віктор за роботою", ratio: "3 / 2" })}</div>`
     },
     prices: {
       eyebrow: "Ціни",
@@ -1347,7 +1334,7 @@ function articleUk(type) {
 
 function contactUk() {
   return `<section class="page-hero section"><span class="eyebrow">Контакт</span><h1>Надішліть фото дерева.</h1><p>Для першої оцінки достатньо трьох фото: все дерево, проблемна зона і крупний план.</p><div class="btn-row">${ctaUk("Відкрити WhatsApp - надіслати фото")} <a class="btn btn-secondary" href="${telHref}" data-event="cta_call_click">Подзвонити: ${phoneDisplay}</a></div></section>
-  <section class="section contact-grid"><form class="form-card" data-event="contact_form_submit" action="${formspreeAction}" method="post" enctype="multipart/form-data"><h2>Фото-діагностика.</h2><p class="form-note">Форма неактивна, доки не підключено Formspree endpoint. Зараз основний контактний канал - WhatsApp.</p><label>Ім'я <input name="name" autocomplete="name" required></label><label>E-mail <input type="email" name="email" autocomplete="email" required></label><label>Кантон <input name="kanton" autocomplete="address-level1" required></label><label>Вид дерева <input name="baumart" placeholder="наприклад Acer palmatum, сосна, Taxus"></label><label>Повідомлення <textarea name="nachricht" rows="5" required></textarea></label><label>Фото <input type="file" name="fotos" multiple accept="image/*"></label><button class="btn btn-primary" type="submit">Підготувати запит</button></form><form class="form-card" id="rueckruf" data-event="cta_rueckruf_submit" action="${formspreeAction}" method="post" enctype="multipart/form-data"><h2>Запросити дзвінок.</h2><label>Ім'я <input name="name" autocomplete="name" required></label><label>Телефон <input type="tel" name="telefon" autocomplete="tel" required></label><label>Зручний час <input name="zeitfenster" placeholder="наприклад Пн 18-20"></label><button class="btn btn-secondary" type="submit">Підготувати дзвінок</button><p class="form-note">Форма неактивна, доки не підключено Formspree endpoint. WhatsApp зараз швидший.</p></form></section>`;
+  <section class="section contact-grid"><form class="form-card" data-contact-form data-contact-kind="photo-diagnosis" data-event="contact_form_submit" action="/api/contact" method="post"><h2>Фото-діагностика.</h2><p class="form-note">Коротко опишіть дерево. Якщо треба одразу надіслати фото, WhatsApp залишається найшвидшим шляхом; ця форма безпечно передає Віктору дані для звʼязку.</p><label class="hp-field" aria-hidden="true">Компанія <input name="company" tabindex="-1" autocomplete="off"></label><label>Ім'я <input name="name" autocomplete="name"></label><label>Телефон <input type="tel" name="phone" autocomplete="tel" required></label><label>E-mail <input type="email" name="email" autocomplete="email"></label><label>Кантон <input name="kanton" autocomplete="address-level1" required></label><label>Вид дерева <input name="baumart" placeholder="наприклад Acer palmatum, сосна, Taxus"></label><label>Повідомлення <textarea name="nachricht" rows="5" required></textarea></label><button class="btn btn-primary" type="submit">Надіслати запит</button><p class="form-note"><a class="text-link" href="${whatsappHrefUk}" target="_blank" rel="noopener">Написати напряму в WhatsApp</a>, якщо хочете додати фото зараз.</p></form><form class="form-card" id="rueckruf" data-contact-form data-contact-kind="callback" data-event="cta_rueckruf_submit" action="/api/contact" method="post"><h2>Запросити дзвінок.</h2><p class="form-note">Достатньо телефону. Віктор звʼяжеться з вами особисто якнайшвидше.</p><label class="hp-field" aria-hidden="true">Компанія <input name="company" tabindex="-1" autocomplete="off"></label><label>Ім'я <input name="name" autocomplete="name"></label><label>Телефон <input type="tel" name="phone" autocomplete="tel" required></label><label>Зручний час <input name="desiredTime" placeholder="наприклад Пн 18-20"></label><button class="btn btn-secondary" type="submit">Запросити дзвінок</button></form></section>`;
 }
 
 function legalUk(kind) {
@@ -1364,11 +1351,11 @@ function cssBase() {
 }
 
 function cssResponsiveFixes() {
-  return `html,body{max-width:100%;overflow-x:hidden}h1,h2,h3,p,.brand-name{overflow-wrap:break-word}.hero-panel,.card,.form-card,.note-block,.price-teaser,.image-slot,.site-nav{min-width:0}.brand-logo{width:44px;height:44px;border-radius:50%;object-fit:cover;object-position:center 24%;background:var(--surface);border:1px solid var(--line);box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--surface) 70%,transparent)}.footer-logo{width:min(240px,100%);height:auto;max-height:120px;object-fit:contain;margin-top:18px;padding:12px;background:#fff;border:1px solid color-mix(in srgb,var(--primary-ink) 22%,transparent);border-radius:8px;box-shadow:0 10px 28px rgba(0,0,0,.16)}.image-slot>img{width:100%;height:100%;object-fit:cover}.asset-caption{position:absolute;left:10px;right:10px;bottom:10px;background:color-mix(in srgb,var(--surface) 92%,transparent);color:var(--muted);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:.72rem;font-weight:800;line-height:1.25}.image-slot{position:relative}.hero-slot>img{object-position:70% center}.hero-slot>div{place-content:center end;text-align:right;padding-right:max(24px,10vw)}.hero-slot span,.hero-slot strong,.hero-slot small{max-width:280px}.article-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.article-card .image-slot{margin-bottom:16px}.comparison-grid,.process-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:24px 0}.process-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.comparison-grid>div,.process-grid>div,.science-card,.source-list,.article-nav{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}.science-card{margin:24px 0}.source-list{margin:28px 0;color:var(--muted)}.source-list h2{color:var(--text);font-size:1.35rem}.source-list ul{margin:10px 0 0;padding-left:20px}.source-list a{color:var(--primary);font-weight:800}.article-nav{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0}.article-nav a{border:1px solid var(--line);border-radius:999px;padding:8px 10px;text-decoration:none;color:var(--primary);font-weight:800}.stress-chain{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;align-items:center;text-align:center}.stress-chain span,.stress-chain strong{border:1px solid var(--line);border-radius:8px;padding:10px;background:color-mix(in srgb,var(--surface) 70%,var(--bg))}.stress-chain strong{background:var(--primary);color:var(--primary-ink)}.cookie-banner .btn{white-space:nowrap;min-width:110px}@media (max-width:920px){.article-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.comparison-grid,.process-grid,.stress-chain{grid-template-columns:1fr}}@media (max-width:620px){.site-header{width:100%;min-height:69px;padding:12px 76px 12px 16px;gap:10px}.nav-toggle{display:block;position:fixed;right:16px;top:12px;width:44px;height:44px;z-index:40;background:var(--primary);border-color:var(--primary);box-shadow:var(--shadow)}.nav-toggle span:not(.sr-only){background:var(--primary-ink)}.brand{flex:1 1 auto;max-width:none;min-width:0}.brand-logo{flex:0 0 44px}.brand-text{min-width:0;max-width:calc(100vw - 144px)}.brand-name{display:block;font-size:.96rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hero{display:block;padding:32px 16px 50px}.hero>*{grid-column:auto}.hero-media{display:block;min-height:180px;margin:0 0 14px}.hero-slot{border-radius:var(--radius)}.hero-slot>img{object-position:78% center}.hero-panel{width:100%;max-width:none;margin:0;padding:22px;overflow:hidden}.hero-panel h1{font-size:1.85rem;line-height:1.08}.hero-panel .motto{font-size:1.15rem}.hero-services{grid-template-columns:1fr;margin-top:14px}.hero-slot>div{place-content:center;text-align:center;padding-right:22px}.article-grid{grid-template-columns:1fr}.footer-logo{width:min(200px,100%);max-height:100px}.asset-caption{position:static;border-width:1px 0 0;border-radius:0}.cookie-banner div{flex-direction:column}.cookie-banner .btn{width:100%;white-space:normal}}`;
+  return `html,body{max-width:100%;overflow-x:hidden}h1,h2,h3,p,.brand-name{overflow-wrap:break-word}.hero-panel,.card,.form-card,.note-block,.price-teaser,.image-slot,.site-nav{min-width:0}.brand-logo{width:44px;height:44px;border-radius:50%;object-fit:cover;object-position:center 24%;background:var(--surface);border:1px solid var(--line);box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--surface) 70%,transparent)}.footer-logo{width:min(240px,100%);height:auto;max-height:120px;object-fit:contain;margin-top:18px;padding:12px;background:#fff;border:1px solid color-mix(in srgb,var(--primary-ink) 22%,transparent);border-radius:8px;box-shadow:0 10px 28px rgba(0,0,0,.16)}.image-slot>img{width:100%;height:100%;object-fit:cover}.image-slot{position:relative}.hero-slot>img{object-position:70% center}.hero-slot>div{place-content:center end;text-align:right;padding-right:max(24px,10vw)}.hero-slot span,.hero-slot strong,.hero-slot small{max-width:280px}.article-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.article-card .image-slot{margin-bottom:16px}.comparison-grid,.process-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:24px 0}.process-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.comparison-grid>div,.process-grid>div,.science-card,.source-list,.article-nav{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}.science-card{margin:24px 0}.source-list{margin:28px 0;color:var(--muted)}.source-list h2{color:var(--text);font-size:1.35rem}.source-list ul{margin:10px 0 0;padding-left:20px}.source-list a{color:var(--primary);font-weight:800}.article-nav{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0}.article-nav a{border:1px solid var(--line);border-radius:999px;padding:8px 10px;text-decoration:none;color:var(--primary);font-weight:800}.stress-chain{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;align-items:center;text-align:center}.stress-chain span,.stress-chain strong{border:1px solid var(--line);border-radius:8px;padding:10px;background:color-mix(in srgb,var(--surface) 70%,var(--bg))}.stress-chain strong{background:var(--primary);color:var(--primary-ink)}.cookie-banner .btn{white-space:nowrap;min-width:110px}@media (max-width:920px){.article-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.comparison-grid,.process-grid,.stress-chain{grid-template-columns:1fr}}@media (max-width:620px){.site-header{width:100%;min-height:69px;padding:12px 76px 12px 16px;gap:10px}.nav-toggle{display:block;position:fixed;right:16px;top:12px;width:44px;height:44px;z-index:40;background:var(--primary);border-color:var(--primary);box-shadow:var(--shadow)}.nav-toggle span:not(.sr-only){background:var(--primary-ink)}.brand{flex:1 1 auto;max-width:none;min-width:0}.brand-logo{flex:0 0 44px}.brand-text{min-width:0;max-width:calc(100vw - 144px)}.brand-name{display:block;font-size:.96rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hero{display:block;padding:32px 16px 50px}.hero>*{grid-column:auto}.hero-media{display:block;min-height:180px;margin:0 0 14px}.hero-slot{border-radius:var(--radius)}.hero-slot>img{object-position:78% center}.hero-panel{width:100%;max-width:none;margin:0;padding:22px;overflow:hidden}.hero-panel h1{font-size:1.85rem;line-height:1.08}.hero-panel .motto{font-size:1.15rem}.hero-services{grid-template-columns:1fr;margin-top:14px}.hero-slot>div{place-content:center;text-align:center;padding-right:22px}.article-grid{grid-template-columns:1fr}.footer-logo{width:min(200px,100%);max-height:100px}.cookie-banner div{flex-direction:column}.cookie-banner .btn{width:100%;white-space:normal}}`;
 }
 
 function cssWowPass() {
-  return `.hero{position:relative;display:grid;grid-template-columns:minmax(18px,1fr) minmax(0,var(--maxw)) minmax(18px,1fr);height:min(760px,calc(100svh - 112px));min-height:620px;padding:0;align-items:end;overflow:hidden;background:#0f1d14}.hero>*{grid-column:2}.hero-media{position:absolute;inset:0;grid-column:1 / -1;grid-row:1;height:100%;min-height:0}.hero-media:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,18,13,.66) 0%,rgba(9,18,13,.38) 34%,rgba(9,18,13,.05) 68%,rgba(9,18,13,.16) 100%),linear-gradient(0deg,rgba(9,18,13,.42),rgba(9,18,13,0) 42%)}.hero-slot{height:100%;border-radius:0;border:0;box-shadow:none}.hero-slot>img{object-position:48% center}.hero-panel{grid-column:2;grid-row:1;align-self:end;width:min(1040px,100%);margin:0 0 48px;padding:0;background:transparent;border:0;box-shadow:none;color:#fff;text-shadow:0 2px 24px rgba(0,0,0,.48)}.hero-panel h1{font-size:3.45rem;line-height:1.02;max-width:1040px;color:#fff}.hero-panel h1 span{font-size:.96em}.hero-panel p,.hero-panel .motto,.hero-panel .eyebrow{color:#fff}.hero-panel .motto{max-width:620px;border-left-color:var(--accent)}.hero-panel>p:not(.motto){max-width:660px}.hero-panel .eyebrow:before{background:var(--accent)}.hero .btn-primary{box-shadow:0 18px 42px rgba(0,0,0,.28)}.hero .btn-secondary{color:#fff;border-color:rgba(255,255,255,.82);background:rgba(255,255,255,.08);backdrop-filter:blur(12px)}.hero .trust-row span{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28);color:#fff}.rescue-section{padding-top:70px}.before-after-slider{position:relative;max-width:1040px;margin:0 auto;color:#fff}.before-after-stage{position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);border:1px solid var(--line)}.before-after-stage img{width:100%;height:100%;object-fit:cover}.before-layer{position:absolute;inset:0;clip-path:inset(0 calc(100% - var(--split)) 0 0)}.before-layer img{position:absolute;inset:0}.before-after-stage:after{content:"";position:absolute;top:0;bottom:0;left:var(--split);width:2px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.18),0 0 26px rgba(0,0,0,.28)}.before-after-range{width:100%;margin:14px 0 0;accent-color:var(--primary);cursor:ew-resize}.slider-badge{position:absolute;top:14px;z-index:2;border:1px solid rgba(255,255,255,.42);border-radius:999px;background:rgba(9,18,13,.58);backdrop-filter:blur(10px);padding:7px 10px;font-size:.78rem;font-weight:850}.slider-badge-before{left:14px}.slider-badge-after{right:14px}.before-after-slider .asset-caption{bottom:14px;left:14px;right:14px}.presentation-toggle{position:fixed;right:16px;top:82px;z-index:34;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--surface) 92%,transparent);color:var(--text);box-shadow:var(--shadow);padding:8px 11px;font:inherit;font-size:.78rem;font-weight:800;cursor:pointer}.presentation-toggle[aria-pressed=true]{background:var(--primary);border-color:var(--primary);color:var(--primary-ink)}body.presentation-clean .asset-caption{display:none!important}@media (max-width:920px){.hero{height:min(740px,calc(100svh - 104px));min-height:650px}.hero-panel{margin-bottom:34px}.hero-panel h1{font-size:3.35rem}.before-after-stage{aspect-ratio:3/4}.timeline article .image-slot{aspect-ratio:3/2}}@media (max-width:620px){.hero{display:grid;grid-template-columns:1fr;height:auto;min-height:calc(100svh - 118px);padding:0 16px 34px}.hero>*{grid-column:1}.hero-media{display:block;position:absolute;inset:0;margin:0;min-height:0;height:100%}.hero-slot{border-radius:0}.hero-slot>img{object-position:43% center}.hero-panel{grid-column:1;grid-row:1;align-self:end;width:100%;max-width:none;margin:0;padding:0 4px 8px;overflow:visible}.hero-panel h1{font-size:2.45rem;line-height:1}.hero-panel .motto{font-size:1.1rem}.hero-panel .eyebrow{font-size:.66rem}.hero-panel .btn{width:100%}.hero .trust-row span{width:auto;justify-content:flex-start}.presentation-toggle{top:76px;right:12px;font-size:.72rem;padding:7px 9px}.before-after-slider .asset-caption{position:absolute!important;left:10px!important;right:10px!important;bottom:10px!important;border:1px solid var(--line)!important;border-radius:8px!important}.slider-badge{top:10px;font-size:.68rem}.slider-badge-before{left:10px}.slider-badge-after{right:10px}}`;
+  return `.hero{position:relative;display:grid;grid-template-columns:minmax(18px,1fr) minmax(0,var(--maxw)) minmax(18px,1fr);height:min(760px,calc(100svh - 112px));min-height:620px;padding:0;align-items:end;overflow:hidden;background:#0f1d14}.hero>*{grid-column:2}.hero-media{position:absolute;inset:0;grid-column:1 / -1;grid-row:1;height:100%;min-height:0}.hero-media:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,18,13,.66) 0%,rgba(9,18,13,.38) 34%,rgba(9,18,13,.05) 68%,rgba(9,18,13,.16) 100%),linear-gradient(0deg,rgba(9,18,13,.42),rgba(9,18,13,0) 42%)}.hero-slot{height:100%;border-radius:0;border:0;box-shadow:none}.hero-slot>img{object-position:48% center}.hero-panel{grid-column:2;grid-row:1;align-self:end;width:min(1040px,100%);margin:0 0 48px;padding:0;background:transparent;border:0;box-shadow:none;color:#fff;text-shadow:0 2px 24px rgba(0,0,0,.48)}.hero-panel h1{font-size:3.45rem;line-height:1.02;max-width:1040px;color:#fff}.hero-panel h1 span{font-size:.96em}.hero-panel p,.hero-panel .motto,.hero-panel .eyebrow{color:#fff}.hero-panel .motto{max-width:620px;border-left-color:var(--accent)}.hero-panel>p:not(.motto){max-width:660px}.hero-panel .eyebrow:before{background:var(--accent)}.hero .btn-primary{box-shadow:0 18px 42px rgba(0,0,0,.28)}.hero .btn-secondary{color:#fff;border-color:rgba(255,255,255,.82);background:rgba(255,255,255,.08);backdrop-filter:blur(12px)}.hero .trust-row span{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28);color:#fff}.rescue-section{padding-top:70px}.before-after-slider{position:relative;max-width:1040px;margin:0 auto;color:#fff}.before-after-stage{position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);border:1px solid var(--line)}.before-after-stage img{width:100%;height:100%;object-fit:cover}.before-layer{position:absolute;inset:0;clip-path:inset(0 calc(100% - var(--split)) 0 0)}.before-layer img{position:absolute;inset:0}.before-after-stage:after{content:"";position:absolute;top:0;bottom:0;left:var(--split);width:2px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.18),0 0 26px rgba(0,0,0,.28)}.before-after-range{width:100%;margin:14px 0 0;accent-color:var(--primary);cursor:ew-resize}.slider-badge{position:absolute;top:14px;z-index:2;border:1px solid rgba(255,255,255,.42);border-radius:999px;background:rgba(9,18,13,.58);backdrop-filter:blur(10px);padding:7px 10px;font-size:.78rem;font-weight:850}.slider-badge-before{left:14px}.slider-badge-after{right:14px}.before-after-slider body.presentation-clean @media (max-width:920px){.hero{height:min(740px,calc(100svh - 104px));min-height:650px}.hero-panel{margin-bottom:34px}.hero-panel h1{font-size:3.35rem}.before-after-stage{aspect-ratio:3/4}.timeline article .image-slot{aspect-ratio:3/2}}@media (max-width:620px){.hero{display:grid;grid-template-columns:1fr;height:auto;min-height:calc(100svh - 118px);padding:0 16px 34px}.hero>*{grid-column:1}.hero-media{display:block;position:absolute;inset:0;margin:0;min-height:0;height:100%}.hero-slot{border-radius:0}.hero-slot>img{object-position:43% center}.hero-panel{grid-column:1;grid-row:1;align-self:end;width:100%;max-width:none;margin:0;padding:0 4px 8px;overflow:visible}.hero-panel h1{font-size:2.45rem;line-height:1}.hero-panel .motto{font-size:1.1rem}.hero-panel .eyebrow{font-size:.66rem}.hero-panel .btn{width:100%}.hero .trust-row span{width:auto;justify-content:flex-start}.before-after-slider .slider-badge{top:10px;font-size:.68rem}.slider-badge-before{left:10px}.slider-badge-after{right:10px}}`;
 }
 
 function jsMain() {
@@ -1392,22 +1379,6 @@ function jsMain() {
     input.addEventListener('input', update);
     update();
   });
-
-  const presentationToggle = $('[data-presentation-toggle]');
-  if (presentationToggle) {
-    const params = new URLSearchParams(location.search);
-    const stored = window.localStorage.getItem('viktorPresentationClean') === '1';
-    const setClean = (clean) => {
-      document.body.classList.toggle('presentation-clean', clean);
-      presentationToggle.setAttribute('aria-pressed', String(clean));
-      presentationToggle.textContent = clean ? presentationToggle.dataset.labelShow : presentationToggle.dataset.labelHide;
-      window.localStorage.setItem('viktorPresentationClean', clean ? '1' : '0');
-    };
-    setClean(params.has('clean') || stored);
-    presentationToggle.addEventListener('click', () => {
-      setClean(!document.body.classList.contains('presentation-clean'));
-    });
-  }
 
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function gtag(){ window.dataLayer.push(arguments); };
@@ -1445,27 +1416,80 @@ function jsMain() {
     }
   };
 
+  const CONSENT_KEY = 'viktor_cookie_consent';
+  const LEGACY_CONSENT_KEY = 'viktor-consent';
   const consentBanner = $('[data-consent-banner]');
-  const storedConsent = localStorage.getItem('viktor-consent');
-  if (storedConsent === 'granted') enableTags();
-  if (!storedConsent && consentBanner) consentBanner.hidden = false;
-  $('[data-consent-accept]')?.addEventListener('click', () => {
-    localStorage.setItem('viktor-consent', 'granted');
-    consentBanner.hidden = true;
-    enableTags();
+  const readConsent = () => {
+    try {
+      const stored = window.localStorage.getItem(CONSENT_KEY);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (parsed && parsed.version === 1 && (parsed.status === 'accepted' || parsed.status === 'rejected')) return parsed;
+      }
+      const legacy = window.localStorage.getItem(LEGACY_CONSENT_KEY);
+      if (legacy === 'granted' || legacy === 'denied') {
+        const migrated = {
+          status: legacy === 'granted' ? 'accepted' : 'rejected',
+          version: 1,
+          timestamp: new Date().toISOString()
+        };
+        window.localStorage.setItem(CONSENT_KEY, JSON.stringify(migrated));
+        window.localStorage.removeItem(LEGACY_CONSENT_KEY);
+        return migrated;
+      }
+    } catch (error) {
+      return null;
+    }
+    return null;
+  };
+  const writeConsent = (status) => {
+    try {
+      window.localStorage.setItem(CONSENT_KEY, JSON.stringify({ status, version: 1, timestamp: new Date().toISOString() }));
+    } catch (error) {
+      // If storage is blocked, keep the privacy-safe default and still close the banner for this page view.
+    }
+  };
+  const setConsentBannerVisible = (visible) => {
+    if (!consentBanner) return;
+    consentBanner.hidden = !visible;
+    consentBanner.setAttribute('aria-hidden', String(!visible));
+  };
+  const storedConsent = readConsent();
+  if (storedConsent?.status === 'accepted') enableTags();
+  setConsentBannerVisible(!storedConsent);
+  const applyConsentChoice = (status) => {
+    writeConsent(status);
+    setConsentBannerVisible(false);
+    if (status === 'accepted') enableTags();
+  };
+  $('[data-consent-accept]')?.addEventListener('click', (event) => {
+    event.preventDefault();
+    applyConsentChoice('accepted');
   });
-  $('[data-consent-deny]')?.addEventListener('click', () => {
-    localStorage.setItem('viktor-consent', 'denied');
-    consentBanner.hidden = true;
+  $('[data-consent-deny]')?.addEventListener('click', (event) => {
+    event.preventDefault();
+    applyConsentChoice('rejected');
   });
 
   const toast = $('[data-toast]');
   const currentLang = document.documentElement.lang || 'de-CH';
-  const formInactiveMessage = currentLang.startsWith('uk')
-    ? 'Форма неактивна: потрібно підключити Formspree endpoint. Будь ласка, скористайтеся WhatsApp.'
+  const formMessages = currentLang.startsWith('uk')
+    ? {
+        loading: 'Надсилається...',
+        success: 'Дякуємо - Віктор звʼяжеться з вами якнайшвидше.',
+        error: 'Запит зараз не вдалося надіслати. Будь ласка, скористайтеся WhatsApp або спробуйте пізніше.'
+      }
     : currentLang.startsWith('en')
-      ? 'Form inactive: the Formspree endpoint still needs to be configured. Please use WhatsApp.'
-      : 'Formular inaktiv: Formspree-Endpunkt muss noch eingesetzt werden. Bitte WhatsApp nutzen.';
+      ? {
+          loading: 'Sending...',
+          success: 'Thank you - Viktor will get back to you as soon as possible.',
+          error: 'The request could not be sent right now. Please use WhatsApp or try again later.'
+        }
+      : {
+          loading: 'Wird gesendet...',
+          success: 'Danke - Viktor meldet sich schnellstmöglich.',
+          error: 'Die Anfrage konnte gerade nicht gesendet werden. Bitte nutzen Sie WhatsApp oder versuchen Sie es später erneut.'
+        };
   const showToast = (message) => {
     if (!toast) return;
     toast.textContent = message;
@@ -1488,13 +1512,39 @@ function jsMain() {
     });
   });
 
-  $$('form[data-event]').forEach((form) => {
-    form.addEventListener('submit', (event) => {
+  $$('form[data-contact-form]').forEach((form) => {
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
       if (!form.reportValidity()) return;
-      track(form.dataset.event, { path: location.pathname });
-      if (form.action.includes('/REPLACE')) {
-        event.preventDefault();
-        showToast(formInactiveMessage);
+      const submit = form.querySelector('button[type="submit"]');
+      const originalText = submit?.textContent || '';
+      const fields = new FormData(form);
+      const payload = Object.fromEntries(fields.entries());
+      payload.sourceUrl = location.href;
+      payload.language = currentLang;
+      payload.kind = form.dataset.contactKind || 'contact';
+      track(form.dataset.event || 'contact_form_submit', { path: location.pathname, kind: payload.kind });
+      if (submit) {
+        submit.disabled = true;
+        submit.textContent = formMessages.loading;
+      }
+      try {
+        const response = await fetch(form.getAttribute('action') || '/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || !result.ok) throw new Error(result.error || 'contact_failed');
+        form.reset();
+        showToast(formMessages.success);
+      } catch (error) {
+        showToast(formMessages.error);
+      } finally {
+        if (submit) {
+          submit.disabled = false;
+          submit.textContent = originalText;
+        }
       }
     });
   });
@@ -1690,7 +1740,7 @@ Switch to another design direction by replacing \`theme-v4.css\` with \`theme-v1
 
 ## Placeholders still requiring human approval
 
-- E-mail and form endpoint.
+- Contact delivery uses \`/api/contact\` and needs production \`TELEGRAM_BOT_TOKEN\` plus \`TELEGRAM_CHAT_ID\`.
 - Real before/after photos, master photos and Japan postcard.
 - GA4, Google Ads, Search Console and consent wording review.
 - Legal pages under Swiss/DSG/DSGVO requirements.
@@ -1716,12 +1766,12 @@ Static multipage DE/EN site for Viktor Baumarchitektur. It opens directly from \
 ## Edit checklist
 
 - Verify final WhatsApp/phone before publication: \`${phoneDisplay}\`.
-- Replace GA4 \`G-XXXXXXX\`, Google Ads \`AW-XXXXXXX\`, Search Console verification and form backend.
+- Replace GA4 \`G-XXXXXXX\`, Google Ads \`AW-XXXXXXX\` and Search Console verification.
 - Visible header/footer wordmark is **Viktor Baumarchitektur**.
 - Complete \`impressum.html\` and \`datenschutz.html\` with Viktor's legal data before publication.
 - Swap real images using filenames in \`assets/img/MANIFEST.md\`.
 - TODO: create a final matching logo lockup for **Viktor Baumarchitektur**. The current \`assets/img/logo.png\` still reads "Viktor Bonsai", so the site crops it to the tree symbol and renders the approved text wordmark beside it.
-- AI concept files are visual direction only and must not be presented as real client proof.
+- Synthetic planning files are visual direction only and must not be presented as real client proof.
 
 ## Blog / knowledge section
 
@@ -1749,7 +1799,7 @@ Switch to another design direction by replacing \`theme-v4.css\` with \`theme-v1
 
 ## Placeholders still requiring human approval
 
-- E-mail and form endpoint.
+- Contact callback production secrets: \`TELEGRAM_BOT_TOKEN\`, \`TELEGRAM_CHAT_ID\`.
 - Voice Lead production secrets: \`OPENAI_API_KEY\`, \`TELEGRAM_BOT_TOKEN\`, \`TELEGRAM_CHAT_ID\`.
 - Real before/after photos, Japan postcard and testimonial.
 - Final approval/originals for the supplied real Viktor master/work photos.
@@ -1765,10 +1815,11 @@ Run:
 \`\`\`powershell
 node tools/generate-site.mjs
 node tools/audit-site.mjs
+node tools/test-contact-api.mjs
 node tools/qa-site-interactions.mjs
 \`\`\`
 
-\`v2/index.html\` includes a microphone lead flow. The browser records up to 300 seconds with \`MediaRecorder\`, sends the audio to \`/api/voice-lead\`, transcribes with OpenAI audio transcription, extracts lead fields locally and sends a Telegram summary to Viktor. The serverless function does not store audio or transcripts; it only processes the request and forwards the message. Required server-side variables are documented in \`.env.example\`.
+\`kontakt.html\` posts callback requests to \`/api/contact\`, which validates the phone number, blocks honeypot spam and sends a Telegram summary with server-side env only. \`v2/index.html\` includes a microphone lead flow. The browser records up to 300 seconds with \`MediaRecorder\`, sends the audio to \`/api/voice-lead\`, transcribes with OpenAI audio transcription, extracts lead fields locally and sends a Telegram summary to Viktor. The serverless functions do not store lead content; they only process the request and forward the message. Required server-side variables are documented in \`.env.example\`.
 
 No build step is required for visitors. The generator is kept as the source of truth for consistent header/footer, DE pages and EN mirrors.
 `;
@@ -1790,7 +1841,7 @@ const required = [
   "uk/blog/index.html","uk/blog/topiarschere.html","uk/blog/energie-krone.html","uk/blog/kiefer-kerzen.html","uk/blog/boden-wurzeln.html","uk/blog/klimastress.html",
   "uk/kontakt.html","uk/impressum.html","uk/datenschutz.html","uk/themes.html",
   "assets/base.css","assets/main.js","assets/theme-v1.css","assets/theme-v2.css","assets/theme-v3.css","assets/theme-v4.css","assets/theme-v5.css",
-  "assets/img/logo.png","assets/img/og-share.jpg","assets/img/MANIFEST.md","site.webmanifest","robots.txt","sitemap.xml","llms.txt","vercel.json","README.md",".env.example","api/voice-lead.js"
+  "assets/img/logo.png","assets/img/og-share.jpg","assets/img/MANIFEST.md","site.webmanifest","robots.txt","sitemap.xml","llms.txt","vercel.json","README.md",".env.example","api/contact.js","api/voice-lead.js"
 ];
 
 const errors = [];
@@ -1855,6 +1906,22 @@ for (const file of htmlFiles) {
   for (const forbidden of ["БРЕНД", "PLATZHALTER", "PLACEHOLDER"]) {
     if (bodyText.includes(forbidden)) errors.push(file + " visible body text contains " + forbidden);
   }
+  const removedPublicMarkers = [
+    "Konzept" + "-Labels",
+    "Concept " + "labels",
+    "Formular " + "inaktiv",
+    "Formspree" + "-Endpunkt muss",
+    "AI-" + "Konzeptvisualisierung",
+    "AI " + "concept only",
+    "AI-" + "концепт"
+  ];
+  for (const forbidden of removedPublicMarkers) {
+    if (html.includes(forbidden) || bodyText.includes(forbidden)) errors.push(file + " public page still contains removed marker: " + forbidden);
+  }
+  const removedToggleAttr = "data-" + "presentation-toggle";
+  const removedCaptionClass = "asset" + "-caption";
+  if (html.includes(removedToggleAttr)) errors.push(file + " still renders presentation toggle");
+  if (html.includes(removedCaptionClass)) errors.push(file + " still renders asset caption labels");
   if (file === "index.html" || file === "en/index.html" || file === "uk/index.html") {
     for (const deadSignal of ["FOTO - echt", "Google-Bewertung folgt", "Google rating follows", "Referenztext folgt"]) {
       if (bodyText.includes(deadSignal)) errors.push(file + " home page still shows dead demo signal: " + deadSignal);
@@ -1876,9 +1943,9 @@ for (const file of htmlFiles) {
   }
   const forms = [...html.matchAll(/<form\\b[^>]*>/gi)].map((m) => m[0]);
   for (const form of forms) {
-    if (!form.includes('action="https://formspree.io/f/REPLACE"')) errors.push(file + " form is not Formspree-ready");
+    if (!form.includes('action="/api/contact"')) errors.push(file + " form does not submit to /api/contact");
     if (!form.includes('method="post"')) errors.push(file + " form missing POST method");
-    if (!form.includes('enctype="multipart/form-data"')) errors.push(file + " form missing multipart enctype");
+    if (!form.includes("data-contact-form")) errors.push(file + " form missing data-contact-form marker");
   }
   const hrefs = [...html.matchAll(/href=\"([^\"]+)\"/g)].map((m) => m[1]);
   for (const href of hrefs) {
@@ -1949,7 +2016,18 @@ console.log("AUDIT PASSED: required files, SEO tags, JSON-LD, internal links, ev
 `;
 }
 
-writeFile("assets/base.css", `${cssBase().replace(/\.brand-symbol\{[^}]+\}/, "")}\n${cssResponsiveFixes()}\n.hero-panel,.hero-services{position:relative;z-index:2}\n.quiet-moments,.check-strip{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.quiet-moments span,.check-strip span{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;background:var(--surface);padding:8px 11px;color:var(--muted);font-size:.88rem;font-weight:800}.signature-block .check-strip span{background:color-mix(in srgb,var(--primary-ink) 14%,transparent);border-color:color-mix(in srgb,var(--primary-ink) 24%,transparent);color:var(--primary-ink)}\n@media (max-width:620px){.asset-caption{position:absolute!important;left:10px!important;right:10px!important;bottom:10px!important;border:1px solid var(--line)!important;border-radius:8px!important}}\n${cssWowPass()}`);
+function publicCss() {
+  return `${cssBase().replace(/\.brand-symbol\{[^}]+\}/, "")}
+${cssResponsiveFixes()}
+.hero-panel,.hero-services{position:relative;z-index:2}
+.quiet-moments,.check-strip{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.quiet-moments span,.check-strip span{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;background:var(--surface);padding:8px 11px;color:var(--muted);font-size:.88rem;font-weight:800}.signature-block .check-strip span{background:color-mix(in srgb,var(--primary-ink) 14%,transparent);border-color:color-mix(in srgb,var(--primary-ink) 24%,transparent);color:var(--primary-ink)}
+.hp-field{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
+.cookie-banner[hidden],.toast[hidden]{display:none!important}.cookie-banner{max-height:calc(100svh - 32px);overflow:auto;pointer-events:auto}.mobile-cta{padding-bottom:env(safe-area-inset-bottom)}
+@media (max-width:920px){body{padding-bottom:calc(58px + env(safe-area-inset-bottom))}.cookie-banner{bottom:calc(74px + env(safe-area-inset-bottom))}.toast{bottom:calc(74px + env(safe-area-inset-bottom));left:16px;right:16px}}
+${cssWowPass().replace(".before-after-slider body." + "presentation-clean @media", "@media")}`;
+}
+
+writeFile("assets/base.css", publicCss());
 for (const n of [1, 2, 3, 4, 5]) writeFile(`assets/theme-v${n}.css`, themeCss(n));
 writeFile("assets/main.js", jsMain());
 writeFile("assets/img/MANIFEST.md", manifestV2());
@@ -2007,7 +2085,7 @@ const ukPageOverrides = new Map([
   ["uk/index.html", ["uk/index.html", "uk", "Viktor Baumarchitektur - український перегляд", "Українська версія сайту Viktor Baumarchitektur: Niwaki, японські клени, хвойні дерева і безкоштовна фото-діагностика.", homeUk(), [localBusinessLd(), personLd(), faqLd()]]],
   ["uk/leistungen.html", ["uk/leistungen.html", "uk", "Послуги - Niwaki, японські клени та хвойні", "Українська сторінка послуг Viktor Baumarchitektur: Niwaki, японські клени, сосни та хвойні дерева.", servicesUk(), [localBusinessLd(), serviceLd("Niwaki, Ahorn und Kiefer-Formschnitt", "Japanische Baumpflege, Niwaki Schnitt und Formschnitt für Nadelgehölze.")]]],
   ["uk/philosophie.html", ["uk/philosophie.html", "uk", "Філософія та майстерність - Viktor Baumarchitektur", "Українська сторінка про філософію, досвід і підхід Віктора до японської деревної архітектури.", genericUkPage("philosophy"), [localBusinessLd(), personLd()]]],
-  ["uk/galerie.html", ["uk/galerie.html", "uk", "Галерея - до / після, Garten-Bonsai та Niwaki", "Українська галерея Viktor Baumarchitektur з фото-слотами та позначеними AI-концептами.", genericUkPage("gallery"), [localBusinessLd()]]],
+  ["uk/galerie.html", ["uk/galerie.html", "uk", "Галерея - до / після, Garten-Bonsai та Niwaki", "Українська галерея Viktor Baumarchitektur з фото-слотами, Niwaki та садовим бонсаєм.", genericUkPage("gallery"), [localBusinessLd()]]],
   ["uk/preise.html", ["uk/preise.html", "uk", "Ціни - японський догляд за деревами", "Українська сторінка цін Viktor Baumarchitektur: робота від 110 CHF/год, виїзд від 90 CHF, фото-діагностика безкоштовна.", genericUkPage("prices"), [localBusinessLd(), faqLd()]]],
   ["uk/blog/index.html", ["uk/blog/index.html", "uk", "Знання Niwaki - інструменти, крона та кліматичний стрес", "Українські матеріали про Niwaki, японські ножиці, енергію крони, сосни, коріння і кліматичний стрес.", blogIndexUk(), [localBusinessLd()]]],
   ["uk/blog/topiarschere.html", ["uk/blog/topiarschere.html", "uk", "Японські ножиці проти тримера - чистий зріз", "Українська стаття про чистий зріз, японські ножиці і контроль майбутньої форми дерева.", articleUk("topiary"), [localBusinessLd()]]],

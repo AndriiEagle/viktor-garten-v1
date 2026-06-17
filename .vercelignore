@@ -12,6 +12,10 @@ project_brief
 tools
 /*.jpg
 /*.png
+/*.ogg
+/*.mp3
+/*.wav
+/*.webm
 
 # Python/editor/cache noise
 __pycache__

@@ -5,12 +5,12 @@ Static multipage DE/EN site for Viktor Baumarchitektur. It opens directly from `
 ## Edit checklist
 
 - Verify final WhatsApp/phone before publication: `+41 78 313 03 30`.
-- Replace GA4 `G-XXXXXXX`, Google Ads `AW-XXXXXXX`, Search Console verification and form backend.
+- Replace GA4 `G-XXXXXXX`, Google Ads `AW-XXXXXXX` and Search Console verification.
 - Visible header/footer wordmark is **Viktor Baumarchitektur**.
 - Complete `impressum.html` and `datenschutz.html` with Viktor's legal data before publication.
 - Swap real images using filenames in `assets/img/MANIFEST.md`.
 - TODO: create a final matching logo lockup for **Viktor Baumarchitektur**. The current `assets/img/logo.png` still reads "Viktor Bonsai", so the site crops it to the tree symbol and renders the approved text wordmark beside it.
-- AI concept files are visual direction only and must not be presented as real client proof.
+- Synthetic planning files are visual direction only and must not be presented as real client proof.
 
 ## Blog / knowledge section
 
@@ -38,7 +38,7 @@ Switch to another design direction by replacing `theme-v4.css` with `theme-v1.cs
 
 ## Placeholders still requiring human approval
 
-- E-mail and form endpoint.
+- Contact callback production secrets: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`.
 - Voice Lead production secrets: `OPENAI_API_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`.
 - Real before/after photos, Japan postcard and testimonial.
 - Final approval/originals for the supplied real Viktor master/work photos.
@@ -54,10 +54,11 @@ Run:
 ```powershell
 node tools/generate-site.mjs
 node tools/audit-site.mjs
+node tools/test-contact-api.mjs
 node tools/qa-site-interactions.mjs
 ```
 
-`v2/index.html` includes a microphone lead flow. The browser records up to 300 seconds with `MediaRecorder`, sends the audio to `/api/voice-lead`, transcribes with OpenAI audio transcription, extracts lead fields locally and sends a Telegram summary to Viktor. The serverless function does not store audio or transcripts; it only processes the request and forwards the message. Required server-side variables are documented in `.env.example`.
+`kontakt.html` posts callback requests to `/api/contact`, which validates the phone number, blocks honeypot spam and sends a Telegram summary with server-side env only. `v2/index.html` includes a microphone lead flow. The browser records up to 300 seconds with `MediaRecorder`, sends the audio to `/api/voice-lead`, transcribes with OpenAI audio transcription, extracts lead fields locally and sends a Telegram summary to Viktor. The serverless functions do not store lead content; they only process the request and forward the message. Required server-side variables are documented in `.env.example`.
 
 No build step is required for visitors. The generator is kept as the source of truth for consistent header/footer, DE pages and EN mirrors.
 

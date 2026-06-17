@@ -19,22 +19,6 @@
     update();
   });
 
-  const presentationToggle = $('[data-presentation-toggle]');
-  if (presentationToggle) {
-    const params = new URLSearchParams(location.search);
-    const stored = window.localStorage.getItem('viktorPresentationClean') === '1';
-    const setClean = (clean) => {
-      document.body.classList.toggle('presentation-clean', clean);
-      presentationToggle.setAttribute('aria-pressed', String(clean));
-      presentationToggle.textContent = clean ? presentationToggle.dataset.labelShow : presentationToggle.dataset.labelHide;
-      window.localStorage.setItem('viktorPresentationClean', clean ? '1' : '0');
-    };
-    setClean(params.has('clean') || stored);
-    presentationToggle.addEventListener('click', () => {
-      setClean(!document.body.classList.contains('presentation-clean'));
-    });
-  }
-
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function gtag(){ window.dataLayer.push(arguments); };
   window.gtag('consent', 'default', {
@@ -71,27 +55,80 @@
     }
   };
 
+  const CONSENT_KEY = 'viktor_cookie_consent';
+  const LEGACY_CONSENT_KEY = 'viktor-consent';
   const consentBanner = $('[data-consent-banner]');
-  const storedConsent = localStorage.getItem('viktor-consent');
-  if (storedConsent === 'granted') enableTags();
-  if (!storedConsent && consentBanner) consentBanner.hidden = false;
-  $('[data-consent-accept]')?.addEventListener('click', () => {
-    localStorage.setItem('viktor-consent', 'granted');
-    consentBanner.hidden = true;
-    enableTags();
+  const readConsent = () => {
+    try {
+      const stored = window.localStorage.getItem(CONSENT_KEY);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (parsed && parsed.version === 1 && (parsed.status === 'accepted' || parsed.status === 'rejected')) return parsed;
+      }
+      const legacy = window.localStorage.getItem(LEGACY_CONSENT_KEY);
+      if (legacy === 'granted' || legacy === 'denied') {
+        const migrated = {
+          status: legacy === 'granted' ? 'accepted' : 'rejected',
+          version: 1,
+          timestamp: new Date().toISOString()
+        };
+        window.localStorage.setItem(CONSENT_KEY, JSON.stringify(migrated));
+        window.localStorage.removeItem(LEGACY_CONSENT_KEY);
+        return migrated;
+      }
+    } catch (error) {
+      return null;
+    }
+    return null;
+  };
+  const writeConsent = (status) => {
+    try {
+      window.localStorage.setItem(CONSENT_KEY, JSON.stringify({ status, version: 1, timestamp: new Date().toISOString() }));
+    } catch (error) {
+      // If storage is blocked, keep the privacy-safe default and still close the banner for this page view.
+    }
+  };
+  const setConsentBannerVisible = (visible) => {
+    if (!consentBanner) return;
+    consentBanner.hidden = !visible;
+    consentBanner.setAttribute('aria-hidden', String(!visible));
+  };
+  const storedConsent = readConsent();
+  if (storedConsent?.status === 'accepted') enableTags();
+  setConsentBannerVisible(!storedConsent);
+  const applyConsentChoice = (status) => {
+    writeConsent(status);
+    setConsentBannerVisible(false);
+    if (status === 'accepted') enableTags();
+  };
+  $('[data-consent-accept]')?.addEventListener('click', (event) => {
+    event.preventDefault();
+    applyConsentChoice('accepted');
   });
-  $('[data-consent-deny]')?.addEventListener('click', () => {
-    localStorage.setItem('viktor-consent', 'denied');
-    consentBanner.hidden = true;
+  $('[data-consent-deny]')?.addEventListener('click', (event) => {
+    event.preventDefault();
+    applyConsentChoice('rejected');
   });
 
   const toast = $('[data-toast]');
   const currentLang = document.documentElement.lang || 'de-CH';
-  const formInactiveMessage = currentLang.startsWith('uk')
-    ? 'Форма неактивна: потрібно підключити Formspree endpoint. Будь ласка, скористайтеся WhatsApp.'
+  const formMessages = currentLang.startsWith('uk')
+    ? {
+        loading: 'Надсилається...',
+        success: 'Дякуємо - Віктор звʼяжеться з вами якнайшвидше.',
+        error: 'Запит зараз не вдалося надіслати. Будь ласка, скористайтеся WhatsApp або спробуйте пізніше.'
+      }
     : currentLang.startsWith('en')
-      ? 'Form inactive: the Formspree endpoint still needs to be configured. Please use WhatsApp.'
-      : 'Formular inaktiv: Formspree-Endpunkt muss noch eingesetzt werden. Bitte WhatsApp nutzen.';
+      ? {
+          loading: 'Sending...',
+          success: 'Thank you - Viktor will get back to you as soon as possible.',
+          error: 'The request could not be sent right now. Please use WhatsApp or try again later.'
+        }
+      : {
+          loading: 'Wird gesendet...',
+          success: 'Danke - Viktor meldet sich schnellstmöglich.',
+          error: 'Die Anfrage konnte gerade nicht gesendet werden. Bitte nutzen Sie WhatsApp oder versuchen Sie es später erneut.'
+        };
   const showToast = (message) => {
     if (!toast) return;
     toast.textContent = message;
@@ -114,13 +151,39 @@
     });
   });
 
-  $$('form[data-event]').forEach((form) => {
-    form.addEventListener('submit', (event) => {
+  $$('form[data-contact-form]').forEach((form) => {
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
       if (!form.reportValidity()) return;
-      track(form.dataset.event, { path: location.pathname });
-      if (form.action.includes('/REPLACE')) {
-        event.preventDefault();
-        showToast(formInactiveMessage);
+      const submit = form.querySelector('button[type="submit"]');
+      const originalText = submit?.textContent || '';
+      const fields = new FormData(form);
+      const payload = Object.fromEntries(fields.entries());
+      payload.sourceUrl = location.href;
+      payload.language = currentLang;
+      payload.kind = form.dataset.contactKind || 'contact';
+      track(form.dataset.event || 'contact_form_submit', { path: location.pathname, kind: payload.kind });
+      if (submit) {
+        submit.disabled = true;
+        submit.textContent = formMessages.loading;
+      }
+      try {
+        const response = await fetch(form.getAttribute('action') || '/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || !result.ok) throw new Error(result.error || 'contact_failed');
+        form.reset();
+        showToast(formMessages.success);
+      } catch (error) {
+        showToast(formMessages.error);
+      } finally {
+        if (submit) {
+          submit.disabled = false;
+          submit.textContent = originalText;
+        }
       }
     });
   });

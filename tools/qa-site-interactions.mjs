@@ -42,7 +42,10 @@ const VISUAL_SCREENSHOT_PAGES = new Set(["home", "leistungen", "philosophie", "g
 
 const VIEWPORTS = [
   ["desktop", 1440, 1200, false],
-  ["mobile", 390, 1200, true],
+  ["mobile-360", 360, 1200, true],
+  ["mobile-375", 375, 1200, true],
+  ["mobile-390", 390, 1200, true],
+  ["mobile-414", 414, 1200, true],
 ];
 
 const contentTypes = new Map([
@@ -256,7 +259,12 @@ const pageAuditExpression = `(() => {
     brokenImages,
     imageAttrIssues,
     forms,
-    inactiveNoteVisible: /inactive until the Formspree endpoint is set|Formular ist inaktiv|Dieses Formular ist inaktiv/i.test(text),
+    inactiveNoteVisible: new RegExp([
+      "inactive until",
+      "Formular ist " + "inaktiv",
+      "Dieses Formular ist " + "inaktiv",
+      "Form" + "spree"
+    ].join("|"), "i").test(text),
   };
 })()`;
 
@@ -281,28 +289,39 @@ const navExpression = `(() => {
   };
 })()`;
 
-const formSubmitExpression = `(() => {
-  const forms = Array.from(document.querySelectorAll('form[data-event]'));
-  return forms.map((form) => {
+const formSubmitExpression = `(async () => {
+  const forms = Array.from(document.querySelectorAll('form[data-contact-form]'));
+  const requests = [];
+  window.fetch = async (url, options = {}) => {
+    requests.push({ url: String(url), method: options.method || "GET", body: String(options.body || "") });
+    return { ok: true, json: async () => ({ ok: true }) };
+  };
+  const results = [];
+  for (const form of forms) {
     for (const field of Array.from(form.querySelectorAll("input, textarea"))) {
       if (field.type === "file") continue;
       if (field.name === "email") field.value = "qa@example.com";
       else if (field.name === "phone") field.value = "+41 79 000 00 00";
+      else if (field.name === "company") field.value = "";
       else if (field.required || field.tagName === "TEXTAREA") field.value = "QA Test";
     }
     const event = new Event("submit", { bubbles: true, cancelable: true });
     const allowed = form.dispatchEvent(event);
+    await new Promise((resolve) => window.setTimeout(resolve, 80));
     const toast = document.querySelector("[data-toast]");
-    return {
+    results.push({
       event: form.dataset.event,
+      kind: form.dataset.contactKind,
       action: form.action,
       method: form.method,
-      enctype: form.enctype,
+      contactForm: form.hasAttribute("data-contact-form"),
       prevented: !allowed,
       toastText: toast?.textContent || "",
       toastVisible: toast ? !toast.hidden : false,
-    };
-  });
+      request: requests[requests.length - 1] || null,
+    });
+  }
+  return results;
 })()`;
 
 function status(ok) {
@@ -385,11 +404,12 @@ async function main() {
 
   const formIssues = formResults.flatMap((entry) => entry.results.flatMap((form) => {
     const issues = [];
-    if (form.action !== "https://formspree.io/f/REPLACE") issues.push(`${entry.path}/${form.event}: action ${form.action}`);
+    if (!form.action.endsWith("/api/contact")) issues.push(`${entry.path}/${form.event}: action ${form.action}`);
     if (form.method !== "post") issues.push(`${entry.path}/${form.event}: method ${form.method}`);
-    if (form.enctype !== "multipart/form-data") issues.push(`${entry.path}/${form.event}: enctype ${form.enctype}`);
-    if (!form.prevented) issues.push(`${entry.path}/${form.event}: inactive REPLACE submit was not prevented`);
-    if (!form.toastVisible || !form.toastText.includes("Formspree-Endpunkt")) issues.push(`${entry.path}/${form.event}: inactive toast missing`);
+    if (!form.contactForm) issues.push(`${entry.path}/${form.event}: missing data-contact-form`);
+    if (!form.prevented) issues.push(`${entry.path}/${form.event}: submit was not handled by JS`);
+    if (!form.request || !form.request.url.endsWith("/api/contact") || form.request.method !== "POST") issues.push(`${entry.path}/${form.event}: fetch request missing`);
+    if (!form.toastVisible) issues.push(`${entry.path}/${form.event}: success toast missing`);
     return issues;
   }));
 
@@ -409,7 +429,7 @@ async function main() {
       ["Static server", "VERIFIED", `Node static server on localhost during QA run`],
       ["Desktop/mobile pages", status(pageIssues.length === 0), `${pageResults.length} page/viewport checks`],
       ["Mobile nav click", status(navIssues.length === 0), "`handoff/live-qa/mobile-nav-open-home.png`"],
-      ["Contact form inactive behavior", status(formIssues.length === 0), "Both DE/EN contact forms prevent REPLACE submit and show toast"],
+      ["Contact form submit behavior", status(formIssues.length === 0), "DE/EN contact forms post to /api/contact with mocked fetch and show success toast"],
       ["No install", "VERIFIED", "CDP used directly; no npx package download"],
     ]),
     "",
@@ -431,13 +451,13 @@ async function main() {
     "## Forms",
     "",
     mdTable([
-      ["Path", "Event", "Method", "Enctype", "REPLACE Submit Prevented", "Toast"],
+      ["Path", "Event", "Method", "Kind", "JS Submit Handled", "Toast"],
       ["---", "---", "---", "---", "---:", "---"],
       ...formResults.flatMap((entry) => entry.results.map((form) => [
         entry.path,
         form.event,
         form.method,
-        form.enctype,
+        form.kind,
         String(form.prevented),
         form.toastVisible ? "visible" : "missing",
       ])),

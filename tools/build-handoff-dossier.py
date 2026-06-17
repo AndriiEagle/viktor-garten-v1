@@ -274,8 +274,8 @@ def make_slides(asset_sheet: Path) -> list[SlideSpec]:
             [
                 Shape("image", 80, 150, 500, 360, image="assets/img/concepts/vorher-dying-concept.jpg"),
                 Shape("image", 700, 150, 500, 360, image="assets/img/concepts/nachher-concept.jpg"),
-                Shape("text", 115, 535, 450, 58, "AI-Konzeptvisualisierung - Vorher", fill="9A3B2F", color="FFFFFF", size=16, bold=True),
-                Shape("text", 735, 535, 450, 58, "AI-Konzeptvisualisierung - Nachher", fill="24452F", color="FFFFFF", size=16, bold=True),
+                Shape("text", 115, 535, 450, 58, "Interne Planungsansicht - Vorher", fill="9A3B2F", color="FFFFFF", size=16, bold=True),
+                Shape("text", 735, 535, 450, 58, "Interne Planungsansicht - Nachher", fill="24452F", color="FFFFFF", size=16, bold=True),
             ],
         ),
         SlideSpec(
@@ -535,7 +535,7 @@ def write_qa_ledger(slide_pngs: list[Path], asset_sheet: Path, slide_sheet: Path
         "| Dossier PPTX | VERIFIED_WITH_LIMITS | `handoff/Viktor-Bonsai-Dossier.pptx` | OpenXML PPTX with editable text boxes and embedded images; PowerPoint COM and python-pptx unavailable. |",
         f"| Deck counts | VERIFIED | PPTX {len(slide_pngs)} slides / PDF {len(slide_pngs)} pages | Verified from PPTX zip entries and PDF page markers after generation. |",
         f"| Slide contact sheet | VERIFIED | `{slide_sheet.relative_to(ROOT)}` | Thumbnail QA sheet generated from every retained slide PNG. |",
-        "| Before/after concepts | NEEDS_REVIEW | `assets/img/concepts/` | AI concept only, not real proof. Must be labelled as AI-Konzeptvisualisierung. |",
+        "| Before/after planning images | NEEDS_REVIEW | `assets/img/concepts/` | Internal direction only, not real proof. Do not expose planning labels on the public website. |",
         "| Client asset request | VERIFIED | `handoff/CLIENT_ASSET_REQUEST.md` | Exact remaining real-photo/contact/legal inputs and filenames are documented. |",
         "",
         "## Screenshots Captured",
