@@ -56,6 +56,7 @@ const contentTypes = new Map([
   [".png", "image/png"],
   [".jpg", "image/jpeg"],
   [".jpeg", "image/jpeg"],
+  [".webp", "image/webp"],
   [".svg", "image/svg+xml"],
   [".ico", "image/x-icon"],
 ]);
@@ -210,7 +211,11 @@ async function navigate(cdp, url, width, height, mobile) {
   await waitVisibleImages(cdp);
 }
 
-async function screenshot(cdp, outFile) {
+async function screenshot(cdp, outFile, settleMs = 1000) {
+  await evaluate(cdp, `new Promise((resolve) => {
+    requestAnimationFrame(() => requestAnimationFrame(resolve));
+  })`);
+  await sleep(settleMs);
   const shot = await cdp.send("Page.captureScreenshot", {
     format: "png",
     captureBeyondViewport: false,
@@ -368,7 +373,7 @@ async function main() {
         pageResults.push({ pageName, viewportName, width, height, ...audit });
         if (VISUAL_SCREENSHOT_PAGES.has(pageName)) {
           const outFile = path.join(LIVE_SCREENSHOT_DIR, `${pageName}-${viewportName}.png`);
-          await screenshot(cdp, outFile);
+          await screenshot(cdp, outFile, pageName === "galerie" ? 6000 : 1000);
           visualScreenshots.push(path.relative(ROOT, outFile).replaceAll("\\", "/"));
         }
       }
