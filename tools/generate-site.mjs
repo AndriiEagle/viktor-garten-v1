@@ -1897,6 +1897,38 @@ for (const eventName of ["cta_whatsapp_click","cta_call_click","cta_rueckruf_sub
 const baseCss = fs.readFileSync(path.join(root, "assets/base.css"), "utf8");
 if (baseCss.includes(".brand-symbol")) errors.push("Unused .brand-symbol CSS is still present");
 
+const previewFiles = ["v2/index.html"];
+for (const file of previewFiles) {
+  const full = path.join(root, file);
+  if (!fs.existsSync(full)) {
+    errors.push("Missing preview " + file);
+    continue;
+  }
+  const html = fs.readFileSync(full, "utf8");
+  if (!html.includes("Version 2") || !html.includes("V2")) errors.push(file + " missing V2 marker");
+  if (!html.includes("<title>") || !html.includes('name="description"')) errors.push(file + " missing basic meta tags");
+  if (html.includes('href="#"')) errors.push(file + ' contains dead href="#" link');
+  const h1 = [...html.matchAll(/<h1\\b/gi)].length;
+  if (h1 !== 1) errors.push(file + " has " + h1 + " H1 tags");
+  const previewRefs = [
+    ...html.matchAll(/(?:src|href)="([^"]+)"/g),
+    ...html.matchAll(/url\\(["']?([^"')]+)["']?\\)/g)
+  ].map((m) => m[1]);
+  const ids = new Set([...html.matchAll(/id="([^"]+)"/g)].map((m) => m[1]));
+  for (const ref of previewRefs) {
+    if (/^(https?:|mailto:|tel:|data:)/.test(ref)) continue;
+    if (ref.startsWith("%23")) continue;
+    if (ref.startsWith("#")) {
+      if (ref.length > 1 && !ids.has(ref.slice(1))) errors.push(file + " broken preview anchor -> " + ref);
+      continue;
+    }
+    const clean = ref.split("#")[0].split("?")[0];
+    if (!clean) continue;
+    const resolved = path.normalize(path.join(path.dirname(full), clean));
+    if (!fs.existsSync(resolved)) errors.push(file + " broken preview ref -> " + ref);
+  }
+}
+
 const manifest = fs.readFileSync(path.join(root, "assets/img/MANIFEST.md"), "utf8");
 for (const file of ["hero-garten-alt.jpg","hero-garten.jpg","og-share.jpg","japan-postkarte.jpg","concepts/japan-postkarte-concept.jpg","baumarchitektur-energiefluss-verstehen.png","vision-jahr1.jpg","nachher-06.jpg"]) {
   if (!manifest.includes(file)) errors.push("MANIFEST missing " + file);
