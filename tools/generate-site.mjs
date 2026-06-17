@@ -519,8 +519,8 @@ function homeDe() {
     <div class="hero-media">${assetSlot({ type: "ai", file: "hero-garten-alt.jpg", label: "Niwaki im Schweizer Garten", ratio: "16 / 9", className: "hero-slot" })}</div>
     <div class="hero-panel">
       <span class="eyebrow">FORMGEHÖLZE · NIWAKI · EVERGREEN DESIGN · JAPANISCHE GARTENKUNST</span>
-      <h1>Niwaki & japanische Baumkunst.<br><span>Mit Schweizer Präzision.</span></h1>
-      <p class="motto">Schweizer Qualität in Resonanz mit japanischer Philosophie.</p>
+      <h1>Niwaki & japanische Baumkunst.</h1>
+      <p class="motto">Schweizer Qualität mit japanischer Philosophie.</p>
       <p>Als Meister für <strong>Niwaki und Garten-Bonsai</strong> in der <strong>Region Zürich</strong> forme und pflege ich seit 27 Jahren japanische Ahorne, Kiefern und Nadelgehölze - so, dass Ihr Baum über Jahre seine Form, seine Kraft und seine Gesundheit behält.</p>
       <div class="btn-row">${cta("Foto senden - kostenlose Diagnose")} <a class="btn btn-secondary" href="kontakt.html#rueckruf" data-event="cta_callback_click">Rückruf anfordern</a></div>
       <div class="trust-row"><span>27 Jahre Erfahrung</span><span>Region Zürich</span><span>Inspiriert in Japan</span></div>
@@ -1978,6 +1978,16 @@ for (const file of previewFiles) {
   if (!html.includes("Version 2") || !html.includes("V2")) errors.push(file + " missing V2 marker");
   if (!html.includes("<title>") || !html.includes('name="description"')) errors.push(file + " missing basic meta tags");
   if (html.includes('href="#"')) errors.push(file + ' contains dead href="#" link');
+  const removedPreviewMarkers = [
+    "generated " + "image",
+    "AI-" + "Bilder",
+    "Konzept" + "-Labels",
+    "Concept " + "labels",
+    "asset" + "-caption"
+  ];
+  for (const forbidden of removedPreviewMarkers) {
+    if (html.includes(forbidden)) errors.push(file + " preview still contains removed public marker: " + forbidden);
+  }
   for (const marker of ["data-voice-lead", "MediaRecorder", "getUserMedia", "/api/voice-lead", "data-voice-consent"]) {
     if (!html.includes(marker)) errors.push(file + " missing voice lead marker " + marker);
   }
@@ -2012,8 +2022,7 @@ if (errors.length) {
   for (const error of errors) console.error("- " + error);
   process.exit(1);
 }
-console.log("AUDIT PASSED: required files, SEO tags, JSON-LD, internal links, events and image manifest are present.");
-`;
+console.log("AUDIT PASSED: required files, SEO tags, JSON-LD, internal links, events and image manifest are present.");`;
 }
 
 function publicCss() {
