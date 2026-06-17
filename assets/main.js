@@ -19,6 +19,50 @@
     update();
   });
 
+  $$('[data-image-carousel]').forEach((carousel) => {
+    const slides = $$('[data-carousel-track] > img', carousel);
+    const dots = $$('[data-carousel-dot]', carousel);
+    const prev = $('[data-carousel-prev]', carousel);
+    const next = $('[data-carousel-next]', carousel);
+    if (slides.length < 2) return;
+    let index = 0;
+    let timer = 0;
+    let startX = 0;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const go = (nextIndex) => {
+      index = (nextIndex + slides.length) % slides.length;
+      carousel.style.setProperty('--carousel-index', String(index));
+      dots.forEach((dot, dotIndex) => {
+        dot.classList.toggle('is-active', dotIndex === index);
+        dot.setAttribute('aria-current', dotIndex === index ? 'true' : 'false');
+      });
+    };
+    const stop = () => {
+      if (timer) window.clearInterval(timer);
+      timer = 0;
+    };
+    const play = () => {
+      if (reducedMotion || timer) return;
+      timer = window.setInterval(() => go(index + 1), 5200);
+    };
+    prev?.addEventListener('click', () => { stop(); go(index - 1); play(); });
+    next?.addEventListener('click', () => { stop(); go(index + 1); play(); });
+    dots.forEach((dot, dotIndex) => dot.addEventListener('click', () => { stop(); go(dotIndex); play(); }));
+    carousel.addEventListener('pointerdown', (event) => { startX = event.clientX; stop(); });
+    carousel.addEventListener('pointerup', (event) => {
+      const delta = event.clientX - startX;
+      if (Math.abs(delta) > 42) go(index + (delta < 0 ? 1 : -1));
+      play();
+    });
+    carousel.addEventListener('pointercancel', play);
+    carousel.addEventListener('mouseenter', stop);
+    carousel.addEventListener('mouseleave', play);
+    carousel.addEventListener('focusin', stop);
+    carousel.addEventListener('focusout', play);
+    go(0);
+    play();
+  });
+
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function gtag(){ window.dataLayer.push(arguments); };
   window.gtag('consent', 'default', {

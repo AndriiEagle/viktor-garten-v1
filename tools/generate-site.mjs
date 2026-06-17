@@ -114,6 +114,25 @@ function assetSlot({ type = "real", file, label, ratio = "4 / 3", className = ""
     </figure>`;
 }
 
+function meisterImageCarousel(prefix = "__ASSET_PREFIX__assets/img/") {
+  const slides = [
+    ["baumarchitektur-korrektur.png", "Baumarchitektur: selektive Korrektur und Erhalt der lebenden Struktur"],
+    ["baumarchitektur-live-crown-ratio.png", "Baumarchitektur: lebende Krone und Stammstruktur verstehen"]
+  ];
+  return `
+    <figure class="image-carousel meister-carousel" data-image-carousel aria-label="Baumarchitektur Erklaerungen">
+      <div class="image-carousel-track" data-carousel-track>
+        ${slides.map(([file, alt]) => `<img class="image-carousel-slide" src="${prefix}${file}" alt="${alt}" loading="lazy" decoding="async" width="1448" height="1086">`).join("")}
+      </div>
+      <button class="image-carousel-btn image-carousel-prev" type="button" data-carousel-prev aria-label="Vorheriges Bild">&lsaquo;</button>
+      <button class="image-carousel-btn image-carousel-next" type="button" data-carousel-next aria-label="Naechstes Bild">&rsaquo;</button>
+      <div class="image-carousel-dots" aria-label="Bildauswahl">
+        <button type="button" class="image-carousel-dot is-active" data-carousel-dot aria-label="Bild 1 anzeigen" aria-current="true"></button>
+        <button type="button" class="image-carousel-dot" data-carousel-dot aria-label="Bild 2 anzeigen"></button>
+      </div>
+    </figure>`;
+}
+
 function assetSlotUk(options) {
   return assetSlot({
     ...options,
@@ -564,7 +583,7 @@ function homeDe() {
   </section>
 
   <section class="section split reverse">
-    ${assetSlot({ file: "baumarchitektur-energiefluss-verstehen.png", label: "Baumarchitektur: Energiefluss verstehen", ratio: "4 / 3" })}
+    ${meisterImageCarousel()}
     <div>
       <span class="eyebrow">Meisterarbeit</span>
       <h2>Warum ein Meister mehr sieht als ein Gärtner.</h2>
@@ -1380,6 +1399,50 @@ function jsMain() {
     update();
   });
 
+  $$('[data-image-carousel]').forEach((carousel) => {
+    const slides = $$('[data-carousel-track] > img', carousel);
+    const dots = $$('[data-carousel-dot]', carousel);
+    const prev = $('[data-carousel-prev]', carousel);
+    const next = $('[data-carousel-next]', carousel);
+    if (slides.length < 2) return;
+    let index = 0;
+    let timer = 0;
+    let startX = 0;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const go = (nextIndex) => {
+      index = (nextIndex + slides.length) % slides.length;
+      carousel.style.setProperty('--carousel-index', String(index));
+      dots.forEach((dot, dotIndex) => {
+        dot.classList.toggle('is-active', dotIndex === index);
+        dot.setAttribute('aria-current', dotIndex === index ? 'true' : 'false');
+      });
+    };
+    const stop = () => {
+      if (timer) window.clearInterval(timer);
+      timer = 0;
+    };
+    const play = () => {
+      if (reducedMotion || timer) return;
+      timer = window.setInterval(() => go(index + 1), 5200);
+    };
+    prev?.addEventListener('click', () => { stop(); go(index - 1); play(); });
+    next?.addEventListener('click', () => { stop(); go(index + 1); play(); });
+    dots.forEach((dot, dotIndex) => dot.addEventListener('click', () => { stop(); go(dotIndex); play(); }));
+    carousel.addEventListener('pointerdown', (event) => { startX = event.clientX; stop(); });
+    carousel.addEventListener('pointerup', (event) => {
+      const delta = event.clientX - startX;
+      if (Math.abs(delta) > 42) go(index + (delta < 0 ? 1 : -1));
+      play();
+    });
+    carousel.addEventListener('pointercancel', play);
+    carousel.addEventListener('mouseenter', stop);
+    carousel.addEventListener('mouseleave', play);
+    carousel.addEventListener('focusin', stop);
+    carousel.addEventListener('focusout', play);
+    go(0);
+    play();
+  });
+
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function gtag(){ window.dataLayer.push(arguments); };
   window.gtag('consent', 'default', {
@@ -1652,6 +1715,8 @@ Most visual slots are placeholders until real files are provided. AI files are a
 | section-bg-vision.jpg | 16:9 | AI concept, needs Viktor botanical review | Personal tree vision block | PRESENT_AI_CONCEPT_NEEDS_VIKTOR_REVIEW |
 | section-bg-soft.jpg | 16:9 | AI concept, needs Viktor botanical review | Concept recovery / soft section | PRESENT_AI_CONCEPT_NOT_PROOF |
 | baumarchitektur-energiefluss-verstehen.png | 4:3 | Supplied educational graphic | Home Meisterarbeit energy-flow block | PRESENT_SUPPLIED_GRAPHIC |
+| baumarchitektur-korrektur.png | 4:3 | Supplied educational graphic | Home Meisterarbeit carousel | PRESENT_SUPPLIED_GRAPHIC |
+| baumarchitektur-live-crown-ratio.png | 4:3 | Supplied educational graphic | Home Meisterarbeit carousel | PRESENT_SUPPLIED_GRAPHIC |
 | sanctuary-coffee.jpg | 16:9 | AI concept, looks like problem tree | Climate stress / concept before state | PRESENT_AI_CONCEPT_NOT_PROOF |
 | vision-jahr1.jpg | 1:1 | AI concept, needs Viktor botanical review | Year 1 Baum-Vision | PRESENT_AI_CONCEPT_NOT_PROOF |
 | vision-jahr2.jpg | 1:1 | AI concept, needs Viktor botanical review | Year 2 Baum-Vision | PRESENT_AI_CONCEPT_NOT_PROOF |
@@ -2013,7 +2078,7 @@ for (const file of previewFiles) {
 }
 
 const manifest = fs.readFileSync(path.join(root, "assets/img/MANIFEST.md"), "utf8");
-for (const file of ["hero-garten-alt.jpg","hero-garten.jpg","og-share.jpg","japan-postkarte.jpg","concepts/japan-postkarte-concept.jpg","baumarchitektur-energiefluss-verstehen.png","vision-jahr1.jpg","nachher-06.jpg"]) {
+for (const file of ["hero-garten-alt.jpg","hero-garten.jpg","og-share.jpg","japan-postkarte.jpg","concepts/japan-postkarte-concept.jpg","baumarchitektur-energiefluss-verstehen.png","baumarchitektur-korrektur.png","baumarchitektur-live-crown-ratio.png","vision-jahr1.jpg","nachher-06.jpg"]) {
   if (!manifest.includes(file)) errors.push("MANIFEST missing " + file);
 }
 
@@ -2031,6 +2096,7 @@ ${cssResponsiveFixes()}
 .hero-panel,.hero-services{position:relative;z-index:2}
 .quiet-moments,.check-strip{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.quiet-moments span,.check-strip span{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;background:var(--surface);padding:8px 11px;color:var(--muted);font-size:.88rem;font-weight:800}.signature-block .check-strip span{background:color-mix(in srgb,var(--primary-ink) 14%,transparent);border-color:color-mix(in srgb,var(--primary-ink) 24%,transparent);color:var(--primary-ink)}
 .hp-field{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
+.image-carousel{--carousel-index:0;position:relative;aspect-ratio:4/3;overflow:hidden;margin:0;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);touch-action:pan-y}.image-carousel-track{display:flex;height:100%;transform:translateX(calc(var(--carousel-index)*-100%));transition:transform .52s cubic-bezier(.2,.7,.2,1);will-change:transform}.image-carousel-slide{flex:0 0 100%;width:100%;height:100%;object-fit:cover;background:var(--surface)}.image-carousel-btn{position:absolute;top:50%;z-index:2;display:grid;place-items:center;width:44px;height:44px;border:1px solid color-mix(in srgb,var(--primary) 22%,transparent);border-radius:999px;background:color-mix(in srgb,var(--surface) 88%,transparent);color:var(--primary);box-shadow:0 10px 28px rgba(0,0,0,.18);font:800 1.8rem/1 var(--font-body);cursor:pointer;transform:translateY(-50%);backdrop-filter:blur(10px)}.image-carousel-prev{left:14px}.image-carousel-next{right:14px}.image-carousel-dots{position:absolute;left:0;right:0;bottom:13px;z-index:2;display:flex;justify-content:center;gap:8px}.image-carousel-dot{width:9px;height:9px;border:1px solid color-mix(in srgb,var(--primary) 55%,transparent);border-radius:999px;background:color-mix(in srgb,var(--surface) 70%,transparent);padding:0;cursor:pointer}.image-carousel-dot.is-active{width:28px;background:var(--primary)}@media (max-width:620px){.image-carousel{border-radius:12px}.image-carousel-btn{width:40px;height:40px;font-size:1.55rem}.image-carousel-prev{left:10px}.image-carousel-next{right:10px}.image-carousel-dots{bottom:10px}}
 .cookie-banner[hidden],.toast[hidden]{display:none!important}.cookie-banner{max-height:calc(100svh - 32px);overflow:auto;pointer-events:auto}.mobile-cta{padding-bottom:env(safe-area-inset-bottom)}
 @media (max-width:920px){body{padding-bottom:calc(58px + env(safe-area-inset-bottom))}.cookie-banner{bottom:calc(74px + env(safe-area-inset-bottom))}.toast{bottom:calc(74px + env(safe-area-inset-bottom));left:16px;right:16px}}
 ${cssWowPass().replace(".before-after-slider body." + "presentation-clean @media", "@media")}`;

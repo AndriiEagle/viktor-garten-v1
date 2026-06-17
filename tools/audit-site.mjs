@@ -185,7 +185,7 @@ for (const file of previewFiles) {
 }
 
 const manifest = fs.readFileSync(path.join(root, "assets/img/MANIFEST.md"), "utf8");
-for (const file of ["hero-garten-alt.jpg","hero-garten.jpg","og-share.jpg","japan-postkarte.jpg","concepts/japan-postkarte-concept.jpg","baumarchitektur-energiefluss-verstehen.png","vision-jahr1.jpg","nachher-06.jpg"]) {
+for (const file of ["hero-garten-alt.jpg","hero-garten.jpg","og-share.jpg","japan-postkarte.jpg","concepts/japan-postkarte-concept.jpg","baumarchitektur-energiefluss-verstehen.png","baumarchitektur-korrektur.png","baumarchitektur-live-crown-ratio.png","vision-jahr1.jpg","nachher-06.jpg"]) {
   if (!manifest.includes(file)) errors.push("MANIFEST missing " + file);
 }
 

@@ -37,6 +37,15 @@
   .media{overflow:hidden;border:1px solid var(--line);aspect-ratio:var(--r,4/3)}
   .media img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
   .media:hover img{transform:scale(1.04)}
+  .image-carousel{--carousel-index:0;position:relative;aspect-ratio:4/3;overflow:hidden;border:1px solid rgba(241,236,223,.22);background:var(--washi);box-shadow:0 26px 80px rgba(0,0,0,.18);touch-action:pan-y}
+  .image-carousel-track{display:flex;height:100%;transform:translateX(calc(var(--carousel-index)*-100%));transition:transform .52s var(--ease);will-change:transform}
+  .image-carousel-slide{flex:0 0 100%;width:100%;height:100%;object-fit:cover;background:var(--washi)}
+  .image-carousel-btn{position:absolute;top:50%;z-index:2;display:grid;place-items:center;width:44px;height:44px;border:1px solid rgba(22,48,31,.18);border-radius:999px;background:rgba(241,236,223,.88);color:var(--pine);box-shadow:0 10px 28px rgba(0,0,0,.18);font:800 1.8rem/1 var(--body);cursor:pointer;transform:translateY(-50%);backdrop-filter:blur(10px)}
+  .image-carousel-prev{left:14px}.image-carousel-next{right:14px}
+  .image-carousel-dots{position:absolute;left:0;right:0;bottom:13px;z-index:2;display:flex;justify-content:center;gap:8px}
+  .image-carousel-dot{width:9px;height:9px;border:1px solid rgba(22,48,31,.55);border-radius:999px;background:rgba(241,236,223,.7);padding:0;cursor:pointer}
+  .image-carousel-dot.is-active{width:28px;background:var(--pine)}
+  @media(max-width:620px){.image-carousel{border-radius:14px}.image-carousel-btn{width:40px;height:40px;font-size:1.55rem}.image-carousel-prev{left:10px}.image-carousel-next{right:10px}.image-carousel-dots{bottom:10px}}
   .slot{position:relative;border:1px dashed var(--line);aspect-ratio:var(--r,4/3);display:grid;place-content:center;text-align:center;gap:7px;padding:26px;background:linear-gradient(135deg,var(--washi-2),#ddd4bd)}
   .slot .k{font:800 .64rem/1 var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--pine)}
   .slot b{font-family:var(--disp);font-size:1.3rem;font-weight:600;color:var(--sumi)} .slot small{font:600 .7rem/1 var(--body);color:#5b6960}
@@ -175,13 +184,18 @@
       <p class="muted">Die Krone verbraucht Energie ungleich. Wer das ignoriert, schneidet die Kraft aus dem Baum. Ich sehe die natürliche Architektur eines Baumes — und wie er in einem, zwei, drei Jahren aussehen wird.</p>
       <p class="muted">27 Jahre Praxis, mit Schweiss erarbeitet, geschult an der Philosophie des Dao. Nicht schnell. Richtig.</p>
     </div>
-    <div class="reveal"><svg viewBox="0 0 360 290" role="img" aria-label="Energieverteilung: Krone 70%, Stamm 20%, Wurzeln 10%">
-      <circle cx="180" cy="92" r="72" fill="#7FA45B" opacity=".92"></circle>
-      <path d="M180 158 C172 196 160 222 142 256" fill="none" stroke="#B89150" stroke-width="16" stroke-linecap="round"></path>
-      <path d="M180 158 C190 196 206 224 226 256" fill="none" stroke="#B89150" stroke-width="16" stroke-linecap="round"></path>
-      <path d="M142 256 C108 264 92 270 66 272 M226 256 C262 264 282 270 312 272" fill="none" stroke="#B89150" stroke-width="7" stroke-linecap="round"></path>
-      <text x="180" y="98">Krone ~70%</text><text x="252" y="202">Stamm ~20%</text><text x="92" y="246">Wurzeln ~10%</text>
-    </svg></div>
+    <figure class="image-carousel reveal" data-image-carousel aria-label="Baumarchitektur Erklaerungen">
+      <div class="image-carousel-track" data-carousel-track>
+        <img class="image-carousel-slide" src="../assets/img/baumarchitektur-korrektur.png" alt="Baumarchitektur: selektive Korrektur und Erhalt der lebenden Struktur" loading="lazy" decoding="async" width="1448" height="1086">
+        <img class="image-carousel-slide" src="../assets/img/baumarchitektur-live-crown-ratio.png" alt="Baumarchitektur: lebende Krone und Stammstruktur verstehen" loading="lazy" decoding="async" width="1448" height="1086">
+      </div>
+      <button class="image-carousel-btn image-carousel-prev" type="button" data-carousel-prev aria-label="Vorheriges Bild">&lsaquo;</button>
+      <button class="image-carousel-btn image-carousel-next" type="button" data-carousel-next aria-label="Naechstes Bild">&rsaquo;</button>
+      <div class="image-carousel-dots" aria-label="Bildauswahl">
+        <button type="button" class="image-carousel-dot is-active" data-carousel-dot aria-label="Bild 1 anzeigen" aria-current="true"></button>
+        <button type="button" class="image-carousel-dot" data-carousel-dot aria-label="Bild 2 anzeigen"></button>
+      </div>
+    </figure>
   </div></section>
 
   <section id="leistungen"><div class="wrap">
@@ -310,6 +324,7 @@
 if(m||!('IntersectionObserver'in window)){els.forEach(e=>e.classList.add('in'));return;}
 const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.16});
 els.forEach(e=>io.observe(e));})();
+(()=>{const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));$$('[data-image-carousel]').forEach((carousel)=>{const slides=$$('[data-carousel-track] > img',carousel),dots=$$('[data-carousel-dot]',carousel),prev=carousel.querySelector('[data-carousel-prev]'),next=carousel.querySelector('[data-carousel-next]');if(slides.length<2)return;let index=0,timer=0,startX=0;const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;const go=(i)=>{index=(i+slides.length)%slides.length;carousel.style.setProperty('--carousel-index',String(index));dots.forEach((dot,n)=>{dot.classList.toggle('is-active',n===index);dot.setAttribute('aria-current',n===index?'true':'false');});};const stop=()=>{if(timer)clearInterval(timer);timer=0;};const play=()=>{if(reduced||timer)return;timer=setInterval(()=>go(index+1),5200);};prev&&prev.addEventListener('click',()=>{stop();go(index-1);play();});next&&next.addEventListener('click',()=>{stop();go(index+1);play();});dots.forEach((dot,n)=>dot.addEventListener('click',()=>{stop();go(n);play();}));carousel.addEventListener('pointerdown',(e)=>{startX=e.clientX;stop();});carousel.addEventListener('pointerup',(e)=>{const d=e.clientX-startX;if(Math.abs(d)>42)go(index+(d<0?1:-1));play();});carousel.addEventListener('pointercancel',play);carousel.addEventListener('mouseenter',stop);carousel.addEventListener('mouseleave',play);carousel.addEventListener('focusin',stop);carousel.addEventListener('focusout',play);go(0);play();});})();
 (()=>{const root=document.querySelector('[data-voice-lead]');if(!root)return;
 const maxSeconds=300,maxBytes=4*1024*1024,api='/api/voice-lead';
 const q=(s)=>root.querySelector(s);

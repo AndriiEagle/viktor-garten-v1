@@ -11,6 +11,8 @@ Most visual slots are placeholders until real files are provided. AI files are a
 | section-bg-vision.jpg | 16:9 | AI concept, needs Viktor botanical review | Personal tree vision block | PRESENT_AI_CONCEPT_NEEDS_VIKTOR_REVIEW |
 | section-bg-soft.jpg | 16:9 | AI concept, needs Viktor botanical review | Concept recovery / soft section | PRESENT_AI_CONCEPT_NOT_PROOF |
 | baumarchitektur-energiefluss-verstehen.png | 4:3 | Supplied educational graphic | Home Meisterarbeit energy-flow block | PRESENT_SUPPLIED_GRAPHIC |
+| baumarchitektur-korrektur.png | 4:3 | Supplied educational graphic | Home Meisterarbeit carousel | PRESENT_SUPPLIED_GRAPHIC |
+| baumarchitektur-live-crown-ratio.png | 4:3 | Supplied educational graphic | Home Meisterarbeit carousel | PRESENT_SUPPLIED_GRAPHIC |
 | sanctuary-coffee.jpg | 16:9 | AI concept, looks like problem tree | Climate stress / concept before state | PRESENT_AI_CONCEPT_NOT_PROOF |
 | vision-jahr1.jpg | 1:1 | AI concept, needs Viktor botanical review | Year 1 Baum-Vision | PRESENT_AI_CONCEPT_NOT_PROOF |
 | vision-jahr2.jpg | 1:1 | AI concept, needs Viktor botanical review | Year 2 Baum-Vision | PRESENT_AI_CONCEPT_NOT_PROOF |
