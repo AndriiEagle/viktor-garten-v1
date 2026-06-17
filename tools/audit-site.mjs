@@ -13,7 +13,7 @@ const required = [
   "uk/blog/index.html","uk/blog/topiarschere.html","uk/blog/energie-krone.html","uk/blog/kiefer-kerzen.html","uk/blog/boden-wurzeln.html","uk/blog/klimastress.html",
   "uk/kontakt.html","uk/impressum.html","uk/datenschutz.html","uk/themes.html",
   "assets/base.css","assets/main.js","assets/theme-v1.css","assets/theme-v2.css","assets/theme-v3.css","assets/theme-v4.css","assets/theme-v5.css",
-  "assets/img/logo.png","assets/img/og-share.jpg","assets/img/MANIFEST.md","site.webmanifest","robots.txt","sitemap.xml","llms.txt","vercel.json","README.md"
+  "assets/img/logo.png","assets/img/og-share.jpg","assets/img/MANIFEST.md","site.webmanifest","robots.txt","sitemap.xml","llms.txt","vercel.json","README.md",".env.example","api/voice-lead.js"
 ];
 
 const errors = [];
@@ -134,6 +134,9 @@ for (const file of previewFiles) {
   if (!html.includes("Version 2") || !html.includes("V2")) errors.push(file + " missing V2 marker");
   if (!html.includes("<title>") || !html.includes('name="description"')) errors.push(file + " missing basic meta tags");
   if (html.includes('href="#"')) errors.push(file + ' contains dead href="#" link');
+  for (const marker of ["data-voice-lead", "MediaRecorder", "getUserMedia", "/api/voice-lead", "data-voice-consent"]) {
+    if (!html.includes(marker)) errors.push(file + " missing voice lead marker " + marker);
+  }
   const h1 = [...html.matchAll(/<h1\b/gi)].length;
   if (h1 !== 1) errors.push(file + " has " + h1 + " H1 tags");
   const previewRefs = [

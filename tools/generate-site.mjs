@@ -1750,6 +1750,7 @@ Switch to another design direction by replacing \`theme-v4.css\` with \`theme-v1
 ## Placeholders still requiring human approval
 
 - E-mail and form endpoint.
+- Voice Lead production secrets: \`OPENAI_API_KEY\`, \`TELEGRAM_BOT_TOKEN\`, \`TELEGRAM_CHAT_ID\`.
 - Real before/after photos, Japan postcard and testimonial.
 - Final approval/originals for the supplied real Viktor master/work photos.
 - Public Instagram/website photo usage permission and original files from Viktor.
@@ -1766,6 +1767,8 @@ node tools/generate-site.mjs
 node tools/audit-site.mjs
 node tools/qa-site-interactions.mjs
 \`\`\`
+
+\`v2/index.html\` includes a microphone lead flow. The browser records up to 300 seconds with \`MediaRecorder\`, sends the audio to \`/api/voice-lead\`, transcribes with OpenAI audio transcription, extracts lead fields locally and sends a Telegram summary to Viktor. The serverless function does not store audio or transcripts; it only processes the request and forwards the message. Required server-side variables are documented in \`.env.example\`.
 
 No build step is required for visitors. The generator is kept as the source of truth for consistent header/footer, DE pages and EN mirrors.
 `;
@@ -1787,7 +1790,7 @@ const required = [
   "uk/blog/index.html","uk/blog/topiarschere.html","uk/blog/energie-krone.html","uk/blog/kiefer-kerzen.html","uk/blog/boden-wurzeln.html","uk/blog/klimastress.html",
   "uk/kontakt.html","uk/impressum.html","uk/datenschutz.html","uk/themes.html",
   "assets/base.css","assets/main.js","assets/theme-v1.css","assets/theme-v2.css","assets/theme-v3.css","assets/theme-v4.css","assets/theme-v5.css",
-  "assets/img/logo.png","assets/img/og-share.jpg","assets/img/MANIFEST.md","site.webmanifest","robots.txt","sitemap.xml","llms.txt","vercel.json","README.md"
+  "assets/img/logo.png","assets/img/og-share.jpg","assets/img/MANIFEST.md","site.webmanifest","robots.txt","sitemap.xml","llms.txt","vercel.json","README.md",".env.example","api/voice-lead.js"
 ];
 
 const errors = [];
@@ -1908,6 +1911,9 @@ for (const file of previewFiles) {
   if (!html.includes("Version 2") || !html.includes("V2")) errors.push(file + " missing V2 marker");
   if (!html.includes("<title>") || !html.includes('name="description"')) errors.push(file + " missing basic meta tags");
   if (html.includes('href="#"')) errors.push(file + ' contains dead href="#" link');
+  for (const marker of ["data-voice-lead", "MediaRecorder", "getUserMedia", "/api/voice-lead", "data-voice-consent"]) {
+    if (!html.includes(marker)) errors.push(file + " missing voice lead marker " + marker);
+  }
   const h1 = [...html.matchAll(/<h1\\b/gi)].length;
   if (h1 !== 1) errors.push(file + " has " + h1 + " H1 tags");
   const previewRefs = [

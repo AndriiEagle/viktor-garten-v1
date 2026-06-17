@@ -101,6 +101,30 @@
   .stamp{display:inline-flex;align-items:center;gap:12px;font:700 .74rem/1 var(--body);letter-spacing:.18em;text-transform:uppercase;color:var(--shu)}
   .prices{display:grid;gap:18px;margin-top:34px} @media(min-width:780px){.prices{grid-template-columns:repeat(3,1fr)}}
   .price{border:1px solid rgba(241,236,223,.22);padding:30px} .price h3{font-size:2.2rem;color:var(--gold)}
+  .voice{background:linear-gradient(180deg,var(--washi),var(--washi-2));position:relative;overflow:hidden}
+  .voice-grid{display:grid;gap:clamp(26px,5vw,58px);align-items:start}
+  @media(min-width:920px){.voice-grid{grid-template-columns:.85fr 1.15fr}}
+  .voice-card{border:1px solid var(--line);background:rgba(241,236,223,.82);box-shadow:0 28px 90px rgba(26,23,20,.12);padding:clamp(22px,4vw,38px)}
+  .voice-controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:22px}
+  .voice-mic{min-height:72px;border-radius:999px;padding:18px 28px;background:var(--shu);color:var(--washi);border:0;font:800 1rem/1 var(--body);cursor:pointer;display:inline-flex;align-items:center;gap:14px}
+  .voice-mic[disabled],.voice-small[disabled]{opacity:.55;cursor:not-allowed;transform:none}
+  .voice-dot{width:18px;height:18px;border-radius:50%;background:currentColor;box-shadow:0 0 0 0 rgba(181,64,47,.45)}
+  .voice-card[data-state="recording"] .voice-dot{animation:pulse 1.2s infinite}
+  @keyframes pulse{70%{box-shadow:0 0 0 18px rgba(181,64,47,0)}100%{box-shadow:0 0 0 0 rgba(181,64,47,0)}}
+  .voice-small{border:1px solid var(--line);background:transparent;color:var(--pine);padding:13px 16px;font:800 .86rem/1 var(--body);cursor:pointer}
+  .voice-status{display:block;margin-top:18px;color:var(--muted);font-weight:700}
+  .voice-meter{height:8px;background:rgba(26,23,20,.1);overflow:hidden;margin-top:14px}
+  .voice-meter span{display:block;height:100%;width:0;background:var(--shu);transition:width .2s linear}
+  .voice-timer{font:800 .82rem/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--pine);margin-top:10px}
+  .voice-consent{display:flex;gap:10px;align-items:flex-start;margin-top:20px;color:var(--muted);font-size:.9rem}
+  .voice-consent input{margin-top:5px;accent-color:var(--shu)}
+  .voice-result,.voice-error{margin-top:22px;border:1px solid var(--line);background:rgba(255,255,255,.45);padding:18px}
+  .voice-error{border-color:rgba(181,64,47,.35);color:var(--shu);font-weight:800}
+  .voice-result h3{font-size:1.35rem;margin-bottom:10px}
+  .voice-result dl{display:grid;grid-template-columns:minmax(110px,.35fr) 1fr;gap:8px 14px;margin:0}
+  .voice-result dt{font-weight:800;color:var(--pine)} .voice-result dd{margin:0;color:var(--muted)}
+  .voice-transcript{white-space:pre-wrap;background:rgba(26,23,20,.05);padding:14px;margin-top:14px;max-height:220px;overflow:auto}
+  .voice-fallback{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
 
   footer{background:var(--sumi);color:rgba(241,236,223,.78);padding:60px 0 92px} @media(min-width:900px){footer{padding-bottom:60px}}
   .fgrid{display:grid;gap:30px} @media(min-width:780px){.fgrid{grid-template-columns:1.6fr 1fr 1fr}}
@@ -116,7 +140,7 @@
 
 <header><div class="wrap bar">
   <a class="brand" href="../index.html"><span class="mk">木</span><b>Viktor Baumarchitektur</b></a>
-  <nav class="main"><a href="#leistungen">Leistungen</a><a href="#detail">Im Detail</a><a href="#vision">Vision</a><a href="#philosophie">Anerkennung</a><a href="#preise">Preise</a></nav>
+  <nav class="main"><a href="#leistungen">Leistungen</a><a href="#detail">Im Detail</a><a href="#vision">Vision</a><a href="#philosophie">Anerkennung</a><a href="#preise">Preise</a><a href="#voice-lead">Sprachanfrage</a></nav>
   <a class="lang" href="../en/index.html">EN</a>
 </div></header>
 
@@ -129,7 +153,7 @@
       <h1 class="stagger">Niwaki &amp; japanische Baumkunst — mit Schweizer Präzision.</h1>
       <p class="motto stagger">Schweizer Qualität in Resonanz mit japanischer Philosophie.</p>
       <p class="lead stagger">Seit 27 Jahren forme und pflege ich japanische Ahorne, Kiefern und Niwaki in der Region Zürich — so, dass Ihr Baum über Jahre seine Form, seine Kraft und seine Gesundheit behält.</p>
-      <div class="cta stagger"><a class="btn btn-shu" href="#kontakt">Foto senden — kostenlose Diagnose</a><a class="btn btn-line" href="#kontakt">Rückruf anfordern</a></div>
+      <div class="cta stagger"><a class="btn btn-shu" href="#voice-lead">Per Stimme anfragen</a><a class="btn btn-line" href="#kontakt">Rückruf anfordern</a></div>
     </div>
   </section>
 
@@ -227,6 +251,42 @@
     </div>
   </div></section>
 
+  <section id="voice-lead" class="voice"><div class="wrap voice-grid">
+    <div>
+      <span class="eyebrow reveal">Sprachanfrage</span>
+      <p class="lede reveal" style="margin:14px 0 0">Erzählen Sie einfach, was mit Ihrem Baum los ist.</p>
+      <p class="muted reveal" style="max-width:54ch;margin-top:18px">Kein Formular. Drücken Sie auf das Mikrofon und sprechen Sie frei: Baumart, Problem, Kanton, gewünschter Termin, Budget und Kontakt. Viktor erhält daraus eine klare Telegram-Zusammenfassung.</p>
+      <p class="muted reveal" style="max-width:54ch;margin-top:14px">Datenschutz: Die Aufnahme wird nur zur Transkription und Weiterleitung Ihrer Anfrage verarbeitet. Auf dieser Website wird kein Audio gespeichert.</p>
+    </div>
+    <div class="voice-card reveal" data-voice-lead data-state="idle">
+      <strong class="stamp"><span class="seal">声</span> Voice Lead</strong>
+      <div class="voice-controls">
+        <button class="voice-mic" type="button" data-voice-start><span class="voice-dot" aria-hidden="true"></span><span data-voice-start-label>Sprachanfrage aufnehmen</span></button>
+        <button class="voice-small" type="button" data-voice-stop hidden>Aufnahme senden</button>
+        <button class="voice-small" type="button" data-voice-cancel hidden>Abbrechen</button>
+        <button class="voice-small" type="button" data-voice-retry hidden>Nochmal aufnehmen</button>
+      </div>
+      <output class="voice-status" data-voice-status>Bereit. Maximal 5 Minuten.</output>
+      <div class="voice-meter" aria-hidden="true"><span data-voice-progress></span></div>
+      <div class="voice-timer" data-voice-timer>00:00 / 05:00</div>
+      <label class="voice-consent"><input type="checkbox" data-voice-consent> Ich bin einverstanden, dass meine Sprachanfrage zur Transkription an den Dienstleister und als Zusammenfassung per Telegram an Viktor gesendet wird.</label>
+      <div class="voice-error" data-voice-error hidden></div>
+      <div class="voice-result" data-voice-result hidden>
+        <h3>Gesendet.</h3>
+        <dl>
+          <dt>Baum</dt><dd data-lead-tree>-</dd>
+          <dt>Problem</dt><dd data-lead-problem>-</dd>
+          <dt>Kanton</dt><dd data-lead-canton>-</dd>
+          <dt>Budget</dt><dd data-lead-budget>-</dd>
+          <dt>Dringlichkeit</dt><dd data-lead-urgency>-</dd>
+          <dt>Kontakt</dt><dd data-lead-contact>-</dd>
+        </dl>
+        <div class="voice-transcript" data-voice-transcript></div>
+      </div>
+      <div class="voice-fallback"><a class="btn btn-line" href="https://wa.me/41783130330" target="_blank" rel="noopener">WhatsApp statt Stimme</a><a class="btn btn-line" href="tel:+41783130330">Direkt anrufen</a></div>
+    </div>
+  </div></section>
+
   <section id="kontakt"><div class="wrap" style="text-align:center">
     <span class="eyebrow reveal" style="justify-content:center">Kostenlose erste Einschätzung</span>
     <p class="lede reveal" style="margin:16px auto 0;max-width:18ch">Bereit, Ihren Baum zu retten?</p>
@@ -250,6 +310,30 @@
 if(m||!('IntersectionObserver'in window)){els.forEach(e=>e.classList.add('in'));return;}
 const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.16});
 els.forEach(e=>io.observe(e));})();
+(()=>{const root=document.querySelector('[data-voice-lead]');if(!root)return;
+const maxSeconds=300,maxBytes=4*1024*1024,api='/api/voice-lead';
+const q=(s)=>root.querySelector(s);
+const start=q('[data-voice-start]'),startLabel=q('[data-voice-start-label]'),stop=q('[data-voice-stop]'),cancel=q('[data-voice-cancel]'),retry=q('[data-voice-retry]');
+const consent=q('[data-voice-consent]'),status=q('[data-voice-status]'),timer=q('[data-voice-timer]'),progress=q('[data-voice-progress]'),errorBox=q('[data-voice-error]'),result=q('[data-voice-result]');
+const leadEls={tree:q('[data-lead-tree]'),problem:q('[data-lead-problem]'),canton:q('[data-lead-canton]'),budget:q('[data-lead-budget]'),urgency:q('[data-lead-urgency]'),contact:q('[data-lead-contact]'),transcript:q('[data-voice-transcript]')};
+let recorder=null,stream=null,chunks=[],startedAt=0,tickId=0,cancelled=false,lastMime='audio/webm';
+const supports=!!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia&&window.MediaRecorder);
+const fmt=(seconds)=>`${String(Math.floor(seconds/60)).padStart(2,'0')}:${String(seconds%60).padStart(2,'0')}`;
+function setState(state,message){root.dataset.state=state;status.textContent=message;if(state!=='error')errorBox.hidden=true;start.hidden=state==='recording'||state==='processing';stop.hidden=state!=='recording';cancel.hidden=state!=='recording';retry.hidden=!(state==='done'||state==='error'||state==='unsupported');start.disabled=state==='requesting'||state==='processing'||!consent.checked||!supports;stop.disabled=state!=='recording';startLabel.textContent=state==='done'?'Weitere Sprachanfrage aufnehmen':'Sprachanfrage aufnehmen';}
+function setError(message){setState('error',message);errorBox.textContent=message;errorBox.hidden=false;}
+function pickMime(){return ['audio/webm;codecs=opus','audio/webm','audio/mp4','audio/ogg;codecs=opus'].find((type)=>MediaRecorder.isTypeSupported(type))||'';}
+function stopStream(){if(stream){stream.getTracks().forEach((track)=>track.stop());stream=null;}clearInterval(tickId);}
+function updateTimer(){const elapsed=Math.min(maxSeconds,Math.floor((Date.now()-startedAt)/1000));timer.textContent=`${fmt(elapsed)} / 05:00`;progress.style.width=`${Math.min(100,(elapsed/maxSeconds)*100)}%`;if(elapsed>=maxSeconds)stopAndSend();}
+function blobToBase64(blob){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result).split(',').pop());reader.onerror=()=>reject(reader.error);reader.readAsDataURL(blob);});}
+async function begin(){if(!supports){setError('Ihr Browser unterstützt keine sichere Audioaufnahme. Bitte nutzen Sie WhatsApp oder rufen Sie direkt an.');return;}if(!consent.checked){setError('Bitte bestätigen Sie zuerst die Datenschutz-Einwilligung.');return;}try{result.hidden=true;cancelled=false;chunks=[];setState('requesting','Mikrofon-Berechtigung wird angefragt ...');stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}});const mime=pickMime();const options=mime?{mimeType:mime,audioBitsPerSecond:32000}:{audioBitsPerSecond:32000};recorder=new MediaRecorder(stream,options);lastMime=recorder.mimeType||mime||'audio/webm';recorder.ondataavailable=(event)=>{if(event.data&&event.data.size)chunks.push(event.data);};recorder.onerror=()=>setError('Die Aufnahme wurde vom Browser abgebrochen. Bitte erneut versuchen oder WhatsApp nutzen.');recorder.onstop=()=>{const mimeType=lastMime;stopStream();if(!cancelled)sendRecording(mimeType);};recorder.start(1000);startedAt=Date.now();timer.textContent='00:00 / 05:00';progress.style.width='0%';tickId=setInterval(updateTimer,250);setState('recording','Aufnahme läuft. Sprechen Sie frei bis zu 5 Minuten.');}catch(err){stopStream();setError(err&&err.name==='NotAllowedError'?'Mikrofon wurde blockiert. Bitte Berechtigung erlauben oder WhatsApp nutzen.':'Mikrofon konnte nicht gestartet werden. Bitte WhatsApp oder Telefon nutzen.');}}
+function stopAndSend(){if(recorder&&recorder.state==='recording'){setState('processing','Aufnahme wird verarbeitet ...');recorder.stop();}}
+function abortRecording(){cancelled=true;if(recorder&&recorder.state==='recording')recorder.stop();stopStream();chunks=[];timer.textContent='00:00 / 05:00';progress.style.width='0%';setState('idle','Bereit. Maximal 5 Minuten.');}
+function showLead(data){const lead=data.lead||{};leadEls.tree.textContent=lead.treeType||'-';leadEls.problem.textContent=lead.problem||'-';leadEls.canton.textContent=lead.canton||'-';leadEls.budget.textContent=lead.budget||'-';leadEls.urgency.textContent=lead.urgency||'-';leadEls.contact.textContent=lead.contact||'-';leadEls.transcript.textContent=data.transcript||'';result.hidden=false;}
+async function sendRecording(mimeType){try{setState('processing','Transkription und Telegram-Zusammenfassung laufen ...');const durationSec=Math.max(1,Math.round((Date.now()-startedAt)/1000));const blob=new Blob(chunks,{type:mimeType||'audio/webm'});chunks=[];if(blob.size<1000){setError('Die Aufnahme ist zu kurz. Bitte erneut sprechen.');return;}if(blob.size>maxBytes){setError('Die Aufnahme ist zu groß. Bitte kürzer aufnehmen oder WhatsApp nutzen.');return;}const audioBase64=await blobToBase64(blob);const response=await fetch(api,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({audioBase64,mimeType:blob.type||mimeType,durationSec,consent:consent.checked,source:'v2-voice-lead',locale:navigator.language||'de-CH'})});const payload=await response.json().catch(()=>({ok:false,error:'bad_json'}));if(!response.ok||!payload.ok){throw new Error(payload.detail||payload.error||'voice_lead_failed');}showLead(payload);setState('done','Gesendet. Viktor erhält die Zusammenfassung per Telegram.');}catch(err){setError(String(err.message||err).includes('server_not_configured')?'Voice Lead ist serverseitig noch nicht konfiguriert. Bitte WhatsApp oder Telefon nutzen.':'Die Sprachanfrage konnte nicht gesendet werden. Bitte erneut versuchen oder WhatsApp nutzen.');}}
+consent.addEventListener('change',()=>setState(root.dataset.state||'idle',status.textContent));
+start.addEventListener('click',begin);stop.addEventListener('click',stopAndSend);cancel.addEventListener('click',abortRecording);retry.addEventListener('click',()=>{result.hidden=true;timer.textContent='00:00 / 05:00';progress.style.width='0%';setState('idle','Bereit. Maximal 5 Minuten.');});
+if(!supports)setState('unsupported','Ihr Browser unterstützt keine sichere Audioaufnahme. WhatsApp und Telefon bleiben verfügbar.');else setState('idle','Bereit. Maximal 5 Minuten.');
+})();
 </script>
 </body>
 </html>

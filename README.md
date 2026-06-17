@@ -39,6 +39,7 @@ Switch to another design direction by replacing `theme-v4.css` with `theme-v1.cs
 ## Placeholders still requiring human approval
 
 - E-mail and form endpoint.
+- Voice Lead production secrets: `OPENAI_API_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`.
 - Real before/after photos, Japan postcard and testimonial.
 - Final approval/originals for the supplied real Viktor master/work photos.
 - Public Instagram/website photo usage permission and original files from Viktor.
@@ -55,6 +56,8 @@ node tools/generate-site.mjs
 node tools/audit-site.mjs
 node tools/qa-site-interactions.mjs
 ```
+
+`v2/index.html` includes a microphone lead flow. The browser records up to 300 seconds with `MediaRecorder`, sends the audio to `/api/voice-lead`, transcribes with OpenAI audio transcription, extracts lead fields locally and sends a Telegram summary to Viktor. The serverless function does not store audio or transcripts; it only processes the request and forwards the message. Required server-side variables are documented in `.env.example`.
 
 No build step is required for visitors. The generator is kept as the source of truth for consistent header/footer, DE pages and EN mirrors.
 

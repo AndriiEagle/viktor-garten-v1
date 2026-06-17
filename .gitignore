@@ -9,6 +9,11 @@
 *.tmp
 *.log
 
+# Local secrets
+.env
+.env.local
+.env.*.local
+
 # Node and editor noise
 /node_modules/
 /.vercel/
