@@ -103,7 +103,7 @@ SECTION wrapper with --maxw and vertical rhythm.
 7. BLICK IN DIE WURZELN teaser → link to /philosophie.html#wurzeln.
 8. PREISE teaser: "Qualität statt Eile" + "ab 110 CHF/Std., Anfahrt ab 90 CHF" → /preise.html.
 9. ARBEITSGEBIET: "Tätig in Zürich, Zug, Luzern, Aargau, Schwyz, Schaffhausen, Appenzell, Glarus – übrige Schweiz nach Absprache."
-10. VERTRAUEN: "Anerkennung aus Japan" — a REAL photo (japan-postkarte.jpg, NOT AI) of a hand-signed thank-you postcard from a renowned Japanese bonsai-tool brand, personally addressed to Viktor, with caption "In Japan kennt man meine Arbeit." + 1 testimonial [initials] + Google rating slot + Instagram (@viktor.baumarchitektur) / Facebook links. (This authority signal is high-trust — feature it prominently.)
+10. VERTRAUEN: "Anerkennung aus Japan" — a REAL photo (japan-postkarte.jpg, NOT AI) of a hand-signed thank-you postcard from a renowned Japanese bonsai-tool brand, personally addressed to Viktor, with caption "In Japan kennt man meine Arbeit." + 1 testimonial [initials] + Google rating slot + Instagram (https://www.instagram.com/viktor_bonsai_niwaki) / Facebook (https://www.facebook.com/viktor.bonsai.niwaki) links. (This authority signal is high-trust — feature it prominently.)
 11. FINAL CTA: H2 "Bereit, Ihren Baum zu retten?" Body "Senden Sie mir ein Foto der Problemstelle – ich sage Ihnen kostenlos, ob und wie er zu retten ist." Primary CTA.
 ```
 
@@ -152,7 +152,7 @@ Each article: hero image slot, body, CTA at end. Designed for SEO (good headings
 ### /kontakt.html
 ```
 H1 "Kontakt – senden Sie mir ein Foto."
-Primary path: WhatsApp button (deep link https://wa.me/<PLACEHOLDER_NUMBER>?text=<prefilled DE template asking for photos of the whole tree, the problem area, and a close-up, plus canton & tree type>).
+Primary path: WhatsApp button (deep link https://wa.me/41783130330?text=<prefilled DE template asking for photos of the whole tree, the problem area, and a close-up, plus canton & tree type>).
 Form (works without backend now): fields Name, E-Mail, Kanton, Baumart, Nachricht, Foto-Upload (multiple). Submit via mailto: placeholder OR a Formspree/Vercel-forms endpoint placeholder (clearly marked TODO). On submit fire analytics event.
 Also: Rückruf anfordern (name + phone + Zeitfenster). Phone click-to-call placeholder.
 ```

@@ -97,7 +97,7 @@ Alle Nadelgehölze: Pinus sylvestris, mugo, thunbergii, parviflora, densiflora, 
   - Bild: `[FOTO — echt] japan-postkarte.jpg` *(Swiss-стримано, без хвастощів — факт говорить сам)*
 - **H2:** Was Kunden sagen.
 - **Testimonial [PLATZHALTER, Initialen]:** „[Kurzes Zitat], – M. B.“
-- **Social:** Sehen Sie meine Arbeit auf Instagram (@viktor.baumarchitektur) & Facebook. · ★ [4.x] (Google)
+- **Social:** Sehen Sie meine Arbeit auf Instagram (https://www.instagram.com/viktor_bonsai_niwaki) & Facebook (https://www.facebook.com/viktor.bonsai.niwaki). · ★ [4.x] (Google)
 
 ## 11 · FINALE CTA (jede Seite endet hier)
 - **H2:** Bereit, Ihren Baum zu retten?

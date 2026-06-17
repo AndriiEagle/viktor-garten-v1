@@ -10,7 +10,7 @@
 - ✅ **ФАЗА 1:** backbone з анкети + перші голосові.
 - ✅ **ФАЗА 2 (ЗАВЕРШЕНО):** усі **22/22** голосові розшифровано і синтезовано. [01](01_PROJECT_OVERVIEW.md) переписано на повну глибину, [04](04_IMPROVEMENTS.md) доповнено. Маркери `[ГОЛОС-PENDING]` зняті.
 
-> ✅ **БРЕНД (ФІНАЛ, підтвердив Віктор 13.06): «Viktor Baumarchitektur»** · домен **viktor-baumarchitektur.ch** · IG **@viktor.baumarchitektur** · FB **Viktor Baumarchitektur**.
+> ✅ **БРЕНД (ФІНАЛ, підтвердив Віктор 13.06): «Viktor Baumarchitektur»** · домен **viktor-baumarchitektur.ch** · IG **https://www.instagram.com/viktor_bonsai_niwaki** · FB **https://www.facebook.com/viktor.bonsai.niwaki** · WhatsApp **+41 78 313 03 30**.
 > ⚠️ **Лого-конфлікт:** файл, який має Андрій, написано «Viktor Bonsai» — НЕ збігається з брендом → узгодити/перемалювати wordmark під «Viktor Baumarchitektur».
 > 🇯🇵 **Новий траст-актив:** листівка-подяка від авторитетного японського бренду бонсай-інструментів, підписана особисто Віктору → секція «Anerkennung aus Japan» (реальне фото).
 > ✅ **Структура:** multi-page + блог. **Бюджет 500 CHF — вхідний квиток, не стеля:** робимо на повну цінність, монетизація частково через рекомендації Віктора. Деталі та всі рішення → [06](06_OPEN_QUESTIONS.md).

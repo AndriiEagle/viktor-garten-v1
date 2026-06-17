@@ -3,7 +3,7 @@
 > Кроки для Андрія. Усе готове; це інструкція «натиснути кнопки».
 
 ## §0 · PRE-FLIGHT (зроблено мною ✅)
-- Файли узгоджені. Виправлено: «one-page»→multipage. **Бренд = «Viktor Baumarchitektur»** (Віктор підтвердив 13.06; домен viktor-baumarchitektur.ch, IG @viktor.baumarchitektur, FB Viktor Baumarchitektur). ⚠️ Лого-файл каже «Viktor Bonsai» → узгодити wordmark.
+- Файли узгоджені. Виправлено: «one-page»→multipage. **Бренд = «Viktor Baumarchitektur»** (Віктор підтвердив 13.06; домен viktor-baumarchitektur.ch, IG `https://www.instagram.com/viktor_bonsai_niwaki`, FB `https://www.facebook.com/viktor.bonsai.niwaki`). ⚠️ Лого-файл каже «Viktor Bonsai» → узгодити wordmark.
 - [12](12_MASTER_BUILD_PROMPT.md) коректно тягне канонічні: [13](13_COPY_DECK_DE.md) (копі), [14](14_SEO_KEYWORDS.md)/[15](15_ONPAGE_SEO.md) (SEO), [10](10_PRINCIPLES.md) (швидкість), [17](17_IMAGE_BRIEF.md) (картинки).
 - 5 вершинок у плані, GEO+consent у §9/§10, acceptance-чеклист §14.
 
@@ -33,7 +33,7 @@ Build the COMPLETE multipage website (DE primary + EN mirror) exactly per file 1
 | Що | Де | Звідки |
 |---|---|---|
 | Лого | `/assets/img/logo.svg` | Віктор скине |
-| Номер WhatsApp | `wa.me/<номер>` у CTA / main.js | Віктор |
+| Номер WhatsApp | `https://wa.me/41783130330` у CTA / main.js | USER_CONFIRMED |
 | Фото 6 b/a + 3 майстер + 1 відгук | `/assets/img/` за іменами з `MANIFEST.md` | Віктор (Telegram) |
 | GA4 ID | `G-XXXXXXX` | твій акаунт |
 | Google Ads ID | `AW-XXXXXXX` | Віктор/Ads |

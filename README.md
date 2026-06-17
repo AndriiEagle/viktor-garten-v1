@@ -1,19 +1,30 @@
 # Viktor Baumarchitektur Static Website
 
-Static multipage DE/EN site for Viktor Baumarchitektur. It opens directly from `index.html` and is ready for static hosting on Vercel.
+Static multipage DE/EN site for Viktor Baumarchitektur. It opens directly from `index.html` and is ready for static hosting on Vercel after human approval.
 
 ## Edit checklist
 
-- Replace WhatsApp `PLACEHOLDER_NUMBER` in `tools/generate-site.mjs` or directly in generated HTML.
-- Replace phone `+41000000000` and visible `[PLATZHALTER]` phone/contact data.
+- Verify final WhatsApp/phone before publication: `+41 78 313 03 30`.
 - Replace GA4 `G-XXXXXXX`, Google Ads `AW-XXXXXXX`, Search Console verification and form backend.
-- Replace the visible header/footer wordmark placeholder `&lt;БРЕНД&gt;` when the final displayed brand lockup is approved.
+- Visible header/footer wordmark is **Viktor Baumarchitektur**.
 - Complete `impressum.html` and `datenschutz.html` with Viktor's legal data before publication.
 - Swap real images using filenames in `assets/img/MANIFEST.md`.
+- TODO: create a final matching logo lockup for **Viktor Baumarchitektur**. The current `assets/img/logo.png` still reads "Viktor Bonsai", so the site crops it to the tree symbol and renders the approved text wordmark beside it.
+- AI concept files are visual direction only and must not be presented as real client proof.
+
+## Blog / knowledge section
+
+The blog now has five DE articles plus EN mirror pages:
+
+- `blog/topiarschere.html` - tool choice and clean cuts.
+- `blog/energie-krone.html` - crown energy, light and air.
+- `blog/kiefer-kerzen.html` - pine candles and timing.
+- `blog/boden-wurzeln.html` - Akadama, roots and substrate.
+- `blog/klimastress.html` - Swiss heat/drought context for premium gardens.
 
 ## Logo / wordmark assumption
 
-The confirmed SEO/business/entity name in `project_brief` is **Viktor Baumarchitektur**. The supplied `Лого.jpg` was converted to a real PNG at `assets/img/logo.png`, but the image wordmark says **Viktor Bonsai**. Per the active build objective, the header uses `assets/img/logo.png` and the visible header/footer wordmark placeholder `&lt;БРЕНД&gt;`. Keep SEO, JSON-LD and canonical entity names as **Viktor Baumarchitektur** until Viktor changes the business name.
+The confirmed SEO/business/entity and visible name is **Viktor Baumarchitektur**. The supplied legacy logo says **Viktor Bonsai**; do not show the legacy text as the public wordmark. Keep the cropped symbol until a matching logo is approved.
 
 ## Change theme
 
@@ -27,8 +38,10 @@ Switch to another design direction by replacing `theme-v4.css` with `theme-v1.cs
 
 ## Placeholders still requiring human approval
 
-- WhatsApp number, phone, e-mail and form endpoint.
-- Real before/after photos, master photos and Japan postcard.
+- E-mail and form endpoint.
+- Real before/after photos, Japan postcard and testimonial.
+- Final approval/originals for the supplied real Viktor master/work photos.
+- Public Instagram/website photo usage permission and original files from Viktor.
 - GA4, Google Ads, Search Console and consent wording review.
 - Legal pages under Swiss/DSG/DSGVO requirements.
 - Google rating/testimonial values.
@@ -38,8 +51,10 @@ Switch to another design direction by replacing `theme-v4.css` with `theme-v1.cs
 Run:
 
 ```powershell
+node tools/generate-site.mjs
 node tools/audit-site.mjs
+node tools/qa-site-interactions.mjs
 ```
 
-No build step is required for visitors. The generator is kept only as a maintenance helper for consistent header/footer and EN mirrors.
+No build step is required for visitors. The generator is kept as the source of truth for consistent header/footer, DE pages and EN mirrors.
 

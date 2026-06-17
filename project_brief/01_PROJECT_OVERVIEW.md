@@ -2,7 +2,7 @@
 
 > Синтез двох джерел: **22 голосові Віктора** (повна розшифровка) + **анкета**.
 > Маркери: `[АНКЕТА]` · `[ГОЛОС]` · `[ВИСНОВОК]`.
-> ✅ **БРЕНД (ФІНАЛ, підтвердив Віктор 13.06): «Viktor Baumarchitektur»** · домен **viktor-baumarchitektur.ch** · IG **@viktor.baumarchitektur** · FB **Viktor Baumarchitektur**. ⚠️ Лого, що має Андрій, написано «Viktor Bonsai» — узгодити wordmark під новий бренд. `[ПІДТВЕРДЖЕННЯ ВІКТОРА]`
+> ✅ **БРЕНД (ФІНАЛ, підтвердив Віктор 13.06): «Viktor Baumarchitektur»** · домен **viktor-baumarchitektur.ch** · IG **https://www.instagram.com/viktor_bonsai_niwaki** · FB **https://www.facebook.com/viktor.bonsai.niwaki** · WhatsApp **+41 78 313 03 30**. ⚠️ Лого, що має Андрій, написано «Viktor Bonsai» — узгодити wordmark під новий бренд. `[ПІДТВЕРДЖЕННЯ ВІКТОРА + КОНТАКТИ ВІД АНДРІЯ]`
 
 ---
 

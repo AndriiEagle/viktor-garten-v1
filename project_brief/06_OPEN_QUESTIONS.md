@@ -22,10 +22,10 @@
 7. **Портфоліо** — ✅ **так**, можна показувати як кейс.
 
 ## B. Контент / ассети
-8. **Назва/бренд** — ✅ **ФІНАЛ (Віктор 13.06): «Viktor Baumarchitektur».** IG @viktor.baumarchitektur · FB Viktor Baumarchitektur. Nav-теглайн (його слова): «Formgehölze · Niwaki · Evergreen Design · Japanische Gartenkunst & Niwaki».
+8. **Назва/бренд** — ✅ **ФІНАЛ (Віктор 13.06): «Viktor Baumarchitektur».** IG `https://www.instagram.com/viktor_bonsai_niwaki` · FB `https://www.facebook.com/viktor.bonsai.niwaki`. Nav-теглайн (його слова): «Formgehölze · Niwaki · Evergreen Design · Japanische Gartenkunst & Niwaki».
 9. **Домен** — ✅ **viktor-baumarchitektur.ch** (Віктор назвав → перевірити/зареєструвати).
 10. **Лого** — ⚠️ файл, що є в Андрія, написано «Viktor Bonsai» — **НЕ збігається** з брендом «Viktor Baumarchitektur». → узгодити: новий wordmark під Baumarchitektur (рекоменд.) чи лишити Bonsai. До узгодження — текстовий wordmark «Viktor Baumarchitektur».
-11. **Телефон / WhatsApp** — ⏳ ще треба номер.
+11. **Телефон / WhatsApp** — ✅ `+41 78 313 03 30` / `https://wa.me/41783130330`.
 12. **Email** — info@<домен> на Gmail (після вибору домену).
 13. **6 before/after + 3 фото майстра** — ⏳ Віктор шле через Telegram, розсортовані.
 14. **Відгук** — ✅ показуємо текстом **з ініціалами** (не повні імена).
@@ -47,4 +47,4 @@
 ---
 
 ## ⏳ Лишилось зібрати у Віктора (єдині блокери контенту)
-Лого-wordmark (узгодити Bonsai vs Baumarchitektur) · номер WhatsApp/телефон · фото-ассети (6 b/a + 3 майстер + відгук) через Telegram. ✅ Вже отримано: домен/бренд/хендли, листівка з Японії (траст-актив), ключові слова (зробив я). Структуру і дизайн робимо вже зараз з плейсхолдерами.
+Лого-wordmark (узгодити Bonsai vs Baumarchitektur) · фото-ассети (6 b/a + відгук) через Telegram. ✅ Вже отримано: домен/бренд/хендли, телефон/WhatsApp, майстер-фото, ключові слова. Структуру і дизайн робимо вже зараз з плейсхолдерами для ще відсутніх доказів.
