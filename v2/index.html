@@ -73,7 +73,7 @@
   .enso{position:absolute;top:50%;right:-6%;transform:translateY(-50%);width:min(72vw,640px);opacity:.85;pointer-events:none}
   .enso path{fill:none;stroke:var(--gold);stroke-width:9;stroke-linecap:round;stroke-dasharray:1700;stroke-dashoffset:1700;animation:draw 2.4s var(--ease) .3s forwards}
   .tate{position:absolute;left:clamp(10px,3vw,34px);top:18%;writing-mode:vertical-rl;font-family:var(--disp);font-size:clamp(1rem,2.4vw,1.5rem);letter-spacing:.5em;color:rgba(241,236,223,.55)}
-  .hero .wrap{position:relative;z-index:3;padding:16vh 0 12vh}
+  .hero .wrap{position:relative;z-index:3;padding:16vh clamp(22px,5vw,64px) 12vh}
   .hero h1{font-size:clamp(2.7rem,7.4vw,5.6rem);max-width:15ch;margin:20px 0 0}
   .hero .motto{font-family:var(--disp);font-size:clamp(1.25rem,2.7vw,1.8rem);color:var(--gold);margin:24px 0 0}
   .hero .lead{max-width:52ch;margin:20px 0 0;color:rgba(241,236,223,.86)}
@@ -143,12 +143,9 @@
   .fcredit{margin-top:36px;border-top:1px solid rgba(241,236,223,.16);padding-top:18px;font-size:.82rem;color:rgba(241,236,223,.5)}
   .mcta{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:1fr 62px;background:var(--pine);border-top:1px solid rgba(241,236,223,.2)} .mcta a{display:grid;place-items:center;min-height:66px;color:var(--washi);font:800 .94rem/1 var(--body)} .mcta a:first-child{background:var(--shu)}
   @media(min-width:900px){.mcta{display:none}}
-  .vbadge{position:fixed;top:80px;left:0;z-index:35;background:var(--shu);color:var(--washi);font:800 .68rem/1 var(--body);letter-spacing:.14em;padding:9px 13px 9px 16px;border-radius:0 3px 3px 0}
 </style>
 </head>
 <body>
-<div class="vbadge">V2 · CLAUDE · 和 WABI-SABI</div>
-
 <header><div class="wrap bar">
   <a class="brand" href="../index.html"><span class="mk">木</span><b>Viktor Baumarchitektur</b></a>
   <nav class="main"><a href="#leistungen">Leistungen</a><a href="#detail">Im Detail</a><a href="#vision">Vision</a><a href="#philosophie">Anerkennung</a><a href="#preise">Preise</a><a href="#voice-lead">Sprachanfrage</a></nav>
