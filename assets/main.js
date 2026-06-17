@@ -11,6 +11,30 @@
     });
   }
 
+  $$('[data-before-after-slider]').forEach((slider) => {
+    const input = $('.before-after-range', slider);
+    if (!input) return;
+    const update = () => slider.style.setProperty('--split', input.value + '%');
+    input.addEventListener('input', update);
+    update();
+  });
+
+  const presentationToggle = $('[data-presentation-toggle]');
+  if (presentationToggle) {
+    const params = new URLSearchParams(location.search);
+    const stored = window.localStorage.getItem('viktorPresentationClean') === '1';
+    const setClean = (clean) => {
+      document.body.classList.toggle('presentation-clean', clean);
+      presentationToggle.setAttribute('aria-pressed', String(clean));
+      presentationToggle.textContent = clean ? presentationToggle.dataset.labelShow : presentationToggle.dataset.labelHide;
+      window.localStorage.setItem('viktorPresentationClean', clean ? '1' : '0');
+    };
+    setClean(params.has('clean') || stored);
+    presentationToggle.addEventListener('click', () => {
+      setClean(!document.body.classList.contains('presentation-clean'));
+    });
+  }
+
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function gtag(){ window.dataLayer.push(arguments); };
   window.gtag('consent', 'default', {
@@ -62,6 +86,12 @@
   });
 
   const toast = $('[data-toast]');
+  const currentLang = document.documentElement.lang || 'de-CH';
+  const formInactiveMessage = currentLang.startsWith('uk')
+    ? 'Форма неактивна: потрібно підключити Formspree endpoint. Будь ласка, скористайтеся WhatsApp.'
+    : currentLang.startsWith('en')
+      ? 'Form inactive: the Formspree endpoint still needs to be configured. Please use WhatsApp.'
+      : 'Formular inaktiv: Formspree-Endpunkt muss noch eingesetzt werden. Bitte WhatsApp nutzen.';
   const showToast = (message) => {
     if (!toast) return;
     toast.textContent = message;
@@ -86,10 +116,12 @@
 
   $$('form[data-event]').forEach((form) => {
     form.addEventListener('submit', (event) => {
-      event.preventDefault();
       if (!form.reportValidity()) return;
       track(form.dataset.event, { path: location.pathname });
-      showToast('Anfrage vorbereitet. Backend/Empfänger ist noch ein TODO-Platzhalter.');
+      if (form.action.includes('/REPLACE')) {
+        event.preventDefault();
+        showToast(formInactiveMessage);
+      }
     });
   });
 
