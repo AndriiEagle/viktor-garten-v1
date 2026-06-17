@@ -1,0 +1,20 @@
+.git
+.vercel
+.env
+.env.*
+.tmp*
+*.log
+node_modules
+
+# Local source/raw/handoff artifacts that are not part of the public site
+handoff
+project_brief
+tools
+/*.jpg
+/*.png
+
+# Python/editor/cache noise
+__pycache__
+*.py[cod]
+.DS_Store
+Thumbs.db
