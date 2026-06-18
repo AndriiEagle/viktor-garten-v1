@@ -66,15 +66,18 @@
       <button class="btn btn-primary" type="submit">Anfrage senden</button>
       <p class="form-note"><a class="text-link" href="https://wa.me/41783130330?text=Guten%20Tag%20Viktor%2C%20ich%20sende%20Ihnen%20Fotos%20meines%20Baumes%20(Kanton%3A%20...%2C%20Baumart%3A%20...).%20K%C3%B6nnen%20Sie%20einsch%C3%A4tzen%2C%20ob%20er%20zu%20retten%20ist%3F" target="_blank" rel="noopener">Direkt per WhatsApp schreiben</a>, wenn Sie sofort Fotos mitsenden möchten.</p>
     </form>
-    <form class="form-card" id="rueckruf" data-contact-form data-contact-kind="callback" data-event="cta_rueckruf_submit" action="/api/contact" method="post">
-      <h2>Rückruf anfragen.</h2>
-      <p class="form-note">Telefon genügt. Viktor meldet sich schnellstmöglich persönlich zurück.</p>
-      <label class="hp-field" aria-hidden="true">Firma <input name="company" tabindex="-1" autocomplete="off"></label>
-      <label>Name <input name="name" autocomplete="name"></label>
-      <label>Telefon <input type="tel" name="phone" autocomplete="tel" required></label>
-      <label>Wunsch-Zeitfenster <input name="desiredTime" placeholder="z.B. Mo 18-20 Uhr"></label>
-      <button class="btn btn-secondary" type="submit">Rückruf anfragen</button>
-    </form>
+    <div class="contact-side">
+      <figure class="contact-person form-card"><img src="assets/img/foto/07_viktor/viktor-contact.jpg" alt="Viktor mit Formschnittschere vor einem Niwaki" loading="eager" decoding="async" width="900" height="900"><figcaption><strong>Direkt mit Viktor</strong><span>Ihre Anfrage geht an den Spezialisten, der den Baum persönlich einschätzt.</span></figcaption></figure>
+      <form class="form-card" id="rueckruf" data-contact-form data-contact-kind="callback" data-event="cta_rueckruf_submit" action="/api/contact" method="post">
+        <h2>Rückruf anfragen.</h2>
+        <p class="form-note">Telefon genügt. Viktor meldet sich schnellstmöglich persönlich zurück.</p>
+        <label class="hp-field" aria-hidden="true">Firma <input name="company" tabindex="-1" autocomplete="off"></label>
+        <label>Name <input name="name" autocomplete="name"></label>
+        <label>Telefon <input type="tel" name="phone" autocomplete="tel" required></label>
+        <label>Wunsch-Zeitfenster <input name="desiredTime" placeholder="z.B. Mo 18-20 Uhr"></label>
+        <button class="btn btn-secondary" type="submit">Rückruf anfragen</button>
+      </form>
+    </div>
   </section>
   </main>
 
