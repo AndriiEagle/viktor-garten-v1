@@ -228,9 +228,9 @@ function conceptRescueSlider(lang = "de") {
   return `
     <figure class="before-after-slider" data-before-after-slider style="--split:52%" aria-label="${aria}">
       <div class="before-after-stage">
-        ${photoImg({ folder: "02_pryklady-robit", file: "sosna-bila-17.webp", lang, className: "after-img", label: de ? "Japanische Weisskiefer nach Niwaki-Formschnitt" : "Japanese white pine after niwaki shaping", width: 1200, height: 900 })}
+        ${photoImg({ folder: "02_pryklady-robit", file: "sosna-bila-17.webp", lang, className: "after-img", label: de ? "Japanische Weisskiefer nach Niwaki-Formschnitt" : "Japanese white pine after niwaki shaping", width: 960, height: 1280 })}
         <div class="before-layer">
-          ${photoImg({ folder: "02_pryklady-robit", file: "sosna-bila-16.webp", lang, label: de ? "Japanische Weisskiefer vor der Korrektur" : "Japanese white pine before correction", width: 1200, height: 900 })}
+          ${photoImg({ folder: "02_pryklady-robit", file: "sosna-bila-18.webp", lang, label: de ? "Japanische Weisskiefer vor der Korrektur" : "Japanese white pine before correction", width: 960, height: 1280 })}
         </div>
         <span class="slider-badge slider-badge-before">${beforeLabel}</span>
         <span class="slider-badge slider-badge-after">${afterLabel}</span>
@@ -1939,7 +1939,7 @@ const required = [
   "uk/blog/index.html","uk/blog/topiarschere.html","uk/blog/energie-krone.html","uk/blog/kiefer-kerzen.html","uk/blog/boden-wurzeln.html","uk/blog/klimastress.html",
   "uk/kontakt.html","uk/impressum.html","uk/datenschutz.html","uk/themes.html",
   "assets/base.css","assets/main.js","assets/theme-v1.css","assets/theme-v2.css","assets/theme-v3.css","assets/theme-v4.css","assets/theme-v5.css",
-  "assets/img/logo.png","assets/img/foto/01_hero/hero-viktor-bonsai-main.webp","assets/img/foto/01_hero/hero-viktor-bonsai-mobile.webp","assets/img/foto/02_pryklady-robit/sosna-bila-17.webp","assets/img/foto/03_galereya/sosna-bila-01.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-01.webp","assets/img/foto/06_yaponski-kleny/klen-yaponskyi-01.webp","assets/img/foto/07_viktor/viktor-01.webp","assets/img/foto/08_fonovi/fon-foto-01.webp","assets/img/foto/09_pomylky/pomylka-svichka-01.webp","assets/img/foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp","assets/img/MANIFEST.md","site.webmanifest","robots.txt","sitemap.xml","llms.txt","vercel.json","README.md",".env.example","api/contact.js","api/voice-lead.js"
+  "assets/img/logo.png","assets/img/foto/01_hero/hero-viktor-bonsai-main.webp","assets/img/foto/01_hero/hero-viktor-bonsai-mobile.webp","assets/img/foto/02_pryklady-robit/sosna-bila-17.webp","assets/img/foto/02_pryklady-robit/sosna-bila-18.webp","assets/img/foto/03_galereya/sosna-bila-01.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-01.webp","assets/img/foto/06_yaponski-kleny/klen-yaponskyi-01.webp","assets/img/foto/07_viktor/viktor-01.webp","assets/img/foto/08_fonovi/fon-foto-01.webp","assets/img/foto/09_pomylky/pomylka-svichka-01.webp","assets/img/foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp","assets/img/MANIFEST.md","site.webmanifest","robots.txt","sitemap.xml","llms.txt","vercel.json","README.md",".env.example","api/contact.js","api/voice-lead.js"
 ];
 
 const errors = [];
