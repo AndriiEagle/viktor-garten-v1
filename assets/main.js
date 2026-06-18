@@ -145,14 +145,20 @@
     setConsentBannerVisible(false);
     if (status === 'accepted') enableTags();
   };
-  $('[data-consent-accept]')?.addEventListener('click', (event) => {
-    event.preventDefault();
-    applyConsentChoice('accepted');
-  });
-  $('[data-consent-deny]')?.addEventListener('click', (event) => {
-    event.preventDefault();
-    applyConsentChoice('rejected');
-  });
+  const bindConsentChoice = (selector, status) => {
+    const button = $(selector);
+    if (!button) return;
+    const handler = (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      applyConsentChoice(status);
+    };
+    button.addEventListener('click', handler);
+    button.addEventListener('pointerup', handler);
+    button.addEventListener('touchend', handler, { passive: false });
+  };
+  bindConsentChoice('[data-consent-accept]', 'accepted');
+  bindConsentChoice('[data-consent-deny]', 'rejected');
 
   const toast = $('[data-toast]');
   const currentLang = document.documentElement.lang || 'de-CH';
