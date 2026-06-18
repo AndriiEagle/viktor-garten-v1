@@ -5,7 +5,9 @@ The public site now uses Viktor's supplied real WebP photo set for hero, service
 | File / folder | Source | Used for | Status |
 |---|---|---|---|
 | logo.png | Existing legacy logo | Header/footer mark | PRESENT_LEGACY_LOGO |
-| foto/01_hero/hero-sad-02.webp | Supplied real photo | Home hero and social preview | PRESENT_REAL_PHOTO |
+| foto/01_hero/hero-viktor-bonsai-main.webp | Supplied real photo from IMG_1547.HEIC | Home hero desktop and social preview | PRESENT_REAL_PHOTO |
+| foto/01_hero/hero-viktor-bonsai-mobile.webp | Supplied real photo from IMG_1547.HEIC | Home hero mobile source | PRESENT_REAL_PHOTO |
+| foto/01_hero/hero-sad-02.webp | Supplied real photo | Previous hero, retained as alternate | PRESENT_REAL_PHOTO |
 | foto/01_hero/hero-sad-01.webp | Supplied real photo | Alternate hero/social preview | PRESENT_REAL_PHOTO |
 | foto/02_pryklady-robit/*.webp | Supplied real photos | Before/after direction, timeline, gallery | PRESENT_REAL_PHOTO_SET |
 | foto/03_galereya/*.webp | Supplied real photos | Gallery grid | PRESENT_REAL_PHOTO_SET |

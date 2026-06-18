@@ -18,7 +18,9 @@ const whatsappTextUk = encodeURIComponent(
   "Добрий день, Вікторе. Надсилаю фото свого дерева (кантон: ..., вид дерева: ...). Чи можете оцінити, чи його можна врятувати?"
 );
 const whatsappHrefUk = `https://wa.me/${phone.replace("+", "")}?text=${whatsappTextUk}`;
-const ogImageFile = "foto/01_hero/hero-sad-02.webp";
+const ogImageFile = "foto/01_hero/hero-viktor-bonsai-main.webp";
+const heroDesktopFile = "hero-viktor-bonsai-main.webp";
+const heroMobileFile = "hero-viktor-bonsai-mobile.webp";
 const ogImageUrl = `${domain}/assets/img/${ogImageFile}`;
 const photoCatalogPath = path.join(root, "tools", "photo-catalog.json");
 const photoCatalog = fs.existsSync(photoCatalogPath)
@@ -156,6 +158,17 @@ function photoSlot({ folder, file, lang = "de", label = "", ratio = "4 / 3", cla
     loading,
     fetchPriority
   });
+}
+
+function heroPhotoSlot({ lang = "de", label = "Niwaki im Schweizer Garten" }) {
+  const desktop = photoPath("01_hero", heroDesktopFile);
+  const mobile = photoPath("01_hero", heroMobileFile);
+  const alt = photoAlt("01_hero", heroDesktopFile, lang, label);
+  return `
+    <figure class="image-slot image-slot-real hero-slot" style="--ratio:16 / 9" data-asset="${desktop}">
+      <img class="hero-img-desktop" src="__ASSET_PREFIX__assets/img/${desktop}" alt="${alt}" loading="eager" decoding="async" width="4800" height="2700" fetchpriority="high">
+      <img class="hero-img-mobile" src="__ASSET_PREFIX__assets/img/${mobile}" alt="${alt}" loading="eager" decoding="async" width="1200" height="1600" fetchpriority="high">
+    </figure>`;
 }
 
 function photoImg({ folder, file, lang = "de", className = "", label = "", loading = "lazy", width = 1200, height = 900 }) {
@@ -607,7 +620,7 @@ function finalCtaEn(contactPrefix = "") {
 function homeDe() {
   return `
   <section class="hero section">
-    <div class="hero-media">${photoSlot({ folder: "01_hero", file: "hero-sad-02.webp", lang: "de", label: "Niwaki im Schweizer Garten", ratio: "16 / 9", className: "hero-slot", loading: "eager", fetchPriority: "high" })}</div>
+    <div class="hero-media">${heroPhotoSlot({ lang: "de", label: "Niwaki im Schweizer Garten" })}</div>
     <div class="hero-panel">
       <span class="eyebrow">GARTENBONSAIS · GARTENGESTALTUNG · FORMGEHÖLZE · JAPANISCHE BAUMKUNST</span>
       <h1>Gartenbonsais (Niwaki) & japanische Baumkunst in der Schweiz</h1>
@@ -1116,14 +1129,14 @@ function themesPage() {
   </section>
   <section class="section split">
     <div><h2>Beispielblock.</h2><p>Diese Seite zeigt Tokens: Hintergrund, Oberfläche, Text, Primärfarbe, Akzent, Linien, Schatten und Buttons.</p><div class="btn-row">${cta("Foto senden - Test CTA")} <a class="btn btn-secondary" href="kontakt.html">Kontakt</a></div></div>
-    ${photoSlot({ folder: "01_hero", file: "hero-sad-02.webp", lang: "de", label: "Theme preview image slot", ratio: "16 / 9" })}
+    ${photoSlot({ folder: "01_hero", file: "hero-viktor-bonsai-main.webp", lang: "de", label: "Theme preview image slot", ratio: "16 / 9" })}
   </section>`;
 }
 
 function homeEn() {
   return `
   <section class="hero section">
-    <div class="hero-media">${photoSlot({ folder: "01_hero", file: "hero-sad-02.webp", lang: "en", label: "Niwaki in a Swiss garden", ratio: "16 / 9", className: "hero-slot", loading: "eager", fetchPriority: "high" })}</div>
+    <div class="hero-media">${heroPhotoSlot({ lang: "en", label: "Niwaki in a Swiss garden" })}</div>
     <div class="hero-panel">
       <span class="eyebrow">NIWAKI · GARDEN BONSAI · EVERGREEN DESIGN · JAPANESE GARDEN ART</span>
       <h1>Niwaki and Japanese tree art.<br><span>With Swiss precision.</span></h1>
@@ -1247,7 +1260,7 @@ const serviceCardsUk = `
 function homeUk() {
   return `
   <section class="hero section">
-    <div class="hero-media">${photoSlot({ folder: "01_hero", file: "hero-sad-02.webp", lang: "uk", label: "Niwaki у швейцарському саду", ratio: "16 / 9", className: "hero-slot", loading: "eager", fetchPriority: "high" })}</div>
+    <div class="hero-media">${heroPhotoSlot({ lang: "uk", label: "Niwaki у швейцарському саду" })}</div>
     <div class="hero-panel">
       <span class="eyebrow">FORMGEHÖLZE · NIWAKI · EVERGREEN DESIGN · ЯПОНСЬКЕ САДОВЕ МИСТЕЦТВО</span>
       <h1>Niwaki і японська деревна архітектура.<br><span>Зі швейцарською точністю.</span></h1>
@@ -1414,7 +1427,7 @@ function legalUk(kind) {
 }
 
 function themesPageUk() {
-  return `<section class="page-hero section"><span class="eyebrow">Внутрішній перегляд</span><h1>Theme Preview V1-V5.</h1><p>Для Андрія/Віктора: можна перемикати дизайн-напрям без перебудови layout.</p><div class="theme-buttons">${[1, 2, 3, 4, 5].map((n) => `<button class="btn btn-secondary" type="button" data-theme-option="theme-v${n}.css">V${n}</button>`).join("")}</div></section><section class="section"><div class="card-grid three">${serviceCardsUk}</div></section><section class="section split"><div><h2>Приклад блоку.</h2><p>Ця сторінка показує токени теми: фон, поверхню, текст, основний колір, акцент, лінії, тіні і кнопки.</p><div class="btn-row">${ctaUk("Надіслати фото - тест CTA")} <a class="btn btn-secondary" href="kontakt.html">Контакт</a></div></div>${photoSlot({ folder: "01_hero", file: "hero-sad-02.webp", lang: "uk", label: "Зображення для перевірки теми", ratio: "16 / 9" })}</section>`;
+  return `<section class="page-hero section"><span class="eyebrow">Внутрішній перегляд</span><h1>Theme Preview V1-V5.</h1><p>Для Андрія/Віктора: можна перемикати дизайн-напрям без перебудови layout.</p><div class="theme-buttons">${[1, 2, 3, 4, 5].map((n) => `<button class="btn btn-secondary" type="button" data-theme-option="theme-v${n}.css">V${n}</button>`).join("")}</div></section><section class="section"><div class="card-grid three">${serviceCardsUk}</div></section><section class="section split"><div><h2>Приклад блоку.</h2><p>Ця сторінка показує токени теми: фон, поверхню, текст, основний колір, акцент, лінії, тіні і кнопки.</p><div class="btn-row">${ctaUk("Надіслати фото - тест CTA")} <a class="btn btn-secondary" href="kontakt.html">Контакт</a></div></div>${photoSlot({ folder: "01_hero", file: "hero-viktor-bonsai-main.webp", lang: "uk", label: "Зображення для перевірки теми", ratio: "16 / 9" })}</section>`;
 }
 
 function cssBase() {
@@ -1422,7 +1435,7 @@ function cssBase() {
 }
 
 function cssResponsiveFixes() {
-  return `html,body{max-width:100%;overflow-x:hidden}h1,h2,h3,p,.brand-name{overflow-wrap:break-word}.hero-panel,.card,.form-card,.note-block,.price-teaser,.image-slot,.site-nav{min-width:0}.brand-logo{width:44px;height:44px;border-radius:50%;object-fit:cover;object-position:center 24%;background:var(--surface);border:1px solid var(--line);box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--surface) 70%,transparent)}.footer-logo{width:min(240px,100%);height:auto;max-height:120px;object-fit:contain;margin-top:18px;padding:12px;background:#fff;border:1px solid color-mix(in srgb,var(--primary-ink) 22%,transparent);border-radius:8px;box-shadow:0 10px 28px rgba(0,0,0,.16)}.image-slot>img{width:100%;height:100%;object-fit:cover}.image-slot{position:relative}.hero-slot>img{object-position:70% center}.hero-slot>div{place-content:center end;text-align:right;padding-right:max(24px,10vw)}.hero-slot span,.hero-slot strong,.hero-slot small{max-width:280px}.gallery-real-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.gallery-photo{display:block;aspect-ratio:4/3;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow)}.gallery-photo img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}.gallery-photo:hover img{transform:scale(1.04)}.article-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.article-card .image-slot{margin-bottom:16px}.comparison-grid,.process-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:24px 0}.process-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.comparison-grid>div,.process-grid>div,.science-card,.source-list,.article-nav{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}.science-card{margin:24px 0}.source-list{margin:28px 0;color:var(--muted)}.source-list h2{color:var(--text);font-size:1.35rem}.source-list ul{margin:10px 0 0;padding-left:20px}.source-list a{color:var(--primary);font-weight:800}.article-nav{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0}.article-nav a{border:1px solid var(--line);border-radius:999px;padding:8px 10px;text-decoration:none;color:var(--primary);font-weight:800}.stress-chain{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;align-items:center;text-align:center}.stress-chain span,.stress-chain strong{border:1px solid var(--line);border-radius:8px;padding:10px;background:color-mix(in srgb,var(--surface) 70%,var(--bg))}.stress-chain strong{background:var(--primary);color:var(--primary-ink)}.cookie-banner .btn{white-space:nowrap;min-width:110px}@media (max-width:1100px){.gallery-real-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media (max-width:920px){.article-grid,.gallery-real-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.comparison-grid,.process-grid,.stress-chain{grid-template-columns:1fr}}@media (max-width:620px){.site-header{width:100%;min-height:69px;padding:12px 76px 12px 16px;gap:10px}.nav-toggle{display:block;position:fixed;right:16px;top:12px;width:44px;height:44px;z-index:40;background:var(--primary);border-color:var(--primary);box-shadow:var(--shadow)}.nav-toggle span:not(.sr-only){background:var(--primary-ink)}.brand{flex:1 1 auto;max-width:none;min-width:0}.brand-logo{flex:0 0 44px}.brand-text{min-width:0;max-width:calc(100vw - 144px)}.brand-name{display:block;font-size:.96rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hero{display:block;padding:32px 16px 50px}.hero>*{grid-column:auto}.hero-media{display:block;min-height:180px;margin:0 0 14px}.hero-slot{border-radius:var(--radius)}.hero-slot>img{object-position:78% center}.hero-panel{width:100%;max-width:none;margin:0;padding:22px;overflow:hidden}.hero-panel h1{font-size:1.85rem;line-height:1.08}.hero-panel .motto{font-size:1.15rem}.hero-services{grid-template-columns:1fr;margin-top:14px}.hero-slot>div{place-content:center;text-align:center;padding-right:22px}.article-grid,.gallery-real-grid{grid-template-columns:1fr}.footer-logo{width:min(200px,100%);max-height:100px}.cookie-banner div{flex-direction:column}.cookie-banner .btn{width:100%;white-space:normal}}`;
+  return `html,body{max-width:100%;overflow-x:hidden}h1,h2,h3,p,.brand-name{overflow-wrap:break-word}.hero-panel,.card,.form-card,.note-block,.price-teaser,.image-slot,.site-nav{min-width:0}.brand-logo{width:44px;height:44px;border-radius:50%;object-fit:cover;object-position:center 24%;background:var(--surface);border:1px solid var(--line);box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--surface) 70%,transparent)}.footer-logo{width:min(240px,100%);height:auto;max-height:120px;object-fit:contain;margin-top:18px;padding:12px;background:#fff;border:1px solid color-mix(in srgb,var(--primary-ink) 22%,transparent);border-radius:8px;box-shadow:0 10px 28px rgba(0,0,0,.16)}.image-slot>img{width:100%;height:100%;object-fit:cover}.image-slot{position:relative}.hero-slot>img{object-position:70% center}.hero-img-mobile{display:none}.hero-slot>div{place-content:center end;text-align:right;padding-right:max(24px,10vw)}.hero-slot span,.hero-slot strong,.hero-slot small{max-width:280px}.gallery-real-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.gallery-photo{display:block;aspect-ratio:4/3;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow)}.gallery-photo img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}.gallery-photo:hover img{transform:scale(1.04)}.article-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.article-card .image-slot{margin-bottom:16px}.comparison-grid,.process-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:24px 0}.process-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.comparison-grid>div,.process-grid>div,.science-card,.source-list,.article-nav{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}.science-card{margin:24px 0}.source-list{margin:28px 0;color:var(--muted)}.source-list h2{color:var(--text);font-size:1.35rem}.source-list ul{margin:10px 0 0;padding-left:20px}.source-list a{color:var(--primary);font-weight:800}.article-nav{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0}.article-nav a{border:1px solid var(--line);border-radius:999px;padding:8px 10px;text-decoration:none;color:var(--primary);font-weight:800}.stress-chain{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;align-items:center;text-align:center}.stress-chain span,.stress-chain strong{border:1px solid var(--line);border-radius:8px;padding:10px;background:color-mix(in srgb,var(--surface) 70%,var(--bg))}.stress-chain strong{background:var(--primary);color:var(--primary-ink)}.cookie-banner .btn{white-space:nowrap;min-width:110px}@media (max-width:1100px){.gallery-real-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media (max-width:920px){.article-grid,.gallery-real-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.comparison-grid,.process-grid,.stress-chain{grid-template-columns:1fr}}@media (max-width:620px){.site-header{width:100%;min-height:69px;padding:12px 76px 12px 16px;gap:10px}.nav-toggle{display:block;position:fixed;right:16px;top:12px;width:44px;height:44px;z-index:40;background:var(--primary);border-color:var(--primary);box-shadow:var(--shadow)}.nav-toggle span:not(.sr-only){background:var(--primary-ink)}.brand{flex:1 1 auto;max-width:none;min-width:0}.brand-logo{flex:0 0 44px}.brand-text{min-width:0;max-width:calc(100vw - 144px)}.brand-name{display:block;font-size:.96rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hero{display:block;padding:32px 16px 50px}.hero>*{grid-column:auto}.hero-media{display:block;min-height:180px;margin:0 0 14px}.hero-slot{border-radius:var(--radius)}.hero-slot>img{object-position:78% center}.hero-img-desktop{display:none}.hero-img-mobile{display:block}.hero-panel{width:100%;max-width:none;margin:0;padding:22px;overflow:hidden}.hero-panel h1{font-size:1.85rem;line-height:1.08}.hero-panel .motto{font-size:1.15rem}.hero-services{grid-template-columns:1fr;margin-top:14px}.hero-slot>div{place-content:center;text-align:center;padding-right:22px}.article-grid,.gallery-real-grid{grid-template-columns:1fr}.footer-logo{width:min(200px,100%);max-height:100px}.cookie-banner div{flex-direction:column}.cookie-banner .btn{width:100%;white-space:normal}}`;
 }
 
 function cssWowPass() {
@@ -1430,7 +1443,7 @@ function cssWowPass() {
 }
 
 function heroCopyResponsiveFixCss() {
-  return `@media (max-width:620px){.hero{padding-left:20px;padding-right:20px}.hero-panel{max-width:calc(100vw - 40px)}.hero-panel h1{font-size:clamp(2rem,10vw,2.35rem);line-height:1.02;max-width:11ch}.hero-panel .motto,.hero-panel>p:not(.motto){max-width:100%}.hero-panel .motto{font-size:1.08rem}.hero-panel .eyebrow{display:flex;flex-wrap:wrap;max-width:100%;font-size:.62rem;line-height:1.35;gap:7px}.hero-panel .eyebrow:before{flex:0 0 22px;width:22px}}`;
+  return `@media (max-width:620px){.hero{padding-left:20px;padding-right:20px}.hero-slot>img,.hero-slot>picture>img{object-position:center center}.hero-panel{width:min(100%,calc(100vw - 40px));max-width:calc(100vw - 40px)}.hero-panel h1{font-size:clamp(1.9rem,8.8vw,2.24rem);line-height:1.02;max-width:12.5ch;overflow-wrap:normal}.hero-panel .motto{max-width:24ch;font-size:1.04rem;overflow-wrap:anywhere}.hero-panel>p:not(.motto){max-width:33ch;font-size:.95rem;line-height:1.55;overflow-wrap:anywhere}.hero-panel .eyebrow{display:flex;flex-wrap:wrap;max-width:34ch;font-size:.6rem;line-height:1.35;gap:7px;overflow-wrap:anywhere}.hero-panel .eyebrow:before{flex:0 0 22px;width:22px}}`;
 }
 
 function meisterCarouselResponsiveCss() {
@@ -1747,7 +1760,9 @@ The public site now uses Viktor's supplied real WebP photo set for hero, service
 | File / folder | Source | Used for | Status |
 |---|---|---|---|
 | logo.png | Existing legacy logo | Header/footer mark | PRESENT_LEGACY_LOGO |
-| foto/01_hero/hero-sad-02.webp | Supplied real photo | Home hero and social preview | PRESENT_REAL_PHOTO |
+| foto/01_hero/hero-viktor-bonsai-main.webp | Supplied real photo from IMG_1547.HEIC | Home hero desktop and social preview | PRESENT_REAL_PHOTO |
+| foto/01_hero/hero-viktor-bonsai-mobile.webp | Supplied real photo from IMG_1547.HEIC | Home hero mobile source | PRESENT_REAL_PHOTO |
+| foto/01_hero/hero-sad-02.webp | Supplied real photo | Previous hero, retained as alternate | PRESENT_REAL_PHOTO |
 | foto/01_hero/hero-sad-01.webp | Supplied real photo | Alternate hero/social preview | PRESENT_REAL_PHOTO |
 | foto/02_pryklady-robit/*.webp | Supplied real photos | Before/after direction, timeline, gallery | PRESENT_REAL_PHOTO_SET |
 | foto/03_galereya/*.webp | Supplied real photos | Gallery grid | PRESENT_REAL_PHOTO_SET |
@@ -1924,7 +1939,7 @@ const required = [
   "uk/blog/index.html","uk/blog/topiarschere.html","uk/blog/energie-krone.html","uk/blog/kiefer-kerzen.html","uk/blog/boden-wurzeln.html","uk/blog/klimastress.html",
   "uk/kontakt.html","uk/impressum.html","uk/datenschutz.html","uk/themes.html",
   "assets/base.css","assets/main.js","assets/theme-v1.css","assets/theme-v2.css","assets/theme-v3.css","assets/theme-v4.css","assets/theme-v5.css",
-  "assets/img/logo.png","assets/img/foto/01_hero/hero-sad-02.webp","assets/img/foto/02_pryklady-robit/sosna-bila-17.webp","assets/img/foto/03_galereya/sosna-bila-01.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-01.webp","assets/img/foto/06_yaponski-kleny/klen-yaponskyi-01.webp","assets/img/foto/07_viktor/viktor-01.webp","assets/img/foto/08_fonovi/fon-foto-01.webp","assets/img/foto/09_pomylky/pomylka-svichka-01.webp","assets/img/foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp","assets/img/MANIFEST.md","site.webmanifest","robots.txt","sitemap.xml","llms.txt","vercel.json","README.md",".env.example","api/contact.js","api/voice-lead.js"
+  "assets/img/logo.png","assets/img/foto/01_hero/hero-viktor-bonsai-main.webp","assets/img/foto/01_hero/hero-viktor-bonsai-mobile.webp","assets/img/foto/02_pryklady-robit/sosna-bila-17.webp","assets/img/foto/03_galereya/sosna-bila-01.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-01.webp","assets/img/foto/06_yaponski-kleny/klen-yaponskyi-01.webp","assets/img/foto/07_viktor/viktor-01.webp","assets/img/foto/08_fonovi/fon-foto-01.webp","assets/img/foto/09_pomylky/pomylka-svichka-01.webp","assets/img/foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp","assets/img/MANIFEST.md","site.webmanifest","robots.txt","sitemap.xml","llms.txt","vercel.json","README.md",".env.example","api/contact.js","api/voice-lead.js"
 ];
 
 const errors = [];
@@ -2097,7 +2112,7 @@ for (const file of previewFiles) {
 }
 
 const manifest = fs.readFileSync(path.join(root, "assets/img/MANIFEST.md"), "utf8");
-for (const file of ["foto/01_hero/hero-sad-02.webp","foto/02_pryklady-robit/*.webp","foto/03_galereya/*.webp","foto/05_nivaki-khmarky/*.webp","foto/06_yaponski-kleny/klen-yaponskyi-01.webp","foto/07_viktor/*.webp","foto/08_fonovi/*.webp","foto/09_pomylky/*.webp","foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp","baumarchitektur-korrektur.png","baumarchitektur-live-crown-ratio.png"]) {
+for (const file of ["foto/01_hero/hero-viktor-bonsai-main.webp","foto/01_hero/hero-viktor-bonsai-mobile.webp","foto/02_pryklady-robit/*.webp","foto/03_galereya/*.webp","foto/05_nivaki-khmarky/*.webp","foto/06_yaponski-kleny/klen-yaponskyi-01.webp","foto/07_viktor/*.webp","foto/08_fonovi/*.webp","foto/09_pomylky/*.webp","foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp","baumarchitektur-korrektur.png","baumarchitektur-live-crown-ratio.png"]) {
   if (!manifest.includes(file)) errors.push("MANIFEST missing " + file);
 }
 
