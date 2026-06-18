@@ -187,7 +187,7 @@ function meisterImageCarousel(prefix = "__ASSET_PREFIX__assets/img/") {
   return `
     <figure class="image-carousel meister-carousel" data-image-carousel aria-label="Baumarchitektur Erklaerungen">
       <div class="image-carousel-track" data-carousel-track>
-        ${slides.map(([file, alt]) => `<img class="image-carousel-slide" src="${prefix}${file}" alt="${alt}" loading="lazy" decoding="async" width="1448" height="1086">`).join("")}
+        ${slides.map(([file, alt]) => `<img class="image-carousel-slide" src="${prefix}${file}" alt="${alt}" loading="eager" decoding="async" fetchpriority="low" width="1448" height="1086">`).join("")}
       </div>
       <button class="image-carousel-btn image-carousel-prev" type="button" data-carousel-prev aria-label="Vorheriges Bild">&lsaquo;</button>
       <button class="image-carousel-btn image-carousel-next" type="button" data-carousel-next aria-label="Naechstes Bild">&rsaquo;</button>
@@ -654,7 +654,7 @@ function homeDe() {
     ${photoSlot({ folder: "08_fonovi", file: "fon-sosna-bila-01.webp", lang: "de", label: "Wertvoller Gartenbaum vor der Diagnose", ratio: "16 / 9" })}
   </section>
 
-  <section class="section split reverse">
+  <section id="meisterarbeit" class="section split reverse meister-section">
     ${meisterImageCarousel()}
     <div>
       <span class="eyebrow">Meisterarbeit</span>
@@ -1433,6 +1433,10 @@ function heroCopyResponsiveFixCss() {
   return `@media (max-width:620px){.hero{padding-left:20px;padding-right:20px}.hero-panel{max-width:calc(100vw - 40px)}.hero-panel h1{font-size:clamp(2rem,10vw,2.35rem);line-height:1.02;max-width:11ch}.hero-panel .motto,.hero-panel>p:not(.motto){max-width:100%}.hero-panel .motto{font-size:1.08rem}.hero-panel .eyebrow{display:flex;flex-wrap:wrap;max-width:100%;font-size:.62rem;line-height:1.35;gap:7px}.hero-panel .eyebrow:before{flex:0 0 22px;width:22px}}`;
 }
 
+function meisterCarouselResponsiveCss() {
+  return `.meister-section{align-items:center}.meister-carousel{width:min(100%,680px);justify-self:center;align-self:center;background:#f8f5ee}.meister-carousel .image-carousel-slide{object-fit:contain;padding:clamp(10px,1.4vw,18px);background:#f8f5ee}@media (min-width:921px) and (max-width:1320px){.meister-section{grid-template-columns:minmax(0,1fr) minmax(360px,.76fr);gap:28px}.meister-section h2{font-size:clamp(2.15rem,3.6vw,3.05rem)}.meister-carousel{max-width:540px}.meister-carousel .image-carousel-btn{width:38px;height:38px;font-size:1.45rem}.meister-carousel .image-carousel-prev{left:10px}.meister-carousel .image-carousel-next{right:10px}}@media (min-width:1321px){.meister-carousel{max-width:640px}}@media (max-width:920px){.meister-carousel{max-width:680px;margin:0 auto}.meister-carousel .image-carousel-slide{padding:10px}}`;
+}
+
 function jsMain() {
   return `(() => {
   const $ = (selector, root = document) => root.querySelector(selector);
@@ -2115,7 +2119,8 @@ ${cssResponsiveFixes()}
 .cookie-banner[hidden],.toast[hidden]{display:none!important}.cookie-banner{max-height:calc(100svh - 32px);overflow:auto;pointer-events:auto}.mobile-cta{padding-bottom:env(safe-area-inset-bottom)}
 @media (max-width:920px){body{padding-bottom:calc(58px + env(safe-area-inset-bottom))}.cookie-banner{bottom:calc(74px + env(safe-area-inset-bottom))}.toast{bottom:calc(74px + env(safe-area-inset-bottom));left:16px;right:16px}}
 ${cssWowPass().replace(".before-after-slider body." + "presentation-clean @media", "@media")}
-${heroCopyResponsiveFixCss()}`;
+${heroCopyResponsiveFixCss()}
+${meisterCarouselResponsiveCss()}`;
 }
 
 writeFile("assets/base.css", publicCss());
