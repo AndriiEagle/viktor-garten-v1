@@ -22,6 +22,43 @@ const ogImageFile = "foto/01_hero/hero-viktor-bonsai-main.webp";
 const heroDesktopFile = "hero-viktor-bonsai-main.webp";
 const heroMobileFile = "hero-viktor-bonsai-mobile.webp";
 const ogImageUrl = `${domain}/assets/img/${ogImageFile}`;
+const heroVariants = [
+  {
+    id: "1",
+    names: { de: "Original", en: "Original", uk: "Оригінал" },
+    desktop: photoPath("01_hero", heroDesktopFile),
+    mobile: photoPath("01_hero", heroMobileFile),
+    altPhoto: ["01_hero", heroDesktopFile]
+  },
+  {
+    id: "2",
+    names: { de: "Saftig", en: "Vivid", uk: "Соковито" },
+    desktop: photoPath("01_hero", heroDesktopFile),
+    mobile: photoPath("01_hero", heroMobileFile),
+    altPhoto: ["01_hero", heroDesktopFile]
+  },
+  {
+    id: "3",
+    names: { de: "Hausbaum", en: "House tree", uk: "Біля дому" },
+    desktop: photoPath("01_hero", "hero-sad-02.webp"),
+    mobile: photoPath("01_hero", "hero-sad-02.webp"),
+    altPhoto: ["01_hero", "hero-sad-02.webp"]
+  },
+  {
+    id: "4",
+    names: { de: "Gartenform", en: "Garden form", uk: "Форма саду" },
+    desktop: photoPath("08_fonovi", "fon-foto-01.webp"),
+    mobile: photoPath("08_fonovi", "fon-foto-01.webp"),
+    altPhoto: ["08_fonovi", "fon-foto-01.webp"]
+  },
+  {
+    id: "5",
+    names: { de: "Solitaer", en: "Specimen", uk: "Солітер" },
+    desktop: photoPath("08_fonovi", "fon-foto-02.webp"),
+    mobile: photoPath("08_fonovi", "fon-foto-02.webp"),
+    altPhoto: ["08_fonovi", "fon-foto-02.webp"]
+  }
+];
 const photoCatalogPath = path.join(root, "tools", "photo-catalog.json");
 const photoCatalog = fs.existsSync(photoCatalogPath)
   ? JSON.parse(fs.readFileSync(photoCatalogPath, "utf8"))
@@ -160,15 +197,33 @@ function photoSlot({ folder, file, lang = "de", label = "", ratio = "4 / 3", cla
   });
 }
 
+function heroVariantAlt(variant, lang, fallback) {
+  const [folder, file] = variant.altPhoto;
+  return photoAlt(folder, file, lang, fallback);
+}
+
 function heroPhotoSlot({ lang = "de", label = "Niwaki im Schweizer Garten" }) {
-  const desktop = photoPath("01_hero", heroDesktopFile);
-  const mobile = photoPath("01_hero", heroMobileFile);
-  const alt = photoAlt("01_hero", heroDesktopFile, lang, label);
+  const variant = heroVariants[0];
+  const desktop = variant.desktop;
+  const mobile = variant.mobile;
+  const alt = heroVariantAlt(variant, lang, label);
   return `
     <figure class="image-slot image-slot-real hero-slot" style="--ratio:16 / 9" data-asset="${desktop}">
-      <img class="hero-img-desktop" src="__ASSET_PREFIX__assets/img/${desktop}" alt="${alt}" loading="eager" decoding="async" width="4800" height="2700" fetchpriority="high">
-      <img class="hero-img-mobile" src="__ASSET_PREFIX__assets/img/${mobile}" alt="${alt}" loading="eager" decoding="async" width="1200" height="1600" fetchpriority="high">
+      <img class="hero-img-desktop" data-hero-desktop-image src="__ASSET_PREFIX__assets/img/${desktop}" alt="${alt}" loading="eager" decoding="async" width="2400" height="1350" fetchpriority="high">
+      <img class="hero-img-mobile" data-hero-mobile-image src="__ASSET_PREFIX__assets/img/${mobile}" alt="${alt}" loading="eager" decoding="async" width="1200" height="1600" fetchpriority="high">
     </figure>`;
+}
+
+function heroVariantSwitcher(lang = "de", label = "Niwaki im Schweizer Garten") {
+  const copy = {
+    de: { label: "Hero", aria: "Hero-Foto Varianten" },
+    en: { label: "Hero", aria: "Hero photo variants" },
+    uk: { label: "Hero", aria: "Варіанти hero-фото" }
+  }[lang] || { label: "Hero", aria: "Hero photo variants" };
+  return `<div class="hero-variant-switcher" data-hero-switcher aria-label="${copy.aria}">
+    <span>${copy.label}</span>
+    ${heroVariants.map((variant) => `<button class="hero-variant-option" type="button" data-hero-variant-option="${variant.id}" data-hero-desktop-src="__ASSET_PREFIX__assets/img/${variant.desktop}" data-hero-mobile-src="__ASSET_PREFIX__assets/img/${variant.mobile}" data-hero-alt="${heroVariantAlt(variant, lang, label)}" aria-label="${copy.aria}: ${variant.names[lang] || variant.names.de}" aria-pressed="${variant.id === "1" ? "true" : "false"}">${variant.id}</button>`).join("")}
+  </div>`;
 }
 
 function photoImg({ folder, file, lang = "de", className = "", label = "", loading = "lazy", width = 1200, height = 900 }) {
@@ -856,16 +911,18 @@ function finalCtaEn(contactPrefix = "") {
 
 function homeDe() {
   return `
-  <section class="hero section">
+  <section class="hero section" data-hero-root data-hero-variant="1">
     <div class="hero-media">${heroPhotoSlot({ lang: "de", label: "Niwaki im Schweizer Garten" })}</div>
     <div class="hero-panel">
       <span class="eyebrow">GARTENBONSAIS · GARTENGESTALTUNG · FORMGEHÖLZE · JAPANISCHE BAUMKUNST</span>
-      <h1>Gartenbonsais (Niwaki) & japanische Baumkunst in der Schweiz</h1>
+      <h1>Gartenbonsais (<span class="hero-accent">Niwaki</span>) & japanische Baumkunst in der Schweiz</h1>
       <p class="motto">Schweizer Qualität mit japanischer Philosophie.</p>
-      <p>Als Meister für <strong>Niwaki und Garten-Bonsai</strong> in der <strong>Region Zürich</strong> forme und pflege ich seit 27 Jahren japanische Ahorne, Kiefern und Nadelgehölze - so, dass Ihr Baum über Jahre seine Form, seine Kraft und seine Gesundheit behält.</p>
+      <p class="hero-copy hero-copy-desktop">Als Meister für <strong>Niwaki und Garten-Bonsai</strong> in der <strong>Region Zürich</strong> forme und pflege ich seit 27 Jahren japanische Ahorne, Kiefern und Nadelgehölze - so, dass Ihr Baum über Jahre seine Form, seine Kraft und seine Gesundheit behält.</p>
+      <p class="hero-copy hero-copy-mobile">27 Jahre Niwaki-Pflege in der Region Zürich: präzise Handarbeit für Form, Kraft und Gesundheit.</p>
       <div class="btn-row">${cta("Foto senden - kostenlose Diagnose")} <a class="btn btn-secondary" href="kontakt.html#rueckruf" data-event="cta_callback_click">Rückruf anfordern</a></div>
       <div class="trust-row"><span class="experience-pill"><strong>27</strong> Jahre Erfahrung</span><span>Region Zürich</span><span>Inspiriert in Japan</span></div>
     </div>
+    ${heroVariantSwitcher("de", "Niwaki im Schweizer Garten")}
   </section>
 
   <section class="section rescue-section">
@@ -1427,16 +1484,18 @@ function themesPage() {
 
 function homeEn() {
   return `
-  <section class="hero section">
+  <section class="hero section" data-hero-root data-hero-variant="1">
     <div class="hero-media">${heroPhotoSlot({ lang: "en", label: "Niwaki in a Swiss garden" })}</div>
     <div class="hero-panel">
       <span class="eyebrow">NIWAKI · GARDEN BONSAI · EVERGREEN DESIGN · JAPANESE GARDEN ART</span>
-      <h1>Niwaki and Japanese tree art.<br><span>With Swiss precision.</span></h1>
+      <h1><span class="hero-accent">Niwaki</span> and Japanese tree art.<br><span>With Swiss precision.</span></h1>
       <p class="motto">Swiss quality in resonance with Japanese philosophy.</p>
-      <p>For clients in the Zurich region, Viktor shapes and cares for Japanese maples, pines and conifers so that a valuable tree keeps its form, strength and health for years.</p>
+      <p class="hero-copy hero-copy-desktop">For clients in the Zurich region, Viktor shapes and cares for Japanese maples, pines and conifers so that a valuable tree keeps its form, strength and health for years.</p>
+      <p class="hero-copy hero-copy-mobile">Viktor shapes valuable garden trees around Zurich so their form stays clear, strong and healthy.</p>
       <div class="btn-row">${cta("Send photo - free diagnosis")} <a class="btn btn-secondary" href="kontakt.html#rueckruf" data-event="cta_callback_click">Request callback</a></div>
       <div class="trust-row"><span class="experience-pill"><strong>27</strong> years of experience</span><span>Zurich region</span><span>Inspired in Japan</span></div>
     </div>
+    ${heroVariantSwitcher("en", "Niwaki in a Swiss garden")}
   </section>
   <section class="section rescue-section"><div class="section-head"><span class="eyebrow">Before / after</span><h2>When the right cut brings back air, light and calm.</h2><p>This comparison shows Viktor's core promise: not making a tree merely green, but making its living architecture readable again.</p></div>${conceptRescueSlider("en")}<div class="btn-row"><a class="btn btn-secondary" href="galerie.html">View gallery</a></div></section>
   <section class="section split sanctuary-section"><div><span class="eyebrow">The real value</span><h2>The garden is the quietest room of the house.</h2><p>A niwaki is not shaped only to look tidy. It changes the view from the house: morning coffee, an evening on the terrace, guests arriving and seeing a garden that feels calm, precise and alive.</p><p>Viktor does not shape for a quick effect. A valuable tree should not look forced after the cut. It should look as if the form was already waiting inside it.</p><div class="quiet-moments"><span>Morning coffee</span><span>Evening terrace</span><span>Guests with a garden view</span></div></div>${photoSlot({ folder: "08_fonovi", file: "fon-foto-01.webp", lang: "en", label: "Quiet garden moment after precise care", ratio: "16 / 9" })}</section>
@@ -1551,16 +1610,18 @@ const serviceCardsUk = `
 
 function homeUk() {
   return `
-  <section class="hero section">
+  <section class="hero section" data-hero-root data-hero-variant="1">
     <div class="hero-media">${heroPhotoSlot({ lang: "uk", label: "Niwaki у швейцарському саду" })}</div>
     <div class="hero-panel">
       <span class="eyebrow">FORMGEHÖLZE · NIWAKI · EVERGREEN DESIGN · ЯПОНСЬКЕ САДОВЕ МИСТЕЦТВО</span>
-      <h1>Niwaki і японська деревна архітектура.<br><span>Зі швейцарською точністю.</span></h1>
+      <h1><span class="hero-accent">Niwaki</span> і японська деревна архітектура.<br><span>Зі швейцарською точністю.</span></h1>
       <p class="motto">Швейцарська якість у резонансі з японською філософією.</p>
-      <p>Віктор формує і доглядає <strong>Niwaki, садовий бонсай, японські клени, сосни і хвойні</strong> у регіоні Цюриха так, щоб дерево роками зберігало форму, силу і здоров'я.</p>
+      <p class="hero-copy hero-copy-desktop">Віктор формує і доглядає <strong>Niwaki, садовий бонсай, японські клени, сосни і хвойні</strong> у регіоні Цюриха так, щоб дерево роками зберігало форму, силу і здоров'я.</p>
+      <p class="hero-copy hero-copy-mobile">Віктор формує цінні дерева в регіоні Цюриха: чиста ручна робота для форми, сили й здоров'я.</p>
       <div class="btn-row">${ctaUk("Надіслати фото - безкоштовна діагностика")} <a class="btn btn-secondary" href="kontakt.html#rueckruf" data-event="cta_callback_click">Запросити дзвінок</a></div>
       <div class="trust-row"><span class="experience-pill"><strong>27</strong> років досвіду</span><span>Регіон Цюриха</span><span>Натхнення з Японії</span></div>
     </div>
+    ${heroVariantSwitcher("uk", "Niwaki у швейцарському саду")}
   </section>
 
   <section class="section rescue-section">
@@ -1736,6 +1797,10 @@ function cssWowPass() {
 
 function heroCopyResponsiveFixCss() {
   return `@media (max-width:620px){.hero{padding-left:20px;padding-right:20px}.hero-slot>img,.hero-slot>picture>img{object-position:center center}.hero-panel{width:min(100%,calc(100vw - 40px));max-width:calc(100vw - 40px)}.hero-panel h1{font-size:clamp(1.9rem,8.8vw,2.24rem);line-height:1.02;max-width:12.5ch;overflow-wrap:normal}.hero-panel .motto{max-width:24ch;font-size:1.04rem;overflow-wrap:anywhere}.hero-panel>p:not(.motto){max-width:33ch;font-size:.95rem;line-height:1.55;overflow-wrap:anywhere}.hero-panel .eyebrow{display:flex;flex-wrap:wrap;max-width:34ch;font-size:.6rem;line-height:1.35;gap:7px;overflow-wrap:anywhere}.hero-panel .eyebrow:before{flex:0 0 22px;width:22px}}`;
+}
+
+function heroVariantCss() {
+  return `.hero{--hero-desktop-pos:48% center;--hero-mobile-pos:center center;--hero-filter:none;--hero-scale:1;--hero-origin:center center;--hero-mobile-scale:1;--hero-mobile-origin:center center;--hero-overlay-left:rgba(9,18,13,.66);--hero-overlay-mid:rgba(9,18,13,.38);--hero-overlay-right:rgba(9,18,13,.05);--hero-overlay-edge:rgba(9,18,13,.16);--hero-overlay-bottom:rgba(9,18,13,.42)}.hero-media:after{background:linear-gradient(90deg,var(--hero-overlay-left) 0%,var(--hero-overlay-mid) 34%,var(--hero-overlay-right) 68%,var(--hero-overlay-edge) 100%),linear-gradient(0deg,var(--hero-overlay-bottom),rgba(9,18,13,0) 42%)}.hero-slot{width:100%}.hero-slot>img{filter:var(--hero-filter);object-position:var(--hero-desktop-pos);transform:scale(var(--hero-scale));transform-origin:var(--hero-origin)}.hero-copy-mobile{display:none}.hero-accent{color:#ffe6a8;text-shadow:0 2px 20px rgba(0,0,0,.38)}.hero-variant-switcher{position:absolute;top:18px;right:max(18px,calc((100vw - var(--maxw))/2));z-index:4;display:flex;align-items:center;gap:7px;padding:7px 8px;border:1px solid rgba(255,255,255,.28);border-radius:999px;background:rgba(9,18,13,.34);color:#fff;box-shadow:0 14px 34px rgba(0,0,0,.22);backdrop-filter:blur(12px)}.hero-variant-switcher span{font-size:.68rem;font-weight:850;letter-spacing:0;text-transform:uppercase;color:rgba(255,255,255,.84)}.hero-variant-option{display:grid;place-items:center;width:32px;height:32px;border:1px solid rgba(255,255,255,.32);border-radius:999px;background:rgba(255,255,255,.10);color:#fff;font:850 .82rem/1 var(--font-body);cursor:pointer}.hero-variant-option:hover,.hero-variant-option:focus-visible,.hero-variant-option.is-active{background:linear-gradient(135deg,#ffe6a8,#c99c45);border-color:rgba(255,230,168,.95);color:#132218;text-shadow:none}.hero[data-hero-variant="1"]{--hero-desktop-pos:48% center;--hero-mobile-pos:center center}.hero[data-hero-variant="2"]{--hero-desktop-pos:47% center;--hero-mobile-pos:56% center;--hero-mobile-scale:1.10;--hero-mobile-origin:58% center;--hero-filter:saturate(1.22) contrast(1.09) brightness(1.04);--hero-overlay-left:rgba(8,17,11,.48);--hero-overlay-mid:rgba(8,17,11,.18);--hero-overlay-right:rgba(8,17,11,.02);--hero-overlay-edge:rgba(8,17,11,.08);--hero-overlay-bottom:rgba(8,17,11,.34)}.hero[data-hero-variant="3"]{--hero-desktop-pos:50% center;--hero-mobile-pos:52% center;--hero-mobile-scale:1.04;--hero-mobile-origin:52% center;--hero-filter:saturate(1.18) contrast(1.08) brightness(1.03);--hero-overlay-left:rgba(8,17,11,.52);--hero-overlay-mid:rgba(8,17,11,.20);--hero-overlay-right:rgba(8,17,11,.03);--hero-overlay-edge:rgba(8,17,11,.10);--hero-overlay-bottom:rgba(8,17,11,.36)}.hero[data-hero-variant="4"]{--hero-desktop-pos:46% center;--hero-mobile-pos:40% center;--hero-mobile-scale:1.24;--hero-mobile-origin:38% 54%;--hero-filter:saturate(1.20) contrast(1.08) brightness(1.04);--hero-overlay-left:rgba(8,17,11,.54);--hero-overlay-mid:rgba(8,17,11,.22);--hero-overlay-right:rgba(8,17,11,.03);--hero-overlay-edge:rgba(8,17,11,.10);--hero-overlay-bottom:rgba(8,17,11,.36)}.hero[data-hero-variant="5"]{--hero-desktop-pos:54% center;--hero-mobile-pos:54% center;--hero-mobile-scale:1.22;--hero-mobile-origin:55% 38%;--hero-filter:saturate(1.16) contrast(1.08) brightness(1.04);--hero-overlay-left:rgba(8,17,11,.56);--hero-overlay-mid:rgba(8,17,11,.24);--hero-overlay-right:rgba(8,17,11,.04);--hero-overlay-edge:rgba(8,17,11,.12);--hero-overlay-bottom:rgba(8,17,11,.38)}@media (max-width:620px){.hero{display:grid;grid-template-columns:1fr;min-height:calc(100svh - 69px);padding:0;overflow:hidden}.hero>*{grid-column:1}.hero-media{position:absolute;inset:0;display:block;height:100%;min-height:0;margin:0}.hero-media:after{background:linear-gradient(0deg,rgba(7,16,10,.70) 0%,rgba(7,16,10,.46) 42%,rgba(7,16,10,.10) 100%),linear-gradient(90deg,rgba(7,16,10,.36) 0%,rgba(7,16,10,.10) 54%,rgba(7,16,10,.02) 100%)}.hero-slot{height:100%;border-radius:0}.hero-slot>img{object-position:var(--hero-mobile-pos);transform:scale(var(--hero-mobile-scale));transform-origin:var(--hero-mobile-origin)}.hero-panel{grid-column:1;grid-row:1;align-self:end;width:100%;max-width:100%;margin:0;padding:0 20px calc(88px + env(safe-area-inset-bottom));overflow:visible}.hero-panel h1{max-width:12.8ch;font-size:clamp(1.76rem,7.6vw,2.06rem);line-height:1.02;margin-bottom:10px;overflow-wrap:normal}.hero-panel .motto{max-width:23ch;font-size:.98rem;line-height:1.34;margin-bottom:12px;padding-left:10px}.hero-copy-desktop{display:none}.hero-copy-mobile{display:block;max-width:30ch;font-size:.9rem;line-height:1.44;margin-bottom:0;overflow-wrap:normal}.hero-panel .eyebrow{display:flex;flex-wrap:wrap;max-width:30ch;font-size:.52rem;line-height:1.35;gap:6px;margin-bottom:8px}.hero-panel .eyebrow:before{flex:0 0 20px;width:20px}.hero-panel .btn-row{margin-top:14px}.hero .trust-row{margin-top:10px}.hero .trust-row span:not(.experience-pill){display:none}.hero .trust-row .experience-pill{width:auto;justify-content:flex-start}.hero-variant-switcher{top:12px;right:12px;gap:5px;padding:5px 6px}.hero-variant-switcher span{display:none}.hero-variant-option{width:30px;height:30px;font-size:.78rem}.hero[data-hero-variant="2"] .hero-media:after{background:linear-gradient(0deg,rgba(7,16,10,.60) 0%,rgba(7,16,10,.34) 42%,rgba(7,16,10,.04) 100%),linear-gradient(90deg,rgba(7,16,10,.30) 0%,rgba(7,16,10,.08) 54%,rgba(7,16,10,0) 100%)}.hero[data-hero-variant="3"] .hero-media:after,.hero[data-hero-variant="4"] .hero-media:after,.hero[data-hero-variant="5"] .hero-media:after{background:linear-gradient(0deg,rgba(7,16,10,.64) 0%,rgba(7,16,10,.36) 42%,rgba(7,16,10,.06) 100%),linear-gradient(90deg,rgba(7,16,10,.34) 0%,rgba(7,16,10,.08) 54%,rgba(7,16,10,0) 100%)}}`;
 }
 
 function meisterCarouselResponsiveCss() {
@@ -2039,6 +2104,61 @@ function jsMain() {
       });
     }, { threshold: 0.35 });
     observer.observe(vision);
+  }
+
+  const HERO_VARIANT_KEY = 'viktor_hero_variant';
+  const hero = $('[data-hero-root]');
+  const heroSwitcher = hero ? $('[data-hero-switcher]', hero) : null;
+  if (hero && heroSwitcher) {
+    const desktopImage = $('[data-hero-desktop-image]', hero);
+    const mobileImage = $('[data-hero-mobile-image]', hero);
+    const buttons = $$('[data-hero-variant-option]', heroSwitcher);
+    const validVariants = new Set(buttons.map((button) => button.dataset.heroVariantOption));
+    const readStoredHeroVariant = () => {
+      try {
+        const stored = window.localStorage.getItem(HERO_VARIANT_KEY);
+        return validVariants.has(stored) ? stored : null;
+      } catch (error) {
+        return null;
+      }
+    };
+    const writeStoredHeroVariant = (variant) => {
+      try {
+        window.localStorage.setItem(HERO_VARIANT_KEY, variant);
+      } catch (error) {
+        // Storage can be disabled in private browsing; the current page still switches.
+      }
+    };
+    const applyHeroVariant = (variant, { persist = true, announce = false } = {}) => {
+      if (!validVariants.has(variant)) return;
+      const activeButton = buttons.find((button) => button.dataset.heroVariantOption === variant);
+      if (!activeButton) return;
+      hero.dataset.heroVariant = variant;
+      hero.style.setProperty('--active-hero-variant', variant);
+      if (desktopImage && activeButton.dataset.heroDesktopSrc && desktopImage.getAttribute('src') !== activeButton.dataset.heroDesktopSrc) {
+        desktopImage.setAttribute('src', activeButton.dataset.heroDesktopSrc);
+      }
+      if (mobileImage && activeButton.dataset.heroMobileSrc && mobileImage.getAttribute('src') !== activeButton.dataset.heroMobileSrc) {
+        mobileImage.setAttribute('src', activeButton.dataset.heroMobileSrc);
+      }
+      if (activeButton.dataset.heroAlt) {
+        desktopImage?.setAttribute('alt', activeButton.dataset.heroAlt);
+        mobileImage?.setAttribute('alt', activeButton.dataset.heroAlt);
+      }
+      buttons.forEach((button) => {
+        const isActive = button === activeButton;
+        button.classList.toggle('is-active', isActive);
+        button.setAttribute('aria-pressed', String(isActive));
+      });
+      if (persist) writeStoredHeroVariant(variant);
+      if (announce) showToast('Hero V' + variant);
+    };
+    const requestedHeroVariant = new URLSearchParams(window.location.search).get('hero');
+    const initialHeroVariant = validVariants.has(requestedHeroVariant) ? requestedHeroVariant : readStoredHeroVariant() || hero.dataset.heroVariant || '1';
+    applyHeroVariant(initialHeroVariant, { persist: validVariants.has(requestedHeroVariant), announce: false });
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => applyHeroVariant(button.dataset.heroVariantOption, { persist: true, announce: true }));
+    });
   }
 
   $$('[data-theme-option]').forEach((button) => {
@@ -2471,6 +2591,7 @@ ${galleryCaseCss()}
 @media (max-width:920px){body{padding-bottom:calc(58px + env(safe-area-inset-bottom))}.cookie-banner{bottom:calc(74px + env(safe-area-inset-bottom))}.toast{bottom:calc(74px + env(safe-area-inset-bottom));left:16px;right:16px}}
 ${cssWowPass().replace(".before-after-slider body." + "presentation-clean @media", "@media")}
 ${heroCopyResponsiveFixCss()}
+${heroVariantCss()}
 ${experienceAccentCss()}
 ${meisterCarouselResponsiveCss()}`;
 }

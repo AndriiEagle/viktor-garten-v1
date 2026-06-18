@@ -288,6 +288,61 @@
     observer.observe(vision);
   }
 
+  const HERO_VARIANT_KEY = 'viktor_hero_variant';
+  const hero = $('[data-hero-root]');
+  const heroSwitcher = hero ? $('[data-hero-switcher]', hero) : null;
+  if (hero && heroSwitcher) {
+    const desktopImage = $('[data-hero-desktop-image]', hero);
+    const mobileImage = $('[data-hero-mobile-image]', hero);
+    const buttons = $$('[data-hero-variant-option]', heroSwitcher);
+    const validVariants = new Set(buttons.map((button) => button.dataset.heroVariantOption));
+    const readStoredHeroVariant = () => {
+      try {
+        const stored = window.localStorage.getItem(HERO_VARIANT_KEY);
+        return validVariants.has(stored) ? stored : null;
+      } catch (error) {
+        return null;
+      }
+    };
+    const writeStoredHeroVariant = (variant) => {
+      try {
+        window.localStorage.setItem(HERO_VARIANT_KEY, variant);
+      } catch (error) {
+        // Storage can be disabled in private browsing; the current page still switches.
+      }
+    };
+    const applyHeroVariant = (variant, { persist = true, announce = false } = {}) => {
+      if (!validVariants.has(variant)) return;
+      const activeButton = buttons.find((button) => button.dataset.heroVariantOption === variant);
+      if (!activeButton) return;
+      hero.dataset.heroVariant = variant;
+      hero.style.setProperty('--active-hero-variant', variant);
+      if (desktopImage && activeButton.dataset.heroDesktopSrc && desktopImage.getAttribute('src') !== activeButton.dataset.heroDesktopSrc) {
+        desktopImage.setAttribute('src', activeButton.dataset.heroDesktopSrc);
+      }
+      if (mobileImage && activeButton.dataset.heroMobileSrc && mobileImage.getAttribute('src') !== activeButton.dataset.heroMobileSrc) {
+        mobileImage.setAttribute('src', activeButton.dataset.heroMobileSrc);
+      }
+      if (activeButton.dataset.heroAlt) {
+        desktopImage?.setAttribute('alt', activeButton.dataset.heroAlt);
+        mobileImage?.setAttribute('alt', activeButton.dataset.heroAlt);
+      }
+      buttons.forEach((button) => {
+        const isActive = button === activeButton;
+        button.classList.toggle('is-active', isActive);
+        button.setAttribute('aria-pressed', String(isActive));
+      });
+      if (persist) writeStoredHeroVariant(variant);
+      if (announce) showToast('Hero V' + variant);
+    };
+    const requestedHeroVariant = new URLSearchParams(window.location.search).get('hero');
+    const initialHeroVariant = validVariants.has(requestedHeroVariant) ? requestedHeroVariant : readStoredHeroVariant() || hero.dataset.heroVariant || '1';
+    applyHeroVariant(initialHeroVariant, { persist: validVariants.has(requestedHeroVariant), announce: false });
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => applyHeroVariant(button.dataset.heroVariantOption, { persist: true, announce: true }));
+    });
+  }
+
   $$('[data-theme-option]').forEach((button) => {
     button.addEventListener('click', () => {
       const theme = button.dataset.themeOption;
