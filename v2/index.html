@@ -8,8 +8,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Viktor Baumarchitektur — Niwaki & japanische Baumkunst | Zürich</title>
-<meta name="description" content="Meister für Niwaki, japanische Ahorne und Nadelgehölze in der Region Zürich. 27 Jahre Erfahrung. Kostenlose Foto-Diagnose.">
+<title>Viktor Baumarchitektur — Gartenbonsais, Niwaki & japanische Baumkunst</title>
+<meta name="description" content="Meister für Gartenbonsais, Niwaki, Gartengestaltung und Formgehölze in der Schweiz. 27 Jahre Erfahrung. Kostenlose Foto-Diagnose.">
 <meta property="og:image" content="https://viktor-baumarchitektur.ch/assets/img/foto/01_hero/hero-sad-02.webp">
 <link rel="preload" as="image" href="../assets/img/foto/01_hero/hero-sad-02.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -143,6 +143,19 @@
   .fcredit{margin-top:36px;border-top:1px solid rgba(241,236,223,.16);padding-top:18px;font-size:.82rem;color:rgba(241,236,223,.5)}
   .mcta{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:1fr 62px;background:var(--pine);border-top:1px solid rgba(241,236,223,.2)} .mcta a{display:grid;place-items:center;min-height:66px;color:var(--washi);font:800 .94rem/1 var(--body)} .mcta a:first-child{background:var(--shu)}
   @media(min-width:900px){.mcta{display:none}}
+  @media(max-width:620px){
+    .hero{
+      min-height:calc(100svh - 68px);
+      align-items:flex-end;
+      background:linear-gradient(180deg,rgba(14,31,21,.2) 0%,rgba(11,24,16,.68) 46%,rgba(11,24,16,.92) 100%),url("../assets/img/foto/01_hero/hero-sad-02.webp") 46% center/cover no-repeat;
+    }
+    .hero .wrap{padding:38vh 22px 92px}
+    .hero h1{font-size:clamp(2.05rem,10.6vw,3rem);line-height:1;max-width:11ch;margin-top:14px}
+    .hero .motto{font-size:1.06rem;margin-top:16px}
+    .hero .lead,.hero .cta{display:none}
+    .eyebrow{flex-wrap:wrap;gap:8px;font-size:.58rem;line-height:1.45;letter-spacing:.16em;max-width:100%}
+    .eyebrow::before{width:22px;flex:0 0 22px}
+  }
 </style>
 </head>
 <body>
@@ -157,8 +170,8 @@
     <svg class="enso" viewBox="0 0 600 600" aria-hidden="true"><path d="M470 150 C540 235 560 360 470 450 C380 540 220 545 135 460 C50 375 55 215 150 140 C235 73 360 70 440 120"/></svg>
     <span class="tate">庭木 · 盆栽</span>
     <div class="wrap">
-      <span class="eyebrow stagger">Formgehölze · Niwaki · Evergreen Design · Japanische Gartenkunst</span>
-      <h1 class="stagger">Niwaki &amp; japanische Baumkunst.</h1>
+      <span class="eyebrow stagger">Gartenbonsais · Gartengestaltung · Formgehölze · japanische Baumkunst</span>
+      <h1 class="stagger">Gartenbonsais (Niwaki) &amp; japanische Baumkunst in der Schweiz</h1>
       <p class="motto stagger">Schweizer Qualität mit japanischer Philosophie.</p>
       <p class="lead stagger">Seit 27 Jahren forme und pflege ich japanische Ahorne, Kiefern und Niwaki in der Region Zürich — so, dass Ihr Baum über Jahre seine Form, seine Kraft und seine Gesundheit behält.</p>
       <div class="cta stagger"><a class="btn btn-shu" href="#voice-lead">Per Stimme anfragen</a><a class="btn btn-line" href="#kontakt">Rückruf anfordern</a></div>
