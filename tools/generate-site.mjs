@@ -627,7 +627,7 @@ function homeDe() {
       <p class="motto">Schweizer Qualität mit japanischer Philosophie.</p>
       <p>Als Meister für <strong>Niwaki und Garten-Bonsai</strong> in der <strong>Region Zürich</strong> forme und pflege ich seit 27 Jahren japanische Ahorne, Kiefern und Nadelgehölze - so, dass Ihr Baum über Jahre seine Form, seine Kraft und seine Gesundheit behält.</p>
       <div class="btn-row">${cta("Foto senden - kostenlose Diagnose")} <a class="btn btn-secondary" href="kontakt.html#rueckruf" data-event="cta_callback_click">Rückruf anfordern</a></div>
-      <div class="trust-row"><span>27 Jahre Erfahrung</span><span>Region Zürich</span><span>Inspiriert in Japan</span></div>
+      <div class="trust-row"><span class="experience-pill"><strong>27</strong> Jahre Erfahrung</span><span>Region Zürich</span><span>Inspiriert in Japan</span></div>
     </div>
   </section>
 
@@ -1143,7 +1143,7 @@ function homeEn() {
       <p class="motto">Swiss quality in resonance with Japanese philosophy.</p>
       <p>For clients in the Zurich region, Viktor shapes and cares for Japanese maples, pines and conifers so that a valuable tree keeps its form, strength and health for years.</p>
       <div class="btn-row">${cta("Send photo - free diagnosis")} <a class="btn btn-secondary" href="kontakt.html#rueckruf" data-event="cta_callback_click">Request callback</a></div>
-      <div class="trust-row"><span>27 years of experience</span><span>Zurich region</span><span>Inspired in Japan</span></div>
+      <div class="trust-row"><span class="experience-pill"><strong>27</strong> years of experience</span><span>Zurich region</span><span>Inspired in Japan</span></div>
     </div>
   </section>
   <section class="section rescue-section"><div class="section-head"><span class="eyebrow">Before / after</span><h2>When the right cut brings back air, light and calm.</h2><p>This comparison shows Viktor's core promise: not making a tree merely green, but making its living architecture readable again.</p></div>${conceptRescueSlider("en")}<div class="btn-row"><a class="btn btn-secondary" href="galerie.html">View gallery</a></div></section>
@@ -1267,7 +1267,7 @@ function homeUk() {
       <p class="motto">Швейцарська якість у резонансі з японською філософією.</p>
       <p>Віктор формує і доглядає <strong>Niwaki, садовий бонсай, японські клени, сосни і хвойні</strong> у регіоні Цюриха так, щоб дерево роками зберігало форму, силу і здоров'я.</p>
       <div class="btn-row">${ctaUk("Надіслати фото - безкоштовна діагностика")} <a class="btn btn-secondary" href="kontakt.html#rueckruf" data-event="cta_callback_click">Запросити дзвінок</a></div>
-      <div class="trust-row"><span>27 років досвіду</span><span>Регіон Цюриха</span><span>Натхнення з Японії</span></div>
+      <div class="trust-row"><span class="experience-pill"><strong>27</strong> років досвіду</span><span>Регіон Цюриха</span><span>Натхнення з Японії</span></div>
     </div>
   </section>
 
@@ -1448,6 +1448,10 @@ function heroCopyResponsiveFixCss() {
 
 function meisterCarouselResponsiveCss() {
   return `.meister-section{align-items:center}.meister-carousel{width:min(100%,680px);justify-self:center;align-self:center;background:#f8f5ee}.meister-carousel .image-carousel-slide{object-fit:contain;padding:clamp(10px,1.4vw,18px);background:#f8f5ee}@media (min-width:921px) and (max-width:1320px){.meister-section{grid-template-columns:minmax(0,1fr) minmax(360px,.76fr);gap:28px}.meister-section h2{font-size:clamp(2.15rem,3.6vw,3.05rem)}.meister-carousel{max-width:540px}.meister-carousel .image-carousel-btn{width:38px;height:38px;font-size:1.45rem}.meister-carousel .image-carousel-prev{left:10px}.meister-carousel .image-carousel-next{right:10px}}@media (min-width:1321px){.meister-carousel{max-width:640px}}@media (max-width:920px){.meister-carousel{max-width:680px;margin:0 auto}.meister-carousel .image-carousel-slide{padding:10px}}`;
+}
+
+function experienceAccentCss() {
+  return `.hero .trust-row .experience-pill{position:relative;align-items:center;gap:7px;background:linear-gradient(135deg,rgba(198,155,72,.96),rgba(255,235,176,.88));border-color:rgba(255,229,156,.78);color:#142417;text-shadow:none;box-shadow:0 12px 32px rgba(0,0,0,.24),inset 0 0 0 1px rgba(255,255,255,.28),0 0 24px rgba(214,168,83,.24);animation:experienceGlow 5.4s ease-in-out infinite}.hero .trust-row .experience-pill strong{font-family:var(--font-head);font-size:1.08rem;line-height:1;color:#0d2a17}.hero .trust-row .experience-pill:after{content:"";position:absolute;inset:-2px;border-radius:999px;border:1px solid rgba(255,225,150,.42);opacity:.58;pointer-events:none}@keyframes experienceGlow{0%,100%{transform:translateY(0);box-shadow:0 12px 32px rgba(0,0,0,.24),inset 0 0 0 1px rgba(255,255,255,.28),0 0 20px rgba(214,168,83,.2)}50%{transform:translateY(-1px);box-shadow:0 16px 38px rgba(0,0,0,.3),inset 0 0 0 1px rgba(255,255,255,.34),0 0 34px rgba(238,190,95,.34)}}@media (max-width:620px){.hero .trust-row .experience-pill{padding:7px 11px}.hero .trust-row .experience-pill strong{font-size:1.02rem}}@media (prefers-reduced-motion:reduce){.hero .trust-row .experience-pill{animation:none!important;transform:none!important}}`;
 }
 
 function jsMain() {
@@ -2135,6 +2139,7 @@ ${cssResponsiveFixes()}
 @media (max-width:920px){body{padding-bottom:calc(58px + env(safe-area-inset-bottom))}.cookie-banner{bottom:calc(74px + env(safe-area-inset-bottom))}.toast{bottom:calc(74px + env(safe-area-inset-bottom));left:16px;right:16px}}
 ${cssWowPass().replace(".before-after-slider body." + "presentation-clean @media", "@media")}
 ${heroCopyResponsiveFixCss()}
+${experienceAccentCss()}
 ${meisterCarouselResponsiveCss()}`;
 }
 
