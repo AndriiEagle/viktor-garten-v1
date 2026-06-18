@@ -63,6 +63,41 @@
     play();
   });
 
+  const caseModal = $('[data-case-modal]');
+  if (caseModal) {
+    const panels = $$('[data-case-panel]', caseModal);
+    const closeButtons = $$('[data-case-close]', caseModal);
+    let lastFocused = null;
+    const openCase = (id) => {
+      const activePanel = panels.find((panel) => panel.dataset.casePanel === id);
+      if (!activePanel) return;
+      lastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      panels.forEach((panel) => { panel.hidden = panel !== activePanel; });
+      caseModal.hidden = false;
+      caseModal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('case-modal-open');
+      $('[data-case-close]', caseModal)?.focus();
+    };
+    const closeCase = () => {
+      caseModal.hidden = true;
+      caseModal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('case-modal-open');
+      panels.forEach((panel) => { panel.hidden = true; });
+      lastFocused?.focus?.();
+      lastFocused = null;
+    };
+    $$('[data-case-open]').forEach((button) => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        openCase(button.dataset.caseOpen);
+      });
+    });
+    closeButtons.forEach((button) => button.addEventListener('click', closeCase));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !caseModal.hidden) closeCase();
+    });
+  }
+
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function gtag(){ window.dataLayer.push(arguments); };
   window.gtag('consent', 'default', {

@@ -212,6 +212,223 @@ function photoGallery(items, lang = "de", limit = 42) {
   }).join("");
 }
 
+const beforeAfterCases = [
+  {
+    id: "pinus-parviflora-ladder",
+    before: { folder: "02_pryklady-robit", file: "case-parviflora-before.webp", position: "center center" },
+    after: { folder: "02_pryklady-robit", file: "case-parviflora-after.webp", position: "center center" },
+    title: {
+      de: "Pinus parviflora: vom dichten Block zur lesbaren Form",
+      uk: "Pinus parviflora: з густого блоку в читабельну форму",
+      en: "Pinus parviflora: from dense mass to readable form"
+    },
+    summary: {
+      de: "Dasselbe Baumthema: nicht einfach kleiner geschnitten, sondern wieder in ruhige Ebenen gebracht.",
+      uk: "Реальна пара до і після: та сама робота з білою сосною, але форма стала спокійнішою і зрозумілішою.",
+      en: "A real before/after pair: the same white pine work, made calmer and easier to read."
+    },
+    done: {
+      de: "Dichte Partien geöffnet, störende Triebe selektiv entfernt und die Wolkenform wieder geordnet.",
+      uk: "Відкрито густі місця, вибірково прибрано зайві пагони, повернуто ярусність крони.",
+      en: "Dense areas were opened, distracting shoots were removed selectively and the cloud structure was restored."
+    },
+    why: {
+      de: "So bekommen Licht, Luft und Kraft wieder Raum; die Form wirkt gepflegt, nicht hart gestutzt.",
+      uk: "Дерево отримує світло і повітря, а форма не виглядає грубо підстриженою.",
+      en: "Light and air can move through the crown again, so the result looks cared for, not roughly clipped."
+    },
+    value: {
+      de: "Viktors Wert liegt im Lesen der Struktur: Er entscheidet, was bleiben muss, damit der Baum in den nächsten Jahren schön weiterwächst.",
+      uk: "Цінність Віктора - прочитати структуру дерева і не забрати зайве: результат має працювати не один день, а роками.",
+      en: "Viktor's value is in reading the structure and keeping what the tree needs to grow well over the next years."
+    }
+  },
+  {
+    id: "pinus-parviflora-terrace",
+    before: { folder: "02_pryklady-robit", file: "case-terrace-before.webp", position: "center center" },
+    after: { folder: "02_pryklady-robit", file: "case-terrace-after.webp", position: "center center" },
+    title: {
+      de: "Niedrige Krone an der Terrasse",
+      uk: "Низька крона біля тераси",
+      en: "Low crown beside the terrace"
+    },
+    summary: {
+      de: "Pinus parviflora mit niedriger Krone: Kontrolle des Wachstums direkt am Kundenbereich.",
+      uk: "Pinus parviflora з низькою кроною: контроль росту там, де дерево живе біля тераси клієнта.",
+      en: "Pinus parviflora with a low crown: growth control where the tree lives beside the client's terrace."
+    },
+    done: {
+      de: "Die untere Masse beruhigt, der Umriss geöffnet und störendes Wachstum im Terrassenbereich reduziert.",
+      uk: "Заспокоєно нижню масу, відкрито силует і прибрано зайве там, де дерево тиснуло на простір тераси.",
+      en: "The lower mass was calmed, the silhouette opened and growth that crowded the terrace was reduced."
+    },
+    why: {
+      de: "Der Baum soll Teil des Gartens bleiben, ohne Sicht, Licht und Bewegung am Sitzplatz zu blockieren.",
+      uk: "Дерево має залишатися частиною саду, а не закривати вигляд, світло і прохід.",
+      en: "The tree should remain part of the garden without blocking view, light or movement."
+    },
+    value: {
+      de: "Viktor arbeitet nicht nur am Baum, sondern an der Beziehung zwischen Baum, Garten und Nutzung.",
+      uk: "Віктор працює не тільки з деревом, а й з тим, як воно живе в конкретному місці.",
+      en: "Viktor works not only on the tree, but on how the tree fits its exact place."
+    }
+  },
+  {
+    id: "pinus-watereri-clouds",
+    before: { folder: "02_pryklady-robit", file: "case-watereri-before.webp", position: "center center" },
+    after: { folder: "02_pryklady-robit", file: "case-watereri-after.webp", position: "center center" },
+    title: {
+      de: "Pinus sylvestris Watereri: Wolken wieder ordnen",
+      uk: "Watereri: робота з хмарками",
+      en: "Watereri: restoring the cloud structure"
+    },
+    summary: {
+      de: "Die Wolken bleiben natürlich, aber die Abstände und die Richtung werden wieder klar.",
+      uk: "Хмарки залишаються живими, але відстані між ярусами і напрямок форми стають чіткими.",
+      en: "The clouds stay natural, while the spacing and direction become clear again."
+    },
+    done: {
+      de: "Wolken ausgeglichen, Zwischenräume geöffnet und der natürliche Rhythmus der Kiefer erhalten.",
+      uk: "Вирівняно хмарки, відкрито проміжки між ярусами, залишено природний ритм сосни.",
+      en: "The cloud pads were balanced, gaps were opened and the pine's natural rhythm was kept."
+    },
+    why: {
+      de: "Ohne Luft in der Krone wird die Form schnell schwer und verliert Proportion.",
+      uk: "Без повітря всередині крони форма швидко стає важкою і втрачає пропорцію.",
+      en: "Without air inside the crown, the shape quickly becomes heavy and loses proportion."
+    },
+    value: {
+      de: "Die Stärke liegt in der selektiven Handarbeit: nicht alles gleich schneiden, sondern die lebende Architektur stehen lassen.",
+      uk: "Сила тут у ручній вибірковості: не зрізати все рівно, а залишити живу архітектуру.",
+      en: "The value is selective hand work: not cutting everything flat, but preserving living architecture."
+    }
+  },
+  {
+    id: "taxus-topiary",
+    before: { folder: "02_pryklady-robit", file: "case-taxus-before.webp", position: "center center" },
+    after: { folder: "02_pryklady-robit", file: "case-taxus-after.webp", position: "center center" },
+    title: {
+      de: "Taxus baccata: Topiary ohne harte Wand",
+      uk: "Taxus baccata: топіарій без грубої стінки",
+      en: "Taxus baccata: topiary without a hard wall"
+    },
+    summary: {
+      de: "Eibe hält Form gut, braucht aber einen ruhigen Aufbau statt schnellen Maschinenschnitt.",
+      uk: "Тис добре тримає форму, але потребує спокійного ручного збору, а не швидкого машинного зрізу.",
+      en: "Yew holds shape well, but needs calm hand correction instead of a quick mechanical cut."
+    },
+    done: {
+      de: "Die Polster nachgearbeitet, der Umriss gesammelt und chaotischer Neuaustrieb entfernt.",
+      uk: "Підчищено шапки, зібрано контур і прибрано хаотичний приріст.",
+      en: "The pads were cleaned, the outline gathered and chaotic new growth removed."
+    },
+    why: {
+      de: "So bleibt die Form präzise, ohne wie eine grob geschorene Hecke zu wirken.",
+      uk: "Так форма лишається точною, але не виглядає як грубо підстрижена жива огорожа.",
+      en: "The form stays precise without looking like a roughly clipped hedge."
+    },
+    value: {
+      de: "Viktor bringt die Linie zurück, ohne dem Baum seine lebendige Oberfläche zu nehmen.",
+      uk: "Віктор повертає лінію, але не забирає в дерева живу поверхню.",
+      en: "Viktor brings the line back without taking away the tree's living surface."
+    }
+  }
+];
+
+function localized(value, lang = "de") {
+  return value[lang] || value.de;
+}
+
+function galleryCaseLabels(lang = "de") {
+  if (lang === "uk") {
+    return {
+      before: "До",
+      after: "Після",
+      details: "Що зроблено",
+      done: "Що зроблено",
+      why: "Чому",
+      value: "Цінність Віктора",
+      close: "Закрити",
+      modal: "Опис роботи до і після"
+    };
+  }
+  if (lang === "en") {
+    return {
+      before: "Before",
+      after: "After",
+      details: "What was done",
+      done: "What was done",
+      why: "Why",
+      value: "Viktor's value",
+      close: "Close",
+      modal: "Before and after work description"
+    };
+  }
+  return {
+    before: "Vorher",
+    after: "Nachher",
+    details: "Was wurde gemacht",
+    done: "Was wurde gemacht",
+    why: "Warum",
+    value: "Viktors Wert",
+    close: "Schließen",
+    modal: "Beschreibung der Vorher-Nachher-Arbeit"
+  };
+}
+
+function caseImage(image, label, lang = "de", loading = "lazy", altText = "") {
+  const item = photo(image.folder, image.file);
+  const src = `__ASSET_PREFIX__assets/img/${item.path}`;
+  const position = image.position || "center center";
+  const style = ` style="--case-position:${position};--case-image:url('${src}')"`;
+  return `<figure class="case-frame"${style}>
+    <img src="${src}" alt="${altText || photoAlt(image.folder, image.file, lang, item.alt_de)}" loading="${loading}" decoding="async" width="900" height="675">
+    <figcaption>${label}</figcaption>
+  </figure>`;
+}
+
+function galleryCaseStudies(lang = "de") {
+  const labels = galleryCaseLabels(lang);
+  const cards = beforeAfterCases.map((item, index) => `
+    <a class="case-card" href="#case-${item.id}" data-case-open="${item.id}" aria-haspopup="dialog">
+      <div class="case-pair">
+        ${caseImage(item.before, labels.before, lang, index < 2 ? "eager" : "lazy", `${labels.before}: ${localized(item.title, lang)}`)}
+        ${caseImage(item.after, labels.after, lang, index < 2 ? "eager" : "lazy", `${labels.after}: ${localized(item.title, lang)}`)}
+      </div>
+      <span class="case-copy">
+        <strong>${localized(item.title, lang)}</strong>
+        <span>${localized(item.summary, lang)}</span>
+        <em>${labels.details} -></em>
+      </span>
+    </a>`).join("");
+  const panels = beforeAfterCases.map((item) => `
+    <article class="case-detail" data-case-panel="${item.id}" hidden>
+      <div class="case-detail-pair">
+        ${caseImage(item.before, labels.before, lang, "lazy", `${labels.before}: ${localized(item.title, lang)}`)}
+        ${caseImage(item.after, labels.after, lang, "lazy", `${labels.after}: ${localized(item.title, lang)}`)}
+      </div>
+      <div class="case-detail-copy">
+        <span class="eyebrow">${labels.details}</span>
+        <h2>${localized(item.title, lang)}</h2>
+        <p>${localized(item.summary, lang)}</p>
+        <dl class="case-notes">
+          <div><dt>${labels.done}</dt><dd>${localized(item.done, lang)}</dd></div>
+          <div><dt>${labels.why}</dt><dd>${localized(item.why, lang)}</dd></div>
+          <div><dt>${labels.value}</dt><dd>${localized(item.value, lang)}</dd></div>
+        </dl>
+      </div>
+    </article>`).join("");
+  return `
+    <div class="case-grid">${cards}</div>
+    <div class="case-modal" data-case-modal hidden aria-hidden="true">
+      <button class="case-modal-backdrop" type="button" data-case-close aria-label="${labels.close}"></button>
+      <div class="case-modal-panel" role="dialog" aria-modal="true" aria-label="${labels.modal}">
+        <button class="case-modal-close" type="button" data-case-close aria-label="${labels.close}">&times;</button>
+        ${panels}
+      </div>
+    </div>`;
+}
+
 function meisterImageCarousel(prefix = "__ASSET_PREFIX__assets/img/") {
   const slides = [
     ["baumarchitektur-korrektur.png", "Baumarchitektur: selektive Korrektur und Erhalt der lebenden Struktur"],
@@ -826,10 +1043,11 @@ function galleryPage(lang = "de") {
     ? {
         eyebrow: "Галерея",
         h1: "До і після - реальні приклади робіт.",
-        intro: "Спочатку показані всі придатні фото з серій до і після, далі - інші реальні дерева, готові форми і процес роботи. Портрети Віктора не змішуємо з цією галереєю, щоб тут були саме результати.",
+        intro: "Спочатку показані зв'язані пари одного дерева або однієї серії. По кліку відкривається коротке пояснення: що зроблено, чому і в чому цінність роботи Віктора.",
         beforeEyebrow: "До і після",
-        beforeTitle: "Реальні серії до і після.",
-        beforeText: "Ці фото взяті з робочого каталогу до і після. Частина кадрів показує той самий об'єкт або етапи однієї роботи; вони потрібні, щоб клієнт бачив не абстрактну обіцянку, а реальний процес формування.",
+        beforeTitle: "Зв'язані пари до і після.",
+        beforeText: "Це не випадковий набір красивих фото. Кожна картка показує пару або серію з каталогу робіт, де можна зрозуміти зміну форми.",
+        archiveSummary: "Показати додаткові кадри з серій до/після",
         workEyebrow: "Інші приклади",
         workTitle: "Готові дерева, форма і процес.",
         workText: "Додаткові фото садових бонсаїв, Niwaki, сосен і робочих етапів. Тут немає портретного кадру з обличчям у верхній галереї."
@@ -838,10 +1056,11 @@ function galleryPage(lang = "de") {
       ? {
           eyebrow: "Galerie",
           h1: "Vorher / Nachher - reale Arbeiten.",
-          intro: "Zuerst kommen alle geeigneten Fotos aus den Vorher-/Nachher-Serien, danach weitere reale Bäume, fertige Formen und Arbeitsphasen. Porträts von Viktor werden hier nicht gemischt, damit diese Galerie die Arbeit zeigt.",
+          intro: "Zuerst stehen verbundene Paare desselben Baums oder derselben Serie. Beim Klick öffnet sich kurz: was gemacht wurde, warum und worin Viktors Wert liegt.",
           beforeEyebrow: "Vorher / Nachher",
-          beforeTitle: "Reale Vorher-/Nachher-Reihen.",
-          beforeText: "Diese Fotos stammen aus dem Arbeitskatalog. Einige Reihen zeigen denselben Baum oder Etappen einer Arbeit; sie zeigen den Prozess statt nur ein einzelnes schönes Ergebnis.",
+          beforeTitle: "Verbundene Vorher-/Nachher-Paare.",
+          beforeText: "Das ist keine zufällige Sammlung schöner Fotos. Jede Karte zeigt ein Paar oder eine Serie aus dem Arbeitskatalog, damit die Veränderung der Form verständlich wird.",
+          archiveSummary: "Zusätzliche Bilder aus den Vorher-/Nachher-Serien anzeigen",
           workEyebrow: "Weitere Beispiele",
           workTitle: "Fertige Bäume, Form und Arbeit.",
           workText: "Weitere reale Fotos von Gartenbonsai, Niwaki, Kiefern und Arbeitsphasen. Das Porträtbild mit Viktors Gesicht bleibt ausserhalb dieser Arbeitsgalerie."
@@ -849,10 +1068,11 @@ function galleryPage(lang = "de") {
       : {
           eyebrow: "Gallery",
           h1: "Before / after - real work examples.",
-          intro: "First are all suitable photos from the before/after series, followed by additional real trees, finished forms and work stages. Portraits of Viktor are kept out of this gallery so the page focuses on the work.",
+          intro: "First are connected pairs from the same tree or the same work series. Click a case to see what was done, why it mattered and where Viktor adds value.",
           beforeEyebrow: "Before / after",
-          beforeTitle: "Real before/after series.",
-          beforeText: "These photos come from the working catalogue. Some series show the same tree or stages of one job, so the client sees the process, not only a single polished result.",
+          beforeTitle: "Connected before/after pairs.",
+          beforeText: "This is not a random set of nice images. Each card shows a pair or series from the work catalogue, so the change in form is understandable.",
+          archiveSummary: "Show additional frames from before/after series",
           workEyebrow: "More examples",
           workTitle: "Finished trees, form and process.",
           workText: "Additional real photos of garden bonsai, niwaki, pines and work stages. The portrait image with Viktor's face is not mixed into this work gallery."
@@ -867,7 +1087,11 @@ function galleryPage(lang = "de") {
   </section>
   <section class="section">
     <div class="section-head"><span class="eyebrow">${prefix.beforeEyebrow}</span><h2>${prefix.beforeTitle}</h2><p>${prefix.beforeText}</p></div>
-    <div class="gallery-real-grid">${photoGallery(beforeItems, lang, beforeItems.length)}</div>
+    ${galleryCaseStudies(lang)}
+    <details class="gallery-archive">
+      <summary>${prefix.archiveSummary}</summary>
+      <div class="gallery-real-grid">${photoGallery(beforeItems, lang, beforeItems.length)}</div>
+    </details>
   </section>
   <section class="section">
     <div class="section-head"><span class="eyebrow">${prefix.workEyebrow}</span><h2>${prefix.workTitle}</h2><p>${prefix.workText}</p></div>
@@ -1522,6 +1746,10 @@ function experienceAccentCss() {
   return `.hero .trust-row .experience-pill{position:relative;align-items:center;gap:7px;background:linear-gradient(135deg,rgba(198,155,72,.96),rgba(255,235,176,.88));border-color:rgba(255,229,156,.78);color:#142417;text-shadow:none;box-shadow:0 12px 32px rgba(0,0,0,.24),inset 0 0 0 1px rgba(255,255,255,.28),0 0 24px rgba(214,168,83,.24);animation:experienceGlow 5.4s ease-in-out infinite}.hero .trust-row .experience-pill strong{font-family:var(--font-head);font-size:1.08rem;line-height:1;color:#0d2a17}.hero .trust-row .experience-pill:after{content:"";position:absolute;inset:-2px;border-radius:999px;border:1px solid rgba(255,225,150,.42);opacity:.58;pointer-events:none}@keyframes experienceGlow{0%,100%{transform:translateY(0);box-shadow:0 12px 32px rgba(0,0,0,.24),inset 0 0 0 1px rgba(255,255,255,.28),0 0 20px rgba(214,168,83,.2)}50%{transform:translateY(-1px);box-shadow:0 16px 38px rgba(0,0,0,.3),inset 0 0 0 1px rgba(255,255,255,.34),0 0 34px rgba(238,190,95,.34)}}@media (max-width:620px){.hero .trust-row .experience-pill{padding:7px 11px}.hero .trust-row .experience-pill strong{font-size:1.02rem}}@media (prefers-reduced-motion:reduce){.hero .trust-row .experience-pill{animation:none!important;transform:none!important}}`;
 }
 
+function galleryCaseCss() {
+  return `.case-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.case-card{display:block;overflow:hidden;width:100%;padding:0;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);color:inherit;text-align:left;text-decoration:none;cursor:pointer}.case-card:hover .case-frame img,.case-card:focus-visible .case-frame img{transform:scale(1.035)}.case-card:focus-visible{outline:3px solid var(--accent);outline-offset:4px}.case-pair,.case-detail-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;background:#102016}.case-frame{position:relative;aspect-ratio:16/10;overflow:hidden;margin:0;background-color:var(--surface);background-image:var(--case-image);background-size:cover;background-position:var(--case-position,center center)}.case-frame+.case-frame{border-left:1px solid rgba(255,255,255,.72)}.case-frame img{width:100%;height:100%;object-fit:cover;object-position:var(--case-position,center center);transition:transform .45s ease}.case-frame figcaption{position:absolute;left:10px;top:10px;border:1px solid rgba(255,255,255,.42);border-radius:999px;background:rgba(9,18,13,.62);color:#fff;padding:6px 9px;font-size:.74rem;font-weight:850;line-height:1;backdrop-filter:blur(10px)}.case-copy{display:grid;gap:8px;padding:17px 18px 19px}.case-copy strong{font-family:var(--font-head);font-size:1.28rem;line-height:1.12;color:var(--text)}.case-copy span{color:var(--muted);line-height:1.5}.case-copy em{font-style:normal;font-weight:850;color:var(--primary);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}.gallery-archive{margin-top:24px;border:1px solid var(--line);border-radius:var(--radius);background:color-mix(in srgb,var(--surface) 76%,var(--bg));box-shadow:var(--shadow);padding:14px}.gallery-archive summary{cursor:pointer;font-weight:850;color:var(--primary)}.gallery-archive .gallery-real-grid{margin-top:14px}.case-modal[hidden],.case-detail[hidden]{display:none!important}body.case-modal-open{overflow:hidden}.case-modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:18px}.case-modal-backdrop{position:absolute;inset:0;border:0;background:rgba(9,18,13,.66);backdrop-filter:blur(8px);cursor:pointer}.case-modal-panel{position:relative;width:min(1080px,100%);max-height:calc(100svh - 36px);overflow:auto;border:1px solid color-mix(in srgb,var(--primary) 18%,var(--line));border-radius:var(--radius);background:var(--surface);box-shadow:0 28px 90px rgba(0,0,0,.34);padding:18px}.case-modal-close{position:sticky;top:0;z-index:3;display:grid;place-items:center;width:42px;height:42px;margin-left:auto;margin-bottom:10px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--surface) 90%,transparent);color:var(--primary);font:800 1.6rem/1 var(--font-body);cursor:pointer;backdrop-filter:blur(10px)}.case-detail{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(320px,.88fr);gap:24px;align-items:start}.case-detail-pair{gap:10px;background:transparent}.case-detail-pair .case-frame{border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.case-detail-pair .case-frame+.case-frame{border-left:1px solid var(--line)}.case-detail-copy{padding:4px 4px 12px}.case-detail-copy h2{font-size:clamp(1.8rem,3vw,2.55rem)}.case-notes{display:grid;gap:12px;margin:22px 0 0}.case-notes div{border-top:1px solid var(--line);padding-top:12px}.case-notes dt{font-weight:900;color:var(--primary)}.case-notes dd{margin:4px 0 0;color:var(--muted)}@media (max-width:920px){.case-grid{grid-template-columns:1fr}.case-detail{grid-template-columns:1fr}.case-modal-panel{padding:14px}.case-detail-copy h2{font-size:2rem}}@media (max-width:620px){.case-grid{gap:14px}.case-copy{padding:15px}.case-copy strong{font-size:1.14rem}.case-pair,.case-detail-pair{gap:0}.case-detail-pair{gap:8px}.case-frame{aspect-ratio:4/3}.case-pair .case-frame{aspect-ratio:1/1}.case-frame figcaption{left:7px;top:7px;font-size:.66rem;padding:5px 7px}.case-modal{padding:10px}.case-modal-panel{max-height:calc(100svh - 20px);border-radius:10px}.case-modal-close{width:40px;height:40px;margin-bottom:8px}.case-detail-copy h2{font-size:1.72rem}.case-notes{gap:10px}}`;
+}
+
 function jsMain() {
   return `(() => {
   const $ = (selector, root = document) => root.querySelector(selector);
@@ -1587,6 +1815,41 @@ function jsMain() {
     go(0);
     play();
   });
+
+  const caseModal = $('[data-case-modal]');
+  if (caseModal) {
+    const panels = $$('[data-case-panel]', caseModal);
+    const closeButtons = $$('[data-case-close]', caseModal);
+    let lastFocused = null;
+    const openCase = (id) => {
+      const activePanel = panels.find((panel) => panel.dataset.casePanel === id);
+      if (!activePanel) return;
+      lastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      panels.forEach((panel) => { panel.hidden = panel !== activePanel; });
+      caseModal.hidden = false;
+      caseModal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('case-modal-open');
+      $('[data-case-close]', caseModal)?.focus();
+    };
+    const closeCase = () => {
+      caseModal.hidden = true;
+      caseModal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('case-modal-open');
+      panels.forEach((panel) => { panel.hidden = true; });
+      lastFocused?.focus?.();
+      lastFocused = null;
+    };
+    $$('[data-case-open]').forEach((button) => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        openCase(button.dataset.caseOpen);
+      });
+    });
+    closeButtons.forEach((button) => button.addEventListener('click', closeCase));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !caseModal.hidden) closeCase();
+    });
+  }
 
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function gtag(){ window.dataLayer.push(arguments); };
@@ -2203,6 +2466,7 @@ ${cssResponsiveFixes()}
 .quiet-moments,.check-strip{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.quiet-moments span,.check-strip span{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;background:var(--surface);padding:8px 11px;color:var(--muted);font-size:.88rem;font-weight:800}.signature-block .check-strip span{background:color-mix(in srgb,var(--primary-ink) 14%,transparent);border-color:color-mix(in srgb,var(--primary-ink) 24%,transparent);color:var(--primary-ink)}
 .hp-field{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
 .image-carousel{--carousel-index:0;position:relative;aspect-ratio:4/3;overflow:hidden;margin:0;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);touch-action:pan-y}.image-carousel-track{display:flex;height:100%;transform:translateX(calc(var(--carousel-index)*-100%));transition:transform .52s cubic-bezier(.2,.7,.2,1);will-change:transform}.image-carousel-slide{flex:0 0 100%;width:100%;height:100%;object-fit:cover;background:var(--surface)}.image-carousel-btn{position:absolute;top:50%;z-index:2;display:grid;place-items:center;width:44px;height:44px;border:1px solid color-mix(in srgb,var(--primary) 22%,transparent);border-radius:999px;background:color-mix(in srgb,var(--surface) 88%,transparent);color:var(--primary);box-shadow:0 10px 28px rgba(0,0,0,.18);font:800 1.8rem/1 var(--font-body);cursor:pointer;transform:translateY(-50%);backdrop-filter:blur(10px)}.image-carousel-prev{left:14px}.image-carousel-next{right:14px}.image-carousel-dots{position:absolute;left:0;right:0;bottom:13px;z-index:2;display:flex;justify-content:center;gap:8px}.image-carousel-dot{width:9px;height:9px;border:1px solid color-mix(in srgb,var(--primary) 55%,transparent);border-radius:999px;background:color-mix(in srgb,var(--surface) 70%,transparent);padding:0;cursor:pointer}.image-carousel-dot.is-active{width:28px;background:var(--primary)}@media (max-width:620px){.image-carousel{border-radius:12px}.image-carousel-btn{width:40px;height:40px;font-size:1.55rem}.image-carousel-prev{left:10px}.image-carousel-next{right:10px}.image-carousel-dots{bottom:10px}}
+${galleryCaseCss()}
 .cookie-banner[hidden],.toast[hidden]{display:none!important}.cookie-banner{max-height:calc(100svh - 32px);overflow:auto;pointer-events:auto}.mobile-cta{padding-bottom:env(safe-area-inset-bottom)}
 @media (max-width:920px){body{padding-bottom:calc(58px + env(safe-area-inset-bottom))}.cookie-banner{bottom:calc(74px + env(safe-area-inset-bottom))}.toast{bottom:calc(74px + env(safe-area-inset-bottom));left:16px;right:16px}}
 ${cssWowPass().replace(".before-after-slider body." + "presentation-clean @media", "@media")}
