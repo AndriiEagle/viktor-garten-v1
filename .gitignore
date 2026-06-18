@@ -9,6 +9,11 @@
 *.tmp
 *.log
 
+# Local source/raw/handoff artifacts that are not part of the public site
+/handoff/
+/*.jpg
+/*.png
+
 # Local secrets
 .env
 .env.local
