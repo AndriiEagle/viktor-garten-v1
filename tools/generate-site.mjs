@@ -181,6 +181,26 @@ function catalogItems(folders) {
   return photoCatalog.filter((item) => wanted.has(item.folder));
 }
 
+const galleryExclusions = new Set([
+  "02_pryklady-robit/sosna-bila-16.webp",
+  "03_galereya/sosna-bila-07.webp"
+]);
+
+function publicGalleryItems(folders) {
+  return catalogItems(folders).filter((item) => !galleryExclusions.has(`${item.folder}/${item.file}`));
+}
+
+function beforeAfterGalleryItems() {
+  return publicGalleryItems(["02_pryklady-robit"]).filter((item) => item.file.includes("do-pislya"));
+}
+
+function workGalleryItems() {
+  return [
+    ...publicGalleryItems(["03_galereya"]),
+    ...publicGalleryItems(["02_pryklady-robit"]).filter((item) => !item.file.includes("do-pislya"))
+  ];
+}
+
 function photoGallery(items, lang = "de", limit = 42) {
   return items.slice(0, limit).map((item, index) => {
     const loading = index < 12 ? "eager" : "lazy";
@@ -799,25 +819,73 @@ function philosophyDe() {
   ${finalCtaDe()}`;
 }
 
-function galleryDe() {
-  const galleryItems = [...catalogItems(["03_galereya"]), ...catalogItems(["02_pryklady-robit"])]
-    .filter((item) => !(item.folder === "03_galereya" && item.file === "sosna-bila-07.webp"));
+function galleryPage(lang = "de") {
+  const de = lang === "de";
+  const uk = lang === "uk";
+  const prefix = uk
+    ? {
+        eyebrow: "Галерея",
+        h1: "До і після - реальні приклади робіт.",
+        intro: "Спочатку показані всі придатні фото з серій до і після, далі - інші реальні дерева, готові форми і процес роботи. Портрети Віктора не змішуємо з цією галереєю, щоб тут були саме результати.",
+        beforeEyebrow: "До і після",
+        beforeTitle: "Реальні серії до і після.",
+        beforeText: "Ці фото взяті з робочого каталогу до і після. Частина кадрів показує той самий об'єкт або етапи однієї роботи; вони потрібні, щоб клієнт бачив не абстрактну обіцянку, а реальний процес формування.",
+        workEyebrow: "Інші приклади",
+        workTitle: "Готові дерева, форма і процес.",
+        workText: "Додаткові фото садових бонсаїв, Niwaki, сосен і робочих етапів. Тут немає портретного кадру з обличчям у верхній галереї."
+      }
+    : de
+      ? {
+          eyebrow: "Galerie",
+          h1: "Vorher / Nachher - reale Arbeiten.",
+          intro: "Zuerst kommen alle geeigneten Fotos aus den Vorher-/Nachher-Serien, danach weitere reale Bäume, fertige Formen und Arbeitsphasen. Porträts von Viktor werden hier nicht gemischt, damit diese Galerie die Arbeit zeigt.",
+          beforeEyebrow: "Vorher / Nachher",
+          beforeTitle: "Reale Vorher-/Nachher-Reihen.",
+          beforeText: "Diese Fotos stammen aus dem Arbeitskatalog. Einige Reihen zeigen denselben Baum oder Etappen einer Arbeit; sie zeigen den Prozess statt nur ein einzelnes schönes Ergebnis.",
+          workEyebrow: "Weitere Beispiele",
+          workTitle: "Fertige Bäume, Form und Arbeit.",
+          workText: "Weitere reale Fotos von Gartenbonsai, Niwaki, Kiefern und Arbeitsphasen. Das Porträtbild mit Viktors Gesicht bleibt ausserhalb dieser Arbeitsgalerie."
+        }
+      : {
+          eyebrow: "Gallery",
+          h1: "Before / after - real work examples.",
+          intro: "First are all suitable photos from the before/after series, followed by additional real trees, finished forms and work stages. Portraits of Viktor are kept out of this gallery so the page focuses on the work.",
+          beforeEyebrow: "Before / after",
+          beforeTitle: "Real before/after series.",
+          beforeText: "These photos come from the working catalogue. Some series show the same tree or stages of one job, so the client sees the process, not only a single polished result.",
+          workEyebrow: "More examples",
+          workTitle: "Finished trees, form and process.",
+          workText: "Additional real photos of garden bonsai, niwaki, pines and work stages. The portrait image with Viktor's face is not mixed into this work gallery."
+        };
+  const beforeItems = beforeAfterGalleryItems();
+  const workItems = workGalleryItems();
   return `
   <section class="page-hero section">
-    <span class="eyebrow">Galerie</span>
-    <h1>Vorher / Nachher - meine Arbeit.</h1>
-    <p>Reale Fotos von Gartenbonsai, Niwaki, Kiefern und geformten Solitaerbaeumen. Einige Reihen zeigen Phasen der Arbeit; klare Vorher/Nachher-Paare werden nur verwendet, wenn sie im Katalog markiert sind.</p>
+    <span class="eyebrow">${prefix.eyebrow}</span>
+    <h1>${prefix.h1}</h1>
+    <p>${prefix.intro}</p>
   </section>
-  <section class="section gallery-real-grid">${photoGallery(galleryItems, "de", 72)}</section>
   <section class="section">
-    <div class="section-head"><h2>Der Meister bei der Arbeit.</h2><p>Reale Arbeits- und Portraetfotos von Viktor.</p></div>
-    <div class="gallery-teaser">
-      ${photoSlot({ folder: "07_viktor", file: "viktor-01.webp", lang: "de", label: "Viktor beim Formschnitt", ratio: "3 / 2" })}
-      ${photoSlot({ folder: "07_viktor", file: "viktor-02.webp", lang: "de", label: "Kieferpflege mit Topiarschere", ratio: "3 / 2" })}
-      ${photoSlot({ folder: "10_vidkrytka-yaponiya", file: "vidkrytka-yaponiya-01.webp", lang: "de", label: "Japanische Inspiration", ratio: "3 / 2" })}
-    </div>
+    <div class="section-head"><span class="eyebrow">${prefix.beforeEyebrow}</span><h2>${prefix.beforeTitle}</h2><p>${prefix.beforeText}</p></div>
+    <div class="gallery-real-grid">${photoGallery(beforeItems, lang, beforeItems.length)}</div>
   </section>
-  ${finalCtaDe()}`;
+  <section class="section">
+    <div class="section-head"><span class="eyebrow">${prefix.workEyebrow}</span><h2>${prefix.workTitle}</h2><p>${prefix.workText}</p></div>
+    <div class="gallery-real-grid">${photoGallery(workItems, lang, workItems.length)}</div>
+  </section>
+  ${uk ? finalCtaUk() : de ? finalCtaDe() : finalCtaEn()}`;
+}
+
+function galleryDe() {
+  return galleryPage("de");
+}
+
+function galleryEn() {
+  return galleryPage("en");
+}
+
+function galleryUk() {
+  return galleryPage("uk");
 }
 
 function pricesDe() {
@@ -1278,7 +1346,7 @@ function homeUk() {
       <p>Ці зображення показують напрям роботи: не просто зробити дерево зеленим, а знову зробити його живу архітектуру читабельною. Реальні клієнтські фото підставляються після погодження.</p>
     </div>
     ${conceptRescueSlider("uk")}
-    <div class="btn-row"><a class="btn btn-secondary" href="galerie.html">Подивитися галерею і фото-слоти</a></div>
+    <div class="btn-row"><a class="btn btn-secondary" href="galerie.html">Подивитися галерею робіт</a></div>
   </section>
 
   <section class="section split sanctuary-section">
@@ -1369,8 +1437,8 @@ function genericUkPage(kind) {
     },
     gallery: {
       eyebrow: "Галерея",
-      h1: "До / після - робота і фото-слоти.",
-      body: `<p>Галерея показує реальні робочі фото, готові дерева і приклади формування.</p><div class="gallery-teaser">${photoSlot({ folder: "03_galereya", file: "sosna-bila-09.webp", lang: "uk", label: "Готове дерево Niwaki", ratio: "4 / 3" })}${photoSlot({ folder: "02_pryklady-robit", file: "sosna-bila-17.webp", lang: "uk", label: "Результат роботи", ratio: "4 / 3" })}${photoSlot({ folder: "07_viktor", file: "viktor-01.webp", lang: "uk", label: "Віктор за роботою", ratio: "3 / 2" })}</div>`
+      h1: "До і після - реальні приклади робіт.",
+      body: `<p>Галерея показує реальні робочі фото, готові дерева і приклади формування.</p><div class="gallery-teaser">${photoSlot({ folder: "03_galereya", file: "sosna-bila-09.webp", lang: "uk", label: "Готове дерево Niwaki", ratio: "4 / 3" })}${photoSlot({ folder: "02_pryklady-robit", file: "sosna-bila-17.webp", lang: "uk", label: "Результат роботи", ratio: "4 / 3" })}</div>`
     },
     prices: {
       eyebrow: "Ціни",
@@ -2153,7 +2221,7 @@ const pages = [
   ["index.html", "de", "Gartenbonsais, Formgehölze & japanische Baumkunst Schweiz", "Meister für Gartenbonsais, Niwaki, Gartengestaltung und Formgehölze in der Schweiz. 27 Jahre Erfahrung, kostenlose Foto-Diagnose.", homeDe(), [localBusinessLd(), personLd(), faqLd()]],
   ["leistungen.html", "de", "Niwaki, japanischer Ahorn & Kiefer-Formschnitt", "Leistungen für Niwaki Schnitt, Acer palmatum Pflege und Formschnitt von Nadelgehölzen in der Schweiz.", servicesDe(), [localBusinessLd(), serviceLd("Niwaki, Ahorn und Kiefer-Formschnitt", "Japanische Baumpflege, Niwaki Schnitt und Formschnitt für Nadelgehölze.")]],
   ["philosophie.html", "de", "Philosophie & Meister - japanische Gartenkunst", "Vom Schiffsmechaniker zur Baumkunst: Viktors Weg, Naturgesetze, Dao und Schweizer Präzision.", philosophyDe(), [localBusinessLd(), personLd()]],
-  ["galerie.html", "de", "Vorher / Nachher - Garten-Bonsai & Niwaki", "Vorher/Nachher Slots für Gartenbonsai, Niwaki Beispiele und Meisterarbeit von Viktor Baumarchitektur.", galleryDe(), [localBusinessLd()]],
+  ["galerie.html", "de", "Vorher / Nachher - Garten-Bonsai & Niwaki", "Reale Vorher-/Nachher-Fotos, Gartenbonsai, Niwaki-Beispiele und Arbeitsphasen von Viktor Baumarchitektur.", galleryDe(), [localBusinessLd()]],
   ["preise.html", "de", "Japanische Baumpflege - Preise & Kosten", "Preise für japanische Baumpflege: Arbeit ab 110 CHF pro Stunde, Anfahrt ab 90 CHF, Foto-Diagnose kostenlos.", pricesDe(), [localBusinessLd(), faqLd()]],
   ["blog/index.html", "de", "Niwaki Wissen - Topiarschere, Kronenenergie & Klimastress", "Fachliche Artikel von Viktor Baumarchitektur zu Topiarschere, Krone, Kiefer-Kerzen, Akadama, Wurzeln und Schweizer Klimastress.", blogIndexDeV2(), [localBusinessLd()]],
   ["blog/topiarschere.html", "de", "Topiarschere vs. Heckenschere - sauberer Schnitt", "Warum Viktor beim Formschnitt mit der Topiarschere arbeitet: sauberer Schnitt, weniger Energieverlust, japanisches Werkzeug.", articleTopiaryDeV2(), [localBusinessLd()]],
@@ -2168,7 +2236,7 @@ const pages = [
   ["en/index.html", "en", "Niwaki & Japanese Tree Art - Viktor Baumarchitektur", "Japanese tree care, niwaki and garden bonsai in the Zurich region. Free photo diagnosis.", homeEn(), [localBusinessLd(), personLd(), faqLd()]],
   ["en/leistungen.html", "en", "Services - Niwaki, Maples & Conifers", "English mirror for niwaki, Japanese maple and conifer shaping services.", genericEnPage("services"), [localBusinessLd(), serviceLd("Niwaki, maples and conifers", "Japanese tree care and shaping.")]],
   ["en/philosophie.html", "en", "Philosophy & Master - Japanese Garden Art", "Viktor's path from metal to living form, with Swiss precision and Japanese philosophy.", genericEnPage("philosophy"), [localBusinessLd(), personLd()]],
-  ["en/galerie.html", "en", "Before / After - Garden Bonsai & Niwaki", "English gallery mirror with before/after slots and master-at-work placeholders.", genericEnPage("gallery"), [localBusinessLd()]],
+  ["en/galerie.html", "en", "Before / After - Garden Bonsai & Niwaki", "Real before/after photos, niwaki examples, garden bonsai and work stages from Viktor Baumarchitektur.", galleryEn(), [localBusinessLd()]],
   ["en/preise.html", "en", "Japanese Tree Care - Prices & Costs", "Prices: work from 110 CHF per hour, travel from 90 CHF, free photo diagnosis.", genericEnPage("prices"), [localBusinessLd(), faqLd()]],
   ["en/blog/index.html", "en", "Niwaki Knowledge - Tools, Crown Energy & Climate Stress", "English mirror articles about topiary scissors, crown energy, pine candles, roots and climate stress.", blogIndexEnV2(), [localBusinessLd()]],
   ["en/blog/topiarschere.html", "en", "Topiary Scissors vs Hedge Trimmer", "Why Viktor cuts with topiary scissors for cleaner tree shaping.", articleEnV2("topiary"), [localBusinessLd()]],
@@ -2183,7 +2251,7 @@ const pages = [
   ["uk/index.html", "uk", "Viktor Baumarchitektur - український перегляд", "Тимчасове українське дзеркало сайту Viktor Baumarchitektur для внутрішнього перегляду.", homeDe(), [localBusinessLd(), personLd(), faqLd()]],
   ["uk/leistungen.html", "uk", "Послуги - Niwaki, японські клени та хвойні", "Тимчасове українське дзеркало сторінки послуг Viktor Baumarchitektur.", servicesDe(), [localBusinessLd(), serviceLd("Niwaki, Ahorn und Kiefer-Formschnitt", "Japanische Baumpflege, Niwaki Schnitt und Formschnitt für Nadelgehölze.")]],
   ["uk/philosophie.html", "uk", "Філософія та майстерність - Viktor Baumarchitektur", "Тимчасове українське дзеркало сторінки філософії та майстерності.", philosophyDe(), [localBusinessLd(), personLd()]],
-  ["uk/galerie.html", "uk", "Галерея - до / після, Garten-Bonsai та Niwaki", "Тимчасове українське дзеркало галереї Viktor Baumarchitektur.", galleryDe(), [localBusinessLd()]],
+  ["uk/galerie.html", "uk", "Галерея - до і після, Garten-Bonsai та Niwaki", "Українська галерея Viktor Baumarchitektur: реальні фото до і після, Niwaki, садовий бонсай і етапи роботи.", galleryUk(), [localBusinessLd()]],
   ["uk/preise.html", "uk", "Ціни - японський догляд за деревами", "Тимчасове українське дзеркало сторінки цін Viktor Baumarchitektur.", pricesDe(), [localBusinessLd(), faqLd()]],
   ["uk/blog/index.html", "uk", "Знання Niwaki - інструменти, крона та кліматичний стрес", "Тимчасове українське дзеркало блогу Viktor Baumarchitektur.", blogIndexDeV2(), [localBusinessLd()]],
   ["uk/blog/topiarschere.html", "uk", "Topiarschere vs. Heckenschere - чистий зріз", "Тимчасове українське дзеркало статті про інструмент і чистий зріз.", articleTopiaryDeV2(), [localBusinessLd()]],
@@ -2201,7 +2269,7 @@ const ukPageOverrides = new Map([
   ["uk/index.html", ["uk/index.html", "uk", "Viktor Baumarchitektur - український перегляд", "Українська версія сайту Viktor Baumarchitektur: Niwaki, японські клени, хвойні дерева і безкоштовна фото-діагностика.", homeUk(), [localBusinessLd(), personLd(), faqLd()]]],
   ["uk/leistungen.html", ["uk/leistungen.html", "uk", "Послуги - Niwaki, японські клени та хвойні", "Українська сторінка послуг Viktor Baumarchitektur: Niwaki, японські клени, сосни та хвойні дерева.", servicesUk(), [localBusinessLd(), serviceLd("Niwaki, Ahorn und Kiefer-Formschnitt", "Japanische Baumpflege, Niwaki Schnitt und Formschnitt für Nadelgehölze.")]]],
   ["uk/philosophie.html", ["uk/philosophie.html", "uk", "Філософія та майстерність - Viktor Baumarchitektur", "Українська сторінка про філософію, досвід і підхід Віктора до японської деревної архітектури.", genericUkPage("philosophy"), [localBusinessLd(), personLd()]]],
-  ["uk/galerie.html", ["uk/galerie.html", "uk", "Галерея - до / після, Garten-Bonsai та Niwaki", "Українська галерея Viktor Baumarchitektur з фото-слотами, Niwaki та садовим бонсаєм.", genericUkPage("gallery"), [localBusinessLd()]]],
+  ["uk/galerie.html", ["uk/galerie.html", "uk", "Галерея - до і після, Garten-Bonsai та Niwaki", "Українська галерея Viktor Baumarchitektur: реальні фото до і після, Niwaki, садовий бонсай і етапи роботи.", galleryUk(), [localBusinessLd()]]],
   ["uk/preise.html", ["uk/preise.html", "uk", "Ціни - японський догляд за деревами", "Українська сторінка цін Viktor Baumarchitektur: робота від 110 CHF/год, виїзд від 90 CHF, фото-діагностика безкоштовна.", genericUkPage("prices"), [localBusinessLd(), faqLd()]]],
   ["uk/blog/index.html", ["uk/blog/index.html", "uk", "Знання Niwaki - інструменти, крона та кліматичний стрес", "Українські матеріали про Niwaki, японські ножиці, енергію крони, сосни, коріння і кліматичний стрес.", blogIndexUk(), [localBusinessLd()]]],
   ["uk/blog/topiarschere.html", ["uk/blog/topiarschere.html", "uk", "Японські ножиці проти тримера - чистий зріз", "Українська стаття про чистий зріз, японські ножиці і контроль майбутньої форми дерева.", articleUk("topiary"), [localBusinessLd()]]],
