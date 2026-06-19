@@ -294,8 +294,16 @@
   if (hero && heroSwitcher) {
     const desktopImage = $('[data-hero-desktop-image]', hero);
     const mobileImage = $('[data-hero-mobile-image]', hero);
+    const toggle = $('[data-hero-switcher-toggle]', heroSwitcher);
+    const options = $('[data-hero-variant-options]', heroSwitcher);
+    const activeLabel = $('[data-hero-active-label]', heroSwitcher);
     const buttons = $$('[data-hero-variant-option]', heroSwitcher);
     const validVariants = new Set(buttons.map((button) => button.dataset.heroVariantOption));
+    const setSwitcherOpen = (open) => {
+      heroSwitcher.classList.toggle('is-open', open);
+      toggle?.setAttribute('aria-expanded', String(open));
+      if (options) options.hidden = !open;
+    };
     const readStoredHeroVariant = () => {
       try {
         const stored = window.localStorage.getItem(HERO_VARIANT_KEY);
@@ -332,14 +340,31 @@
         button.classList.toggle('is-active', isActive);
         button.setAttribute('aria-pressed', String(isActive));
       });
+      if (activeLabel) activeLabel.textContent = variant;
       if (persist) writeStoredHeroVariant(variant);
       if (announce) showToast('Hero V' + variant);
     };
     const requestedHeroVariant = new URLSearchParams(window.location.search).get('hero');
     const initialHeroVariant = validVariants.has(requestedHeroVariant) ? requestedHeroVariant : readStoredHeroVariant() || hero.dataset.heroVariant || '1';
     applyHeroVariant(initialHeroVariant, { persist: validVariants.has(requestedHeroVariant), announce: false });
+    setSwitcherOpen(false);
+    toggle?.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      setSwitcherOpen(options ? options.hidden : true);
+    });
     buttons.forEach((button) => {
-      button.addEventListener('click', () => applyHeroVariant(button.dataset.heroVariantOption, { persist: true, announce: true }));
+      button.addEventListener('click', () => {
+        applyHeroVariant(button.dataset.heroVariantOption, { persist: true, announce: true });
+        setSwitcherOpen(false);
+        toggle?.focus?.();
+      });
+    });
+    document.addEventListener('click', (event) => {
+      if (!heroSwitcher.contains(event.target)) setSwitcherOpen(false);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') setSwitcherOpen(false);
     });
   }
 
