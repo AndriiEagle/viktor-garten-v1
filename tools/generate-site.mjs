@@ -10,6 +10,7 @@ const phoneDisplay = "+41 78 313 03 30";
 const telHref = `tel:${phone}`;
 const instagramUrl = "https://www.instagram.com/viktor_bonsai_niwaki";
 const facebookUrl = "https://www.facebook.com/viktor.bonsai.niwaki";
+const assetVersion = "20260619-hero-switcher";
 const whatsappText = encodeURIComponent(
   "Guten Tag Viktor, ich sende Ihnen Fotos meines Baumes (Kanton: ..., Baumart: ...). Können Sie einschätzen, ob er zu retten ist?"
 );
@@ -834,7 +835,7 @@ function layout({ file, lang = "de", title, description, body, jsonLd = [], page
   <meta name="twitter:card" content="summary_large_image">
   ${preloadHero ? `<link rel="preload" as="image" href="${prefix}assets/img/${ogImageFile}" fetchpriority="high">` : ""}
   <link id="theme-link" rel="stylesheet" href="${prefix}assets/theme-v4.css">
-  <link rel="stylesheet" href="${prefix}assets/base.css">
+  <link rel="stylesheet" href="${prefix}assets/base.css?v=${assetVersion}">
   <link rel="manifest" href="${prefix}site.webmanifest">
   ${renderJsonLd(jsonLd)}
 </head>
@@ -904,7 +905,7 @@ function layout({ file, lang = "de", title, description, body, jsonLd = [], page
     </div>
   </div>
   <div class="toast" data-toast hidden></div>
-  <script src="${prefix}assets/main.js?v=20260618-consent" defer></script>
+  <script src="${prefix}assets/main.js?v=${assetVersion}" defer></script>
 </body>
 </html>`;
 }
