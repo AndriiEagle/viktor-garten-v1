@@ -10,6 +10,20 @@ node_modules
 handoff
 project_brief
 tools
+.github
+.github/**
+tasks
+tasks/**
+Neuer Ordner
+Neuer Ordner/**
+24062026
+24062026/**
+output
+output/**
+transcripts
+transcripts/**
+_transcribe
+_transcribe/**
 /*.jpg
 /*.png
 /*.ogg

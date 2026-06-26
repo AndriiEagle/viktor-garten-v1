@@ -13,10 +13,12 @@ The public site now uses Viktor's supplied real WebP photo set for hero, service
 | foto/03_galereya/*.webp | Supplied real photos | Gallery grid | PRESENT_REAL_PHOTO_SET |
 | foto/04_khvoyni/*.webp | Supplied real photos | Conifer service and articles | PRESENT_REAL_PHOTO_SET |
 | foto/05_nivaki-khmarky/*.webp | Supplied real photos | Niwaki service and crown article | PRESENT_REAL_PHOTO_SET |
-| foto/06_yaponski-kleny/klen-yaponskyi-01.webp | Supplied real photo, species-confirmed subset | Ahorn service | PRESENT_REAL_PHOTO_WITH_LIMITS |
+| foto/06_yaponski-kleny/klen-yaponskyi-01.webp | Supplied real photo, visual QA classified as pine/Niwaki, not Acer | Niwaki/cloud-form gallery | PRESENT_REAL_PHOTO_WITH_LIMITS |
+| foto/06_yaponski-kleny/klen-yaponskyi-02.webp | Supplied real photo, visual QA classified as Japanese maple/Acer | Ahorn service and article imagery | PRESENT_REAL_PHOTO |
 | foto/07_viktor/*.webp | Supplied real photos | Viktor/trust/topiary article | PRESENT_REAL_PHOTO_SET |
 | foto/08_fonovi/*.webp | Supplied real photos | Garden context backgrounds | PRESENT_REAL_PHOTO_SET |
 | foto/09_pomylky/*.webp | Supplied real photos | Pine candle/detail article | PRESENT_REAL_PHOTO_SET |
+| foto/10_vidkrytka-yaponiya/kyoto-viktor-wife-2009.webp | Supplied real photo from 24062026/photo_2026-06-24_17-53-02.jpg | Philosophie Kyoto 2009 carousel | PRESENT_REAL_PHOTO |
 | foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp | Supplied real photo | Japan trust/soil context | PRESENT_REAL_PHOTO |
 | baumarchitektur-korrektur.png | Supplied educational graphic | Home Meisterarbeit carousel | PRESENT_SUPPLIED_GRAPHIC |
 | baumarchitektur-live-crown-ratio.png | Supplied educational graphic | Home Meisterarbeit carousel | PRESENT_SUPPLIED_GRAPHIC |

@@ -12,11 +12,11 @@ const instagramUrl = "https://www.instagram.com/viktor_bonsai_niwaki";
 const facebookUrl = "https://www.facebook.com/viktor.bonsai.niwaki";
 const assetVersion = "20260619-vivid-hero-balance";
 const whatsappText = encodeURIComponent(
-  "Guten Tag Viktor, ich sende Ihnen Fotos meines Baumes (Kanton: ..., Baumart: ...). Können Sie einschätzen, ob er zu retten ist?"
+  "Guten Tag Viktor, ich sende Ihnen Fotos meines Baumes (Kanton: ..., Baumart: ...). Können Sie einschätzen, welche Formung oder Kronenpflege sinnvoll ist?"
 );
 const whatsappHref = `https://wa.me/${phone.replace("+", "")}?text=${whatsappText}`;
 const whatsappTextUk = encodeURIComponent(
-  "Добрий день, Вікторе. Надсилаю фото свого дерева (кантон: ..., вид дерева: ...). Чи можете оцінити, чи його можна врятувати?"
+  "Добрий день, Вікторе. Надсилаю фото свого дерева (кантон: ..., вид дерева: ...). Чи можете оцінити, яке формування або догляд крони потрібні?"
 );
 const whatsappHrefUk = `https://wa.me/${phone.replace("+", "")}?text=${whatsappTextUk}`;
 const ogImageFile = "foto/01_hero/hero-viktor-bonsai-main.webp";
@@ -97,9 +97,14 @@ function photo(folder, file) {
 
 function altEn(item, fallback) {
   if (item.path === ogImageFile) return "Japanese garden with niwaki and shaped trees in the Zurich region";
+  if (item.folder === "02_pryklady-robit" && item.file.startsWith("hecke-niwaki-")) {
+    return "Evergreen conifer hedge documented before, during and after hand shaping in the Zurich region";
+  }
   if (item.folder === "07_viktor") return "I shape a pine by hand";
   if (item.folder === "08_fonovi") return "Quiet Swiss garden with shaped niwaki trees";
+  if (item.folder === "09_pomylky" && item.file.startsWith("taxus-heckenschere-fehler-")) return "Taxus baccata after a rough electric hedge trimmer cut";
   if (item.folder === "09_pomylky") return "Close-up of pine candles and pruning detail";
+  if (item.folder === "10_vidkrytka-yaponiya" && item.file === "kyoto-viktor-wife-2009.webp") return "Viktor with his wife in Kyoto in 2009, in front of a Japanese garden and the Golden Pavilion";
   if (item.folder === "10_vidkrytka-yaponiya") return "Postcard from Japan with a bonsai motif";
   if (item.species_lat) return `${item.species_lat} as garden bonsai / niwaki, shaped by hand in the Zurich region`;
   return fallback;
@@ -107,6 +112,17 @@ function altEn(item, fallback) {
 
 function photoAlt(folder, file, lang = "de", fallback = "") {
   const item = photo(folder, file);
+  if (folder === "02_pryklady-robit" && /^(sosna-bila|tys-|tys-do-pislya-)/.test(file)) {
+    if (/^(Vorher|Nachher|Arbeit|Before|After|Work|До|Після|Робота):/.test(fallback)) return fallback;
+    if (file.startsWith("sosna-bila")) {
+      if (lang === "uk") return "Японська біла сосна Pinus parviflora як робочий або контекстний кадр Niwaki";
+      if (lang === "en") return "Japanese white pine Pinus parviflora as a niwaki work or context view";
+      return "Japanische Weißkiefer Pinus parviflora als Arbeits- oder Kontextansicht eines Niwaki";
+    }
+    if (lang === "uk") return "Тис Taxus baccata як робочий або контекстний кадр топіарної форми";
+    if (lang === "en") return "Taxus baccata topiary work or context view, not a strict before-after proof";
+    return "Eibe Taxus baccata als Arbeits- oder Kontextansicht der Topiary-Form";
+  }
   if (lang === "uk") return item.alt_uk || fallback || item.alt_de || file;
   if (lang === "en") return altEn(item, fallback || item.alt_de || file);
   return item.alt_de || fallback || file;
@@ -292,14 +308,31 @@ function catalogItems(folders) {
 }
 
 const galleryExclusions = new Set([
-  "02_pryklady-robit/case-watereri-before.webp"
+  "02_pryklady-robit/case-parviflora-after.webp",
+  "02_pryklady-robit/case-parviflora-before.webp",
+  "02_pryklady-robit/case-terrace-after.webp",
+  "02_pryklady-robit/case-terrace-before.webp",
+  "02_pryklady-robit/case-watereri-after.webp",
+  "02_pryklady-robit/case-watereri-before.webp",
+  "02_pryklady-robit/hecke-niwaki-arbeit-01.webp",
+  "02_pryklady-robit/hecke-niwaki-diagnose-01.webp",
+  "02_pryklady-robit/hecke-niwaki-nachher-01.webp",
+  "02_pryklady-robit/hecke-niwaki-vorher-01.webp",
+  "02_pryklady-robit/hecke-niwaki-vorher-02.webp",
+  "02_pryklady-robit/sosna-bila-do-pislya-27.webp",
+  "02_pryklady-robit/sosna-bila-do-pislya-28.webp",
+  "02_pryklady-robit/sosna-bila-do-pislya-29.webp",
+  "02_pryklady-robit/sosna-bila-do-pislya-31.webp",
+  "02_pryklady-robit/sosna-bila-do-pislya-32.webp",
+  "02_pryklady-robit/sosna-watereri-do-pislya-01.webp",
+  "02_pryklady-robit/sosna-watereri-do-pislya-02.webp",
+  "02_pryklady-robit/sosna-watereri-do-pislya-03.webp",
+  "02_pryklady-robit/sosna-watereri-do-pislya-04.webp",
+  "03_galereya/sosna-bila-21.webp"
 ]);
 
 const lowCrownContextFiles = [
-  "case-terrace-after.webp",
-  "sosna-bila-do-pislya-30.webp",
-  "sosna-bila-do-pislya-31.webp",
-  "sosna-bila-do-pislya-32.webp"
+  "sosna-bila-do-pislya-30.webp"
 ];
 
 const beforeAfterArchiveExclusions = new Set(lowCrownContextFiles);
@@ -350,15 +383,6 @@ function niwakiCloudGalleryItems() {
       "sosna-watereri-do-pislya-05.webp",
       "sosna-watereri-do-pislya-06.webp",
       "sosna-watereri-do-pislya-07.webp",
-      "sosna-watereri-do-pislya-08.webp",
-      "sosna-watereri-do-pislya-09.webp",
-      "sosna-watereri-do-pislya-10.webp",
-      "sosna-watereri-do-pislya-11.webp",
-      "sosna-watereri-do-pislya-12.webp",
-      "sosna-watereri-do-pislya-13.webp",
-      "sosna-watereri-do-pislya-14.webp",
-      "sosna-watereri-do-pislya-15.webp",
-      "sosna-watereri-do-pislya-16.webp",
       "yalivets-01.webp",
       "yalivets-02.webp",
       "yalivets-03.webp",
@@ -392,21 +416,53 @@ function mapleGalleryItems() {
 
 function viktorGalleryItems() {
   return selectedGalleryItems("07_viktor", [
+    "viktor-10.webp",
     "viktor-01.webp",
-    "viktor-02.webp",
     "viktor-03.webp",
     "viktor-07.webp",
     "viktor-08.webp",
-    "viktor-09.webp",
-    "viktor-10.webp"
+    "viktor-09.webp"
   ]);
 }
 
 function detailGalleryItems() {
   return selectedGalleryItems("09_pomylky", [
     "pomylka-svichka-01.webp",
-    "pomylka-svichka-02.webp"
+    "pomylka-svichka-02.webp",
+    "taxus-heckenschere-fehler-01.webp",
+    "taxus-heckenschere-fehler-02.webp"
   ]);
+}
+
+function hedgeTrimmerMistakeBlock(lang = "de") {
+  const copyByLang = {
+    de: {
+      title: "Gegenbeispiel: elektrische Heckenschere an Taxus.",
+      body: "Diese Fotos zeigen Taxus baccata nach einem schnellen elektrischen Schnitt. Die Triebspitzen stehen unruhig, einzelne Enden sind ausgefranst und die Fläche wirkt mechanisch statt sauber aufgebaut.",
+      label1: "Taxus baccata nach elektrischem Heckenscheren-Schnitt",
+      label2: "Unruhige Triebspitzen nach grobem Schnitt"
+    },
+    en: {
+      title: "Counterexample: electric hedge trimmer on Taxus.",
+      body: "These photos show Taxus baccata after a fast electric cut. The shoot tips are uneven, some ends are frayed and the surface looks mechanical instead of deliberately shaped.",
+      label1: "Taxus baccata after an electric hedge trimmer cut",
+      label2: "Uneven shoot tips after rough cutting"
+    },
+    uk: {
+      title: "Приклад помилки: електричний тример на Taxus.",
+      body: "Ці фото показують Taxus baccata після швидкого електричного зрізу. Кінчики пагонів стирчать нерівно, частина зрізів виглядає рваною, а поверхня читається механічною, не чисто сформованою.",
+      label1: "Taxus baccata після електричного тримера",
+      label2: "Нерівні кінчики пагонів після грубого зрізу"
+    }
+  };
+  const copy = copyByLang[lang] || copyByLang.de;
+  return `
+    <h2>${copy.title}</h2>
+    <p>${copy.body}</p>
+    <div class="gallery-teaser">
+      ${photoSlot({ folder: "09_pomylky", file: "taxus-heckenschere-fehler-01.webp", lang, label: copy.label1, ratio: "4 / 3" })}
+      ${photoSlot({ folder: "09_pomylky", file: "taxus-heckenschere-fehler-02.webp", lang, label: copy.label2, ratio: "4 / 3" })}
+    </div>`;
 }
 
 function photoGallery(items, lang = "de", limit = 42, options = {}) {
@@ -422,145 +478,173 @@ function photoGallery(items, lang = "de", limit = 42, options = {}) {
   }).join("");
 }
 
-function galleryPhotoSection(copy, items, lang = "de") {
+function galleryPhotoSection(copy, items, lang = "de", options = {}) {
   if (!items.length) return "";
+  const gridClass = ["gallery-real-grid", options.gridClass].filter(Boolean).join(" ");
   return `
   <section class="section">
     <div class="section-head"><span class="eyebrow">${copy.eyebrow}</span><h2>${copy.title}</h2><p>${copy.text}</p></div>
-    <div class="gallery-real-grid">${photoGallery(items, lang, items.length, { eagerCount: 0, highPriorityCount: 0 })}</div>
+    <div class="${gridClass}">${photoGallery(items, lang, items.length, { eagerCount: 0, highPriorityCount: 0 })}</div>
   </section>`;
 }
 
 const workPhoto = (file, position = "center center") => ({ folder: "02_pryklady-robit", file, position });
 const workPhotos = (files, position = "center center") => files.map((file) => workPhoto(file, position));
+const cloudPhoto = (file, position = "center center") => ({ folder: "05_nivaki-khmarky", file, position });
+
+const watereriWorkSeries = {
+  before: [
+    cloudPhoto("sosna-watereri-do-pislya-11.webp", "center center"),
+    cloudPhoto("sosna-watereri-do-pislya-13.webp", "center center")
+  ],
+  after: [
+    cloudPhoto("sosna-watereri-do-pislya-09.webp", "center center"),
+    cloudPhoto("sosna-watereri-do-pislya-10.webp", "center center")
+  ]
+};
+
+function watereriStage(title, text, images, label, lang = "de") {
+  const frames = images.map((image) =>
+    caseImage(image, label, lang, "eager", `${label}: ${title}`)
+  ).join("");
+  return `<article class="watereri-stage">
+      <div class="watereri-stage-copy"><h3>${title}</h3><p>${text}</p></div>
+      <div class="watereri-photo-grid">${frames}</div>
+    </article>`;
+}
+
+function watereriWorkSeriesBlock(lang = "de") {
+  const copyByLang = {
+    de: {
+      eyebrow: "Watereri-Serie",
+      title: "Pinus sylvestris 'Watereri': vom dichten Austrieb zur klaren Wolkenform.",
+      text: "Diese Bilder stehen nicht mehr lose in der Galerie. Sie zeigen die von Viktor beschriebene Handarbeit an Watereri: zuerst Dichte, Kerzen und Schnittpunkte lesen, danach die Wolken sauber öffnen und die Silhouette beruhigen.",
+      beforeTitle: "Vor dem Schnitt",
+      beforeText: "Nah dran: dichte Nadeln, Kerzen und Triebe, die vor dem Formschnitt gelesen und selektiv gekürzt werden.",
+      afterTitle: "Nach dem Schnitt",
+      afterText: "Zwei unterschiedliche Ergebniswinkel: die Wolken sind getrennt, die Krone wirkt leichter und die Form bleibt ruhig.",
+      beforeLabel: "Vorher",
+      afterLabel: "Nachher"
+    },
+    en: {
+      eyebrow: "Watereri series",
+      title: "Pinus sylvestris 'Watereri': from dense growth to clear cloud form.",
+      text: "These images no longer sit loose in the gallery. They show Viktor's hand work on Watereri: first reading density, candles and cut points, then opening the clouds and calming the silhouette.",
+      beforeTitle: "Before pruning",
+      beforeText: "Close work: dense needles, candles and shoots that are read and selectively shortened before shaping.",
+      afterTitle: "After pruning",
+      afterText: "Two different result angles: the cloud pads are separated, the crown is lighter and the form reads calmly.",
+      beforeLabel: "Before",
+      afterLabel: "After"
+    },
+    uk: {
+      eyebrow: "Серія Watereri",
+      title: "Pinus sylvestris 'Watereri': від густого приросту до чистої хмарної форми.",
+      text: "Ці кадри більше не розкидані по галереї. Вони показують роботу Віктора з Watereri: спочатку прочитати густоту, свічки й точки зрізу, потім відкрити хмари та заспокоїти силует.",
+      beforeTitle: "До обрізки",
+      beforeText: "Крупний план: густа хвоя, свічки й пагони, які перед формуванням треба прочитати та вибірково скоротити.",
+      afterTitle: "Після обрізки",
+      afterText: "Два різні ракурси результату: хмари розділені, крона легша, форма читається спокійно.",
+      beforeLabel: "До",
+      afterLabel: "Після"
+    }
+  };
+  const copy = copyByLang[lang] || copyByLang.de;
+  return `
+  <section class="section watereri-series" id="watereri-series">
+    <div class="section-head"><span class="eyebrow">${copy.eyebrow}</span><h2>${copy.title}</h2><p>${copy.text}</p></div>
+    <div class="watereri-stage-grid">
+      ${watereriStage(copy.beforeTitle, copy.beforeText, watereriWorkSeries.before, copy.beforeLabel, lang)}
+      ${watereriStage(copy.afterTitle, copy.afterText, watereriWorkSeries.after, copy.afterLabel, lang)}
+    </div>
+  </section>`;
+}
 
 const beforeAfterCases = [
   {
-    id: "pinus-parviflora-ladder",
-    preview: {
-      before: workPhoto("case-parviflora-before.webp", "center center"),
-      after: workPhoto("case-parviflora-after.webp", "center center")
-    },
-    series: {
-      before: workPhotos(["case-parviflora-before.webp"]),
-      after: workPhotos([
-        "case-parviflora-after.webp",
-        "sosna-bila-19.webp",
-        "sosna-bila-20.webp",
-        "sosna-bila-22.webp"
-      ])
-    },
-    title: {
-      de: "Pinus parviflora: vom dichten Block zur lesbaren Form",
-      uk: "Pinus parviflora: з густого блоку в читабельну форму",
-      en: "Pinus parviflora: from dense mass to readable form"
-    },
-    summary: {
-      de: "Eine Pinus-parviflora-Arbeitsserie: nicht einfach kleiner geschnitten, sondern wieder in ruhige Ebenen gebracht.",
-      uk: "Серія роботи з Pinus parviflora: не просто зменшити дерево, а повернути йому спокійні читабельні яруси.",
-      en: "A Pinus parviflora work series: not simply cut smaller, but brought back into calm readable layers."
-    },
-    done: {
-      de: "Dichte Partien geöffnet, störende Triebe selektiv entfernt und die Wolkenform wieder geordnet.",
-      uk: "Відкрито густі місця, вибірково прибрано зайві пагони, повернуто ярусність крони.",
-      en: "Dense areas were opened, distracting shoots were removed selectively and the cloud structure was restored."
-    },
-    why: {
-      de: "So bekommen Licht, Luft und Kraft wieder Raum; die Form wirkt gepflegt, nicht hart gestutzt.",
-      uk: "Дерево отримує світло і повітря, а форма не виглядає грубо підстриженою.",
-      en: "Light and air can move through the crown again, so the result looks cared for, not roughly clipped."
-    },
-    value: {
-      de: "Mein Wert liegt im Lesen der Struktur: Ich entscheide, was bleiben muss, damit der Baum in den nächsten Jahren schön weiterwächst.",
-      uk: "Моя цінність - прочитати структуру дерева і не забрати зайве: результат має працювати не один день, а роками.",
-      en: "My value is in reading the structure and keeping what the tree needs to grow well over the next years."
-    }
-  },
-  {
-    id: "terrace-niwaki-installation",
+    id: "terrace-pinus-placement",
     preview: {
       before: workPhoto("case-terrace-before.webp", "center center"),
-      after: workPhoto("sosna-bila-do-pislya-28.webp", "center center")
+      after: workPhoto("case-terrace-after.webp", "center center")
     },
     series: {
       before: workPhotos([
         "case-terrace-before.webp"
       ]),
       after: workPhotos([
-        "sosna-bila-do-pislya-28.webp",
-        "sosna-bila-do-pislya-29.webp"
+        "case-terrace-after.webp",
+        "sosna-bila-do-pislya-28.webp"
       ])
     },
     title: {
-      de: "Terrassen-Niwaki: vom Lieferzustand zur gesetzten Form",
-      uk: "Terrassen-Niwaki: від доставленого дерева до поставленої форми",
-      en: "Terrace Niwaki: from delivered tree to settled form"
+      de: "Pinus parviflora: vom Lieferzustand zum Terrassen-Niwaki",
+      uk: "Pinus parviflora: від стану доставки до терасного niwaki",
+      en: "Pinus parviflora: from delivery state to terrace niwaki"
     },
     summary: {
-      de: "Diese Serie zeigt den Arbeitskontext: angeliefert, gesetzt und als ruhiger Solitär in die Terrasse integriert.",
-      uk: "Ця серія показує робочий контекст: дерево доставлене, поставлене і включене в простір тераси.",
-      en: "This series shows the work context: delivered, set in place and integrated into the terrace as a calm specimen."
+      de: "Diese Serie zeigt dieselbe niedrige Japanische Weisskiefer vor der Platzierung und nach dem Setzen im Terrassengarten.",
+      uk: "Ця серія показує ту саму низьку японську білу сосну до розміщення і після встановлення в терасному саду.",
+      en: "This series shows the same low Japanese white pine before placement and after it was set into the terrace garden."
     },
     done: {
-      de: "Der Baum wurde vom Lieferzustand in die Gartensituation gebracht; die sichtbare Form bleibt ruhig und klar.",
-      uk: "Дерево переведене з робочого/доставленого стану в садову ситуацію; видима форма стала спокійною і ясною.",
-      en: "The tree moved from delivery/work context into the garden setting; the visible form stays calm and clear."
+      de: "Der Baum wurde als Solitaer in die vorbereitete Terrassenpflanzung gesetzt; die Wirkung entsteht durch Position, Proportion und ruhige Einbindung in Kies, Graeser und Hauskante.",
+      uk: "Дерево встановлено як солітер у підготовленій терасній посадці; ефект створюють позиція, пропорція і спокійне поєднання з гравієм, злаками та лінією дому.",
+      en: "The tree was set as a specimen in the prepared terrace planting; the result comes from position, proportion and calm integration with gravel, grasses and the house line."
     },
     why: {
-      de: "Ein wertvoller Niwaki wirkt nur dann hochwertig, wenn Baum, Terrasse, Blickachse und Pflanzplatz zusammenpassen.",
-      uk: "Цінний Niwaki виглядає преміально тільки тоді, коли дерево, тераса, напрям погляду і місце посадки працюють разом.",
-      en: "A valuable Niwaki only feels premium when tree, terrace, sightline and planting place work together."
+      de: "Bei einem grossen Gartenbonsai entscheidet die Platzierung, ob die niedrige Krone Raum bekommt und die Terrasse als ruhige Gartenarchitektur wirkt.",
+      uk: "Для великого садового бонсая розміщення вирішує, чи низька крона отримує простір і чи тераса читається як спокійна садова архітектура.",
+      en: "For a large garden bonsai, placement decides whether the low crown has enough room and whether the terrace reads as calm garden architecture."
     },
     value: {
-      de: "Mein Wert liegt im Blick für das Ganze: Der Baum soll nicht nur schön sein, sondern an seinem Platz richtig wirken.",
-      uk: "Моя цінність тут у баченні цілого: дерево має бути не просто красивим, а правильним у своєму місці.",
-      en: "My value is in seeing the whole setting: the tree should not only be beautiful, but right in its place."
+      de: "Mein Wert liegt hier in Auswahl, Proportion und Einpassung: Der Baum soll am Standort wirken, nicht nur als Einzelobjekt gut aussehen.",
+      uk: "Моя цінність тут у виборі, пропорції та вписуванні: дерево має працювати саме на місці, а не лише добре виглядати як окремий об'єкт.",
+      en: "My value here is selection, proportion and placement: the tree needs to work in its setting, not only look good as a separate object."
     }
   },
   {
-    id: "taxus-topiary",
+    id: "hedge-niwaki-structure",
     preview: {
-      before: workPhoto("case-taxus-before.webp", "center center"),
-      after: workPhoto("tys-do-pislya-09.webp", "center center")
+      before: workPhoto("hecke-niwaki-nachher-01.webp", "center center"),
+      after: workPhoto("hecke-niwaki-vorher-02.webp", "center center")
     },
     series: {
       before: workPhotos([
-        "case-taxus-before.webp",
-        "case-taxus-after.webp",
-        "tys-do-pislya-08.webp",
-        "tys-do-pislya-13.webp"
+        "hecke-niwaki-nachher-01.webp",
+        "hecke-niwaki-vorher-01.webp"
+      ]),
+      work: workPhotos([
+        "hecke-niwaki-diagnose-01.webp",
+        "hecke-niwaki-arbeit-01.webp"
       ]),
       after: workPhotos([
-        "tys-do-pislya-09.webp",
-        "tys-do-pislya-10.webp",
-        "tys-do-pislya-12.webp",
-        "tys-do-pislya-07.webp"
+        "hecke-niwaki-vorher-02.webp"
       ])
     },
     title: {
-      de: "Taxus baccata: Topiary ohne harte Wand",
-      uk: "Taxus baccata: топіарій без грубої стінки",
-      en: "Taxus baccata: topiary without a hard wall"
+      de: "Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie",
+      uk: "Хвойна огорожа: від густого блоку до контрольованої лінії",
+      en: "Evergreen hedge: from dense block to controlled line"
     },
     summary: {
-      de: "Eibe hält Form gut, braucht aber einen ruhigen Aufbau statt schnellen Maschinenschnitt.",
-      uk: "Тис добре тримає форму, але потребує спокійного ручного збору, а не швидкого машинного зрізу.",
-      en: "Yew holds shape well, but needs calm hand correction instead of a quick mechanical cut."
+      de: "Diese Serie zeigt eine reale Formhecke: dichte Masse, Diagnose im Inneren, Arbeit mit Leiter und die ruhigere Linie danach.",
+      uk: "Ця серія показує реальну формовану огорожу: густу масу, діагностику всередині, роботу з драбиною і спокійнішу лінію після.",
+      en: "This series shows a real shaped hedge: dense mass, internal diagnosis, ladder work and a calmer line afterwards."
     },
     done: {
-      de: "Die Polster nachgearbeitet, der Umriss gesammelt und chaotischer Neuaustrieb entfernt.",
-      uk: "Підчищено шапки, зібрано контур і прибрано хаотичний приріст.",
-      en: "The pads were cleaned, the outline gathered and chaotic new growth removed."
+      de: "Die übervolle Außenfläche wurde kontrolliert zurückgenommen, die Linie gesammelt und der trockene Innenbereich als Pflegehinweis dokumentiert.",
+      uk: "Переповнену зовнішню масу контрольовано зібрано, лінію вирівняно, суху внутрішню зону зафіксовано як важливий сигнал догляду.",
+      en: "The overfull outer mass was corrected, the line was gathered and the dry inner area was documented as an important care signal."
     },
     why: {
-      de: "So bleibt die Form präzise, ohne wie eine grob geschorene Hecke zu wirken.",
-      uk: "Так форма лишається точною, але не виглядає як грубо підстрижена жива огорожа.",
-      en: "The form stays precise without looking like a roughly clipped hedge."
+      de: "Bei dichten Nadelgehölzen entscheidet der Schnitt über Licht, Luft und zukünftige Regeneration; ein schneller Flächenschnitt reicht nicht.",
+      uk: "У густих хвойних рослинах зріз вирішує питання світла, повітря і майбутнього відновлення; швидкого поверхневого зрізу недостатньо.",
+      en: "With dense conifers, cutting affects light, air and future recovery; a fast surface trim is not enough."
     },
     value: {
-      de: "Ich bringe die Linie zurück, ohne dem Baum seine lebendige Oberfläche zu nehmen.",
-      uk: "Я повертаю лінію, але не забираю в дерева живу поверхню.",
-      en: "I bring the line back without taking away the tree's living surface."
+      de: "Mein Wert liegt in der Diagnose vor dem Schnitt: Ich sehe nicht nur die Außenkontur, sondern auch, was im Inneren des Gehölzes passiert.",
+      uk: "Моя цінність у діагностиці перед зрізом: я дивлюся не тільки на зовнішній контур, а й на те, що відбувається всередині рослини.",
+      en: "My value is diagnosis before cutting: I look beyond the outside contour and read what is happening inside the plant."
     }
   }
 ];
@@ -574,9 +658,11 @@ function galleryCaseLabels(lang = "de") {
     return {
       before: "До",
       after: "Після",
+      work: "Робота",
       details: "Що зроблено",
       series: "Усі кадри цієї серії",
       beforeSeries: "До / робочий контекст",
+      workSeries: "Робочий контекст",
       afterSeries: "Після",
       done: "Що зроблено",
       why: "Чому",
@@ -589,9 +675,11 @@ function galleryCaseLabels(lang = "de") {
     return {
       before: "Before",
       after: "After",
+      work: "Work",
       details: "What was done",
       series: "All frames from this series",
       beforeSeries: "Before / work context",
+      workSeries: "Work context",
       afterSeries: "After",
       done: "What was done",
       why: "Why",
@@ -603,9 +691,11 @@ function galleryCaseLabels(lang = "de") {
   return {
     before: "Vorher",
     after: "Nachher",
+    work: "Arbeit",
     details: "Was wurde gemacht",
     series: "Alle Bilder dieser Serie",
     beforeSeries: "Vorher / Arbeitskontext",
+    workSeries: "Arbeitskontext",
     afterSeries: "Nachher",
     done: "Was wurde gemacht",
     why: "Warum",
@@ -618,8 +708,9 @@ function galleryCaseLabels(lang = "de") {
 function caseImage(image, label, lang = "de", loading = "lazy", altText = "") {
   const item = photo(image.folder, image.file);
   const src = `__ASSET_PREFIX__assets/img/${item.path}`;
+  const backgroundSrc = `/assets/img/${item.path}`;
   const position = image.position || "center center";
-  const style = ` style="--case-position:${position};--case-image:url('${src}')"`;
+  const style = ` style="--case-position:${position};--case-image:url('${backgroundSrc}')"`;
   return `<figure class="case-frame"${style}>
     <img src="${src}" alt="${altText || photoAlt(image.folder, image.file, lang, item.alt_de)}" loading="${loading}" decoding="async" width="900" height="675">
     <figcaption>${label}</figcaption>
@@ -636,7 +727,7 @@ function casePreview(item) {
 
 function caseSeriesImages(item, stage) {
   const preview = casePreview(item);
-  const fallback = stage === "before" ? [preview.before] : [preview.after];
+  const fallback = stage === "before" ? [preview.before] : stage === "after" ? [preview.after] : [];
   return item.series?.[stage] || fallback;
 }
 
@@ -660,11 +751,13 @@ function caseSeriesGroup(title, images, imageLabel, item, lang = "de") {
 
 function caseSeriesBlock(item, labels, lang = "de") {
   const before = caseAdditionalSeries(item, "before");
+  const work = caseAdditionalSeries(item, "work");
   const after = caseAdditionalSeries(item, "after");
-  if (!before.length && !after.length) return "";
+  if (!before.length && !work.length && !after.length) return "";
   return `<div class="case-series">
     <h3>${labels.series}</h3>
     ${caseSeriesGroup(labels.beforeSeries, before, labels.before, item, lang)}
+    ${caseSeriesGroup(labels.workSeries, work, labels.work, item, lang)}
     ${caseSeriesGroup(labels.afterSeries, after, labels.after, item, lang)}
   </div>`;
 }
@@ -739,6 +832,31 @@ function meisterImageCarousel(prefix = "__ASSET_PREFIX__assets/img/") {
     </figure>`;
 }
 
+function kyotoImageCarousel(prefix = "__ASSET_PREFIX__assets/img/") {
+  const slides = [
+    [
+      "foto/10_vidkrytka-yaponiya/kyoto-garden-2009.webp",
+      "Japanischer Garten in Kyoto mit Kiefer, Steinen und Wasser - Inspiration seit 2009"
+    ],
+    [
+      "foto/10_vidkrytka-yaponiya/kyoto-viktor-wife-2009.webp",
+      "Viktor mit seiner Frau in Kyoto 2009 vor japanischem Garten und Goldenem Pavillon"
+    ]
+  ];
+  return `
+    <figure class="image-carousel kyoto-carousel" data-image-carousel style="aspect-ratio:3 / 2" aria-label="Kyoto 2009 Inspiration">
+      <div class="image-carousel-track" data-carousel-track>
+        ${slides.map(([file, alt]) => `<img class="image-carousel-slide" src="${prefix}${file}" alt="${alt}" loading="lazy" decoding="async" width="900" height="600">`).join("")}
+      </div>
+      <button class="image-carousel-btn image-carousel-prev" type="button" data-carousel-prev aria-label="Vorheriges Bild">&lsaquo;</button>
+      <button class="image-carousel-btn image-carousel-next" type="button" data-carousel-next aria-label="Naechstes Bild">&rsaquo;</button>
+      <div class="image-carousel-dots" aria-label="Bildauswahl">
+        <button type="button" class="image-carousel-dot is-active" data-carousel-dot aria-label="Bild 1 anzeigen" aria-current="true"></button>
+        <button type="button" class="image-carousel-dot" data-carousel-dot aria-label="Bild 2 anzeigen"></button>
+      </div>
+    </figure>`;
+}
+
 function assetSlotUk(options) {
   return assetSlot({
     ...options,
@@ -749,21 +867,35 @@ function assetSlotUk(options) {
 function conceptRescueSlider(lang = "de") {
   const de = lang === "de";
   const uk = lang === "uk";
-  const aria = de ? "Vorher-Nachher Vergleich" : uk ? "Порівняння до і після" : "Before and after comparison";
+  const aria = de
+    ? "Vorher-Nachher Vergleich einer Pinus sylvestris Watereri"
+    : uk
+      ? "Порівняння до і після Pinus sylvestris Watereri"
+      : "Before and after comparison of a Pinus sylvestris Watereri";
   const beforeLabel = de ? "Vorher" : uk ? "До" : "Before";
   const afterLabel = de ? "Nachher" : uk ? "Після" : "After";
-  const rangeLabel = de ? "Vergleich schieben" : uk ? "Пересунути порівняння" : "Slide comparison";
+  const rangeLabel = de ? "Vorher-Nachher Vergleich verschieben" : uk ? "Пересунути порівняння до і після" : "Move before and after comparison";
+  const beforeAlt = de
+    ? "Pinus sylvestris Watereri im Arbeitszustand vor der fertigen Niwaki-Form"
+    : uk
+      ? "Pinus sylvestris Watereri у робочому стані до готової форми Niwaki"
+      : "Pinus sylvestris Watereri in the work state before the finished niwaki form";
+  const afterAlt = de
+    ? "Pinus sylvestris Watereri nach der Formkorrektur ohne Leiter im Bild"
+    : uk
+      ? "Pinus sylvestris Watereri після корекції форми без драбини в кадрі"
+      : "Pinus sylvestris Watereri after shape correction with no ladder in the image";
   return `
-    <figure class="before-after-slider" data-before-after-slider style="--split:52%" aria-label="${aria}">
+    <figure class="before-after-slider" data-before-after-slider style="--split:40%" aria-label="${aria}">
       <div class="before-after-stage">
-        ${photoImg({ folder: "02_pryklady-robit", file: "case-parviflora-after.webp", lang, className: "after-img", label: de ? "Japanische Weisskiefer nach Niwaki-Formschnitt" : "Japanese white pine after niwaki shaping", width: 900, height: 675 })}
+        ${photoImg({ folder: "05_nivaki-khmarky", file: "sosna-watereri-do-pislya-08.webp", lang, className: "after-img", label: afterAlt, loading: "eager", width: 1600, height: 1188 })}
         <div class="before-layer">
-          ${photoImg({ folder: "02_pryklady-robit", file: "case-parviflora-before.webp", lang, label: de ? "Japanische Weisskiefer vor der Korrektur" : "Japanese white pine before correction", width: 900, height: 675 })}
+          ${photoImg({ folder: "05_nivaki-khmarky", file: "sosna-watereri-do-pislya-16.webp", lang, label: beforeAlt, loading: "eager", width: 1600, height: 1200 })}
         </div>
         <span class="slider-badge slider-badge-before">${beforeLabel}</span>
         <span class="slider-badge slider-badge-after">${afterLabel}</span>
       </div>
-      <input class="before-after-range" type="range" min="8" max="92" value="52" aria-label="${rangeLabel}">
+      <input class="before-after-range" type="range" min="0" max="100" value="40" aria-label="${rangeLabel}">
     </figure>`;
 }
 
@@ -1067,10 +1199,10 @@ function faqLd() {
     mainEntity: [
       {
         "@type": "Question",
-        name: "Wie rette ich meinen Niwaki oder japanischen Ahorn?",
+        name: "Welche Formung braucht mein Niwaki oder japanischer Ahorn?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Senden Sie Fotos vom ganzen Baum, der Problemstelle und einer Nahaufnahme. Ich prüfe zuerst kostenlos, ob der Baum zu retten ist und welcher Schnitt sinnvoll ist."
+          text: "Senden Sie Fotos vom ganzen Baum, der Problemstelle und einer Nahaufnahme. Ich prüfe zuerst kostenlos, welche Kronenpflege, Formkorrektur oder Schnittfolge sinnvoll ist."
         }
       },
       {
@@ -1205,7 +1337,7 @@ function layout({ file, lang = "de", title, description, body, jsonLd = [], page
         legalLabel: "Mentions legales",
         mobilePhoto: "Envoyer une photo",
         whatsappHref,
-        credit: "Website by Andrii · Statut: version francaise en attente; traduction, SEO et legal doivent etre valides avant publication.",
+        credit: "",
         quickBar: "Barre de contact rapide",
         call: "Appeler",
         consent: "Mesure analytics et ads seulement apres consentement. Standard: refuse.",
@@ -1230,7 +1362,7 @@ function layout({ file, lang = "de", title, description, body, jsonLd = [], page
           legalLabel: "Note legali",
           mobilePhoto: "Invia foto",
           whatsappHref,
-          credit: "Website by Andrii · Stato: versione italiana in attesa; traduzione, SEO e legale devono essere validati prima della pubblicazione.",
+          credit: "",
           quickBar: "Barra contatto rapida",
           call: "Chiamare",
           consent: "Analytics e ads solo dopo consenso. Standard: rifiutato.",
@@ -1255,7 +1387,7 @@ function layout({ file, lang = "de", title, description, body, jsonLd = [], page
         legalLabel: "Юридична інформація",
         mobilePhoto: "Надіслати фото",
         whatsappHref: whatsappHrefUk,
-        credit: "Website by Andrii · Статус: юридичні дані, endpoint форми, GA4, Ads і фінальні фото потребують перевірки перед публікацією.",
+        credit: "",
         quickBar: "Швидка панель контакту",
         call: "Подзвонити",
         consent: "Аналітика й Ads-вимірювання працюють тільки після згоди. Стандарт: відхилено.",
@@ -1280,7 +1412,7 @@ function layout({ file, lang = "de", title, description, body, jsonLd = [], page
           legalLabel: "Impressum",
           mobilePhoto: "Foto senden",
           whatsappHref,
-          credit: "Website by Andrii · Status: legal data, contact delivery, GA4, Ads and final photos need review before publication.",
+          credit: "",
           quickBar: "Schnelle Kontaktleiste",
           call: "Anrufen",
           consent: "Wir nutzen Analyse- und Ads-Messung erst nach Ihrer Zustimmung. Standard: abgelehnt.",
@@ -1304,7 +1436,7 @@ function layout({ file, lang = "de", title, description, body, jsonLd = [], page
           legalLabel: "Legal Notice",
           mobilePhoto: "Send photo",
           whatsappHref,
-          credit: "Website by Andrii · Status: legal data, contact delivery, GA4, Ads and final photos need review before publication.",
+          credit: "",
           quickBar: "Quick contact bar",
           call: "Call",
           consent: "Analytics and ads measurement only run after consent. Default: denied.",
@@ -1389,7 +1521,7 @@ function layout({ file, lang = "de", title, description, body, jsonLd = [], page
         <a href="${privacy}">${ui.privacyLabel}</a>
       </div>
     </div>
-    <p class="site-credit">${ui.credit}</p>
+    ${ui.credit ? `<p class="site-credit">${ui.credit}</p>` : ""}
   </footer>
 
   <div class="mobile-cta" aria-label="${ui.quickBar}">
@@ -1414,9 +1546,9 @@ function finalCtaDe(contactPrefix = "") {
   return `<section class="section final-cta">
     <div>
       <span class="eyebrow">Kostenlose erste Einschätzung</span>
-      <h2>Bereit, Ihren Baum zu retten?</h2>
-      <p>Senden Sie mir ein Foto der Problemstelle - ich sage Ihnen kostenlos, ob und wie Ihr Baum zu retten ist. Ehrlich, ohne Verpflichtung.</p>
-      <div class="btn-row">${cta("Foto senden - kostenlose Diagnose")} <a class="btn btn-secondary" href="${contactPrefix}kontakt.html#rueckruf" data-event="cta_callback_click">Rückruf anfordern</a></div>
+      <h2>Bereit für eine bessere Kronenarchitektur?</h2>
+      <p>Senden Sie mir ein Foto des Baumes - ich sage Ihnen kostenlos, welche Formung, Kronenpflege oder Schnittfolge sinnvoll ist. Ehrlich, ohne Verpflichtung.</p>
+      <div class="btn-row">${cta("Foto senden - Form prüfen lassen")} <a class="btn btn-secondary" href="${contactPrefix}kontakt.html#rueckruf" data-event="cta_callback_click">Rückruf anfordern</a></div>
     </div>
   </section>`;
 }
@@ -1425,9 +1557,9 @@ function finalCtaEn(contactPrefix = "") {
   return `<section class="section final-cta">
     <div>
       <span class="eyebrow">Free first assessment</span>
-      <h2>Ready to save your tree?</h2>
-      <p>Send a photo of the problem area. I will tell you honestly whether and how the tree can be saved.</p>
-      <div class="btn-row">${cta("Send photo - free diagnosis")} <a class="btn btn-secondary" href="${contactPrefix}kontakt.html#rueckruf" data-event="cta_callback_click">Request callback</a></div>
+      <h2>Ready for clearer crown architecture?</h2>
+      <p>Send a photo of the tree. I will tell you honestly which shaping, crown care or pruning sequence makes sense.</p>
+      <div class="btn-row">${cta("Send photo - check the form")} <a class="btn btn-secondary" href="${contactPrefix}kontakt.html#rueckruf" data-event="cta_callback_click">Request callback</a></div>
     </div>
   </section>`;
 }
@@ -1452,7 +1584,7 @@ function homeDe() {
     <div class="section-head">
       <span class="eyebrow">Vorher / Nachher</span>
       <h2>Wenn der Schnitt wieder Luft, Licht und Ruhe zurückbringt.</h2>
-      <p>Dieser Vergleich zeigt den Kern meiner Arbeit: nicht „grün machen“, sondern die Architektur des Baumes wieder lesbar machen.</p>
+      <p>Pinus sylvestris 'Watereri' im Vergleich: links der Arbeitszustand mit geschütztem Wurzelbereich, rechts die fertige Niwaki-Form - ohne Leiter und ohne Arbeitszeug im Nachher-Bild.</p>
     </div>
     ${conceptRescueSlider("de")}
     <div class="btn-row"><a class="btn btn-secondary" href="galerie.html">Galerie und reale Foto-Slots ansehen</a></div>
@@ -1603,7 +1735,7 @@ function philosophyDe() {
   </section>
   <section class="section split">
     <div><h2>Kyoto 2009 hat meinen Blick verändert.</h2><p>Vor meiner Reise nach Japan habe ich Bäume vor allem geschnitten: Form korrigieren, dichter machen, kleiner halten. 2009 sah ich in Kyoto, dass japanische Baumpflege etwas anderes ist - ein eigenes Meisterhandwerk, das den Baum als lebendes Wesen ernst nimmt.</p><p>Seitdem interessiert mich nicht der schnelle Schnitt, sondern die Kunst japanischer Meister: den Baum lesen, seine Reaktion respektieren und mit ihm arbeiten, nicht gegen ihn. Jeder Schnitt ist eine Entscheidung für die nächsten Jahre.</p></div>
-    ${photoSlot({ folder: "07_viktor", file: "viktor-01.webp", lang: "de", label: "Ich bei der Arbeit - Portraet", ratio: "3 / 2" })}
+    ${kyotoImageCarousel()}
   </section>
   <section class="section split reverse">
     ${photoSlot({ folder: "07_viktor", file: "viktor-02.webp", lang: "de", label: "Meisterhaende und japanisches Werkzeug", ratio: "3 / 2" })}
@@ -1637,10 +1769,10 @@ function galleryPage(lang = "de") {
       ? {
           eyebrow: "Galerie",
           h1: "Vorher / Nachher - reale Arbeiten.",
-          intro: "Zuerst stehen verbundene Paare desselben Baums oder derselben Serie. Beim Klick öffnet sich kurz: was gemacht wurde, warum und worin mein Wert liegt.",
+          intro: "Zuerst stehen nur visuell verbundene Paare: gleicher Baum, nachvollziehbarer Kontext, keine zufällig zusammengesetzten Schönbilder. Beim Klick öffnet sich kurz: was gemacht wurde, warum und worin mein Wert liegt.",
           beforeEyebrow: "Vorher / Nachher",
           beforeTitle: "Verbundene Vorher-/Nachher-Paare.",
-          beforeText: "Das ist keine zufällige Sammlung schöner Fotos. Jede Karte zeigt ein Paar oder eine Serie aus dem Arbeitskatalog, damit die Veränderung der Form verständlich wird.",
+          beforeText: "Das ist keine zufällige Sammlung schöner Fotos. Hier bleiben nur Paare, bei denen Baum und Kontext erkennbar zusammengehören; schwächere Serien stehen unten als normale Arbeitsbilder.",
           archiveSummary: "Zusätzliche Bilder aus den Vorher-/Nachher-Serien anzeigen",
           workEyebrow: "Weitere Beispiele",
           workTitle: "Fertige Bäume, Form und Arbeit.",
@@ -1708,7 +1840,8 @@ function galleryPage(lang = "de") {
             title: "Руки, інструмент і масштаб дерева.",
             text: "Портретні та робочі кадри показують, що ця робота робиться вручну, біля живого дерева, з відповідальністю за результат."
           },
-          items: viktorGalleryItems()
+          items: viktorGalleryItems(),
+          gridClass: "gallery-portrait-grid"
         },
         {
           copy: {
@@ -1767,7 +1900,8 @@ function galleryPage(lang = "de") {
               title: "Hände, Werkzeug und Baum-Massstab.",
               text: "Diese Fotos zeigen die Arbeit am lebenden Baum: von Hand, mit japanischem Werkzeug und mit Verantwortung für das Ergebnis."
             },
-            items: viktorGalleryItems()
+            items: viktorGalleryItems(),
+            gridClass: "gallery-portrait-grid"
           },
           {
             copy: {
@@ -1825,7 +1959,8 @@ function galleryPage(lang = "de") {
               title: "Hands, tools and tree scale.",
               text: "These photos show the work beside the living tree: by hand, with Japanese tools and responsibility for the result."
             },
-            items: viktorGalleryItems()
+            items: viktorGalleryItems(),
+            gridClass: "gallery-portrait-grid"
           },
           {
             copy: {
@@ -1850,11 +1985,12 @@ function galleryPage(lang = "de") {
       <div class="gallery-real-grid">${photoGallery(beforeItems, lang, beforeItems.length, { eagerCount: 0, highPriorityCount: 0 })}</div>
     </details>
   </section>
+  ${watereriWorkSeriesBlock(lang)}
   <section class="section">
     <div class="section-head"><span class="eyebrow">${prefix.workEyebrow}</span><h2>${prefix.workTitle}</h2><p>${prefix.workText}</p></div>
     <div class="gallery-real-grid">${photoGallery(workItems, lang, workItems.length, { eagerCount: 6, highPriorityCount: 0 })}</div>
   </section>
-  ${extraSections.map((section) => galleryPhotoSection(section.copy, section.items, lang)).join("")}
+  ${extraSections.map((section) => galleryPhotoSection(section.copy, section.items, lang, { gridClass: section.gridClass })).join("")}
   ${uk ? finalCtaUk() : de ? finalCtaDe() : finalCtaEn()}`;
 }
 
@@ -1892,9 +2028,8 @@ function pricesDe() {
       <div><strong>Jahre</strong><span>neuen Ast aufbauen</span></div>
     </div>
     <p class="speed-quality-warning">Ich arbeite lieber langsamer und sauber, damit der Baum Kraft behält, sauber verheilt und seine Form nicht für Jahre verliert.</p>
-    ${cta("Foto senden - kostenlose Diagnose")}
-  </section>
-  ${finalCtaDe()}`;
+    <div class="btn-row">${cta("Foto senden - kostenlose Diagnose")} <a class="btn btn-secondary" href="kontakt.html#rueckruf" data-event="cta_callback_click">Rückruf anfordern</a></div>
+  </section>`;
 }
 
 function blogIndexDe() {
@@ -2052,6 +2187,7 @@ function articleTopiaryDeV2() {
     <p>Ein guter Formschnitt beginnt nicht mit Tempo, sondern mit der Entscheidung, was der Baum in Zukunft tragen soll. Bei Niwaki, Kiefer-Formschnitt und japanischer Baumpflege reicht es nicht, die äussere Kontur schnell zu glätten. Der Baum ist kein grüner Block. Er ist ein lebendes System aus Krone, Stamm und Wurzeln.</p>
     <div class="comparison-grid"><div><h2>Heckenschere</h2><p>Schnell, breit, mechanisch. Gut für eine Hecke, riskant für einen wertvollen Solitärbaum. Sie kann feine Triebe reissen und eine dichte Aussenhaut erzeugen.</p></div><div><h2>Topiarschere</h2><p>Langsam, präzise, bewusst. Jeder Schnitt entscheidet, welche Knospe bleibt, wo Luft hineinkommt und wie sich die Wolke nächstes Jahr entwickelt.</p></div></div>
     <p>Zurückgerissene Fasern sind für den Baum keine Kleinigkeit. Er reagiert auf Verletzung, schliesst Wunden und verteilt Kraft neu. Was im ersten Moment ordentlich aussieht, kann dem Baum über Monate Energie nehmen, wenn der Schnitt zu grob, zu flächig oder zur falschen Zeit gemacht wurde.</p>
+    ${hedgeTrimmerMistakeBlock("de")}
     <p>Mit der Topiarschere arbeite ich anders. Ich öffne nicht einfach Oberfläche. Ich suche die innere Linie: Welche Triebe bauen Zukunft? Welche machen Schatten? Wo muss Licht in die Krone, damit innen kein trockenes Holz entsteht?</p>
     ${photoSlot({ folder: "07_viktor", file: "viktor-02.webp", lang: "de", label: "Japanische Werkzeuge und Feinarbeit an der Kiefer", ratio: "4 / 3" })}
     <h2>Ein Schnitt ist eine Anweisung an den Baum.</h2>
@@ -2190,7 +2326,7 @@ function contactDe() {
   <section class="page-hero section">
     <span class="eyebrow">Kontakt</span>
     <h1>Senden Sie mir ein Foto.</h1>
-    <p>Drei Fotos genügen für eine erste Einschätzung: der ganze Baum, die Problemstelle, eine Nahaufnahme. Ich sage Ihnen kostenlos, ob und wie er zu retten ist.</p>
+    <p>Drei Fotos genügen für eine erste Einschätzung: der ganze Baum, die Problemstelle, eine Nahaufnahme. Ich sage Ihnen kostenlos, welche Formung sinnvoll ist - und im Problemfall auch, ob und wie er zu retten ist.</p>
     <div class="btn-row">${cta("WhatsApp öffnen - Fotos senden")} <a class="btn btn-secondary" href="${telHref}" data-event="cta_call_click">Anrufen: ${phoneDisplay}</a></div>
   </section>
   <section class="section contact-grid">
@@ -2277,7 +2413,7 @@ function homeEn() {
     </div>
     ${heroVariantSwitcher("en", "Niwaki in a Swiss garden")}
   </section>
-  <section class="section rescue-section"><div class="section-head"><span class="eyebrow">Before / after</span><h2>When the right cut brings back air, light and calm.</h2><p>This comparison shows my core promise: not making a tree merely green, but making its living architecture readable again.</p></div>${conceptRescueSlider("en")}<div class="btn-row"><a class="btn btn-secondary" href="galerie.html">View gallery</a></div></section>
+  <section class="section rescue-section"><div class="section-head"><span class="eyebrow">Before / after</span><h2>When the right cut brings back air, light and calm.</h2><p>Pinus sylvestris 'Watereri' comparison: the work state with protected root area on the left, the finished niwaki form on the right - with no ladder or work gear in the after image.</p></div>${conceptRescueSlider("en")}<div class="btn-row"><a class="btn btn-secondary" href="galerie.html">View gallery</a></div></section>
   <section class="section split sanctuary-section"><div><span class="eyebrow">The real value</span><h2>The garden is the quietest room of the house.</h2><p>A niwaki is not shaped only to look tidy. It changes the view from the house: morning coffee, an evening on the terrace, guests arriving and seeing a garden that feels calm, precise and alive.</p><p>I do not shape for a quick effect. A valuable tree should not look forced after the cut. It should look as if the form was already waiting inside it.</p><div class="quiet-moments"><span>Morning coffee</span><span>Evening terrace</span><span>Guests with a garden view</span></div></div>${photoSlot({ folder: "08_fonovi", file: "fon-foto-01.webp", lang: "en", label: "Quiet garden moment after precise care", ratio: "16 / 9" })}</section>
   <section class="section split"><div><h2>Nature's laws cannot be ignored.</h2><p>Brown needles, dry branches and lost shape usually have one cause: the tree was cut too quickly or too cheaply. Fine shaping respects light, air and the energy distribution of the crown.</p><blockquote>Cutting a branch takes a second. Growing a new one takes years.</blockquote></div>${photoSlot({ folder: "08_fonovi", file: "fon-sosna-bila-01.webp", lang: "en", label: "Stress signs on a pine before diagnosis", ratio: "16 / 9" })}</section>
   <section class="section"><div class="section-head"><h2>Core services.</h2><p>Niwaki, Japanese maples and conifers up to 3 m; larger trees by arrangement.</p></div><div class="card-grid three">${serviceCardsEn}</div></section>
@@ -2358,7 +2494,7 @@ function blogIndexEnV2() {
 function articleEnV2(type) {
   const sources = `<aside class="source-list"><h2>Technical context</h2><p>This page combines my practice with public technical sources and does not replace an on-site assessment.</p><ul><li><a href="https://www.rhs.org.uk/plants/types/trees/pruning-guide" target="_blank" rel="noopener">RHS pruning guide</a></li><li><a href="https://www.meteoswiss.admin.ch/climate/climate-change.html" target="_blank" rel="noopener">MeteoSwiss climate change in Switzerland</a></li></ul></aside>`;
   if (type === "topiary") {
-    return `<article class="article section"><span class="eyebrow">Topiary scissors</span><h1>Why I cut with topiary scissors.</h1>${photoSlot({ folder: "07_viktor", file: "viktor-01.webp", lang: "en", label: "Me with topiary scissors on a pine", ratio: "16 / 9" })}<p>A valuable niwaki is not a hedge. A hedge trimmer works fast over a surface; topiary scissors allow one deliberate cut at a time. I decide which bud stays, where light should enter and how the cloud can develop next year.</p><p>The point is not romantic slowness. It is control. A clean, selective cut protects the future shape of the tree and prevents the quick outer shell that often leaves the inside weak and dry.</p>${sources}${articleNavEnV2()}<div class="btn-row">${cta("Send photo - check the cut")}</div></article>`;
+    return `<article class="article section"><span class="eyebrow">Topiary scissors</span><h1>Why I cut with topiary scissors.</h1>${photoSlot({ folder: "07_viktor", file: "viktor-01.webp", lang: "en", label: "Me with topiary scissors on a pine", ratio: "16 / 9" })}<p>A valuable niwaki is not a hedge. A hedge trimmer works fast over a surface; topiary scissors allow one deliberate cut at a time. I decide which bud stays, where light should enter and how the cloud can develop next year.</p><p>The point is not romantic slowness. It is control. A clean, selective cut protects the future shape of the tree and prevents the quick outer shell that often leaves the inside weak and dry.</p>${hedgeTrimmerMistakeBlock("en")}${sources}${articleNavEnV2()}<div class="btn-row">${cta("Send photo - check the cut")}</div></article>`;
   }
   if (type === "crown") {
     return `<article class="article section"><span class="eyebrow">Crown energy</span><h1>Why the crown must be opened.</h1>${photoSlot({ folder: "05_nivaki-khmarky", file: "sosna-watereri-do-pislya-01.webp", lang: "en", label: "Open niwaki crown", ratio: "16 / 9" })}<p>The crown is where a tree spends much of its visible energy. If it becomes too dense, the outside stays green while the inside loses light, air and structure. I open the crown so the tree can breathe and keep its form over years, not only after the first cut.</p>${energyDiagramV2()}${sources}${articleNavEnV2()}<div class="btn-row">${cta("Send photo - check crown structure")}</div></article>`;
@@ -2393,9 +2529,9 @@ function finalCtaUk(contactPrefix = "") {
   return `<section class="section final-cta">
     <div>
       <span class="eyebrow">Безкоштовна перша оцінка</span>
-      <h2>Готові зрозуміти, чи можна врятувати дерево?</h2>
-      <p>Надішліть фото дерева і проблемної зони. Я чесно скажу, чи має сенс виїзд і який підхід може допомогти.</p>
-      <div class="btn-row">${ctaUk("Надіслати фото - безкоштовна діагностика")} <a class="btn btn-secondary" href="${contactPrefix}kontakt.html#rueckruf" data-event="cta_callback_click">Запросити дзвінок</a></div>
+      <h2>Готові до сильнішої архітектури крони?</h2>
+      <p>Надішліть фото дерева. Я чесно скажу, яке формування, догляд крони або послідовність зрізів мають сенс.</p>
+      <div class="btn-row">${ctaUk("Надіслати фото - перевірити форму")} <a class="btn btn-secondary" href="${contactPrefix}kontakt.html#rueckruf" data-event="cta_callback_click">Запросити дзвінок</a></div>
     </div>
   </section>`;
 }
@@ -2440,7 +2576,7 @@ function homeUk() {
     <div class="section-head">
       <span class="eyebrow">До / після</span>
       <h2>Правильний зріз повертає дереву повітря, світло і спокій.</h2>
-      <p>Ці зображення показують напрям роботи: не просто зробити дерево зеленим, а знову зробити його живу архітектуру читабельною. Реальні клієнтські фото підставляються після погодження.</p>
+      <p>Порівняння Pinus sylvestris 'Watereri': ліворуч робочий стан із захищеною кореневою зоною, праворуч готова форма Niwaki - без драбини і без робочого інвентаря на фото після.</p>
     </div>
     ${conceptRescueSlider("uk")}
     <div class="btn-row"><a class="btn btn-secondary" href="galerie.html">Подивитися галерею робіт</a></div>
@@ -2587,7 +2723,7 @@ function articleUk(type) {
     ["University of Maine: Rhizosphaera Needlecast", "https://extension.umaine.edu/ipm/ipddl/publications/5104e/"]
   ]);
   const map = {
-    topiary: `<span class="eyebrow">Японські ножиці</span><h1>Чому я ріжу topiary scissors.</h1>${photoSlot({ folder: "07_viktor", file: "viktor-01.webp", lang: "uk", label: "Я з японськими ножицями біля сосни", ratio: "16 / 9" })}<p>Цінне Niwaki - не живопліт. Тример швидко проходить по поверхні, але японські ножиці дають один свідомий зріз за раз: яка брунька лишається, куди заходить світло і як хмара дерева розвиватиметься наступного року.</p><p>Суть не в романтичній повільності. Суть у контролі. Чистий вибірковий зріз береже майбутню форму дерева.</p>`,
+    topiary: `<span class="eyebrow">Японські ножиці</span><h1>Чому я ріжу topiary scissors.</h1>${photoSlot({ folder: "07_viktor", file: "viktor-01.webp", lang: "uk", label: "Я з японськими ножицями біля сосни", ratio: "16 / 9" })}<p>Цінне Niwaki - не живопліт. Тример швидко проходить по поверхні, але японські ножиці дають один свідомий зріз за раз: яка брунька лишається, куди заходить світло і як хмара дерева розвиватиметься наступного року.</p><p>Суть не в романтичній повільності. Суть у контролі. Чистий вибірковий зріз береже майбутню форму дерева.</p>${hedgeTrimmerMistakeBlock("uk")}`,
     crown: `<span class="eyebrow">Крона і енергія</span><h1>Чому крону треба відкривати.</h1>${photoSlot({ folder: "05_nivaki-khmarky", file: "sosna-watereri-do-pislya-01.webp", lang: "uk", label: "Відкрита крона Niwaki", ratio: "16 / 9" })}<p>Коли крона стає занадто щільною, зовні вона ще зелена, але всередині втрачає світло, повітря і структуру. Я відкриваю крону так, щоб дерево дихало і тримало форму роками.</p><div class="process-grid"><div><strong>1. Прочитати</strong><p>Де дерево витрачає силу?</p></div><div><strong>2. Розвантажити</strong><p>Забрати сухе, зайве і затінене.</p></div><div><strong>3. Залишити майбутнє</strong><p>Зберегти бруньки, які будують форму.</p></div></div>`,
     styles: `<span class="eyebrow">Стиль Niwaki</span><h1>Стилі Niwaki, Bonsai і cloud pruning.</h1>${photoSlot({ folder: "05_nivaki-khmarky", file: "sosna-watereri-do-pislya-01.webp", lang: "uk", label: "Спокійна хмарна форма Niwaki у саду", ratio: "16 / 9" })}<p>Коли я дивлюся на садове дерево, я не починаю з питання, скільки можна зрізати. Я питаю: яка мова форми підходить цьому дереву, саду і виду з дому?</p><p>Cloud pruning - це японський метод ведення дерев і кущів у хмарні форми; Niwaki означає garden tree. Я використовую bonsai-мислення для пропорції, руху стовбура і майбутніх бруньок, але в саду працюю з живим деревом, а не з декорацією.</p><div class="process-grid"><div><strong>Прочитати дерево</strong><p>Вид, вік, гілки і реакція визначають можливий стиль.</p></div><div><strong>Прочитати сад</strong><p>Форма має працювати з тераси, доріжки і вікон.</p></div><div><strong>Планувати догляд</strong><p>Чим тонший стиль, тим важливіший щорічний ритм.</p></div></div>`,
     candles: `<span class="eyebrow">Pinus</span><h1>Свічки сосни: момент вирішує.</h1>${photoSlot({ folder: "09_pomylky", file: "pomylka-svichka-01.webp", lang: "uk", label: "Нові свічки сосни перед роботою", ratio: "16 / 9" })}<p>Нові пагони сосни показують, куди дерево зараз штовхає силу. Якщо ставитися до всіх свічок однаково, легко збити баланс. Сильні зони треба заспокоїти, слабкі - захистити.</p><p>Раннє фото часто достатнє, щоб зрозуміти, чи потрібен виїзд.</p>`,
@@ -2617,7 +2753,7 @@ function cssBase() {
 }
 
 function cssResponsiveFixes() {
-  return `html,body{max-width:100%;overflow-x:hidden}h1,h2,h3,p,.brand-name{overflow-wrap:break-word}.hero-panel,.card,.form-card,.note-block,.price-teaser,.image-slot,.site-nav{min-width:0}.brand-logo{width:53px;height:53px;border-radius:50%;object-fit:cover;object-position:center 24%;background:var(--surface);border:1px solid var(--line);box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--surface) 70%,transparent)}.footer-logo{width:min(240px,100%);height:auto;max-height:120px;object-fit:contain;margin-top:18px;padding:12px;background:#fff;border:1px solid color-mix(in srgb,var(--primary-ink) 22%,transparent);border-radius:8px;box-shadow:0 10px 28px rgba(0,0,0,.16)}.image-slot>img{width:100%;height:100%;object-fit:cover}.image-slot{position:relative}.hero-slot>img{object-position:70% center}.hero-img-mobile{display:none}.hero-slot>div{place-content:center end;text-align:right;padding-right:max(24px,10vw)}.hero-slot span,.hero-slot strong,.hero-slot small{max-width:280px}.gallery-real-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.gallery-photo{display:block;aspect-ratio:4/3;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow)}.gallery-photo img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}.gallery-photo:hover img{transform:scale(1.04)}.article-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.article-card .image-slot{margin-bottom:16px}.comparison-grid,.process-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:24px 0}.process-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.comparison-grid>div,.process-grid>div,.science-card,.source-list,.article-nav{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}.science-card{margin:24px 0}.source-list{margin:28px 0;color:var(--muted)}.source-list h2{color:var(--text);font-size:1.35rem}.source-list ul{margin:10px 0 0;padding-left:20px}.source-list a{color:var(--primary);font-weight:800}.article-nav{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0}.article-nav a{border:1px solid var(--line);border-radius:999px;padding:8px 10px;text-decoration:none;color:var(--primary);font-weight:800}.stress-chain{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;align-items:center;text-align:center}.stress-chain span,.stress-chain strong{border:1px solid var(--line);border-radius:8px;padding:10px;background:color-mix(in srgb,var(--surface) 70%,var(--bg))}.stress-chain strong{background:var(--primary);color:var(--primary-ink)}.cookie-banner .btn{white-space:nowrap;min-width:110px}@media (max-width:1100px){.gallery-real-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media (max-width:920px){.article-grid,.gallery-real-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.comparison-grid,.process-grid,.stress-chain{grid-template-columns:1fr}}@media (max-width:620px){.site-header{width:100%;min-height:84px;padding:10px 76px 10px 16px;gap:12px}.nav-toggle{display:block;position:fixed;right:16px;top:20px;width:44px;height:44px;z-index:40;background:var(--primary);border-color:var(--primary);box-shadow:var(--shadow)}.nav-toggle span:not(.sr-only){background:var(--primary-ink)}.brand{flex:1 1 auto;max-width:none;min-width:0;gap:12px}.brand-logo{flex:0 0 53px}.brand-text{min-width:0;max-width:calc(100vw - 158px);line-height:1.16}.brand-name{display:block;font-size:1.05rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.brand-line{display:block;font-size:.78rem;font-weight:720;line-height:1.18;white-space:normal;overflow-wrap:anywhere;color:color-mix(in srgb,var(--muted) 88%,var(--text))}.hero{display:block;padding:32px 16px 50px}.hero>*{grid-column:auto}.hero-media{display:block;min-height:180px;margin:0 0 14px}.hero-slot{border-radius:var(--radius)}.hero-slot>img{object-position:78% center}.hero-img-desktop{display:none}.hero-img-mobile{display:block}.hero-panel{width:100%;max-width:none;margin:0;padding:22px;overflow:hidden}.hero-panel h1{font-size:1.85rem;line-height:1.08}.hero-panel .motto{font-size:1.15rem}.hero-services{grid-template-columns:1fr;margin-top:14px}.hero-slot>div{place-content:center;text-align:center;padding-right:22px}.article-grid,.gallery-real-grid{grid-template-columns:1fr}.footer-logo{width:min(200px,100%);max-height:100px}.cookie-banner div{flex-direction:column}.cookie-banner .btn{width:100%;white-space:normal}}`;
+  return `html,body{max-width:100%;overflow-x:hidden}h1,h2,h3,p,.brand-name{overflow-wrap:break-word}.hero-panel,.card,.form-card,.note-block,.price-teaser,.image-slot,.site-nav{min-width:0}.brand-logo{width:53px;height:53px;border-radius:50%;object-fit:cover;object-position:center 24%;background:var(--surface);border:1px solid var(--line);box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--surface) 70%,transparent)}.footer-logo{width:min(240px,100%);height:auto;max-height:120px;object-fit:contain;margin-top:18px;padding:12px;background:#fff;border:1px solid color-mix(in srgb,var(--primary-ink) 22%,transparent);border-radius:8px;box-shadow:0 10px 28px rgba(0,0,0,.16)}.image-slot>img{width:100%;height:100%;object-fit:cover}.image-slot{position:relative}.hero-slot>img{object-position:70% center}.hero-img-mobile{display:none}.hero-slot>div{place-content:center end;text-align:right;padding-right:max(24px,10vw)}.hero-slot span,.hero-slot strong,.hero-slot small{max-width:280px}.gallery-real-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.gallery-photo{display:block;aspect-ratio:4/3;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow)}.gallery-photo img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}.gallery-portrait-grid .gallery-photo{aspect-ratio:3/4}.gallery-portrait-grid .gallery-photo img{object-position:center center}.gallery-photo:hover img{transform:scale(1.04)}.article-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.article-card .image-slot{margin-bottom:16px}.comparison-grid,.process-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:24px 0}.process-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.comparison-grid>div,.process-grid>div,.science-card,.source-list,.article-nav{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}.science-card{margin:24px 0}.source-list{margin:28px 0;color:var(--muted)}.source-list h2{color:var(--text);font-size:1.35rem}.source-list ul{margin:10px 0 0;padding-left:20px}.source-list a{color:var(--primary);font-weight:800}.article-nav{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0}.article-nav a{border:1px solid var(--line);border-radius:999px;padding:8px 10px;text-decoration:none;color:var(--primary);font-weight:800}.stress-chain{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;align-items:center;text-align:center}.stress-chain span,.stress-chain strong{border:1px solid var(--line);border-radius:8px;padding:10px;background:color-mix(in srgb,var(--surface) 70%,var(--bg))}.stress-chain strong{background:var(--primary);color:var(--primary-ink)}.cookie-banner .btn{white-space:nowrap;min-width:110px}@media (max-width:1100px){.gallery-real-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media (max-width:920px){.article-grid,.gallery-real-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.comparison-grid,.process-grid,.stress-chain{grid-template-columns:1fr}}@media (max-width:620px){.site-header{width:100%;min-height:84px;padding:10px 76px 10px 16px;gap:12px}.nav-toggle{display:block;position:fixed;right:16px;top:20px;width:44px;height:44px;z-index:40;background:var(--primary);border-color:var(--primary);box-shadow:var(--shadow)}.nav-toggle span:not(.sr-only){background:var(--primary-ink)}.brand{flex:1 1 auto;max-width:none;min-width:0;gap:12px}.brand-logo{flex:0 0 53px}.brand-text{min-width:0;max-width:calc(100vw - 158px);line-height:1.16}.brand-name{display:block;font-size:1.05rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.brand-line{display:block;font-size:.78rem;font-weight:720;line-height:1.18;white-space:normal;overflow-wrap:anywhere;color:color-mix(in srgb,var(--muted) 88%,var(--text))}.hero{display:block;padding:32px 16px 50px}.hero>*{grid-column:auto}.hero-media{display:block;min-height:180px;margin:0 0 14px}.hero-slot{border-radius:var(--radius)}.hero-slot>img{object-position:78% center}.hero-img-desktop{display:none}.hero-img-mobile{display:block}.hero-panel{width:100%;max-width:none;margin:0;padding:22px;overflow:hidden}.hero-panel h1{font-size:1.85rem;line-height:1.08}.hero-panel .motto{font-size:1.15rem}.hero-services{grid-template-columns:1fr;margin-top:14px}.hero-slot>div{place-content:center;text-align:center;padding-right:22px}.article-grid,.gallery-real-grid{grid-template-columns:1fr}.footer-logo{width:min(200px,100%);max-height:100px}.cookie-banner div{flex-direction:column}.cookie-banner .btn{width:100%;white-space:normal}}`;
 }
 
 function cssWowPass() {
@@ -2642,6 +2778,14 @@ function heroVividReadabilityCss() {
   return `@media (max-width:620px){.hero[data-hero-variant="6"] .hero-panel:before,.hero[data-hero-variant="7"] .hero-panel:before,.hero[data-hero-variant="8"] .hero-panel:before{content:none}.hero[data-hero-variant="6"] .hero-panel,.hero[data-hero-variant="7"] .hero-panel,.hero[data-hero-variant="8"] .hero-panel{display:grid;grid-template-columns:minmax(0,1fr);justify-items:center;padding-left:clamp(16px,5vw,22px);padding-right:clamp(16px,5vw,22px);text-align:left}.hero[data-hero-variant="6"] .hero-panel .eyebrow,.hero[data-hero-variant="7"] .hero-panel .eyebrow,.hero[data-hero-variant="8"] .hero-panel .eyebrow{justify-self:center;max-width:min(100%,31ch)}.hero[data-hero-variant="6"] .hero-panel h1,.hero[data-hero-variant="7"] .hero-panel h1,.hero[data-hero-variant="8"] .hero-panel h1{justify-self:center;width:min(100%,15.4ch);max-width:calc(100vw - 42px);font-size:clamp(1.66rem,6.95vw,1.94rem);line-height:1.045;margin:10px auto 12px;padding:10px 14px 12px;border:1px solid rgba(255,255,255,.14);border-radius:15px;background:linear-gradient(135deg,rgba(5,22,12,.36),rgba(5,22,12,.13));box-shadow:0 14px 34px rgba(0,0,0,.20);backdrop-filter:blur(3px);overflow-wrap:normal}.hero[data-hero-variant="6"] .hero-accent,.hero[data-hero-variant="7"] .hero-accent,.hero[data-hero-variant="8"] .hero-accent{color:#ffe58a;text-shadow:0 2px 20px rgba(0,0,0,.44),0 0 18px rgba(255,229,138,.26)}.hero[data-hero-variant="6"] .hero-panel .motto,.hero[data-hero-variant="7"] .hero-panel .motto,.hero[data-hero-variant="8"] .hero-panel .motto,.hero[data-hero-variant="6"] .hero-copy-mobile,.hero[data-hero-variant="7"] .hero-copy-mobile,.hero[data-hero-variant="8"] .hero-copy-mobile{justify-self:center;width:min(100%,33ch);max-width:calc(100vw - 42px)}.hero[data-hero-variant="6"] .hero-panel .eyebrow,.hero[data-hero-variant="7"] .hero-panel .eyebrow,.hero[data-hero-variant="8"] .hero-panel .eyebrow,.hero[data-hero-variant="6"] .hero-panel .motto,.hero[data-hero-variant="7"] .hero-panel .motto,.hero[data-hero-variant="8"] .hero-panel .motto,.hero[data-hero-variant="6"] .hero-copy-mobile,.hero[data-hero-variant="7"] .hero-copy-mobile,.hero[data-hero-variant="8"] .hero-copy-mobile{background:linear-gradient(135deg,rgba(5,24,12,.42),rgba(5,24,12,.20));box-shadow:0 10px 26px rgba(0,0,0,.18);backdrop-filter:blur(3px)}.hero[data-hero-variant="6"] .hero-panel .btn-row,.hero[data-hero-variant="7"] .hero-panel .btn-row,.hero[data-hero-variant="8"] .hero-panel .btn-row,.hero[data-hero-variant="6"] .hero-panel .trust-row,.hero[data-hero-variant="7"] .hero-panel .trust-row,.hero[data-hero-variant="8"] .hero-panel .trust-row{justify-self:center;width:min(100%,35ch);max-width:calc(100vw - 42px)}.hero[data-hero-variant="6"] .hero-panel .btn-primary,.hero[data-hero-variant="7"] .hero-panel .btn-primary,.hero[data-hero-variant="8"] .hero-panel .btn-primary{box-shadow:0 16px 34px rgba(0,0,0,.30),0 0 30px rgba(142,220,80,.28)}.hero[data-hero-variant="6"] .hero-panel .experience-pill,.hero[data-hero-variant="7"] .hero-panel .experience-pill,.hero[data-hero-variant="8"] .hero-panel .experience-pill{justify-self:start;box-shadow:0 14px 34px rgba(0,0,0,.24),0 0 28px rgba(255,226,142,.28)}}`;
 }
 
+function heroVariantTwoTypographyCss() {
+  return `@media (min-width:621px){.hero[data-hero-variant="2"] .hero-panel{align-self:start;margin:clamp(14px,2vw,24px) 0 0}.hero[data-hero-variant="2"] .hero-panel .eyebrow{display:inline-flex;flex-wrap:wrap;width:fit-content;max-width:100%;margin-bottom:clamp(18px,2vw,26px);padding:8px 13px;border:1px solid rgba(255,230,168,.32);border-radius:999px;background:linear-gradient(135deg,rgba(9,27,15,.34),rgba(9,27,15,.18));box-shadow:0 10px 30px rgba(0,0,0,.16);backdrop-filter:blur(8px);color:#fff;font-size:clamp(.94rem,.86vw,1.04rem);line-height:1.2;font-weight:900;text-shadow:0 2px 14px rgba(0,0,0,.42)}.hero[data-hero-variant="2"] .hero-panel .eyebrow:before{flex:0 0 34px;width:34px;background:#ffe6a8}.hero[data-hero-variant="2"] .hero-panel h1{max-width:920px;font-size:clamp(2.55rem,3.8vw,2.85rem);line-height:1.01;margin-top:0;margin-bottom:16px}}@media (max-width:620px){.hero[data-hero-variant="2"] .hero-panel .eyebrow{max-width:min(100%,34ch);padding:6px 9px;border:1px solid rgba(255,230,168,.28);border-radius:12px;background:rgba(8,22,13,.28);font-size:clamp(.62rem,2.5vw,.78rem);line-height:1.32;font-weight:900}.hero[data-hero-variant="2"] .hero-panel .eyebrow:before{flex:0 0 22px;width:22px;background:#ffe6a8}.hero[data-hero-variant="2"] .hero-panel h1{max-width:13.4ch;font-size:clamp(1.58rem,6.6vw,1.9rem);line-height:1.04}}`;
+}
+
+function heroVariantThreeTypographyCss() {
+  return `@media (min-width:621px){.hero[data-hero-variant="3"] .hero-panel{align-self:start;width:min(980px,100%);margin:clamp(52px,6vh,70px) 0 0}.hero[data-hero-variant="3"] .hero-panel .eyebrow{display:inline-flex;flex-wrap:wrap;width:fit-content;max-width:min(100%,86ch);margin-bottom:clamp(18px,2vw,24px);padding:8px 14px 8px 12px;border:1px solid rgba(255,230,168,.26);border-radius:999px;background:linear-gradient(135deg,rgba(6,23,12,.50),rgba(8,30,17,.24));box-shadow:0 12px 34px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.08);backdrop-filter:blur(7px);color:rgba(255,255,255,.94);font-size:clamp(.9rem,.78vw,1rem);line-height:1.22;font-weight:850;letter-spacing:0;text-shadow:0 2px 14px rgba(0,0,0,.44)}.hero[data-hero-variant="3"] .hero-panel .eyebrow:before{flex:0 0 36px;width:36px;background:#d7a84d;box-shadow:0 0 14px rgba(215,168,77,.38)}.hero[data-hero-variant="3"] .hero-panel h1{max-width:980px;font-size:clamp(2.55rem,3.15vw,3.05rem);line-height:1.04;margin-top:0;margin-bottom:16px}.hero[data-hero-variant="3"] .hero-accent{color:#ffe6a8;text-shadow:0 2px 18px rgba(0,0,0,.44),0 0 18px rgba(255,230,168,.24)}}@media (max-width:620px){.hero[data-hero-variant="3"] .hero-panel{align-self:start;display:grid;grid-template-columns:minmax(0,1fr);padding:clamp(62px,14vh,82px) 0 calc(88px + env(safe-area-inset-bottom));overflow:visible}.hero[data-hero-variant="3"] .hero-panel .eyebrow{position:relative;display:block;justify-self:center;width:calc(100% - 32px);max-width:calc(100% - 32px);margin:0 16px 16px;padding:18px 10px 10px;border:1px solid rgba(255,230,168,.26);border-radius:12px;background:rgba(6,23,12,.30);font-size:clamp(12px,3.1vw,14px);line-height:1.2;font-weight:850;letter-spacing:0;text-wrap:balance;white-space:normal;overflow-wrap:normal;word-break:normal;hyphens:none}.hero[data-hero-variant="3"] .hero-panel .eyebrow:before{position:absolute;left:10px;top:11px;display:block;flex:none;width:34px;height:1px;margin:0;background:#ffe6a8}.hero[data-hero-variant="3"] .hero-panel h1{justify-self:center;width:calc(100% - 32px);max-width:calc(100% - 32px);margin:0 16px 12px;font-size:clamp(29px,7.4vw,35px);line-height:1;text-wrap:balance;overflow-wrap:normal}.hero[data-hero-variant="3"] .hero-panel .motto,.hero[data-hero-variant="3"] .hero-copy-mobile,.hero[data-hero-variant="3"] .hero-panel .btn-row,.hero[data-hero-variant="3"] .hero-panel .trust-row{margin-left:20px;margin-right:20px}}`;
+}
+
 function meisterCarouselResponsiveCss() {
   return `.meister-section{align-items:center}.meister-carousel{width:min(100%,680px);justify-self:center;align-self:center;background:#f8f5ee}.meister-carousel .image-carousel-slide{object-fit:contain;padding:clamp(10px,1.4vw,18px);background:#f8f5ee}@media (min-width:921px) and (max-width:1320px){.meister-section{grid-template-columns:minmax(0,1fr) minmax(360px,.76fr);gap:28px}.meister-section h2{font-size:clamp(2.15rem,3.6vw,3.05rem)}.meister-carousel{max-width:540px}.meister-carousel .image-carousel-btn{width:38px;height:38px;font-size:1.45rem}.meister-carousel .image-carousel-prev{left:10px}.meister-carousel .image-carousel-next{right:10px}}@media (min-width:1321px){.meister-carousel{max-width:640px}}@media (max-width:920px){.meister-carousel{max-width:680px;margin:0 auto}.meister-carousel .image-carousel-slide{padding:10px}}`;
 }
@@ -2651,7 +2795,7 @@ function experienceAccentCss() {
 }
 
 function galleryCaseCss() {
-  return `.case-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.case-card{display:block;overflow:hidden;width:100%;padding:0;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);color:inherit;text-align:left;text-decoration:none;cursor:pointer}.case-card:hover .case-frame img,.case-card:focus-visible .case-frame img{transform:scale(1.035)}.case-card:focus-visible{outline:3px solid var(--accent);outline-offset:4px}.case-pair,.case-detail-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;background:#102016}.case-frame{position:relative;aspect-ratio:16/10;overflow:hidden;margin:0;background-color:var(--surface);background-image:var(--case-image);background-size:cover;background-position:var(--case-position,center center)}.case-frame+.case-frame{border-left:1px solid rgba(255,255,255,.72)}.case-frame img{width:100%;height:100%;object-fit:cover;object-position:var(--case-position,center center);transition:transform .45s ease}.case-frame figcaption{position:absolute;left:10px;top:10px;border:1px solid rgba(255,255,255,.42);border-radius:999px;background:rgba(9,18,13,.62);color:#fff;padding:6px 9px;font-size:.74rem;font-weight:850;line-height:1;backdrop-filter:blur(10px)}.case-copy{display:grid;gap:8px;padding:17px 18px 19px}.case-copy strong{font-family:var(--font-head);font-size:1.28rem;line-height:1.12;color:var(--text)}.case-copy span{color:var(--muted);line-height:1.5}.case-copy em{font-style:normal;font-weight:850;color:var(--primary);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}.gallery-archive{margin-top:24px;border:1px solid var(--line);border-radius:var(--radius);background:color-mix(in srgb,var(--surface) 76%,var(--bg));box-shadow:var(--shadow);padding:14px}.gallery-archive summary{cursor:pointer;font-weight:850;color:var(--primary)}.gallery-archive .gallery-real-grid{margin-top:14px}.case-modal[hidden],.case-detail[hidden]{display:none!important}body.case-modal-open{overflow:hidden}.case-modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:18px}.case-modal-backdrop{position:absolute;inset:0;border:0;background:rgba(9,18,13,.66);backdrop-filter:blur(8px);cursor:pointer}.case-modal-panel{position:relative;width:min(1120px,100%);max-height:calc(100svh - 36px);overflow:auto;border:1px solid color-mix(in srgb,var(--primary) 18%,var(--line));border-radius:var(--radius);background:var(--surface);box-shadow:0 28px 90px rgba(0,0,0,.34);padding:18px}.case-modal-close{position:sticky;top:0;z-index:3;display:grid;place-items:center;width:42px;height:42px;margin-left:auto;margin-bottom:10px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--surface) 90%,transparent);color:var(--primary);font:800 1.6rem/1 var(--font-body);cursor:pointer;backdrop-filter:blur(10px)}.case-detail{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(320px,.82fr);gap:24px;align-items:start}.case-detail-media{display:grid;gap:18px;min-width:0}.case-detail-pair{gap:10px;background:transparent}.case-detail-pair .case-frame{border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.case-detail-pair .case-frame+.case-frame{border-left:1px solid var(--line)}.case-series{display:grid;gap:14px;border-top:1px solid var(--line);padding-top:16px}.case-series>h3,.case-series-group h3{font-size:1.05rem;margin:0;color:var(--primary)}.case-series-group{display:grid;gap:10px}.case-series-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.case-series-grid .case-frame{aspect-ratio:4/3;border:1px solid var(--line);border-radius:8px}.case-series-grid .case-frame+.case-frame{border-left:1px solid var(--line)}.case-detail-copy{padding:4px 4px 12px}.case-detail-copy h2{font-size:clamp(1.8rem,3vw,2.55rem)}.case-notes{display:grid;gap:12px;margin:22px 0 0}.case-notes div{border-top:1px solid var(--line);padding-top:12px}.case-notes dt{font-weight:900;color:var(--primary)}.case-notes dd{margin:4px 0 0;color:var(--muted)}@media (max-width:920px){.case-grid{grid-template-columns:1fr}.case-detail{grid-template-columns:1fr}.case-modal-panel{padding:14px}.case-detail-copy h2{font-size:2rem}.case-series-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:620px){.case-grid{gap:14px}.case-copy{padding:15px}.case-copy strong{font-size:1.14rem}.case-pair,.case-detail-pair{gap:0}.case-detail-pair{gap:8px}.case-frame{aspect-ratio:4/3}.case-pair .case-frame{aspect-ratio:1/1}.case-frame figcaption{left:7px;top:7px;font-size:.66rem;padding:5px 7px}.case-modal{padding:10px}.case-modal-panel{max-height:calc(100svh - 20px);border-radius:10px}.case-modal-close{width:40px;height:40px;margin-bottom:8px}.case-detail-copy h2{font-size:1.72rem}.case-notes{gap:10px}.case-series-grid{grid-template-columns:1fr}}`;
+  return `.case-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.case-card{display:block;overflow:hidden;width:100%;padding:0;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);color:inherit;text-align:left;text-decoration:none;cursor:pointer}.case-card:hover .case-frame img,.case-card:focus-visible .case-frame img{transform:scale(1.035)}.case-card:focus-visible{outline:3px solid var(--accent);outline-offset:4px}.case-pair,.case-detail-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;background:#102016}.case-frame{position:relative;aspect-ratio:16/10;overflow:hidden;margin:0;background-color:var(--surface);background-image:var(--case-image);background-size:cover;background-position:var(--case-position,center center)}.case-frame+.case-frame{border-left:1px solid rgba(255,255,255,.72)}.case-frame img{width:100%;height:100%;object-fit:cover;object-position:var(--case-position,center center);transition:transform .45s ease}.case-frame figcaption{position:absolute;left:10px;top:10px;border:1px solid rgba(255,255,255,.42);border-radius:999px;background:rgba(9,18,13,.62);color:#fff;padding:6px 9px;font-size:.74rem;font-weight:850;line-height:1;backdrop-filter:blur(10px)}.case-copy{display:grid;gap:8px;padding:17px 18px 19px}.case-copy strong{font-family:var(--font-head);font-size:1.28rem;line-height:1.12;color:var(--text)}.case-copy span{color:var(--muted);line-height:1.5}.case-copy em{font-style:normal;font-weight:850;color:var(--primary);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}.gallery-archive{margin-top:24px;border:1px solid var(--line);border-radius:var(--radius);background:color-mix(in srgb,var(--surface) 76%,var(--bg));box-shadow:var(--shadow);padding:14px}.gallery-archive summary{cursor:pointer;font-weight:850;color:var(--primary)}.gallery-archive .gallery-real-grid{margin-top:14px}.case-modal[hidden],.case-detail[hidden]{display:none!important}body.case-modal-open{overflow:hidden}.case-modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:18px}.case-modal-backdrop{position:absolute;inset:0;border:0;background:rgba(9,18,13,.66);backdrop-filter:blur(8px);cursor:pointer}.case-modal-panel{position:relative;width:min(1120px,100%);max-height:calc(100svh - 36px);overflow:auto;border:1px solid color-mix(in srgb,var(--primary) 18%,var(--line));border-radius:var(--radius);background:var(--surface);box-shadow:0 28px 90px rgba(0,0,0,.34);padding:18px}.case-modal-close{position:sticky;top:0;z-index:3;display:grid;place-items:center;width:42px;height:42px;margin-left:auto;margin-bottom:10px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--surface) 90%,transparent);color:var(--primary);font:800 1.6rem/1 var(--font-body);cursor:pointer;backdrop-filter:blur(10px)}.case-detail{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(320px,.82fr);gap:24px;align-items:start}.case-detail-media{display:grid;gap:18px;min-width:0}.case-detail-pair{gap:10px;background:transparent}.case-detail-pair .case-frame{border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.case-detail-pair .case-frame+.case-frame{border-left:1px solid var(--line)}.case-series{display:grid;gap:14px;border-top:1px solid var(--line);padding-top:16px}.case-series>h3,.case-series-group h3{font-size:1.05rem;margin:0;color:var(--primary)}.case-series-group{display:grid;gap:10px}.case-series-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.case-series-grid .case-frame{aspect-ratio:4/3;border:1px solid var(--line);border-radius:8px}.case-series-grid .case-frame+.case-frame{border-left:1px solid var(--line)}.case-detail-copy{padding:4px 4px 12px}.case-detail-copy h2{font-size:clamp(1.8rem,3vw,2.55rem)}.case-notes{display:grid;gap:12px;margin:22px 0 0}.case-notes div{border-top:1px solid var(--line);padding-top:12px}.case-notes dt{font-weight:900;color:var(--primary)}.case-notes dd{margin:4px 0 0;color:var(--muted)}.watereri-series{padding-top:38px}.watereri-stage-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.watereri-stage{display:grid;gap:14px;min-width:0;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);padding:16px}.watereri-stage-copy h3{font-size:1.18rem;margin-top:0}.watereri-stage-copy p{color:var(--muted);font-size:.96rem;line-height:1.5}.watereri-photo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.watereri-photo-grid .case-frame{aspect-ratio:4/3;border:1px solid var(--line);border-radius:8px}.watereri-photo-grid .case-frame+.case-frame{border-left:1px solid var(--line)}@media (max-width:920px){.case-grid{grid-template-columns:1fr}.case-detail{grid-template-columns:1fr}.case-modal-panel{padding:14px}.case-detail-copy h2{font-size:2rem}.case-series-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.watereri-stage-grid{grid-template-columns:1fr}}@media (max-width:620px){.case-grid{gap:14px}.case-copy{padding:15px}.case-copy strong{font-size:1.14rem}.case-pair,.case-detail-pair{gap:0}.case-detail-pair{gap:8px}.case-frame{aspect-ratio:4/3}.case-pair .case-frame{aspect-ratio:1/1}.case-frame figcaption{left:7px;top:7px;font-size:.66rem;padding:5px 7px}.case-modal{padding:10px}.case-modal-panel{max-height:calc(100svh - 20px);border-radius:10px}.case-modal-close{width:40px;height:40px;margin-bottom:8px}.case-detail-copy h2{font-size:1.72rem}.case-notes{gap:10px}.case-series-grid,.watereri-photo-grid{grid-template-columns:1fr}.watereri-stage{padding:14px}}`;
 }
 
 function contactPersonCss() {
@@ -2729,6 +2873,16 @@ function jsMain() {
     const panels = $$('[data-case-panel]', caseModal);
     const closeButtons = $$('[data-case-close]', caseModal);
     let lastFocused = null;
+    const loadCaseImages = (panel) => {
+      $$('img', panel).forEach((img) => {
+        img.loading = 'eager';
+        const src = img.getAttribute('src');
+        if (!src || img.complete) return;
+        const preload = new Image();
+        preload.decoding = 'async';
+        preload.src = src;
+      });
+    };
     const openCase = (id) => {
       const activePanel = panels.find((panel) => panel.dataset.casePanel === id);
       if (!activePanel) return;
@@ -2737,6 +2891,7 @@ function jsMain() {
       caseModal.hidden = false;
       caseModal.setAttribute('aria-hidden', 'false');
       document.body.classList.add('case-modal-open');
+      loadCaseImages(activePanel);
       $('[data-case-close]', caseModal)?.focus();
     };
     const closeCase = () => {
@@ -3096,6 +3251,7 @@ The public site now uses Viktor's supplied real WebP photo set for hero, service
 | foto/07_viktor/*.webp | Supplied real photos | Viktor/trust/topiary article | PRESENT_REAL_PHOTO_SET |
 | foto/08_fonovi/*.webp | Supplied real photos | Garden context backgrounds | PRESENT_REAL_PHOTO_SET |
 | foto/09_pomylky/*.webp | Supplied real photos | Pine candle/detail article | PRESENT_REAL_PHOTO_SET |
+| foto/10_vidkrytka-yaponiya/kyoto-viktor-wife-2009.webp | Supplied real photo from 24062026/photo_2026-06-24_17-53-02.jpg | Philosophie Kyoto 2009 carousel | PRESENT_REAL_PHOTO |
 | foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp | Supplied real photo | Japan trust/soil context | PRESENT_REAL_PHOTO |
 | baumarchitektur-korrektur.png | Supplied educational graphic | Home Meisterarbeit carousel | PRESENT_SUPPLIED_GRAPHIC |
 | baumarchitektur-live-crown-ratio.png | Supplied educational graphic | Home Meisterarbeit carousel | PRESENT_SUPPLIED_GRAPHIC |
@@ -3276,7 +3432,7 @@ const required = [
   "uk/kontakt.html","uk/impressum.html","uk/datenschutz.html","uk/themes.html",
   "fr/index.html","it/index.html",
   "assets/base.css","assets/main.js","assets/theme-v1.css","assets/theme-v2.css","assets/theme-v3.css","assets/theme-v4.css","assets/theme-v5.css",
-  "assets/img/logo.png","assets/img/foto/01_hero/hero-viktor-bonsai-main.webp","assets/img/foto/01_hero/hero-viktor-bonsai-mobile.webp","assets/img/foto/02_pryklady-robit/sosna-bila-17.webp","assets/img/foto/02_pryklady-robit/sosna-bila-18.webp","assets/img/foto/03_galereya/sosna-bila-01.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-01.webp","assets/img/foto/06_yaponski-kleny/klen-yaponskyi-01.webp","assets/img/foto/07_viktor/viktor-01.webp","assets/img/foto/08_fonovi/fon-foto-01.webp","assets/img/foto/09_pomylky/pomylka-svichka-01.webp","assets/img/foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp","assets/img/MANIFEST.md","site.webmanifest","robots.txt","sitemap.xml","llms.txt","vercel.json","README.md",".env.example","api/contact.js","api/voice-lead.js"
+  "assets/img/logo.png","assets/img/foto/01_hero/hero-viktor-bonsai-main.webp","assets/img/foto/01_hero/hero-viktor-bonsai-mobile.webp","assets/img/foto/02_pryklady-robit/case-parviflora-before.webp","assets/img/foto/02_pryklady-robit/case-parviflora-after.webp","assets/img/foto/02_pryklady-robit/case-watereri-before.webp","assets/img/foto/02_pryklady-robit/case-watereri-after.webp","assets/img/foto/02_pryklady-robit/sosna-bila-17.webp","assets/img/foto/02_pryklady-robit/sosna-bila-18.webp","assets/img/foto/03_galereya/sosna-bila-01.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-01.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-08.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-16.webp","assets/img/foto/06_yaponski-kleny/klen-yaponskyi-01.webp","assets/img/foto/07_viktor/viktor-01.webp","assets/img/foto/08_fonovi/fon-foto-01.webp","assets/img/foto/09_pomylky/pomylka-svichka-01.webp","assets/img/foto/10_vidkrytka-yaponiya/kyoto-viktor-wife-2009.webp","assets/img/foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp","assets/img/MANIFEST.md","site.webmanifest","robots.txt","sitemap.xml","llms.txt","vercel.json","README.md",".env.example","api/contact.js","api/voice-lead.js"
 ];
 
 const errors = [];
@@ -3361,7 +3517,15 @@ for (const file of htmlFiles) {
     for (const deadSignal of ["FOTO - echt", "Google-Bewertung folgt", "Google rating follows", "Referenztext folgt"]) {
       if (bodyText.includes(deadSignal)) errors.push(file + " home page still shows dead demo signal: " + deadSignal);
     }
-    if (!html.includes("data-before-after-slider")) errors.push(file + " missing homepage before/after slider");
+    if (!html.includes("data-before-after-slider") || !html.includes("before-after-range")) errors.push(file + " missing homepage before/after slider control");
+    const homeSlider = html.match(/<figure class=\\"before-after-slider\\"[\\s\\S]*?<\\/figure>/i)?.[0] || "";
+    if (!homeSlider.includes("sosna-watereri-do-pislya-08.webp") || !homeSlider.includes("sosna-watereri-do-pislya-16.webp")) errors.push(file + " missing deployed homepage slider pair sosna-watereri-do-pislya-08/16");
+    if (!homeSlider.includes("--split:40%") || !homeSlider.includes('value=\\"40\\"')) errors.push(file + " homepage slider split is not the deployed 40% setting");
+    for (const badSliderFile of ["case-parviflora-before.webp", "case-parviflora-after.webp", "sosna-bila-17.webp", "sosna-bila-18.webp"]) {
+      if (homeSlider.includes(badSliderFile)) errors.push(file + " homepage slider still uses non-etalon file: " + badSliderFile);
+    }
+    if (html.includes("honest-before-after")) errors.push(file + " still uses static side-by-side before/after layout");
+    if (html.includes("case-taxus-after.webp")) errors.push(file + " still uses ladder Taxus photo as a homepage after image");
   }
   const imgs = [...html.matchAll(/<img\\b[^>]*>/gi)].map((m) => m[0]);
   for (const img of imgs) {
@@ -3449,7 +3613,7 @@ for (const file of previewFiles) {
 }
 
 const manifest = fs.readFileSync(path.join(root, "assets/img/MANIFEST.md"), "utf8");
-for (const file of ["foto/01_hero/hero-viktor-bonsai-main.webp","foto/01_hero/hero-viktor-bonsai-mobile.webp","foto/02_pryklady-robit/*.webp","foto/03_galereya/*.webp","foto/05_nivaki-khmarky/*.webp","foto/06_yaponski-kleny/klen-yaponskyi-01.webp","foto/06_yaponski-kleny/klen-yaponskyi-02.webp","foto/07_viktor/*.webp","foto/08_fonovi/*.webp","foto/09_pomylky/*.webp","foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp","baumarchitektur-korrektur.png","baumarchitektur-live-crown-ratio.png"]) {
+for (const file of ["foto/01_hero/hero-viktor-bonsai-main.webp","foto/01_hero/hero-viktor-bonsai-mobile.webp","foto/02_pryklady-robit/*.webp","foto/03_galereya/*.webp","foto/05_nivaki-khmarky/*.webp","foto/06_yaponski-kleny/klen-yaponskyi-01.webp","foto/06_yaponski-kleny/klen-yaponskyi-02.webp","foto/07_viktor/*.webp","foto/08_fonovi/*.webp","foto/09_pomylky/*.webp","foto/10_vidkrytka-yaponiya/kyoto-viktor-wife-2009.webp","foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp","baumarchitektur-korrektur.png","baumarchitektur-live-crown-ratio.png"]) {
   if (!manifest.includes(file)) errors.push("MANIFEST missing " + file);
 }
 
@@ -3473,6 +3637,18 @@ function speedQualityCss() {
   return `.speed-quality-note{position:relative;overflow:hidden;border-left:6px solid var(--accent);background:linear-gradient(135deg,color-mix(in srgb,var(--surface) 88%,var(--accent)),var(--surface))}.speed-quality-note h2{margin-top:6px}.speed-quality-contrast{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:stretch;margin:18px 0}.speed-quality-contrast>div{min-width:0;border:1px solid var(--line);border-radius:8px;background:color-mix(in srgb,var(--surface) 72%,var(--bg));padding:14px}.speed-quality-contrast strong{display:block;font-family:var(--font-head);font-size:1.45rem;line-height:1.05;color:var(--primary)}.speed-quality-contrast span{display:block;margin-top:6px;color:var(--muted);font-weight:750}.speed-quality-vs{display:grid!important;place-items:center;border:0!important;background:transparent!important;color:var(--accent)!important;font-weight:900;text-transform:uppercase;font-size:.78rem;letter-spacing:0}.speed-quality-warning{border-top:1px solid var(--line);padding-top:14px;font-weight:760}@media (max-width:620px){.speed-quality-contrast{grid-template-columns:1fr}.speed-quality-vs{min-height:26px}}`;
 }
 
+function homepageRescueSliderCss() {
+  return `.before-after-slider{max-width:min(1040px,100%)}.before-after-stage .after-img{object-position:center center}.before-after-range{touch-action:pan-y}@media (max-width:620px){.before-after-stage{aspect-ratio:3 / 4}.before-after-range{height:34px}}`;
+}
+
+function pricePageCss() {
+  return `.price-page .price-grid{max-width:none;margin:0;padding:clamp(42px,7vw,82px) max(18px,calc((100vw - var(--maxw))/2));background:linear-gradient(135deg,#16301f,#22452f);color:#f4f1e8;border-top:1px solid rgba(244,241,232,.14);border-bottom:1px solid rgba(244,241,232,.14)}.price-page .price-grid .card{background:rgba(244,241,232,.045);border:1px solid rgba(244,241,232,.22);box-shadow:0 18px 54px rgba(0,0,0,.18);color:#f4f1e8;border-radius:8px}.price-page .price-grid .eyebrow{color:#c9a24b}.price-page .price-grid .eyebrow:before{background:#c9a24b}.price-page .price-grid h2{color:#c9a24b;font-size:clamp(2rem,3.4vw,2.85rem)}.price-page .price-grid p{color:rgba(244,241,232,.78);font-weight:650}.price-page .page-hero .price-grid{margin-top:28px;border-radius:0}.price-page .page-hero .price-grid .card{box-shadow:none}@media (max-width:620px){.price-page .price-grid{padding:36px 16px}.price-page .price-grid h2{font-size:2rem}}`;
+}
+
+function mobileCookieBannerCss() {
+  return `@media (max-width:620px){.cookie-banner{padding:14px}.cookie-banner p{font-size:.94rem;line-height:1.45}.cookie-banner div{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.cookie-banner .btn{width:100%;min-height:46px;padding:9px 10px;white-space:normal}}@media (max-width:340px){.cookie-banner div{grid-template-columns:1fr}}`;
+}
+
 function publicCss() {
   return `${cssBase().replace(/\.brand-symbol\{[^}]+\}/, "")}
 ${cssResponsiveFixes()}
@@ -3485,13 +3661,19 @@ ${speedQualityCss()}
 .image-carousel{--carousel-index:0;position:relative;aspect-ratio:4/3;overflow:hidden;margin:0;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);touch-action:pan-y}.image-carousel-track{display:flex;height:100%;transform:translateX(calc(var(--carousel-index)*-100%));transition:transform .52s cubic-bezier(.2,.7,.2,1);will-change:transform}.image-carousel-slide{flex:0 0 100%;width:100%;height:100%;object-fit:cover;background:var(--surface)}.image-carousel-btn{position:absolute;top:50%;z-index:2;display:grid;place-items:center;width:44px;height:44px;border:1px solid color-mix(in srgb,var(--primary) 22%,transparent);border-radius:999px;background:color-mix(in srgb,var(--surface) 88%,transparent);color:var(--primary);box-shadow:0 10px 28px rgba(0,0,0,.18);font:800 1.8rem/1 var(--font-body);cursor:pointer;transform:translateY(-50%);backdrop-filter:blur(10px)}.image-carousel-prev{left:14px}.image-carousel-next{right:14px}.image-carousel-dots{position:absolute;left:0;right:0;bottom:13px;z-index:2;display:flex;justify-content:center;gap:8px}.image-carousel-dot{width:9px;height:9px;border:1px solid color-mix(in srgb,var(--primary) 55%,transparent);border-radius:999px;background:color-mix(in srgb,var(--surface) 70%,transparent);padding:0;cursor:pointer}.image-carousel-dot.is-active{width:28px;background:var(--primary)}@media (max-width:620px){.image-carousel{border-radius:12px}.image-carousel-btn{width:40px;height:40px;font-size:1.55rem}.image-carousel-prev{left:10px}.image-carousel-next{right:10px}.image-carousel-dots{bottom:10px}}
 ${contactPersonCss()}
 ${galleryCaseCss()}
+.case-copy{min-width:0}.case-copy strong,.case-copy span{min-width:0;overflow-wrap:anywhere}
 .cookie-banner[hidden],.toast[hidden]{display:none!important}.cookie-banner{max-height:calc(100svh - 32px);overflow:auto;pointer-events:auto}.mobile-cta{padding-bottom:env(safe-area-inset-bottom)}
 @media (max-width:920px){body{padding-bottom:calc(58px + env(safe-area-inset-bottom))}.cookie-banner{bottom:calc(74px + env(safe-area-inset-bottom))}.toast{bottom:calc(74px + env(safe-area-inset-bottom));left:16px;right:16px}}
+${mobileCookieBannerCss()}
 ${cssWowPass().replace(".before-after-slider body." + "presentation-clean @media", "@media")}
+${homepageRescueSliderCss()}
+${pricePageCss()}
 ${heroCopyResponsiveFixCss()}
 ${heroVariantCss()}
 ${heroVividVariantCss()}
 ${heroVividReadabilityCss()}
+${heroVariantTwoTypographyCss()}
+${heroVariantThreeTypographyCss()}
 ${experienceAccentCss()}
 ${meisterCarouselResponsiveCss()}`;
 }
@@ -3582,7 +3764,8 @@ const ukPageOverrides = new Map([
 const finalPages = pages.map((page) => ukPageOverrides.get(page[0]) || page);
 
 for (const [file, lang, title, description, body, jsonLd] of finalPages) {
-  writeFile(file, layout({ file, lang, title, description, body, jsonLd }));
+  const pageClass = file === "preise.html" || file.endsWith("/preise.html") ? "price-page" : "";
+  writeFile(file, layout({ file, lang, title, description, body, jsonLd, pageClass }));
 }
 
 writeFile("site.webmanifest", siteManifest());

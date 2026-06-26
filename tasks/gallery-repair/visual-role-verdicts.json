@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "scope": "V1 gallery active before/after visual role gate",
+  "rule": "This file is not a substitute for looking at the images. Update it only after direct visual inspection of the actual current image files/contact sheet. Filenames, alt text, catalog stages, old reports, and DOM order are not enough.",
+  "cases": [
+    {
+      "case_id": "terrace-pinus-placement",
+      "status": "VERIFIED_VISUAL_WITH_LIMITS",
+      "filename_is_authoritative": false,
+      "before_file": "case-terrace-before.webp",
+      "before_path": "assets/img/foto/02_pryklady-robit/case-terrace-before.webp",
+      "before_sha256": "9DBD48993CDD19B4E17AC4903341B16540E41331D09C46012F671D02502D0ADF",
+      "after_file": "case-terrace-after.webp",
+      "after_path": "assets/img/foto/02_pryklady-robit/case-terrace-after.webp",
+      "after_sha256": "F50F570418B7A29D08518BB4298C61CAC29F5FDCD927989BF53670E16CF136AA",
+      "catalog_before_stage_must_include": ["before"],
+      "catalog_after_stage_must_include": ["after"],
+      "required_modal_context_files": ["sosna-bila-do-pislya-28.webp"],
+      "visual_reviewed_at": "2026-06-25",
+      "visual_reviewer": "Codex local visual check, limited by user review requirement",
+      "evidence": [
+        "direct local image inspection of both preview files",
+        "current galerie.html/en/galerie.html/uk/galerie.html card and modal DOM",
+        "tasks/gallery-repair/reports/final-handoff.md correction-aware state"
+      ],
+      "before_visual_signs": [
+        "tree is in delivery/pre-placement context",
+        "root/base area is still protected and not integrated into the final terrace composition"
+      ],
+      "after_visual_signs": [
+        "same low pine is placed into the terrace garden setting",
+        "composition reads as a settled placement case, not a pruning transformation"
+      ],
+      "do_not_claim": [
+        "do not call this pruning",
+        "do not call this rescue",
+        "do not call this crown transformation"
+      ],
+      "risk": "Verified as a placement/installation story only. It remains misleading if described as pruning or rescue."
+    },
+    {
+      "case_id": "hedge-niwaki-structure",
+      "status": "VERIFIED_VISUAL_WITH_LIMITS",
+      "filename_is_authoritative": false,
+      "before_file": "hecke-niwaki-nachher-01.webp",
+      "before_path": "assets/img/foto/02_pryklady-robit/hecke-niwaki-nachher-01.webp",
+      "before_sha256": "5E7428437356A724B76BADCE30B441A2628E4FAB24D5D5F2AEDCDEE48698905E",
+      "after_file": "hecke-niwaki-vorher-02.webp",
+      "after_path": "assets/img/foto/02_pryklady-robit/hecke-niwaki-vorher-02.webp",
+      "after_sha256": "C69E22DA1D731B36AEA835134B41666A1BD97F875F6D01050F2D09DD76A5213B",
+      "catalog_before_stage_must_include": ["before"],
+      "catalog_after_stage_must_include": ["after"],
+      "required_modal_context_files": [
+        "hecke-niwaki-vorher-01.webp",
+        "hecke-niwaki-diagnose-01.webp",
+        "hecke-niwaki-arbeit-01.webp"
+      ],
+      "visual_reviewed_at": "2026-06-25",
+      "visual_reviewer": "Codex local visual check after user screenshot correction",
+      "evidence": [
+        "direct local image inspection of hecke-niwaki-nachher-01.webp and hecke-niwaki-vorher-02.webp",
+        "user screenshot correction in current Codex thread on 2026-06-25",
+        "current galerie.html/en/galerie.html/uk/galerie.html card and modal DOM"
+      ],
+      "before_visual_signs": [
+        "rougher and less controlled outer hedge line in site context",
+        "reads as a pre-correction context frame despite the filename containing nachher"
+      ],
+      "after_visual_signs": [
+        "hedge mass reads as controlled and rounded",
+        "cleaner finished form despite the filename containing vorher"
+      ],
+      "do_not_claim": [
+        "do not trust the filename words vorher/nachher",
+        "do not mark the controlled rounded frame as before",
+        "do not mark the rougher site-context frame as after"
+      ],
+      "risk": "Filename labels are misleading. Future edits must use visual evidence, not filename text."
+    }
+  ]
+}

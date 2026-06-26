@@ -68,6 +68,16 @@
     const panels = $$('[data-case-panel]', caseModal);
     const closeButtons = $$('[data-case-close]', caseModal);
     let lastFocused = null;
+    const loadCaseImages = (panel) => {
+      $$('img', panel).forEach((img) => {
+        img.loading = 'eager';
+        const src = img.getAttribute('src');
+        if (!src || img.complete) return;
+        const preload = new Image();
+        preload.decoding = 'async';
+        preload.src = src;
+      });
+    };
     const openCase = (id) => {
       const activePanel = panels.find((panel) => panel.dataset.casePanel === id);
       if (!activePanel) return;
@@ -76,6 +86,7 @@
       caseModal.hidden = false;
       caseModal.setAttribute('aria-hidden', 'false');
       document.body.classList.add('case-modal-open');
+      loadCaseImages(activePanel);
       $('[data-case-close]', caseModal)?.focus();
     };
     const closeCase = () => {
@@ -200,18 +211,18 @@
   const formMessages = currentLang.startsWith('uk')
     ? {
         loading: 'Надсилається...',
-        success: 'Дякуємо - Віктор звʼяжеться з вами якнайшвидше.',
+        success: 'Дякуємо - я звʼяжуся з вами якнайшвидше.',
         error: 'Запит зараз не вдалося надіслати. Будь ласка, скористайтеся WhatsApp або спробуйте пізніше.'
       }
     : currentLang.startsWith('en')
       ? {
           loading: 'Sending...',
-          success: 'Thank you - Viktor will get back to you as soon as possible.',
+          success: 'Thank you - I will get back to you as soon as possible.',
           error: 'The request could not be sent right now. Please use WhatsApp or try again later.'
         }
       : {
           loading: 'Wird gesendet...',
-          success: 'Danke - Viktor meldet sich schnellstmöglich.',
+          success: 'Danke - ich melde mich schnellstmöglich.',
           error: 'Die Anfrage konnte gerade nicht gesendet werden. Bitte nutzen Sie WhatsApp oder versuchen Sie es später erneut.'
         };
   const showToast = (message) => {
