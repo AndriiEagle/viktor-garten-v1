@@ -39,6 +39,41 @@
       "risk": "Verified as a placement/installation story only. It remains misleading if described as pruning or rescue."
     },
     {
+      "case_id": "parviflora-candles-svichky",
+      "status": "VERIFIED_VISUAL_WITH_LIMITS",
+      "filename_is_authoritative": false,
+      "before_file": "case-svichky-before.webp",
+      "before_path": "assets/img/foto/02_pryklady-robit/case-svichky-before.webp",
+      "before_sha256": "C6CFACF5E7247B40B846FDF1B75F76B022296D5AA55061E21125384FB2363E94",
+      "after_file": "case-svichky-after.webp",
+      "after_path": "assets/img/foto/02_pryklady-robit/case-svichky-after.webp",
+      "after_sha256": "F04F7470AC8B03EDB31BEA037D1282F72649C74D04E53D5EA54092C515DC26EA",
+      "catalog_before_stage_must_include": ["before"],
+      "catalog_after_stage_must_include": ["after"],
+      "required_modal_context_files": [],
+      "visual_reviewed_at": "2026-06-26",
+      "visual_reviewer": "Codex local visual inspection of current image files",
+      "evidence": [
+        "direct local image inspection of case-svichky-before.webp and case-svichky-after.webp",
+        "current galerie.html/en/galerie.html/uk/galerie.html card and modal DOM",
+        "current image SHA256 hashes recorded on 2026-06-26"
+      ],
+      "before_visual_signs": [
+        "multiple young green pine candles are still long and upright before hand shortening",
+        "frame reads as close botanical detail before the candle work, not a finished full-tree result"
+      ],
+      "after_visual_signs": [
+        "gloved hand is pinching or shortening the candle by hand",
+        "shortened candle and visible future buds show the seasonal technique in progress"
+      ],
+      "do_not_claim": [
+        "do not call this a full-tree before/after transformation",
+        "do not claim overall crown restructuring from this detail pair",
+        "do not infer same-tree continuity beyond the candle-work detail shown"
+      ],
+      "risk": "Verified as a close-detail seasonal candle-work case only. It should not be described as a complete tree transformation."
+    },
+    {
       "case_id": "hedge-niwaki-structure",
       "status": "VERIFIED_VISUAL_WITH_LIMITS",
       "filename_is_authoritative": false,

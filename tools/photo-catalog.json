@@ -991,18 +991,6 @@
   },
   {
     "folder": "03_galereya",
-    "file": "sosna-bila-21.webp",
-    "path": "foto/03_galereya/sosna-bila-21.webp",
-    "species_lat": "Pinus sylvestris 'Watereri'",
-    "species_uk": "????? ???????? 'Watereri'",
-    "stage": "final / Watereri gallery example",
-    "caption": "Pinus sylvestris 'Watereri' - Niwaki cloud-form gallery example",
-    "alt_de": "Waldkiefer (Pinus sylvestris 'Watereri') als Niwaki mit Wolkenform, Region Zuerich",
-    "alt_uk": "????? ???????? 'Watereri' ?? Niwaki ? ??????? ??????",
-    "slot": "galerie.html"
-  },
-  {
-    "folder": "03_galereya",
     "file": "sosna-girska-01.webp",
     "path": "foto/03_galereya/sosna-girska-01.webp",
     "species_lat": "Pinus mugo Pumilio",
@@ -1753,6 +1741,30 @@
     "slot": "galerie.html#hedge-niwaki-structure"
   },
   {
+    "folder": "02_pryklady-robit",
+    "file": "case-svichky-before.webp",
+    "path": "foto/02_pryklady-robit/case-svichky-before.webp",
+    "species_lat": "Pinus parviflora",
+    "species_uk": "Japanese white pine",
+    "stage": "before candle work",
+    "caption": "Pinus parviflora seasonal candle work before hand shortening",
+    "alt_de": "Japanische Weisskiefer Pinus parviflora - Kerzen vor der Handarbeit",
+    "alt_uk": "Pinus parviflora - candles before hand shortening",
+    "slot": "galerie.html#parviflora-candles-svichky"
+  },
+  {
+    "folder": "02_pryklady-robit",
+    "file": "case-svichky-after.webp",
+    "path": "foto/02_pryklady-robit/case-svichky-after.webp",
+    "species_lat": "Pinus parviflora",
+    "species_uk": "Japanese white pine",
+    "stage": "after candle work",
+    "caption": "Pinus parviflora seasonal candle work during hand shortening",
+    "alt_de": "Japanische Weisskiefer Pinus parviflora - Kerzenarbeit von Hand",
+    "alt_uk": "Pinus parviflora - candle shortened by hand",
+    "slot": "galerie.html#parviflora-candles-svichky"
+  },
+  {
     "folder": "_video",
     "file": "video-sosna-bila-01.mp4",
     "path": "foto/_video/video-sosna-bila-01.mp4",
@@ -1787,5 +1799,29 @@
     "alt_de": " als Garten-Bonsai / Niwaki, von Hand geformt – Region Zürich",
     "alt_uk": " — садовий бонсай / нівакі, ручне формування",
     "slot": ""
+  },
+  {
+    "folder": "04_khvoyni",
+    "file": "sosna-chorna-06.webp",
+    "path": "foto/04_khvoyni/sosna-chorna-06.webp",
+    "species_lat": "Pinus thunbergii",
+    "species_uk": "сосна японська чорна",
+    "stage": "після",
+    "caption": "Художньо-архітектурна робота по кроні Pinus thunbergii: проріджування та вкорочення свічок",
+    "alt_de": "Japanische Schwarzkiefer Pinus thunbergii – Niwaki-Krone, Auslichten und Kerzenschnitt",
+    "alt_uk": "Сосна японська чорна Pinus thunbergii — художня крона нівакі, проріджування і вкорочення свічок",
+    "slot": "galerie.html · Хвойні"
+  },
+  {
+    "folder": "05_nivaki-khmarky",
+    "file": "parviflora-niwaki-01.webp",
+    "path": "foto/05_nivaki-khmarky/parviflora-niwaki-01.webp",
+    "species_lat": "Pinus parviflora",
+    "species_uk": "сосна японська біла",
+    "stage": "після",
+    "caption": "Зрілий садовий бонсай (нівакі) Pinus parviflora з відкритими ярусами",
+    "alt_de": "Japanische Weißkiefer Pinus parviflora – reifer Gartenbonsai-Niwaki mit offenen Etagen",
+    "alt_uk": "Японська біла сосна Pinus parviflora — зрілий садовий бонсай нівакі з відкритими ярусами",
+    "slot": "galerie.html · Niwaki"
   }
 ]

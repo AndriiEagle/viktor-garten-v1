@@ -110,8 +110,103 @@ function altEn(item, fallback) {
   return fallback;
 }
 
+const galleryAltUk = {
+  "02_pryklady-robit/sosna-bila-06.webp": "Формована сосна-нівакі з похилим «вітровим» силуетом і ярусними подушками — садовий бонсай",
+  "02_pryklady-robit/sosna-bila-11.webp": "Садовий бонсай-сосна з товстим покрученим стовбуром і хмарними ярусами — ручне формування нівакі",
+  "03_galereya/sosna-bila-01.webp": "Японська біла сосна Pinus parviflora з низькою хмарною кроною у світлому контейнері — садовий бонсай",
+  "03_galereya/sosna-bila-02.webp": "Японська біла сосна Pinus parviflora у темній чаші — багатоярусна форма нівакі",
+  "03_galereya/sosna-bila-14.webp": "Формована сосна-нівакі з кількома ярусами у темному горщику — садовий бонсай",
+  "03_galereya/sosna-bila-15.webp": "Сосна-нівакі у дерев’яній діжці — ручне формування хмарних подушок",
+  "03_galereya/sosna-bila-08.webp": "Високе формоване хвойне дерево у зеленому дерев’яному ящику — садовий нівакі",
+  "02_pryklady-robit/sosna-bila-07.webp": "Формована сосна-нівакі з округлими ярусами на тлі забудови — садовий бонсай",
+  "02_pryklady-robit/sosna-bila-08.webp": "Сосна-нівакі з широкими хмарними подушками — ручне формування крони",
+  "02_pryklady-robit/sosna-bila-09.webp": "Сосна-нівакі з нахилом стовбура праворуч і відкритими ярусами — садовий бонсай",
+  "02_pryklady-robit/sosna-bila-10.webp": "Висока сосна-нівакі з виразним стовбуром і багатьма ярусами — садовий бонсай",
+  "02_pryklady-robit/sosna-bila-17.webp": "Сосна-нівакі поряд із квітучою азалією — формовані хмарні подушки",
+  "02_pryklady-robit/sosna-bila-18.webp": "Висока сосна-нівакі з піднятою кроною — садовий бонсай у розсаднику",
+  "02_pryklady-robit/sosna-bila-19.webp": "Сосна-нівакі з широкою нижньою подушкою і легкою кроною — ручне формування",
+  "02_pryklady-robit/sosna-bila-22.webp": "Сосна-нівакі на тлі пагорбів — багатоярусна хмарна форма, садовий бонсай",
+  "02_pryklady-robit/sosna-bila-23.webp": "Висока сосна-нівакі з округлими ярусами на тлі міської забудови — садовий бонсай",
+  "03_galereya/sosna-bila-12.webp": "Формоване вічнозелене дерево з хмарними ярусами біля каменя у японському саду — нівакі",
+  "03_galereya/sosna-bila-13.webp": "Формоване вічнозелене дерево-нівакі з округлою кроною — садовий бонсай",
+  "02_pryklady-robit/tys-04.webp": "Тис Taxus як топіарі-нівакі з ярусними подушками у горщику — ручне формування",
+  "02_pryklady-robit/tys-05.webp": "Тис Taxus із хмарною багатоярусною формою у горщику — садовий топіарі",
+  "02_pryklady-robit/tys-01.webp": "Формоване хвойне дерево під час догляду з приставленою драбиною — садовий нівакі",
+  "03_galereya/sosna-bila-03.webp": "Загальний план розсадника: ряди садових бонсаїв і нівакі у горщиках — садовий контекст",
+  "02_pryklady-robit/sosna-bila-21.webp": "Ряд формованих дерев із квітучими азаліями — садовий контекст розсадника нівакі",
+  "02_pryklady-robit/tys-03.webp": "Ряд тисів і хвойних топіарі у горщиках — асортимент формованих дерев",
+  "02_pryklady-robit/tys-02.webp": "Тис Taxus із густою хвоєю біля гравійної доріжки — садовий контекст",
+  "03_galereya/sosna-bila-04.webp": "Крупний план хвої та свічок японської білої сосни Pinus parviflora перед формуванням",
+  "02_pryklady-robit/sosna-bila-20.webp": "Крупний план хвої й молодих свічок сосни знизу крони — деталь догляду",
+  "02_pryklady-robit/sosna-bila-16.webp": "Віктор поряд із формованою сосною-нівакі та драбиною під час роботи в саду",
+  "03_galereya/sosna-girska-01.webp": "Сосна гірська Pinus mugo — низький розлогий садовий бонсай у чаші, ручне формування",
+  "04_khvoyni/sosna-avstr-01.webp": "Сосна австрійська чорна Pinus nigra — садовий нівакі після сезонної обрізки крони",
+  "04_khvoyni/sosna-avstr-02.webp": "Сосна австрійська чорна Pinus nigra — крона після чистки від старої сухої хвої зсередини",
+  "04_khvoyni/sosna-chorna-01.webp": "Сосна японська чорна Pinus thunbergii — нівакі з проріджуванням крони",
+  "04_khvoyni/sosna-chorna-02.webp": "Сосна японська чорна Pinus thunbergii — багатоярусна форма, ручне формування",
+  "04_khvoyni/sosna-chorna-03.webp": "Сосна японська чорна Pinus thunbergii — вкорочення свічок для рівномірної сили крони",
+  "04_khvoyni/sosna-chorna-04.webp": "Сосна японська чорна Pinus thunbergii — відкриті яруси, садовий бонсай",
+  "04_khvoyni/sosna-chorna-05.webp": "Сосна японська чорна Pinus thunbergii — зріла крона нівакі",
+  "04_khvoyni/sosna-girska-01.webp": "Сосна гірська Pinus mugo — низький садовий бонсай, ручне формування",
+  "04_khvoyni/sosna-girska-02.webp": "Сосна гірська Pinus mugo — компактна формована крона нівакі",
+  "05_nivaki-khmarky/sosna-watereri-do-pislya-01.webp": "Сосна звичайна Pinus sylvestris 'Watereri' — формування хмар, профілактика загущення крони",
+  "05_nivaki-khmarky/sosna-watereri-do-pislya-02.webp": "Pinus sylvestris 'Watereri' — розрідження шапок проти зайвої вологи й грибкових хвороб",
+  "05_nivaki-khmarky/sosna-watereri-do-pislya-03.webp": "Pinus sylvestris 'Watereri' — хмарна форма, сезонна робота раз на 2–3 роки",
+  "05_nivaki-khmarky/sosna-watereri-do-pislya-04.webp": "Pinus sylvestris 'Watereri' — відкриті яруси, більше світла й повітря в кроні",
+  "05_nivaki-khmarky/sosna-watereri-do-pislya-05.webp": "Pinus sylvestris 'Watereri' — ручне формування хмарок нівакі",
+  "05_nivaki-khmarky/sosna-watereri-do-pislya-06.webp": "Pinus sylvestris 'Watereri' — спокійний силует крони після розрідження",
+  "05_nivaki-khmarky/sosna-watereri-do-pislya-07.webp": "Pinus sylvestris 'Watereri' — зріла хмарна крона садового бонсаю",
+  "05_nivaki-khmarky/yalivets-01.webp": "Ялівець Juniperus — нівакі з хмарними ярусами, ручне формування",
+  "05_nivaki-khmarky/yalivets-02.webp": "Ялівець Juniperus — формовані хмарки, садовий бонсай",
+  "05_nivaki-khmarky/yalivets-03.webp": "Ялівець Juniperus — відкрита ярусна крона нівакі",
+  "05_nivaki-khmarky/yalivets-04.webp": "Ялівець Juniperus — зріла формована крона у японському саду",
+  "06_yaponski-kleny/klen-yaponskyi-01.webp": "Японський клен Acer palmatum — тонка крона, хмарне формування",
+  "06_yaponski-kleny/klen-yaponskyi-02.webp": "Японський клен Acer palmatum — формування дрібних гілок і легкої крони",
+  "06_yaponski-kleny/klen-yaponskyi-03.webp": "Японський клен Acer palmatum — обережна обрізка, прозора крона",
+  "06_yaponski-kleny/klen-yaponskyi-04.webp": "Японський клен Acer palmatum — сезонний догляд і формування",
+  "02_pryklady-robit/sosna-bila-do-pislya-01.webp": "Японська біла сосна Pinus parviflora — нівакі, ракурс ярусної крони, кадр 01 серії до/після",
+  "02_pryklady-robit/sosna-bila-do-pislya-02.webp": "Японська біла сосна Pinus parviflora — нівакі, робочий контекстний кадр, кадр 02 серії до/після",
+  "02_pryklady-robit/sosna-bila-do-pislya-03.webp": "Японська біла сосна Pinus parviflora — нівакі, етап формування крони, кадр 03 серії до/після",
+  "02_pryklady-robit/sosna-bila-do-pislya-04.webp": "Японська біла сосна Pinus parviflora — нівакі, нижня лінія крони, кадр 04 серії до/після",
+  "02_pryklady-robit/sosna-bila-do-pislya-05.webp": "Японська біла сосна Pinus parviflora — нівакі, форма після роботи, кадр 05 серії до/після",
+  "02_pryklady-robit/sosna-bila-do-pislya-12.webp": "Японська біла сосна Pinus parviflora — нівакі, нижня лінія крони, кадр 12 серії до/після",
+  "02_pryklady-robit/sosna-bila-do-pislya-13.webp": "Японська біла сосна Pinus parviflora — нівакі, форма після роботи, кадр 13 серії до/після",
+  "02_pryklady-robit/sosna-bila-do-pislya-14.webp": "Японська біла сосна Pinus parviflora — нівакі, деталь подушок хвої, кадр 14 серії до/після",
+  "02_pryklady-robit/sosna-bila-do-pislya-15.webp": "Японська біла сосна Pinus parviflora — нівакі, крона з бічного ракурсу, кадр 15 серії до/після",
+  "02_pryklady-robit/sosna-bila-do-pislya-33.webp": "Японська біла сосна Pinus parviflora — нівакі, ракурс ярусної крони, кадр 33 серії до/після",
+  "02_pryklady-robit/sosna-bila-do-pislya-34.webp": "Японська біла сосна Pinus parviflora — нівакі, робочий контекстний кадр, кадр 34 серії до/після",
+  "02_pryklady-robit/sosna-bila-do-pislya-35.webp": "Японська біла сосна Pinus parviflora — нівакі, етап формування крони, кадр 35 серії до/після",
+  "02_pryklady-robit/sosna-bila-do-pislya-36.webp": "Японська біла сосна Pinus parviflora — нівакі, нижня лінія крони, кадр 36 серії до/після",
+  "02_pryklady-robit/sosna-bila-do-pislya-37.webp": "Японська біла сосна Pinus parviflora — нівакі, форма після роботи, кадр 37 серії до/після",
+  "02_pryklady-robit/sosna-bila-do-pislya-38.webp": "Японська біла сосна Pinus parviflora — нівакі, деталь подушок хвої, кадр 38 серії до/після",
+  "02_pryklady-robit/sosna-bila-do-pislya-39.webp": "Японська біла сосна Pinus parviflora — нівакі, крона з бічного ракурсу, кадр 39 серії до/після",
+  "02_pryklady-robit/sosna-bila-do-pislya-40.webp": "Японська біла сосна Pinus parviflora — нівакі, загальний вигляд дерева на місці, кадр 40 серії до/після",
+  "02_pryklady-robit/sosna-bila-do-pislya-41.webp": "Японська біла сосна Pinus parviflora — нівакі, ракурс ярусної крони, кадр 41 серії до/після",
+  "02_pryklady-robit/sosna-bila-do-pislya-42.webp": "Японська біла сосна Pinus parviflora — нівакі, робочий контекстний кадр, кадр 42 серії до/після",
+  "02_pryklady-robit/sosna-bila-do-pislya-43.webp": "Японська біла сосна Pinus parviflora — нівакі, етап формування крони, кадр 43 серії до/після",
+  "02_pryklady-robit/tys-do-pislya-06.webp": "Тис Taxus baccata — топіарна стрижка до/після, ярусні подушки крони, кадр 06",
+  "02_pryklady-robit/tys-do-pislya-07.webp": "Тис Taxus baccata — топіарна стрижка до/після, робочий кадр серії, кадр 07",
+  "02_pryklady-robit/tys-do-pislya-08.webp": "Тис Taxus baccata — топіарна стрижка до/після, форма після стрижки, кадр 08",
+  "02_pryklady-robit/tys-do-pislya-09.webp": "Тис Taxus baccata — топіарна стрижка до/після, загальний вигляд куща, кадр 09",
+  "02_pryklady-robit/tys-do-pislya-10.webp": "Тис Taxus baccata — топіарна стрижка до/після, топіарна форма з боку, кадр 10",
+  "02_pryklady-robit/tys-do-pislya-11.webp": "Тис Taxus baccata — топіарна стрижка до/після, ярусні подушки крони, кадр 11",
+  "02_pryklady-robit/tys-do-pislya-12.webp": "Тис Taxus baccata — топіарна стрижка до/після, робочий кадр серії, кадр 12",
+  "02_pryklady-robit/tys-do-pislya-13.webp": "Тис Taxus baccata — топіарна стрижка до/після, форма після стрижки, кадр 13",
+  "02_pryklady-robit/sosna-bila-do-pislya-30.webp": "Японська біла сосна Pinus parviflora — нівакі, деталь подушок хвої, кадр 30 серії до/після",
+  "07_viktor/viktor-01.webp": "Віктор за роботою — ручне формування нівакі секатором",
+  "07_viktor/viktor-03.webp": "Віктор за роботою — художня обрізка крони сосни",
+  "07_viktor/viktor-07.webp": "Віктор за роботою — формування садового бонсаю біля дерева",
+  "07_viktor/viktor-08.webp": "Віктор за роботою — догляд за кроною нівакі вручну",
+  "07_viktor/viktor-09.webp": "Віктор за роботою — обрізка та корекція форми дерева",
+  "01_hero/hero-sad-01.webp": "Японський сад з нівакі та формованими деревами — загальний краєвид",
+  "01_hero/hero-sad-02.webp": "Японський сад з нівакі — тераса, доріжка і формовані дерева",
+  "09_pomylky/pomylka-svichka-01.webp": "Неправильний зріз свічки сосни — приклад помилки, задеревеніла частина",
+  "09_pomylky/pomylka-svichka-02.webp": "Неправильний зріз свічки сосни — гілка без майбутньої бруньки",
+};
+
 function photoAlt(folder, file, lang = "de", fallback = "") {
   const item = photo(folder, file);
+  if (lang === "uk" && galleryAltUk[`${folder}/${file}`]) return galleryAltUk[`${folder}/${file}`];
   if (folder === "02_pryklady-robit" && /^(sosna-bila|tys-|tys-do-pislya-)/.test(file)) {
     if (/^(Vorher|Nachher|Arbeit|Before|After|Work|До|Після|Робота):/.test(fallback)) return fallback;
     if (file.startsWith("sosna-bila")) {
@@ -328,7 +423,30 @@ const galleryExclusions = new Set([
   "02_pryklady-robit/sosna-watereri-do-pislya-02.webp",
   "02_pryklady-robit/sosna-watereri-do-pislya-03.webp",
   "02_pryklady-robit/sosna-watereri-do-pislya-04.webp",
-  "03_galereya/sosna-bila-21.webp"
+  "03_galereya/sosna-bila-05.webp",
+  "03_galereya/sosna-bila-06.webp",
+  "03_galereya/sosna-bila-07.webp",
+  "03_galereya/sosna-bila-09.webp",
+  "03_galereya/sosna-bila-10.webp",
+  "03_galereya/sosna-bila-11.webp",
+  "03_galereya/sosna-bila-16.webp",
+  "03_galereya/sosna-bila-17.webp",
+  "03_galereya/sosna-bila-18.webp",
+  "03_galereya/sosna-bila-19.webp",
+  "03_galereya/sosna-bila-20.webp",
+  "03_galereya/sosna-bila-03.webp",
+  "03_galereya/sosna-bila-04.webp",
+  "03_galereya/sosna-girska-01.webp",
+  "02_pryklady-robit/sosna-bila-16.webp",
+  "02_pryklady-robit/sosna-bila-20.webp",
+  "02_pryklady-robit/sosna-bila-21.webp",
+  "02_pryklady-robit/sosna-bila-24.webp",
+  "02_pryklady-robit/sosna-bila-25.webp",
+  "02_pryklady-robit/sosna-bila-26.webp",
+  "02_pryklady-robit/tys-02.webp",
+  "02_pryklady-robit/tys-03.webp",
+  "02_pryklady-robit/case-svichky-before.webp",
+  "02_pryklady-robit/case-svichky-after.webp"
 ]);
 
 const lowCrownContextFiles = [
@@ -346,10 +464,13 @@ function beforeAfterGalleryItems() {
 }
 
 function workGalleryItems() {
-  return [
+  const heroes = [photo("02_pryklady-robit", "sosna-bila-06.webp"), photo("02_pryklady-robit", "sosna-bila-11.webp")];
+  const heroKeys = new Set(heroes.map((i) => `${i.folder}/${i.file}`));
+  const rest = [
     ...publicGalleryItems(["03_galereya"]),
     ...publicGalleryItems(["02_pryklady-robit"]).filter((item) => !item.file.includes("do-pislya"))
-  ];
+  ].filter((item) => !heroKeys.has(`${item.folder}/${item.file}`));
+  return [...heroes, ...rest];
 }
 
 function selectedGalleryItems(folder, files) {
@@ -357,10 +478,14 @@ function selectedGalleryItems(folder, files) {
 }
 
 function gardenContextGalleryItems() {
-  return selectedGalleryItems("01_hero", [
-    "hero-sad-01.webp",
-    "hero-sad-02.webp"
-  ]);
+  return [
+    ...selectedGalleryItems("01_hero", [
+      "hero-sad-01.webp",
+      "hero-sad-02.webp"
+    ]),
+    ...selectedGalleryItems("03_galereya", ["sosna-bila-03.webp"]),
+    ...selectedGalleryItems("02_pryklady-robit", ["sosna-bila-21.webp", "tys-03.webp", "tys-02.webp"])
+  ];
 }
 
 function lowCrownContextGalleryItems() {
@@ -386,24 +511,29 @@ function niwakiCloudGalleryItems() {
       "yalivets-01.webp",
       "yalivets-02.webp",
       "yalivets-03.webp",
-      "yalivets-04.webp"
+      "yalivets-04.webp",
+      "parviflora-niwaki-01.webp"
     ]),
     photo("06_yaponski-kleny", "klen-yaponskyi-01.webp")
   ];
 }
 
 function coniferGalleryItems() {
-  return selectedGalleryItems("04_khvoyni", [
-    "sosna-avstr-01.webp",
-    "sosna-avstr-02.webp",
-    "sosna-chorna-01.webp",
-    "sosna-chorna-02.webp",
-    "sosna-chorna-03.webp",
-    "sosna-chorna-04.webp",
-    "sosna-chorna-05.webp",
-    "sosna-girska-01.webp",
-    "sosna-girska-02.webp"
-  ]);
+  return [
+    ...selectedGalleryItems("04_khvoyni", [
+      "sosna-avstr-01.webp",
+      "sosna-avstr-02.webp",
+      "sosna-chorna-01.webp",
+      "sosna-chorna-02.webp",
+      "sosna-chorna-03.webp",
+      "sosna-chorna-04.webp",
+      "sosna-chorna-05.webp",
+      "sosna-chorna-06.webp",
+      "sosna-girska-01.webp",
+      "sosna-girska-02.webp"
+    ]),
+    ...selectedGalleryItems("03_galereya", ["sosna-girska-01.webp"])
+  ];
 }
 
 function mapleGalleryItems() {
@@ -415,23 +545,30 @@ function mapleGalleryItems() {
 }
 
 function viktorGalleryItems() {
-  return selectedGalleryItems("07_viktor", [
-    "viktor-10.webp",
-    "viktor-01.webp",
-    "viktor-03.webp",
-    "viktor-07.webp",
-    "viktor-08.webp",
-    "viktor-09.webp"
-  ]);
+  return [
+    ...selectedGalleryItems("07_viktor", [
+      "viktor-10.webp",
+      "viktor-01.webp",
+      "viktor-03.webp",
+      "viktor-07.webp",
+      "viktor-08.webp",
+      "viktor-09.webp"
+    ]),
+    ...selectedGalleryItems("02_pryklady-robit", ["sosna-bila-16.webp"])
+  ];
 }
 
 function detailGalleryItems() {
-  return selectedGalleryItems("09_pomylky", [
-    "pomylka-svichka-01.webp",
-    "pomylka-svichka-02.webp",
-    "taxus-heckenschere-fehler-01.webp",
-    "taxus-heckenschere-fehler-02.webp"
-  ]);
+  return [
+    ...selectedGalleryItems("09_pomylky", [
+      "pomylka-svichka-01.webp",
+      "pomylka-svichka-02.webp",
+      "taxus-heckenschere-fehler-01.webp",
+      "taxus-heckenschere-fehler-02.webp"
+    ]),
+    ...selectedGalleryItems("03_galereya", ["sosna-bila-04.webp"]),
+    ...selectedGalleryItems("02_pryklady-robit", ["sosna-bila-20.webp"])
+  ];
 }
 
 function hedgeTrimmerMistakeBlock(lang = "de") {
@@ -491,6 +628,8 @@ function galleryPhotoSection(copy, items, lang = "de", options = {}) {
 const workPhoto = (file, position = "center center") => ({ folder: "02_pryklady-robit", file, position });
 const workPhotos = (files, position = "center center") => files.map((file) => workPhoto(file, position));
 const cloudPhoto = (file, position = "center center") => ({ folder: "05_nivaki-khmarky", file, position });
+const galleryPhotoFrame = (file, position = "center center") => ({ folder: "03_galereya", file, position });
+const galleryPhotoFrames = (files, position = "center center") => files.map((file) => galleryPhotoFrame(file, position));
 
 const watereriWorkSeries = {
   before: [
@@ -557,6 +696,227 @@ function watereriWorkSeriesBlock(lang = "de") {
       ${watereriStage(copy.beforeTitle, copy.beforeText, watereriWorkSeries.before, copy.beforeLabel, lang)}
       ${watereriStage(copy.afterTitle, copy.afterText, watereriWorkSeries.after, copy.afterLabel, lang)}
     </div>
+  </section>`;
+}
+
+const connectedGallerySeries = [
+  {
+    id: "parviflora-house-line",
+    images: galleryPhotoFrames([
+      "sosna-bila-20.webp",
+      "sosna-bila-19.webp"
+    ]),
+    labels: {
+      de: ["Vorher", "Nachher"],
+      uk: ["До", "Після"],
+      en: ["Before", "After"]
+    },
+    title: {
+      de: "Pinus parviflora am Haus: vom dichten Austrieb zur ruhigen Wolkenlinie.",
+      uk: "Pinus parviflora біля дому: від густого приросту до спокійної хмарної лінії.",
+      en: "Pinus parviflora beside the house: from dense growth to a calm cloud line."
+    },
+    species: {
+      de: "Japanische Weißkiefer - Pinus parviflora",
+      uk: "Японська біла сосна - Pinus parviflora",
+      en: "Japanese white pine - Pinus parviflora"
+    },
+    summary: {
+      de: "Links der Zustand vor dem Schnitt mit dichtem Austrieb und unruhiger Außenlinie; rechts die geöffnete, sauberere Wolkenform nach der Handarbeit.",
+      uk: "Ліворуч стан до обрізки з густим приростом і неспокійною зовнішньою лінією; праворуч відкритіша, чистіша хмарна форма після ручної роботи.",
+      en: "Left is the state before cutting, with dense growth and a restless outer line; right is the opened, cleaner cloud form after hand work."
+    },
+    done: {
+      de: "Der junge Austrieb wurde selektiv zurückgenommen, die Polster wurden geöffnet und die untere Linie so beruhigt, dass der Baum wieder klar neben Wand und Kies steht.",
+      uk: "Молодий приріст вибірково скорочено, подушки відкрито, а нижню лінію заспокоєно так, щоб дерево знову чітко читалося біля стіни й гравію.",
+      en: "Young growth was selectively reduced, the pads were opened and the lower line was calmed so the tree reads clearly beside the wall and gravel again."
+    }
+  },
+  {
+    id: "parviflora-lake-terrace",
+    images: galleryPhotoFrames([
+      "sosna-bila-16.webp",
+      "sosna-bila-17.webp",
+      "sosna-bila-18.webp"
+    ]),
+    labels: {
+      de: ["Front", "Seite", "Terrasse"],
+      uk: ["Фронт", "Бік", "Тераса"],
+      en: ["Front", "Side", "Terrace"]
+    },
+    title: {
+      de: "Pinus parviflora auf der Terrasse: Ergebnis aus mehreren Blickwinkeln.",
+      uk: "Pinus parviflora на терасі: результат із кількох ракурсів.",
+      en: "Pinus parviflora on the terrace: the result from several angles."
+    },
+    species: {
+      de: "Japanische Weißkiefer - Pinus parviflora",
+      uk: "Японська біла сосна - Pinus parviflora",
+      en: "Japanese white pine - Pinus parviflora"
+    },
+    summary: {
+      de: "Diese Bilder zeigen keinen harten Vorher-/Nachher-Sprung, sondern die fertige Wirkung: Stammbewegung, Etagen und Proportion im Terrassenraum.",
+      uk: "Це не різкий стрибок до/після, а показ готової дії: рух стовбура, яруси й пропорція дерева в терасовому просторі.",
+      en: "These images do not show a hard before/after jump; they show the finished effect: trunk movement, layers and proportion in the terrace space."
+    },
+    done: {
+      de: "Die Etagen bleiben getrennt, die Krone wirkt leichter und der Baum funktioniert aus der Nähe sowie aus dem Blick über die Terrasse.",
+      uk: "Яруси залишені розділеними, крона виглядає легше, а дерево працює і зблизька, і в загальному виді тераси.",
+      en: "The layers stay separated, the crown feels lighter and the tree works both close-up and in the wider terrace view."
+    }
+  },
+  {
+    id: "parviflora-boxed-crown",
+    images: galleryPhotoFrames([
+      "sosna-bila-05.webp",
+      "sosna-bila-06.webp",
+      "sosna-bila-07.webp"
+    ]),
+    labels: {
+      de: ["Ansicht 1", "Ansicht 2", "Detail"],
+      uk: ["Ракурс 1", "Ракурс 2", "Деталь"],
+      en: ["View 1", "View 2", "Detail"]
+    },
+    title: {
+      de: "Pinus parviflora im Holzkasten: niedrige Krone, Standort und Proportion.",
+      uk: "Pinus parviflora у дерев'яному контейнері: низька крона, місце і пропорція.",
+      en: "Pinus parviflora in a wooden box: low crown, setting and proportion."
+    },
+    species: {
+      de: "Japanische Weißkiefer - Pinus parviflora",
+      uk: "Японська біла сосна - Pinus parviflora",
+      en: "Japanese white pine - Pinus parviflora"
+    },
+    summary: {
+      de: "Die Serie erklärt, warum ein großer Gartenbonsai nicht nur frontal bewertet wird: Höhe, Kasten, Nachbarpflanzen und Blickrichtung gehören zusammen.",
+      uk: "Серія пояснює, чому великий садовий бонсай не оцінюється тільки фронтально: висота, контейнер, сусідні рослини і напрям погляду працюють разом.",
+      en: "The series explains why a large garden bonsai is not judged only from the front: height, container, surrounding plants and viewing direction belong together."
+    },
+    done: {
+      de: "Die Form wurde so gelesen, dass die unteren Wolken nicht drücken, die oberen Ebenen sichtbar bleiben und der Baum am Standort Ruhe bekommt.",
+      uk: "Форму прочитано так, щоб нижні хмари не тиснули, верхні яруси залишались видимими, а дерево на місці виглядало спокійно.",
+      en: "The form was read so the lower clouds do not feel heavy, the upper layers stay visible and the tree gains calm in its setting."
+    }
+  },
+  {
+    id: "parviflora-work-context",
+    images: galleryPhotoFrames([
+      "sosna-bila-11.webp",
+      "sosna-bila-09.webp",
+      "sosna-bila-10.webp"
+    ]),
+    labels: {
+      de: ["Vorher", "Nachher", "Nachher"],
+      uk: ["До", "Після", "Після"],
+      en: ["Before", "After", "After"]
+    },
+    title: {
+      de: "Pinus parviflora: von dichter Krone zu getrennten Wolken.",
+      uk: "Pinus parviflora: від густої крони до розділених хмар.",
+      en: "Pinus parviflora: from dense crown to separated clouds."
+    },
+    species: {
+      de: "Japanische Weißkiefer - Pinus parviflora",
+      uk: "Японська біла сосна - Pinus parviflora",
+      en: "Japanese white pine - Pinus parviflora"
+    },
+    summary: {
+      de: "Links steht der dichtere Zustand vor dem Schnitt. Die zwei folgenden Bilder zeigen die geöffnete Form danach: mehr Luft zwischen den Polstern und eine ruhigere Silhouette.",
+      uk: "Ліворуч густіший стан до обрізки. Два наступні кадри показують форму після: більше повітря між подушками і спокійніший силует.",
+      en: "Left is the denser state before cutting. The next two frames show the opened form after: more air between the pads and a calmer silhouette."
+    },
+    done: {
+      de: "Übervolle Partien wurden selektiv geöffnet, junge Triebe reduziert und die Wolken so getrennt, dass die Form nicht flach wirkt.",
+      uk: "Переповнені частини вибірково відкрито, молодий приріст скорочено, а хмари розділено так, щоб форма не виглядала пласкою.",
+      en: "Overfull areas were selectively opened, young growth was reduced and the clouds were separated so the form does not look flat."
+    }
+  },
+  {
+    id: "tall-pine-three-views",
+    images: [
+      { folder: "02_pryklady-robit", file: "sosna-bila-24.webp" },
+      { folder: "02_pryklady-robit", file: "sosna-bila-25.webp" },
+      { folder: "02_pryklady-robit", file: "sosna-bila-26.webp" }
+    ],
+    labels: {
+      de: ["Ansicht 1", "Ansicht 2", "Ansicht 3"],
+      uk: ["Ракурс 1", "Ракурс 2", "Ракурс 3"],
+      en: ["View 1", "View 2", "View 3"]
+    },
+    title: {
+      de: "Hohe Kiefer als Niwaki: ein Solitär aus drei Blickwinkeln.",
+      uk: "Висока сосна-нівакі: один солітер із трьох ракурсів.",
+      en: "Tall pine niwaki: one solitaire from three angles."
+    },
+    species: {
+      de: "Formkiefer (Niwaki) - Garten-Solitär",
+      uk: "Формована сосна (нівакі) - садовий солітер",
+      en: "Shaped pine (niwaki) - garden solitaire"
+    },
+    summary: {
+      de: "Kein Vorher/Nachher, sondern derselbe Baum aus verschiedenen Seiten: Stammbewegung, Höhe und wie der Solitär den Raum am Zaun hält.",
+      uk: "Це не до/після, а одне й те саме дерево з різних боків: рух стовбура, висота й те, як солітер тримає простір біля паркана.",
+      en: "Not before/after but the same tree from different sides: trunk movement, height and how the solitaire holds the space by the fence."
+    },
+    done: {
+      de: "Ein Solitär aus mehreren Blickwinkeln gezeigt: die Etagenpolster sind getrennt, die Silhouette bleibt aus jeder Richtung ruhig.",
+      uk: "Один солітер показано з кількох ракурсів: ярусні подушки розділені, силует читається спокійно з будь-якого боку.",
+      en: "One solitaire shown from several angles: the layered pads are separated and the silhouette stays calm from every side."
+    }
+  }
+];
+
+function connectedSeriesLabels(lang = "de") {
+  if (lang === "uk") {
+    return {
+      eyebrow: "Пов'язані серії",
+      title: "Окремі групи, де видно дерево, місце і логіку роботи.",
+      text: "Ці кадри більше не лежать у загальній сітці. Я згрупував їх за одним деревом або одним робочим контекстом: частина показує реальну зміну форми, частина - результат із різних ракурсів.",
+      species: "Дерево",
+      done: "Що зроблено"
+    };
+  }
+  if (lang === "en") {
+    return {
+      eyebrow: "Connected series",
+      title: "Separate groups where the tree, place and work logic stay readable.",
+      text: "These frames no longer sit loose in the general grid. They are grouped by the same tree or the same work context: some show a visible care effect, some show the finished result from several angles.",
+      species: "Tree",
+      done: "What was done"
+    };
+  }
+  return {
+    eyebrow: "Verbundene Serien",
+    title: "Eigene Gruppen, in denen Baum, Ort und Arbeit lesbar bleiben.",
+    text: "Diese Bilder stehen nicht mehr lose im Raster. Sie sind nach Baum oder Arbeitskontext gruppiert: teils mit sichtbarem Pflegeeffekt, teils als fertiges Ergebnis aus mehreren Blickwinkeln.",
+    species: "Baum",
+    done: "Was wurde gemacht"
+  };
+}
+
+function connectedGallerySeriesBlock(lang = "de") {
+  const labels = connectedSeriesLabels(lang);
+  const cards = connectedGallerySeries.map((item) => {
+    const imageLabels = item.labels[lang] || item.labels.de;
+    const frames = item.images.map((image, index) =>
+      caseImage(image, imageLabels[index] || String(index + 1), lang, "eager", `${imageLabels[index] || index + 1}: ${localized(item.title, lang)}`)
+    ).join("");
+    return `<article class="connected-series-card" id="series-${item.id}">
+      <div class="connected-series-media connected-series-media-${item.images.length}">${frames}</div>
+      <div class="connected-series-copy">
+        <h3>${localized(item.title, lang)}</h3>
+        <p>${localized(item.summary, lang)}</p>
+        <dl class="connected-series-notes">
+          <div><dt>${labels.species}</dt><dd>${localized(item.species, lang)}</dd></div>
+          <div><dt>${labels.done}</dt><dd>${localized(item.done, lang)}</dd></div>
+        </dl>
+      </div>
+    </article>`;
+  }).join("");
+  return `
+  <section class="section connected-series" id="connected-series">
+    <div class="section-head"><span class="eyebrow">${labels.eyebrow}</span><h2>${labels.title}</h2><p>${labels.text}</p></div>
+    <div class="connected-series-grid">${cards}</div>
   </section>`;
 }
 
@@ -645,6 +1005,42 @@ const beforeAfterCases = [
       de: "Mein Wert liegt in der Diagnose vor dem Schnitt: Ich sehe nicht nur die Außenkontur, sondern auch, was im Inneren des Gehölzes passiert.",
       uk: "Моя цінність у діагностиці перед зрізом: я дивлюся не тільки на зовнішній контур, а й на те, що відбувається всередині рослини.",
       en: "My value is diagnosis before cutting: I look beyond the outside contour and read what is happening inside the plant."
+    }
+  },
+  {
+    id: "parviflora-candles-svichky",
+    preview: {
+      before: workPhoto("case-svichky-before.webp", "center center"),
+      after: workPhoto("case-svichky-after.webp", "center center")
+    },
+    series: {
+      before: workPhotos(["case-svichky-before.webp"]),
+      after: workPhotos(["case-svichky-after.webp"])
+    },
+    title: {
+      de: "Pinus parviflora: saisonale Kerzenarbeit",
+      uk: "Pinus parviflora: сезонна робота зі свічками",
+      en: "Pinus parviflora: seasonal candle work"
+    },
+    summary: {
+      de: "Links der junge Austrieb mit langen Kerzen vor der Arbeit; rechts das Kürzen der Kerze von Hand, um die Kraft in der ganzen Krone auszugleichen.",
+      uk: "Зліва — молодий приріст із довгими свічками до роботи; справа — ручне вкорочення свічки, щоб вирівняти силу по всій кроні.",
+      en: "Left: young growth with long candles before work; right: shortening the candle by hand to balance vigour across the whole crown."
+    },
+    done: {
+      de: "Die Kerzen werden von Hand gekürzt, ohne Schere, sodass künftige Knospen bleiben; den verholzten Teil schneide ich nicht.",
+      uk: "Свічки скорочую вручну, без ножиць, залишаючи майбутні бруньки; задеревенілу частину не зрізаю, щоб гілка дала нову бруньку.",
+      en: "The candles are shortened by hand, without scissors, leaving future buds; I do not cut into the woody part."
+    },
+    why: {
+      de: "Die Kerzenarbeit bestimmt Dichte und Kraft der Nadeln fuer die kommende Saison; ein grober Scherenschnitt zerstoert Knospen und hinterlaesst trockene Enden.",
+      uk: "Робота зі свічками визначає щільність і силу хвої на сезон уперед; грубий зріз ножицями псує бруньки й залишає сухі кінці.",
+      en: "Candle work sets needle density and vigour for the season ahead; a rough scissor cut damages buds and leaves dry tips."
+    },
+    value: {
+      de: "Mein Wert ist die Praezision der Hand: Ich lese jede Kerze einzeln und balanciere die Krone, statt alles pauschal zu schneiden.",
+      uk: "Моя цінність — точність руки: я читаю кожну свічку окремо й балансую крону, а не стрижу все підряд.",
+      en: "My value is hand precision: I read each candle individually and balance the crown instead of cutting everything uniformly."
     }
   }
 ];
@@ -1986,6 +2382,7 @@ function galleryPage(lang = "de") {
     </details>
   </section>
   ${watereriWorkSeriesBlock(lang)}
+  ${connectedGallerySeriesBlock(lang)}
   <section class="section">
     <div class="section-head"><span class="eyebrow">${prefix.workEyebrow}</span><h2>${prefix.workTitle}</h2><p>${prefix.workText}</p></div>
     <div class="gallery-real-grid">${photoGallery(workItems, lang, workItems.length, { eagerCount: 6, highPriorityCount: 0 })}</div>
@@ -2796,6 +3193,10 @@ function experienceAccentCss() {
 
 function galleryCaseCss() {
   return `.case-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.case-card{display:block;overflow:hidden;width:100%;padding:0;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);color:inherit;text-align:left;text-decoration:none;cursor:pointer}.case-card:hover .case-frame img,.case-card:focus-visible .case-frame img{transform:scale(1.035)}.case-card:focus-visible{outline:3px solid var(--accent);outline-offset:4px}.case-pair,.case-detail-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;background:#102016}.case-frame{position:relative;aspect-ratio:16/10;overflow:hidden;margin:0;background-color:var(--surface);background-image:var(--case-image);background-size:cover;background-position:var(--case-position,center center)}.case-frame+.case-frame{border-left:1px solid rgba(255,255,255,.72)}.case-frame img{width:100%;height:100%;object-fit:cover;object-position:var(--case-position,center center);transition:transform .45s ease}.case-frame figcaption{position:absolute;left:10px;top:10px;border:1px solid rgba(255,255,255,.42);border-radius:999px;background:rgba(9,18,13,.62);color:#fff;padding:6px 9px;font-size:.74rem;font-weight:850;line-height:1;backdrop-filter:blur(10px)}.case-copy{display:grid;gap:8px;padding:17px 18px 19px}.case-copy strong{font-family:var(--font-head);font-size:1.28rem;line-height:1.12;color:var(--text)}.case-copy span{color:var(--muted);line-height:1.5}.case-copy em{font-style:normal;font-weight:850;color:var(--primary);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}.gallery-archive{margin-top:24px;border:1px solid var(--line);border-radius:var(--radius);background:color-mix(in srgb,var(--surface) 76%,var(--bg));box-shadow:var(--shadow);padding:14px}.gallery-archive summary{cursor:pointer;font-weight:850;color:var(--primary)}.gallery-archive .gallery-real-grid{margin-top:14px}.case-modal[hidden],.case-detail[hidden]{display:none!important}body.case-modal-open{overflow:hidden}.case-modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:18px}.case-modal-backdrop{position:absolute;inset:0;border:0;background:rgba(9,18,13,.66);backdrop-filter:blur(8px);cursor:pointer}.case-modal-panel{position:relative;width:min(1120px,100%);max-height:calc(100svh - 36px);overflow:auto;border:1px solid color-mix(in srgb,var(--primary) 18%,var(--line));border-radius:var(--radius);background:var(--surface);box-shadow:0 28px 90px rgba(0,0,0,.34);padding:18px}.case-modal-close{position:sticky;top:0;z-index:3;display:grid;place-items:center;width:42px;height:42px;margin-left:auto;margin-bottom:10px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--surface) 90%,transparent);color:var(--primary);font:800 1.6rem/1 var(--font-body);cursor:pointer;backdrop-filter:blur(10px)}.case-detail{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(320px,.82fr);gap:24px;align-items:start}.case-detail-media{display:grid;gap:18px;min-width:0}.case-detail-pair{gap:10px;background:transparent}.case-detail-pair .case-frame{border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.case-detail-pair .case-frame+.case-frame{border-left:1px solid var(--line)}.case-series{display:grid;gap:14px;border-top:1px solid var(--line);padding-top:16px}.case-series>h3,.case-series-group h3{font-size:1.05rem;margin:0;color:var(--primary)}.case-series-group{display:grid;gap:10px}.case-series-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.case-series-grid .case-frame{aspect-ratio:4/3;border:1px solid var(--line);border-radius:8px}.case-series-grid .case-frame+.case-frame{border-left:1px solid var(--line)}.case-detail-copy{padding:4px 4px 12px}.case-detail-copy h2{font-size:clamp(1.8rem,3vw,2.55rem)}.case-notes{display:grid;gap:12px;margin:22px 0 0}.case-notes div{border-top:1px solid var(--line);padding-top:12px}.case-notes dt{font-weight:900;color:var(--primary)}.case-notes dd{margin:4px 0 0;color:var(--muted)}.watereri-series{padding-top:38px}.watereri-stage-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.watereri-stage{display:grid;gap:14px;min-width:0;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);padding:16px}.watereri-stage-copy h3{font-size:1.18rem;margin-top:0}.watereri-stage-copy p{color:var(--muted);font-size:.96rem;line-height:1.5}.watereri-photo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.watereri-photo-grid .case-frame{aspect-ratio:4/3;border:1px solid var(--line);border-radius:8px}.watereri-photo-grid .case-frame+.case-frame{border-left:1px solid var(--line)}@media (max-width:920px){.case-grid{grid-template-columns:1fr}.case-detail{grid-template-columns:1fr}.case-modal-panel{padding:14px}.case-detail-copy h2{font-size:2rem}.case-series-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.watereri-stage-grid{grid-template-columns:1fr}}@media (max-width:620px){.case-grid{gap:14px}.case-copy{padding:15px}.case-copy strong{font-size:1.14rem}.case-pair,.case-detail-pair{gap:0}.case-detail-pair{gap:8px}.case-frame{aspect-ratio:4/3}.case-pair .case-frame{aspect-ratio:1/1}.case-frame figcaption{left:7px;top:7px;font-size:.66rem;padding:5px 7px}.case-modal{padding:10px}.case-modal-panel{max-height:calc(100svh - 20px);border-radius:10px}.case-modal-close{width:40px;height:40px;margin-bottom:8px}.case-detail-copy h2{font-size:1.72rem}.case-notes{gap:10px}.case-series-grid,.watereri-photo-grid{grid-template-columns:1fr}.watereri-stage{padding:14px}}`;
+}
+
+function connectedSeriesCss() {
+  return `.connected-series{padding-top:38px}.connected-series-grid{display:grid;gap:18px}.connected-series-card{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(300px,.88fr);gap:18px;align-items:stretch;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);padding:16px;overflow:hidden}.connected-series-media{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;min-width:0}.connected-series-media-3{grid-template-columns:repeat(3,minmax(0,1fr))}.connected-series-media-4{grid-template-columns:repeat(4,minmax(0,1fr))}.connected-series-media .case-frame{aspect-ratio:4/3;border:1px solid var(--line);border-radius:8px;background:#102016}.connected-series-media .case-frame+.case-frame{border-left:1px solid var(--line)}.connected-series-copy{display:grid;align-content:center;min-width:0;padding:4px 4px 4px 8px}.connected-series-copy h3{font-size:1.35rem;margin-top:0}.connected-series-copy p{color:var(--muted);line-height:1.55}.connected-series-notes{display:grid;gap:12px;margin:8px 0 0}.connected-series-notes div{border-top:1px solid var(--line);padding-top:11px}.connected-series-notes dt{font-weight:900;color:var(--primary)}.connected-series-notes dd{margin:4px 0 0;color:var(--muted)}@media (max-width:1100px){.connected-series-card{grid-template-columns:1fr}.connected-series-copy{padding:0}.connected-series-media-4{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:620px){.connected-series-grid{gap:14px}.connected-series-card{padding:14px}.connected-series-media,.connected-series-media-3,.connected-series-media-4{grid-template-columns:1fr}.connected-series-copy h3{font-size:1.18rem}.connected-series-media .case-frame{aspect-ratio:4/3}}`;
 }
 
 function contactPersonCss() {
@@ -3661,6 +4062,7 @@ ${speedQualityCss()}
 .image-carousel{--carousel-index:0;position:relative;aspect-ratio:4/3;overflow:hidden;margin:0;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);touch-action:pan-y}.image-carousel-track{display:flex;height:100%;transform:translateX(calc(var(--carousel-index)*-100%));transition:transform .52s cubic-bezier(.2,.7,.2,1);will-change:transform}.image-carousel-slide{flex:0 0 100%;width:100%;height:100%;object-fit:cover;background:var(--surface)}.image-carousel-btn{position:absolute;top:50%;z-index:2;display:grid;place-items:center;width:44px;height:44px;border:1px solid color-mix(in srgb,var(--primary) 22%,transparent);border-radius:999px;background:color-mix(in srgb,var(--surface) 88%,transparent);color:var(--primary);box-shadow:0 10px 28px rgba(0,0,0,.18);font:800 1.8rem/1 var(--font-body);cursor:pointer;transform:translateY(-50%);backdrop-filter:blur(10px)}.image-carousel-prev{left:14px}.image-carousel-next{right:14px}.image-carousel-dots{position:absolute;left:0;right:0;bottom:13px;z-index:2;display:flex;justify-content:center;gap:8px}.image-carousel-dot{width:9px;height:9px;border:1px solid color-mix(in srgb,var(--primary) 55%,transparent);border-radius:999px;background:color-mix(in srgb,var(--surface) 70%,transparent);padding:0;cursor:pointer}.image-carousel-dot.is-active{width:28px;background:var(--primary)}@media (max-width:620px){.image-carousel{border-radius:12px}.image-carousel-btn{width:40px;height:40px;font-size:1.55rem}.image-carousel-prev{left:10px}.image-carousel-next{right:10px}.image-carousel-dots{bottom:10px}}
 ${contactPersonCss()}
 ${galleryCaseCss()}
+${connectedSeriesCss()}
 .case-copy{min-width:0}.case-copy strong,.case-copy span{min-width:0;overflow-wrap:anywhere}
 .cookie-banner[hidden],.toast[hidden]{display:none!important}.cookie-banner{max-height:calc(100svh - 32px);overflow:auto;pointer-events:auto}.mobile-cta{padding-bottom:env(safe-area-inset-bottom)}
 @media (max-width:920px){body{padding-bottom:calc(58px + env(safe-area-inset-bottom))}.cookie-banner{bottom:calc(74px + env(safe-area-inset-bottom))}.toast{bottom:calc(74px + env(safe-area-inset-bottom));left:16px;right:16px}}
