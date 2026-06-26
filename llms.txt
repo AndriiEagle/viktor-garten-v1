@@ -4,10 +4,11 @@ Viktor Baumarchitektur is a specialist for Niwaki, garden bonsai, Japanese maple
 
 Key facts:
 - 27 years of experience.
-- Services: Niwaki / Garten-Bonsai, Acer palmatum care, pine and conifer shaping.
+- Services: Niwaki / Garten-Bonsai, Japanischer Ahorn (Acer palmatum), Kiefer (Pinus), Eibe (Taxus baccata), Wacholder (Juniperus), Tanne (Abies) and Fichte (Picea).
 - Area: Zürich, Zug, Luzern, Aargau, Schwyz, Schaffhausen, Appenzell, Glarus; other Swiss regions by arrangement.
 - Prices: work from 110 CHF/hour, travel from 90 CHF, free photo diagnosis.
 - Contact: https://viktor-baumarchitektur.ch/kontakt
+- French and Italian are only noindex coming-later stubs for now: https://viktor-baumarchitektur.ch/fr/ and https://viktor-baumarchitektur.ch/it/
 
 Important pages:
 - https://viktor-baumarchitektur.ch/
@@ -16,7 +17,9 @@ Important pages:
 - https://viktor-baumarchitektur.ch/kontakt
 - https://viktor-baumarchitektur.ch/blog/topiarschere
 - https://viktor-baumarchitektur.ch/blog/energie-krone
+- https://viktor-baumarchitektur.ch/blog/niwaki-bonsai-stile
 - https://viktor-baumarchitektur.ch/blog/kiefer-kerzen
+- https://viktor-baumarchitektur.ch/blog/fehler-alte-nadeln-moos-pilzrisiko
 - https://viktor-baumarchitektur.ch/blog/boden-wurzeln
 - https://viktor-baumarchitektur.ch/blog/klimastress
 

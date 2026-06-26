@@ -14,13 +14,25 @@ Static multipage DE/EN site for Viktor Baumarchitektur. It opens directly from `
 
 ## Blog / knowledge section
 
-The blog now has five DE articles plus EN mirror pages:
+The blog now has seven DE articles plus EN/UK mirror pages:
 
 - `blog/topiarschere.html` - tool choice and clean cuts.
 - `blog/energie-krone.html` - crown energy, light and air.
+- `blog/niwaki-bonsai-stile.html` - Niwaki, bonsai and cloud pruning style direction.
 - `blog/kiefer-kerzen.html` - pine candles and timing.
+- `blog/fehler-alte-nadeln-moos-pilzrisiko.html` - old needles, moss, dense crowns and fungal risk.
 - `blog/boden-wurzeln.html` - Akadama, roots and substrate.
 - `blog/klimastress.html` - Swiss heat/drought context for premium gardens.
+
+## Future FR/IT localization
+
+French and Italian are intentionally **not** full translations yet. The current generated files are noindex stubs only:
+
+- `fr/index.html` - French coming-later mockup.
+- `it/index.html` - Italian coming-later mockup.
+- `handoff/fr-it-localization-reminder.md` - scope checklist for the later full localization.
+
+Do not add full `fr/*` or `it/*` hreflang/sitemap coverage until the real translation, SEO adaptation, legal review and mobile QA are complete.
 
 ## Logo / wordmark assumption
 

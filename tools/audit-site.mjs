@@ -4,16 +4,17 @@ import path from "node:path";
 const root = process.cwd();
 const required = [
   "index.html","leistungen.html","philosophie.html","galerie.html","preise.html",
-  "blog/index.html","blog/topiarschere.html","blog/energie-krone.html","blog/kiefer-kerzen.html","blog/boden-wurzeln.html","blog/klimastress.html",
+  "blog/index.html","blog/topiarschere.html","blog/energie-krone.html","blog/niwaki-bonsai-stile.html","blog/kiefer-kerzen.html","blog/fehler-alte-nadeln-moos-pilzrisiko.html","blog/boden-wurzeln.html","blog/klimastress.html",
   "kontakt.html","impressum.html","datenschutz.html","themes.html",
   "en/index.html","en/leistungen.html","en/philosophie.html","en/galerie.html","en/preise.html",
-  "en/blog/index.html","en/blog/topiarschere.html","en/blog/energie-krone.html","en/blog/kiefer-kerzen.html","en/blog/boden-wurzeln.html","en/blog/klimastress.html",
+  "en/blog/index.html","en/blog/topiarschere.html","en/blog/energie-krone.html","en/blog/niwaki-bonsai-stile.html","en/blog/kiefer-kerzen.html","en/blog/fehler-alte-nadeln-moos-pilzrisiko.html","en/blog/boden-wurzeln.html","en/blog/klimastress.html",
   "en/kontakt.html","en/impressum.html","en/datenschutz.html","en/themes.html",
   "uk/index.html","uk/leistungen.html","uk/philosophie.html","uk/galerie.html","uk/preise.html",
-  "uk/blog/index.html","uk/blog/topiarschere.html","uk/blog/energie-krone.html","uk/blog/kiefer-kerzen.html","uk/blog/boden-wurzeln.html","uk/blog/klimastress.html",
+  "uk/blog/index.html","uk/blog/topiarschere.html","uk/blog/energie-krone.html","uk/blog/niwaki-bonsai-stile.html","uk/blog/kiefer-kerzen.html","uk/blog/fehler-alte-nadeln-moos-pilzrisiko.html","uk/blog/boden-wurzeln.html","uk/blog/klimastress.html",
   "uk/kontakt.html","uk/impressum.html","uk/datenschutz.html","uk/themes.html",
+  "fr/index.html","it/index.html",
   "assets/base.css","assets/main.js","assets/theme-v1.css","assets/theme-v2.css","assets/theme-v3.css","assets/theme-v4.css","assets/theme-v5.css",
-  "assets/img/logo.png","assets/img/foto/01_hero/hero-viktor-bonsai-main.webp","assets/img/foto/01_hero/hero-viktor-bonsai-mobile.webp","assets/img/foto/02_pryklady-robit/sosna-bila-17.webp","assets/img/foto/02_pryklady-robit/sosna-bila-18.webp","assets/img/foto/03_galereya/sosna-bila-01.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-01.webp","assets/img/foto/06_yaponski-kleny/klen-yaponskyi-01.webp","assets/img/foto/07_viktor/viktor-01.webp","assets/img/foto/08_fonovi/fon-foto-01.webp","assets/img/foto/09_pomylky/pomylka-svichka-01.webp","assets/img/foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp","assets/img/MANIFEST.md","site.webmanifest","robots.txt","sitemap.xml","llms.txt","vercel.json","README.md",".env.example","api/contact.js","api/voice-lead.js"
+  "assets/img/logo.png","assets/img/foto/01_hero/hero-viktor-bonsai-main.webp","assets/img/foto/01_hero/hero-viktor-bonsai-mobile.webp","assets/img/foto/02_pryklady-robit/case-parviflora-before.webp","assets/img/foto/02_pryklady-robit/case-parviflora-after.webp","assets/img/foto/02_pryklady-robit/case-watereri-before.webp","assets/img/foto/02_pryklady-robit/case-watereri-after.webp","assets/img/foto/02_pryklady-robit/sosna-bila-17.webp","assets/img/foto/02_pryklady-robit/sosna-bila-18.webp","assets/img/foto/03_galereya/sosna-bila-01.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-01.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-08.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-16.webp","assets/img/foto/06_yaponski-kleny/klen-yaponskyi-01.webp","assets/img/foto/07_viktor/viktor-01.webp","assets/img/foto/08_fonovi/fon-foto-01.webp","assets/img/foto/09_pomylky/pomylka-svichka-01.webp","assets/img/foto/10_vidkrytka-yaponiya/kyoto-viktor-wife-2009.webp","assets/img/foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp","assets/img/MANIFEST.md","site.webmanifest","robots.txt","sitemap.xml","llms.txt","vercel.json","README.md",".env.example","api/contact.js","api/voice-lead.js"
 ];
 
 const errors = [];
@@ -98,7 +99,15 @@ for (const file of htmlFiles) {
     for (const deadSignal of ["FOTO - echt", "Google-Bewertung folgt", "Google rating follows", "Referenztext folgt"]) {
       if (bodyText.includes(deadSignal)) errors.push(file + " home page still shows dead demo signal: " + deadSignal);
     }
-    if (!html.includes("data-before-after-slider")) errors.push(file + " missing homepage before/after slider");
+    if (!html.includes("data-before-after-slider") || !html.includes("before-after-range")) errors.push(file + " missing homepage before/after slider control");
+    const homeSlider = html.match(/<figure class=\"before-after-slider\"[\s\S]*?<\/figure>/i)?.[0] || "";
+    if (!homeSlider.includes("sosna-watereri-do-pislya-08.webp") || !homeSlider.includes("sosna-watereri-do-pislya-16.webp")) errors.push(file + " missing deployed homepage slider pair sosna-watereri-do-pislya-08/16");
+    if (!homeSlider.includes("--split:40%") || !homeSlider.includes('value=\"40\"')) errors.push(file + " homepage slider split is not the deployed 40% setting");
+    for (const badSliderFile of ["case-parviflora-before.webp", "case-parviflora-after.webp", "sosna-bila-17.webp", "sosna-bila-18.webp"]) {
+      if (homeSlider.includes(badSliderFile)) errors.push(file + " homepage slider still uses non-etalon file: " + badSliderFile);
+    }
+    if (html.includes("honest-before-after")) errors.push(file + " still uses static side-by-side before/after layout");
+    if (html.includes("case-taxus-after.webp")) errors.push(file + " still uses ladder Taxus photo as a homepage after image");
   }
   const imgs = [...html.matchAll(/<img\b[^>]*>/gi)].map((m) => m[0]);
   for (const img of imgs) {
@@ -186,7 +195,7 @@ for (const file of previewFiles) {
 }
 
 const manifest = fs.readFileSync(path.join(root, "assets/img/MANIFEST.md"), "utf8");
-for (const file of ["foto/01_hero/hero-viktor-bonsai-main.webp","foto/01_hero/hero-viktor-bonsai-mobile.webp","foto/02_pryklady-robit/*.webp","foto/03_galereya/*.webp","foto/05_nivaki-khmarky/*.webp","foto/06_yaponski-kleny/klen-yaponskyi-01.webp","foto/07_viktor/*.webp","foto/08_fonovi/*.webp","foto/09_pomylky/*.webp","foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp","baumarchitektur-korrektur.png","baumarchitektur-live-crown-ratio.png"]) {
+for (const file of ["foto/01_hero/hero-viktor-bonsai-main.webp","foto/01_hero/hero-viktor-bonsai-mobile.webp","foto/02_pryklady-robit/*.webp","foto/03_galereya/*.webp","foto/05_nivaki-khmarky/*.webp","foto/06_yaponski-kleny/klen-yaponskyi-01.webp","foto/06_yaponski-kleny/klen-yaponskyi-02.webp","foto/07_viktor/*.webp","foto/08_fonovi/*.webp","foto/09_pomylky/*.webp","foto/10_vidkrytka-yaponiya/kyoto-viktor-wife-2009.webp","foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp","baumarchitektur-korrektur.png","baumarchitektur-live-crown-ratio.png"]) {
   if (!manifest.includes(file)) errors.push("MANIFEST missing " + file);
 }
 
