@@ -11,7 +11,7 @@ const telHref = `tel:${phone}`;
 const instagramUrl = "https://www.instagram.com/viktor_bonsai_niwaki";
 const facebookUrl = "https://www.facebook.com/viktor.bonsai.niwaki";
 const publicSameAs = [instagramUrl, facebookUrl];
-const assetVersion = "20260629-inspiration-books";
+const assetVersion = "20260629-book-covers-amazon";
 const whatsappText = encodeURIComponent(
   "Guten Tag Viktor, ich sende Ihnen Fotos meines Baumes (Kanton: ..., Baumart: ...). Können Sie einschätzen, welche Formung oder Kronenpflege sinnvoll ist?"
 );
@@ -2479,6 +2479,7 @@ const inspirationBooks = [
     title: "Sakuteiki",
     meta: "Visions of the Japanese Garden",
     author: "Jiro Takei & Marc P. Keane",
+    amazon: "https://www.amazon.com/Sakuteiki-Japanese-Translation-Gardening-Classics/dp/0804839689",
     text: {
       de: "Ein altes Fundament japanischer Gartenkunst: Steinsetzung, Blickrichtung, Leere und Rhythmus. Nicht als Rezept, sondern als Haltung.",
       en: "An old foundation of Japanese garden art: stone placement, sight lines, emptiness and rhythm. Not as a recipe, but as an attitude.",
@@ -2490,6 +2491,7 @@ const inspirationBooks = [
     title: "Niwaki",
     meta: "Pruning, Training and Shaping Trees the Japanese Way",
     author: "Jake Hobson",
+    amazon: "https://www.amazon.com/Niwaki-Pruning-Training-Shaping-Japanese/dp/0881928356",
     text: {
       de: "Ein klares Buch über Form, Schnitt und Baumcharakter. Wichtig, weil es zeigt: Niwaki ist keine Hecke, sondern ein Baum mit Linie.",
       en: "A clear book about form, pruning and tree character. It matters because it shows that niwaki is not a hedge, but a tree with line.",
@@ -2501,6 +2503,7 @@ const inspirationBooks = [
     title: "Japanese Garden Design",
     meta: "Structure, proportion and spatial calm",
     author: "Marc Peter Keane",
+    amazon: "https://www.amazon.com/Japanese-Garden-Design-Peter-Keane/dp/4805319321",
     text: {
       de: "Hilft, Garten nicht als Sammlung von Pflanzen zu sehen, sondern als Raum aus Proportion, Weg, Blick und Ruhe.",
       en: "It helps to see a garden not as a collection of plants, but as a space built from proportion, path, view and calm.",
@@ -2512,6 +2515,7 @@ const inspirationBooks = [
     title: "The Art of Setting Stones",
     meta: "Material, weight and quiet composition",
     author: "Marc Peter Keane",
+    amazon: "https://www.amazon.com/Art-Setting-Stones-Writings-Japanese/dp/1880656701",
     text: {
       de: "Steine lehren Gewicht und Zurückhaltung. Diese Logik ist auch beim Baum wichtig: nicht alles zeigen, sondern das Richtige stehen lassen.",
       en: "Stones teach weight and restraint. The same logic matters in tree work: do not show everything, leave the right things standing.",
@@ -2523,6 +2527,7 @@ const inspirationBooks = [
     title: "Secret Teachings in the Art of Japanese Gardens",
     meta: "Old principles translated into practice",
     author: "David A. Slawson",
+    amazon: "https://www.amazon.com/Secret-Teachings-Art-Japanese-Gardens/dp/1568364946",
     text: {
       de: "Wichtig für das Verständnis von Naturbild, Asymmetrie und geführter Aufmerksamkeit im japanischen Garten.",
       en: "Useful for understanding nature image, asymmetry and guided attention in the Japanese garden.",
@@ -2532,8 +2537,9 @@ const inspirationBooks = [
   {
     id: "shigemori",
     title: "Mirei Shigemori",
-    meta: "Modern Japanese garden thought",
-    author: "Modern Japanese garden tradition",
+    meta: "Rebel in the Garden: Modern Japanese Landscape Architecture",
+    author: "Christian Tschumi",
+    amazon: "https://www.amazon.com/Mirei-Shigemori-Garden-Christian-Tschumi/dp/3035621756",
     text: {
       de: "Eine Erinnerung, dass Tradition nicht Stillstand ist. Gute Form respektiert Ursprung und bleibt trotzdem lebendig.",
       en: "A reminder that tradition is not standstill. Good form respects origin and still stays alive.",
@@ -2549,6 +2555,7 @@ function inspirationBookSection(lang = "de") {
       title: "Bücher, die meine Arbeit prägen.",
       intro: "Ich arbeite nicht nach schnellen Mustern. Diese Quellen helfen mir, Form, Leere, Zeit und die Energie eines Baumes genauer zu lesen.",
       source: "Quelle",
+      amazon: "Bei Amazon ansehen",
       note: "Diese Liste ist keine akademische Bibliothek. Sie zeigt, welche Denkweise hinter meiner Arbeit steht."
     },
     en: {
@@ -2556,6 +2563,7 @@ function inspirationBookSection(lang = "de") {
       title: "Books that shape my eye.",
       intro: "I do not work from quick templates. These sources help me read form, emptiness, time and the energy of a tree more precisely.",
       source: "Source",
+      amazon: "View on Amazon",
       note: "This is not an academic library. It shows the way of thinking behind my work."
     },
     uk: {
@@ -2563,6 +2571,7 @@ function inspirationBookSection(lang = "de") {
       title: "Книги, які формують мій погляд.",
       intro: "Я не працюю за швидкими шаблонами. Ці джерела допомагають точніше читати форму, порожнечу, час і енергію дерева.",
       source: "Джерело",
+      amazon: "Подивитися на Amazon",
       note: "Це не академічна бібліотека. Це коротко про мислення, яке стоїть за моєю роботою."
     }
   };
@@ -2577,11 +2586,12 @@ function inspirationBookSection(lang = "de") {
     <div class="book-grid">
       ${inspirationBooks.map((book, index) => `
       <article class="book-card book-card-${book.id}">
-        <div class="book-visual" aria-hidden="true"><span class="book-mark"></span><span class="book-line"></span><span class="book-branch"></span></div>
+        <img class="book-cover" src="__ASSET_PREFIX__assets/img/books/${book.id}.png" alt="${book.title} - ${book.author}" loading="lazy" decoding="async" width="1024" height="1024">
         <span class="book-index">${copy.source} ${String(index + 1).padStart(2, "0")}</span>
         <h3>${book.title}</h3>
         <p>${book.text[lang] || book.text.de}</p>
         <span class="book-meta">${book.meta}<br>${book.author}</span>
+        <a class="book-link" href="${book.amazon}" target="_blank" rel="noopener sponsored">${copy.amazon}</a>
       </article>`).join("")}
     </div>
     <p class="book-note">${copy.note}</p>
@@ -4434,19 +4444,19 @@ const serviceCardsUk = `
   <div class="card service-card">
     <span class="eyebrow">Niwaki</span>
     <h3>Садовий бонсай</h3>
-    <p>Формування садових дерев: Kiefer (Pinus), Eibe (Taxus) і Wacholder (Juniperus). Крона відкривається для світла, повітря і довгої форми.</p>
+    <p>Формування садових дерев: сосна (Pinus), тис (Taxus) і ялівець (Juniperus). Крона відкривається для світла, повітря і довгої форми.</p>
     <a href="leistungen.html#niwaki">Детальніше про Niwaki</a>
   </div>
   <div class="card service-card">
     <span class="eyebrow">Acer palmatum</span>
     <h3>Японські клени</h3>
-    <p>Japanischer Ahorn / Fächerahorn (Acer palmatum) і Schlitzahorn: сезонний ручний догляд, суха деревина, мох і грибкові ризики.</p>
+    <p>Японський (віялолистий) клен (Acer palmatum) і розсіченолистий клен: сезонний ручний догляд, суха деревина, мох і грибкові ризики.</p>
     <a href="leistungen.html#ahorn">Догляд за японським кленом</a>
   </div>
   <div class="card service-card">
     <span class="eyebrow">Pinus & Taxus</span>
     <h3>Хвойні дерева</h3>
-    <p>Kiefer (Pinus), Eibe (Taxus baccata), Wacholder (Juniperus), Tanne (Abies) і Fichte (Picea). Чистий ручний зріз.</p>
+    <p>Сосна (Pinus), тис (Taxus baccata), ялівець (Juniperus), ялиця (Abies) і ялина (Picea). Чистий ручний зріз.</p>
     <a href="leistungen.html#nadelgehoelze">Формування сосни та хвойних</a>
   </div>`;
 
@@ -4527,6 +4537,41 @@ function homeUk() {
     </div>
     ${photoSlot({ folder: "08_fonovi", file: "fon-foto-02.webp", lang: "uk", label: "Персональне бачення дерева", ratio: "16 / 9" })}
   </section>
+
+  <section class="section split">
+    <div>
+      <span class="eyebrow">Погляд у коріння</span>
+      <h2>Здоров'я починається під землею.</h2>
+      <p>Як і з фундаментом будинку, усе починається під землею. Правильний ґрунт - акадама, відповідна кислотність (pH 5,5-6,5), перевірені субстрати - це основа здоров'я.</p>
+      <a class="text-link" href="philosophie.html#wurzeln">Більше про ґрунт і коріння →</a>
+    </div>
+    ${photoSlot({ folder: "07_viktor", file: "viktor-01.webp", lang: "uk", label: "Віктор за роботою з нівакі та формуванням", ratio: "3 / 2" })}
+  </section>
+
+  <section class="section price-teaser">
+    <span class="eyebrow">Ціни</span>
+    <h2>Якість замість поспіху.</h2>
+    <p>Чотири години доброї роботи варті більше, ніж дві години швидкої. Робота від 110 CHF/год, виїзд від 90 CHF.</p>
+    <a class="btn btn-secondary" href="preise.html">Переглянути ціни</a>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <span class="eyebrow">Регіон роботи</span>
+      <h2>Де я працюю.</h2>
+      <p>Основний регіон - кантон Цюрих. Також Цуг, Люцерн, Аргау, Швіц, Шаффгаузен, Аппенцель і Гларус. Решта Швейцарії - за домовленістю. Заради незвичайних дерев я готовий їхати далі.</p>
+    </div>
+  </section>
+
+  <section class="section faq">
+    <div class="section-head">
+      <span class="eyebrow">FAQ</span>
+      <h2>Часті питання про нівакі та японський догляд за деревами.</h2>
+    </div>
+    <details><summary>Як врятувати мій нівакі або японський клен?</summary><p>Надішліть три фото: усе дерево, проблемну зону і крупний план. Перша оцінка - безкоштовна.</p></details>
+    <details><summary>Чому моє дерево втрачає форму?</summary><p>Найчастіше було проігноровано розподіл енергії в кроні. Тоді всередині накопичуються вологість, суховіття і неправильні пагони.</p></details>
+    <details><summary>Скільки коштує японський догляд за деревами в регіоні Цюриха?</summary><p>Робота від 110 CHF/год, виїзд від 90 CHF. Зустріч на місці - після фото-діагностики.</p></details>
+  </section>
   ${finalCtaUk()}`;
 }
 
@@ -4540,15 +4585,15 @@ function servicesUk() {
   ${plantNameGuideUk()}
   <section class="section service-detail" id="niwaki">
     ${photoSlot({ folder: "05_nivaki-khmarky", file: "sosna-watereri-do-pislya-01.webp", lang: "uk", label: "Niwaki / садовий бонсай", ratio: "4 / 3" })}
-    <div><span class="eyebrow">Напрям 1</span><h2>Niwaki - садовий бонсай</h2><p>Ручне формування дерев у саду: Kiefer (<em>Pinus</em>), Eibe (<em>Taxus baccata</em>), Wacholder (<em>Juniperus</em>) та інші форми. Завдання не зробити зелену стіну, а направити силу дерева туди, де вона створює форму, світло і довгий спокій.</p>${ctaUk("Надіслати фото Niwaki")}</div>
+    <div><span class="eyebrow">Напрям 1</span><h2>Niwaki - садовий бонсай</h2><p>Ручне формування дерев у саду: сосна (<em>Pinus</em>), тис (<em>Taxus baccata</em>), ялівець (<em>Juniperus</em>) та інші форми. Завдання не зробити зелену стіну, а направити силу дерева туди, де вона створює форму, світло і довгий спокій.</p>${ctaUk("Надіслати фото Niwaki")}</div>
   </section>
   <section class="section service-detail reverse" id="ahorn">
     ${photoSlot({ folder: "06_yaponski-kleny", file: "klen-yaponskyi-02.webp", lang: "uk", label: "Я працюю з японським кленом", ratio: "4 / 3" })}
-    <div><span class="eyebrow">Напрям 2</span><h2>Японські клени - <em>Acer palmatum</em></h2><p>Japanischer Ahorn / Fächerahorn (<em>Acer palmatum</em>) і Schlitzahorn (<em>Acer palmatum</em> Dissectum-Gruppe): сезонне формування, суха деревина всередині крони, ручна робота проти моху і грибкових ризиків. Крону треба відкривати до того, як проблема стане видимою.</p>${ctaUk("Надіслати фото клена")}</div>
+    <div><span class="eyebrow">Напрям 2</span><h2>Японські клени - <em>Acer palmatum</em></h2><p>Японський (віялолистий) клен (<em>Acer palmatum</em>) і розсіченолистий клен (<em>Acer palmatum</em>, група Dissectum): сезонне формування, суха деревина всередині крони, ручна робота проти моху і грибкових ризиків. Крону треба відкривати до того, як проблема стане видимою.</p>${ctaUk("Надіслати фото клена")}</div>
   </section>
   <section class="section service-detail" id="nadelgehoelze">
     ${photoSlot({ folder: "04_khvoyni", file: "sosna-chorna-01.webp", lang: "uk", label: "Формування сосни японськими ножицями", ratio: "4 / 3" })}
-    <div><span class="eyebrow">Напрям 3</span><h2>Хвойні дерева - особливо сосна (<em>Pinus</em>)</h2><p>Waldkiefer (<em>Pinus sylvestris</em>), Bergkiefer (<em>Pinus mugo</em>), Japanische Schwarzkiefer (<em>Pinus thunbergii</em>), Mädchen-Kiefer / Japanische Weisskiefer (<em>Pinus parviflora</em>), Japanische Rotkiefer (<em>Pinus densiflora</em>), Weymouth-Kiefer (<em>Pinus strobus</em>), Eibe (<em>Taxus baccata</em>), Wacholder (<em>Juniperus</em>), Tanne (<em>Abies</em>) і Fichte (<em>Picea</em>). Робота виконується вибірково і вручну, щоб не зламати майбутню структуру дерева.</p>${ctaUk("Надіслати фото сосни")}</div>
+    <div><span class="eyebrow">Напрям 3</span><h2>Хвойні дерева - особливо сосна (<em>Pinus</em>)</h2><p>Сосна звичайна (<em>Pinus sylvestris</em>), сосна гірська (<em>Pinus mugo</em>), японська чорна сосна (<em>Pinus thunbergii</em>), японська біла сосна (<em>Pinus parviflora</em>), японська червона сосна (<em>Pinus densiflora</em>), веймутова сосна (<em>Pinus strobus</em>), тис ягідний (<em>Taxus baccata</em>), ялівець (<em>Juniperus</em>), ялиця (<em>Abies</em>) і ялина (<em>Picea</em>). Робота виконується вибірково і вручну, щоб не зламати майбутню структуру дерева.</p>${ctaUk("Надіслати фото сосни")}</div>
   </section>
   <section class="section note-block"><h2>Що сюди не входить.</h2><p>Це не звичайне прибирання саду і не швидке підрівнювання живоплоту. Я працюю з деревами, для яких важливі форма, здоров'я і довга перспектива.</p><a class="text-link" href="blog/topiarschere.html">Чому японські ножиці змінюють результат →</a></section>
   ${finalCtaUk()}`;
@@ -4576,6 +4621,24 @@ function genericUkPage(kind) {
   return `<section class="page-hero section"><span class="eyebrow">${page.eyebrow}</span><h1>${page.h1}</h1>${page.body}</section>${finalCtaUk()}`;
 }
 
+function pricesUk() {
+  return `
+  <section class="page-hero section"><span class="eyebrow">Ціни</span><h1>Ціни - якість замість поспіху.</h1><p>Професійний японський догляд за деревами стартує від 110 CHF за годину. Виїзд - від 90 CHF залежно від відстані. Перша фото-діагностика безкоштовна.</p><div class="price-grid"><article class="card"><h2>від 110 CHF/год</h2><p>Ручна робота</p></article><article class="card"><h2>від 90 CHF</h2><p>Виїзд</p></article><article class="card"><h2>Безкоштовно</h2><p>Фото-діагностика</p></article></div><p>Швидкий зріз часто коштує дорожче, якщо він забирає форму і здоров'я дерева на роки.</p></section>
+  <section class="section note-block speed-quality-note">
+    <span class="eyebrow">Швидкість проти якості</span>
+    <h2>Чому не швидше?</h2>
+    <p>Гілку можна зрізати за секунду. А виростити нову гілку - це роки. Тому швидкість у формувальному зрізі не є ознакою якості, а часто є ризиком.</p>
+    <div class="speed-quality-contrast" aria-label="Порівняння часу між швидким зрізом і новим ростом">
+      <div><strong>1 секунда</strong><span>зрізати гілку</span></div>
+      <div class="speed-quality-vs">проти</div>
+      <div><strong>Роки</strong><span>відростити нову гілку</span></div>
+    </div>
+    <p class="speed-quality-warning">Я волію працювати повільніше і чисто, щоб дерево зберегло силу, рана чисто загоїлася, а форма не втратилася на роки.</p>
+    <div class="btn-row">${ctaUk("Надіслати фото - безкоштовна діагностика")} <a class="btn btn-secondary" href="kontakt.html#rueckruf" data-event="cta_callback_click">Запросити дзвінок</a></div>
+  </section>
+  ${finalCtaUk()}`;
+}
+
 function blogIndexUk() {
   const articles = [
     ["topiarschere", "Чому я ріжу японськими ножицями", "Чистий зріз, менше травми і більше контролю, ніж у звичайного тримера.", "foto/07_viktor/viktor-topiarschere-2026-06-29.webp"],
@@ -4599,35 +4662,53 @@ function articleNavUk() {
 }
 
 function articleUk(type) {
-  const sourceNote = sourceListUkV2([
-    ["RHS: pruning guide", "https://www.rhs.org.uk/plants/types/trees/pruning-guide"],
-    ["RHS: cloud pruning і Niwaki", "https://www.rhs.org.uk/plants/types/trees/cloud-pruning"],
-    ["RHS: conifers", "https://www.rhs.org.uk/plants/types/conifers/growing-guide"],
-    ["NAJGA: Japanese black pine pruning", "https://najga.org/pruning-japanese-black-pine/"],
-    ["Chicago Botanic Garden: pine candling", "https://www.chicagobotanic.org/blog/learning/candling-japanese-garden"],
-    ["RHS: algae, lichens and moss", "https://www.rhs.org.uk/biodiversity/algae-lichens-moss-on-trees-shrubs"],
-    ["University of Minnesota: brown spot needle blight", "https://extension.umn.edu/plant-diseases/brown-spot-needle-blight"],
-    ["University of Minnesota: Rhizosphaera needle cast", "https://extension.umn.edu/plant-diseases/rhizosphaera-needle-cast"],
-    ["University of Maine: Rhizosphaera Needlecast", "https://extension.umaine.edu/ipm/ipddl/publications/5104e/"]
-  ]);
+  const sources = {
+    topiary: sourceListUkV2([
+      ["RHS: загальні правила обрізки дерев і хвойних", "https://www.rhs.org.uk/plants/types/trees/pruning-guide"],
+      ["Purdue Extension: електричний тример призначений для живоплоту", "https://ag.purdue.edu/department/hla/extension/extension-publications-library/ext-pubs/ho-4-w.html"]
+    ]),
+    crown: sourceListUkV2([
+      ["RHS: обережна обрізка хвойних по новому приросту", "https://www.rhs.org.uk/plants/types/trees/pruning-guide"],
+      ["Purdue Extension: обрізка змінює ріст і розгалуження", "https://ag.purdue.edu/department/hla/extension/extension-publications-library/ext-pubs/ho-4-w.html"]
+    ]),
+    styles: sourceListUkV2([
+      ["RHS: cloud pruning і Niwaki", "https://www.rhs.org.uk/plants/types/trees/cloud-pruning"],
+      ["RHS: догляд за хвойними", "https://www.rhs.org.uk/plants/types/conifers/growing-guide"],
+      ["Garden Group: Андрей Дарусенков, майстер bonsai та niwaki, Sady i Lyudi 2023", "https://gardengroup.ru/stati/xvi-festival-sady-i-lyudi-2023-obzornye-ekskursii-i-master-klassy/"],
+      ["YouTube: Sady i Lyudi 2023 - Андрей Дарусенков", "https://www.youtube.com/watch?v=MAyh--g4f4g"]
+    ]),
+    candles: sourceListUkV2([
+      ["NAJGA: таймінг і дія обрізки японської чорної сосни", "https://najga.org/pruning-japanese-black-pine/"],
+      ["Chicago Botanic Garden: що означає candling у сосен", "https://www.chicagobotanic.org/blog/learning/candling-japanese-garden"],
+      ["RHS: хвойні і новий приріст", "https://www.rhs.org.uk/plants/types/conifers/growing-guide"]
+    ]),
+    climate: sourceListUkV2([
+      ["MeteoSwiss: зміна клімату у Швейцарії, спека і сухіші літа", "https://www.meteoswiss.admin.ch/climate/climate-change.html"],
+      ["BAFU: посуха у Швейцарії посилюється", "https://www.bafu.admin.ch/en/drought"],
+      ["WSL: погодні екстреми, посуха і адаптація", "https://www.wsl.ch/en/natural-hazards/weather-and-climate-extremes-and-drought/"]
+    ])
+  };
+  const stressChainUk = `<div class="science-card stress-chain">
+    <span>Спека</span><span>менше води</span><span>ущільнений грунт</span><span>щільна крона</span><strong>стрес у дереві</strong>
+  </div>`;
   const map = {
-    topiary: `<span class="eyebrow">Японські ножиці</span><h1>Чому я ріжу topiary scissors.</h1>${photoSlot({ folder: "07_viktor", file: "viktor-topiarschere-2026-06-29.webp", lang: "uk", label: "Я з японськими ножицями біля сосни", ratio: "4 / 3" })}<p>Цінне Niwaki - не живопліт. Тример швидко проходить по поверхні, але японські ножиці дають один свідомий зріз за раз: яка брунька лишається, куди заходить світло і як хмара дерева розвиватиметься наступного року.</p><p>Суть не в романтичній повільності. Суть у контролі. Чистий вибірковий зріз береже майбутню форму дерева.</p>${hedgeTrimmerMistakeBlock("uk")}`,
+    topiary: `<span class="eyebrow">Японські ножиці</span><h1>Чому я ріжу японськими ножицями.</h1>${photoSlot({ folder: "07_viktor", file: "viktor-topiarschere-2026-06-29.webp", lang: "uk", label: "Я з японськими ножицями біля сосни", ratio: "4 / 3" })}<p>Добре формування починається не зі швидкості, а з рішення, що дерево має нести в майбутньому. У Niwaki, формуванні сосни і японському догляді недостатньо швидко згладити зовнішній контур. Дерево - це не зелений блок, а жива система з крони, стовбура і коріння.</p><div class="comparison-grid"><div><h2>Електричний тример</h2><p>Швидкий, широкий, механічний. Добрий для живоплоту, але ризиковий для цінного солітерного дерева: може рвати тонкий приріст і створювати щільну зовнішню кірку.</p></div><div><h2>Японські ножиці</h2><p>Повільніше, точніше, свідомо. Кожен зріз вирішує, яка брунька лишиться, куди зайде повітря і як хмара розвиватиметься наступного року.</p></div></div><p>Рвані волокна - не дрібниця. Дерево реагує на травму, закриває рани і перерозподіляє силу. Те, що в перший день виглядає рівно, може місяцями забирати енергію, якщо зріз був грубий, плаский або зроблений не в той момент.</p>${hedgeTrimmerMistakeBlock("uk")}<p>З японськими ножицями я працюю інакше. Я не просто відкриваю поверхню. Я шукаю внутрішню лінію: які пагони будують майбутнє, які дають тінь і де має зайти світло, щоб усередині не виникала суха деревина.</p>${photoSlot({ folder: "07_viktor", file: "viktor-02.webp", lang: "uk", label: "Японські інструменти і точна робота біля сосни", ratio: "4 / 3" })}<h2>Зріз - це вказівка дереву.</h2><p>Коли я залишаю бруньку, я кажу дереву: сюди можна давати силу. Коли прибираю гілку, я забираю можливість, яка росла роками. Тому моя фраза проста: зрізати гілку можна за секунду, а виростити нову - це роки.</p><p>Для клієнта це важливо, бо цінне садове дерево не є витратним матеріалом. Воно формує терасу, вид з дому і спокій саду. Найдешевший зріз часто стає найдорожчим, якщо руйнує форму.</p>`,
     crown: `<span class="eyebrow">Крона і енергія</span><h1>Чому крону треба відкривати.</h1>${photoSlot({ folder: "05_nivaki-khmarky", file: "sosna-watereri-do-pislya-01.webp", lang: "uk", label: "Відкрита крона Niwaki", ratio: "16 / 9" })}<p>Багато цінних дерев спочатку втрачають не красу, а внутрішній простір. Зовні крона ще зелена, але всередині накопичуються тінь, волога, сухі гілки і слабкий приріст. Саме тут починається різниця між простою стрижкою і деревною архітектурою.</p>${photoSlot({ folder: "04_khvoyni", file: "energie-krone-pinus-crown-01.webp", lang: "uk", label: "Крупний план хвойної крони з молодим приростом", ratio: "4 / 3" })}<p>Я працюю з простим принципом: крона витрачає силу, стовбур проводить, коріння забезпечує. Якщо крона занадто щільна, дерево витрачає енергію не там, де потрібно. Якщо всередину не заходить світло, структура слабшає зсередини.</p><h2>Крону не роблять порожньою. Її роблять читабельною.</h2><p>Відкрити крону не означає радикально прорідити дерево. Це означає створити правильні вікна: повітря через крону, світло на внутрішні бруньки, менше тертя між гілками і менше вологості в тісних місцях. Добра робота виглядає природно, а не “підстрижено”.</p><div class="process-grid"><div><strong>1. Прочитати</strong><p>Де дерево витрачає силу і яка лінія тримає характер?</p></div><div><strong>2. Розвантажити</strong><p>Забрати сухе, зайве, затінене і неправильний приріст.</p></div><div><strong>3. Залишити майбутнє</strong><p>Зберегти бруньки, які будуватимуть форму наступні роки.</p></div></div><p>Для преміум-саду це не дрібниця. Крона визначає, як дерево виглядає з дому, з тераси і з доріжки. Майстер бачить не тільки сьогоднішній кадр, а й те, що дерево зробить через один, два і три роки.</p>`,
     styles: `<span class="eyebrow">Художнє формування дерев</span><h1>Художнє формування дерев: принципи і методи.</h1>${photoSlot({ folder: "05_nivaki-khmarky", file: "sosna-watereri-do-pislya-01.webp", lang: "uk", label: "Художнє формування дерева у спокійну хмарну форму", ratio: "16 / 9" })}<p>Зі звичайного садового дерева можна зробити надзвичайну і живу форму. Але не через швидкий шаблон, а через читання дерева: рух стовбура, каркас гілок, порожні місця всередині крони, світлові вікна і реакцію дерева на зріз.</p><p>Cloud pruning - це японський метод ведення дерев і кущів у хмарні форми; Niwaki означає garden tree. Я використовую bonsai-мислення для пропорції, руху стовбура і майбутніх бруньок, але в саду працюю з живим деревом, а не з декорацією.</p><div class="process-grid"><div><strong>1. Прочитати структуру</strong><p>Вид, вік, рух стовбура, опорні гілки і внутрішня сила показують, яка форма можлива.</p></div><div><strong>2. Створити простір</strong><p>Добра форма потребує повітря, світла, дистанції між масами і спокійних порожніх місць.</p></div><div><strong>3. Вести майбутнє</strong><p>Кожен зріз вирішує, яка брунька, гілка і силует будуватимуть дерево наступні роки.</p></div></div><p>Ключовий метод - вибіркова робота. Тример рівняє поверхню; художня обрізка вирішує всередині крони: яка лінія несе характер, яка гілка забирає силу і де треба відкрити крону, щоб дерево здорово відповіло.</p>${sourceListUkV2([["RHS: cloud pruning і Niwaki", "https://www.rhs.org.uk/plants/types/trees/cloud-pruning"], ["RHS: conifers", "https://www.rhs.org.uk/plants/types/conifers/growing-guide"], ["Garden Group: Андрей Дарусенков, майстер bonsai та niwaki, Sady i Lyudi 2023", "https://gardengroup.ru/stati/xvi-festival-sady-i-lyudi-2023-obzornye-ekskursii-i-master-klassy/"], ["YouTube: Sady i Lyudi 2023 - Андрей Дарусенков", "https://www.youtube.com/watch?v=MAyh--g4f4g"]])}`,
-    candles: `<span class="eyebrow">Pinus</span><h1>Свічки сосни: момент вирішує.</h1>${photoSlot({ folder: "09_pomylky", file: "pomylka-svichka-01.webp", lang: "uk", label: "Нові свічки сосни перед роботою", ratio: "16 / 9" })}<p>Нові пагони сосни показують, куди дерево зараз штовхає силу. Якщо ставитися до всіх свічок однаково, легко збити баланс. Сильні зони треба заспокоїти, слабкі - захистити.</p><div class="science-card"><h2>Помилка: задерев'янілий приріст у <em>Pinus thunbergii</em>.</h2>${photoSlot({ folder: "09_pomylky", file: "pomylka-svichka-02.webp", lang: "uk", label: "Помилка у Pinus thunbergii: задерев'янілий приріст зрізаний посередині", ratio: "3 / 4" })}<p>На сосні японській чорній момент роботи зі свічками критичний. Якщо зрізати вже задерев'янілий приріст посередині, часто лишається сліпий відрізок: у місці зрізу не закладаються корисні нові бруньки, і гілка залишається порожньою.</p><p>Тому свічки не вкорочують випадково там, де зручно. Працювати треба у правильній м'якій фазі або свідомо біля наявних бруньок і хвої. Інакше гілка втрачає наступне розгалуження.</p></div><p>Раннє фото часто достатнє, щоб зрозуміти, чи потрібен виїзд.</p>`,
-    climate: `<span class="eyebrow">Швейцарія і клімат</span><h1>Чому преміум-сади потребують діагностики.</h1>${photoSlot({ folder: "08_fonovi", file: "fon-sosna-bila-01.webp", lang: "uk", label: "Ознаки стресу на цінному дереві", ratio: "16 / 9" })}<p>Швейцарські сади стикаються з більшою спекою, сухішими літами і сильнішими опадами. Для цінних солітерних дерев це означає водний стрес, щільні крони, ущільнений ґрунт і старі помилки обрізки, які підсилюють одна одну.</p><p>Рання фото-діагностика захищає цінність: все дерево, проблемна зона і крупний план часто достатні для першого рішення.</p>`
+    candles: `<span class="eyebrow">Pinus</span><h1>Свічки сосни: момент вирішує.</h1>${photoSlot({ folder: "09_pomylky", file: "pomylka-svichka-01.webp", lang: "uk", label: "Нові свічки сосни перед роботою", ratio: "16 / 9" })}<p>У сосен майбутня форма часто починається зі свічки: світлого, м'якого нового пагона. Для неспеціаліста він виглядає дрібницею. Для мене він показує, куди дерево зараз відправляє силу - вгору, назовні або в конкретну хмару.</p><p>Якщо поводитися зі свічками грубо, занадто пізно або однаково по всьому дереву, легко збити баланс. Якщо їх читати, можна пригальмувати сильні зони, захистити слабкі і зробити хмари тоншими. Саме тому таймінг для Pinus важливіший за силу.</p><div class="process-grid"><div><strong>Рано</strong><p>Новий пагін ще м'який. Дерево показує напрям і енергію.</p></div><div><strong>Вибірково</strong><p>Сильні зони заспокоюються, слабкі зони захищаються.</p></div><div><strong>Довгостроково</strong><p>Ціль - не гола форма, а щільне здорове розгалуження.</p></div></div><div class="science-card"><h2>Помилка: задерев'янілий приріст у <em>Pinus thunbergii</em>.</h2>${photoSlot({ folder: "09_pomylky", file: "pomylka-svichka-02.webp", lang: "uk", label: "Помилка у Pinus thunbergii: задерев'янілий приріст зрізаний посередині", ratio: "3 / 4" })}<p>На сосні японській чорній момент роботи зі свічками критичний. Якщо зрізати вже задерев'янілий приріст посередині, часто лишається сліпий відрізок: у місці зрізу не закладаються корисні нові бруньки, і розгалуження залишається порожнім.</p><p>Тому свічки не вкорочують випадково там, де зручно. Працювати треба у правильній м'якій фазі або свідомо біля наявних бруньок і хвої. Інакше гілка втрачає наступне розгалуження.</p></div>${photoSlot({ folder: "04_khvoyni", file: "sosna-chorna-01.webp", lang: "uk", label: "Сформована сосна у швейцарському саду", ratio: "4 / 3" })}<h2>Не кожну свічку обробляють однаково.</h2><p>Сильна верхня зона потребує іншої роботи, ніж слабке внутрішнє місце. Частина пагонів лишається, бо будує майбутнє. Інші вкорочуються, бо домінують над формою. Тут і виникає різниця між схемою і майстерною роботою.</p><p>Для клієнта проста ознака така: якщо сосна сохне всередині, показує бурі голки або її хмари стають важкими й щільними, не варто чекати, поки відмернуть великі гілки. Ранній фото-чек часто достатній, щоб вирішити, чи потрібен виїзд.</p>`,
+    climate: `<span class="eyebrow">Швейцарія і клімат</span><h1>Чому преміум-сади потребують діагностики.</h1>${photoSlot({ folder: "08_fonovi", file: "fon-sosna-bila-01.webp", lang: "uk", label: "Цінна сосна у швейцарському саду", ratio: "16 / 9" })}<p>Гарний швейцарський сад сьогодні - не тільки декорація. Це прохолодний простір, місце відновлення і частина дому. Тому боляче, коли солітерне дерево поступово втрачає форму: вид з вітальні змінюється, тераса втрачає спокій, а цінність, яка росла роками, стає нестабільною.</p>${stressChainUk}<p>Швейцарія сильно відчуває зміну клімату. MeteoSwiss описує сильнішу спеку, сухіші літа і інтенсивніші опади як ключові ризики. Для садових дерев це означає: водний стрес, перегрів, ущільнений грунт і неправильна обрізка працюють не окремо, а підсилюють одне одного.</p><p>Щільне, неправильно підстрижене дерево в такі періоди страждає швидше. Усередині стоїть волога, зовні пересихає крона, коріння працює під стресом. Для цінних Niwaki, сосен і японських кленів рання діагностика важливіша за пізню спробу врятувати дерево.</p><div class="process-grid"><div><strong>Ранні ознаки</strong><p>Бурі голки, сухі внутрішні гілки, слабкий приріст.</p></div><div><strong>Контекст</strong><p>Місце, спека, вода, субстрат і попередній зріз.</p></div><div><strong>Рішення</strong><p>Спочатку фото-діагностика, виїзд тільки коли він справді потрібний.</p></div></div>${photoSlot({ folder: "08_fonovi", file: "fon-foto-02.webp", lang: "uk", label: "Відновлена форма після спокійної роботи з кроною", ratio: "16 / 9" })}<h2>Преміум означає: не чекати, поки стане дешево виглядати.</h2><p>Хто вкладається в будинок, терасу і сад, не має віддавати головне дерево на швидку стрижку як живопліт. Чесна діагностика захищає від двох помилок: реагувати запізно або різати занадто швидко. Обидві помилки можуть коштувати років.</p><p>Мій підхід простий: спочатку побачити, потім вирішити. Часто достатньо трьох фото: усе дерево, проблемне місце і крупний план.</p>`
   };
-  return `<article class="article section">${map[type]}${type === "styles" ? "" : sourceNote}${articleNavUk()}<div class="btn-row">${ctaUk("Надіслати фото - отримати оцінку")}</div></article>`;
+  return `<article class="article section">${map[type]}${type === "styles" ? "" : sources[type] || ""}${articleNavUk()}<div class="btn-row">${ctaUk("Надіслати фото - отримати оцінку")}</div></article>`;
 }
 
 function contactUk() {
   return `<section class="page-hero section"><span class="eyebrow">Контакт</span><h1>Надішліть фото дерева.</h1><p>Для першої оцінки достатньо трьох фото: все дерево, проблемна зона і крупний план. Я скажу, чи має сенс художнє формування дерева, корекція структури крони або спокійний план догляду.</p><div class="btn-row">${ctaUk("Відкрити WhatsApp - надіслати фото")} <a class="btn btn-secondary" href="${telHref}" data-event="cta_call_click">Подзвонити: ${phoneDisplay}</a></div></section>
-  <section class="section contact-grid"><form class="form-card" data-contact-form data-contact-kind="photo-diagnosis" data-event="contact_form_submit" action="/api/contact" method="post"><h2>Фото-діагностика.</h2><p class="form-note">Коротко опишіть дерево. Якщо треба одразу надіслати фото, WhatsApp залишається найшвидшим шляхом; ця форма безпечно передає мені дані для звʼязку.</p><label class="hp-field" aria-hidden="true">Компанія <input name="company" tabindex="-1" autocomplete="off"></label><label>Ім'я <input name="name" autocomplete="name"></label><label>Телефон <input type="tel" name="phone" autocomplete="tel" required></label><label>E-mail <input type="email" name="email" autocomplete="email"></label><label>Кантон <input name="kanton" autocomplete="address-level1" required></label><label>Вид дерева <input name="baumart" placeholder="наприклад Japanischer Ahorn (Acer palmatum), Waldkiefer (Pinus sylvestris), Eibe (Taxus baccata)"></label><label>Повідомлення <textarea name="nachricht" rows="5" required></textarea></label><button class="btn btn-primary" type="submit">Надіслати запит</button><p class="form-note"><a class="text-link" href="${whatsappHrefUk}" target="_blank" rel="noopener">Написати напряму в WhatsApp</a>, якщо хочете додати фото зараз.</p></form><div class="contact-side">${contactPerson("uk")}<form class="form-card" id="rueckruf" data-contact-form data-contact-kind="callback" data-event="cta_rueckruf_submit" action="/api/contact" method="post"><h2>Запросити дзвінок.</h2><p class="form-note">Достатньо телефону. Я звʼяжуся з вами особисто якнайшвидше.</p><label class="hp-field" aria-hidden="true">Компанія <input name="company" tabindex="-1" autocomplete="off"></label><label>Ім'я <input name="name" autocomplete="name"></label><label>Телефон <input type="tel" name="phone" autocomplete="tel" required></label><label>Зручний час <input name="desiredTime" placeholder="наприклад Пн 18-20"></label><button class="btn btn-secondary" type="submit">Запросити дзвінок</button></form></div></section>`;
+  <section class="section contact-grid"><form class="form-card" data-contact-form data-contact-kind="photo-diagnosis" data-event="contact_form_submit" action="/api/contact" method="post"><h2>Фото-діагностика.</h2><p class="form-note">Коротко опишіть дерево. Якщо треба одразу надіслати фото, WhatsApp залишається найшвидшим шляхом; ця форма безпечно передає мені дані для звʼязку.</p><label class="hp-field" aria-hidden="true">Компанія <input name="company" tabindex="-1" autocomplete="off"></label><label>Ім'я <input name="name" autocomplete="name"></label><label>Телефон <input type="tel" name="phone" autocomplete="tel" required></label><label>E-mail <input type="email" name="email" autocomplete="email"></label><label>Кантон <input name="kanton" autocomplete="address-level1" required></label><label>Вид дерева <input name="baumart" placeholder="наприклад клен японський (Acer palmatum), сосна звичайна (Pinus sylvestris), тис ягідний (Taxus baccata)"></label><label>Повідомлення <textarea name="nachricht" rows="5" required></textarea></label><button class="btn btn-primary" type="submit">Надіслати запит</button><p class="form-note"><a class="text-link" href="${whatsappHrefUk}" target="_blank" rel="noopener">Написати напряму в WhatsApp</a>, якщо хочете додати фото зараз.</p></form><div class="contact-side">${contactPerson("uk")}<form class="form-card" id="rueckruf" data-contact-form data-contact-kind="callback" data-event="cta_rueckruf_submit" action="/api/contact" method="post"><h2>Запросити дзвінок.</h2><p class="form-note">Достатньо телефону. Я звʼяжуся з вами особисто якнайшвидше.</p><label class="hp-field" aria-hidden="true">Компанія <input name="company" tabindex="-1" autocomplete="off"></label><label>Ім'я <input name="name" autocomplete="name"></label><label>Телефон <input type="tel" name="phone" autocomplete="tel" required></label><label>Зручний час <input name="desiredTime" placeholder="наприклад Пн 18-20"></label><button class="btn btn-secondary" type="submit">Запросити дзвінок</button></form></div></section>`;
 }
 
 function legalUk(kind) {
   const isPrivacy = kind === "datenschutz";
-  return `<section class="page-hero section legal"><span class="eyebrow">Чернетка</span><h1>${isPrivacy ? "Політика приватності" : "Юридична інформація"}.</h1><p>Ця сторінка структурована, але не фінальна. Юридичні дані треба перевірити і доповнити перед публікацією.</p></section><section class="section legal-content"><h2>${isPrivacy ? "Відповідальна сторона" : "Дані за швейцарськими вимогами"}</h2><p>${brand}<br>Адреса після погодження<br>Швейцарія</p><h2>Контакт</h2><p>Телефон і e-mail додаються після фінального погодження.</p><h2>${isPrivacy ? "Персональні дані, форми і аналітика" : "Відповідальність за контент"}</h2><p>${isPrivacy ? "Форми, фото-завантаження, Analytics і Ads вимірювання вмикаються тільки після фінальної технічної та юридичної перевірки. Consent Mode підготовлений у коді; зовнішні IDs ще не активні." : "Контент підготовлений уважно, але до фінального погодження не є юридично завершеним документом."}</p></section>`;
+  return `<section class="page-hero section legal"><span class="eyebrow">Чернетка</span><h1>${isPrivacy ? "Політика приватності" : "Юридична інформація"}.</h1><p>Ця сторінка структурована, але не фінальна. Юридичні дані треба перевірити і доповнити перед публікацією.</p></section><section class="section legal-content"><h2>${isPrivacy ? "Відповідальна сторона" : "Дані за швейцарськими вимогами"}</h2><p>${brand}<br>Адреса після погодження<br>Швейцарія</p><h2>Контакт</h2><p>Телефон і e-mail додаються після фінального погодження.</p><h2>${isPrivacy ? "Персональні дані, форми і аналітика" : "Відповідальність за контент"}</h2><p>${isPrivacy ? "Форми, фото-завантаження, Analytics і Ads вимірювання вмикаються тільки після фінальної технічної та юридичної перевірки. Consent Mode підготовлений у коді; зовнішні IDs ще не активні." : "Контент підготовлений уважно, але до фінального погодження не є юридично завершеним документом."}</p><h2>${isPrivacy ? "Cookies і згода" : "Відповідальність за посилання"}</h2><p>${isPrivacy ? "Аналітичні та маркетингові сховища за замовчуванням вимкнені і активуються лише після згоди. Зовнішні сервіси залишаються вимкненими до фінальної конфігурації." : "Зовнішні посилання перевіряються перед публікацією. За зміст зовнішніх сторінок відповідають виключно їхні оператори."}</p></section>`;
 }
 
 function themesPageUk() {
@@ -5695,7 +5776,7 @@ function mobileCookieBannerCss() {
 }
 
 function inspirationBooksCss() {
-  return `.inspiration-books{position:relative}.book-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:22px}.book-card{min-width:0;display:flex;flex-direction:column;gap:10px;min-height:330px;border:1px solid var(--line);border-radius:8px;background:linear-gradient(180deg,color-mix(in srgb,var(--surface) 96%,#f0e5c3),var(--surface));box-shadow:var(--shadow);padding:16px;overflow:hidden}.book-visual{position:relative;height:92px;border:1px solid color-mix(in srgb,var(--primary) 16%,transparent);border-radius:8px;background:linear-gradient(135deg,color-mix(in srgb,var(--bg) 78%,#d1b767),color-mix(in srgb,var(--surface) 86%,#24452f));overflow:hidden}.book-visual:before{content:"";position:absolute;left:16px;bottom:16px;width:58px;height:48px;border-radius:4px 8px 8px 4px;background:linear-gradient(90deg,#183322 0 14%,#f3efe5 14% 100%);box-shadow:0 14px 24px rgba(0,0,0,.18)}.book-visual:after{content:"";position:absolute;right:18px;bottom:22px;width:86px;height:18px;border-radius:999px;background:linear-gradient(90deg,rgba(36,69,47,.14),rgba(36,69,47,.72));transform:rotate(-9deg);transform-origin:right center}.book-mark{position:absolute;left:82px;bottom:30px;width:46px;height:3px;border-radius:999px;background:var(--accent);transform:rotate(-17deg)}.book-line{position:absolute;right:30px;top:24px;width:72px;height:2px;border-radius:999px;background:rgba(255,255,255,.58);box-shadow:0 12px 0 rgba(255,255,255,.34)}.book-branch{position:absolute;right:58px;bottom:33px;width:3px;height:34px;border-radius:999px;background:rgba(24,51,34,.72);transform:rotate(28deg)}.book-card:nth-child(2n) .book-visual{background:linear-gradient(135deg,color-mix(in srgb,var(--surface) 78%,#b9c2a2),color-mix(in srgb,var(--bg) 74%,#c9a24b))}.book-card:nth-child(3n) .book-visual{background:linear-gradient(135deg,color-mix(in srgb,var(--surface) 72%,#d8d2c4),color-mix(in srgb,var(--primary) 20%,#f4f1e8))}.book-index{display:inline-flex;align-self:flex-start;color:var(--primary);font-size:.76rem;line-height:1;text-transform:uppercase;font-weight:900;letter-spacing:0;border-bottom:2px solid var(--accent);padding-bottom:4px}.book-card h3{font-size:clamp(1.22rem,1.8vw,1.55rem);line-height:1.05;margin:0;color:var(--text)}.book-card p{margin:0;color:var(--muted);font-weight:650;line-height:1.58}.book-meta{margin-top:auto;color:color-mix(in srgb,var(--primary) 82%,var(--muted));font-size:.88rem;font-weight:850;line-height:1.45}.book-note{max-width:760px;margin:18px 0 0;color:var(--muted);font-weight:720}@media (max-width:960px){.book-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.book-card{min-height:310px}}@media (max-width:620px){.book-grid{grid-template-columns:1fr;gap:14px}.book-card{min-height:0;padding:14px}.book-visual{height:78px}.book-card h3{font-size:1.3rem}.book-card p{font-size:.98rem}}`;
+  return `.inspiration-books{position:relative}.book-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:22px}.book-card{min-width:0;display:flex;flex-direction:column;gap:11px;min-height:100%;border:1px solid var(--line);border-radius:8px;background:linear-gradient(180deg,color-mix(in srgb,var(--surface) 96%,#f0e5c3),var(--surface));box-shadow:var(--shadow);padding:16px;overflow:hidden}.book-cover{width:100%;aspect-ratio:1/1;height:auto;object-fit:cover;object-position:center;border:1px solid color-mix(in srgb,var(--primary) 14%,var(--line));border-radius:8px;background:var(--surface);box-shadow:0 14px 30px rgba(0,0,0,.10)}.book-index{display:inline-flex;align-self:flex-start;color:var(--primary);font-size:.76rem;line-height:1;text-transform:uppercase;font-weight:900;letter-spacing:0;border-bottom:2px solid var(--accent);padding-bottom:4px}.book-card h3{font-size:clamp(1.22rem,1.8vw,1.55rem);line-height:1.05;margin:0;color:var(--text)}.book-card p{margin:0;color:var(--muted);font-weight:650;line-height:1.58}.book-meta{margin-top:auto;color:color-mix(in srgb,var(--primary) 82%,var(--muted));font-size:.88rem;font-weight:850;line-height:1.45}.book-link{display:inline-flex;align-self:flex-start;align-items:center;min-height:42px;margin-top:2px;border:1px solid color-mix(in srgb,var(--primary) 24%,var(--line));border-radius:999px;background:var(--surface);color:var(--primary);padding:9px 13px;font-weight:900;text-decoration:none}.book-link:hover{border-color:var(--accent);color:var(--accent);text-decoration-color:var(--accent)}.book-note{max-width:760px;margin:18px 0 0;color:var(--muted);font-weight:720}@media (max-width:960px){.book-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:620px){.book-grid{grid-template-columns:1fr;gap:14px}.book-card{padding:14px}.book-card h3{font-size:1.3rem}.book-card p{font-size:.98rem}.book-link{width:100%;justify-content:center}}`;
 }
 
 function publicCss() {
@@ -5843,7 +5924,7 @@ const ukPageOverrides = new Map([
   ["uk/leistungen.html", ["uk/leistungen.html", "uk", "Послуги - Niwaki, японські клени та хвойні", "Українська сторінка послуг Viktor Baumarchitektur: Niwaki, японські клени, сосни та хвойні дерева.", servicesUk(), [localBusinessLd(), serviceLd("Niwaki, Ahorn und Kiefer-Formschnitt", "Japanische Baumpflege, Niwaki Schnitt und Formschnitt für Nadelgehölze.")]]],
   ["uk/philosophie.html", ["uk/philosophie.html", "uk", "Філософія та майстерність - Viktor Baumarchitektur", "Українська сторінка про мою філософію, досвід і підхід до японської деревної архітектури.", philosophyUk(), [localBusinessLd(), personLd()]]],
   ["uk/galerie.html", ["uk/galerie.html", "uk", "Галерея - до і після, Garten-Bonsai та Niwaki", "Українська галерея Viktor Baumarchitektur: реальні фото до і після, Niwaki, садовий бонсай і етапи роботи.", galleryUk(), [localBusinessLd()]]],
-  ["uk/preise.html", ["uk/preise.html", "uk", "Ціни - японський догляд за деревами", "Українська сторінка цін Viktor Baumarchitektur: робота від 110 CHF/год, виїзд від 90 CHF, фото-діагностика безкоштовна.", genericUkPage("prices"), [localBusinessLd(), faqLd()]]],
+  ["uk/preise.html", ["uk/preise.html", "uk", "Ціни - японський догляд за деревами", "Українська сторінка цін Viktor Baumarchitektur: робота від 110 CHF/год, виїзд від 90 CHF, фото-діагностика безкоштовна.", pricesUk(), [localBusinessLd(), faqLd()]]],
   ["uk/blog/index.html", ["uk/blog/index.html", "uk", "Знання Niwaki - стилі, інструменти, сосна і діагностика", "Українські матеріали про Niwaki, стилі, японські ножиці, енергію крони, сосни і кліматичний стрес.", blogIndexUk(), [localBusinessLd()]]],
   ["uk/blog/topiarschere.html", ["uk/blog/topiarschere.html", "uk", "Японські ножиці проти тримера - чистий зріз", "Українська стаття про чистий зріз, японські ножиці і контроль майбутньої форми дерева.", articleUk("topiary"), [localBusinessLd()]]],
   ["uk/blog/energie-krone.html", ["uk/blog/energie-krone.html", "uk", "Відкрити крону - енергія, світло і повітря", "Українська стаття про те, чому крону Niwaki треба відкривати для світла, повітря і довгої форми.", articleUk("crown"), [localBusinessLd()]]],
