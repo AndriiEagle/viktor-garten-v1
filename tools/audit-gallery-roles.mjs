@@ -84,6 +84,16 @@ function extractCasePanel(html, id) {
   return html.slice(start, end + "</article>".length);
 }
 
+function extractFirstClassBlock(fragment, classPrefix) {
+  const marker = `class="${classPrefix}`;
+  const markerIndex = fragment.indexOf(marker);
+  if (markerIndex === -1) return "";
+  const start = fragment.lastIndexOf("<div", markerIndex);
+  const end = fragment.indexOf("</div>", markerIndex);
+  if (start === -1 || end === -1) return "";
+  return fragment.slice(start, end + "</div>".length);
+}
+
 function activeCaseIds(html) {
   return [...html.matchAll(/data-case-open="([^"]+)"/g)].map((match) => match[1]);
 }
@@ -174,11 +184,12 @@ function checkCaseOnPage(page, html, item) {
 
   const cardImages = imgTags(card);
   const panelImages = imgTags(panel);
+  const modalLeadImages = imgTags(extractFirstClassBlock(panel, "case-detail-pair") || panel);
   if (cardImages.length < 2) {
     fail(`${page.file}: ${item.case_id} card needs at least two images`);
     return;
   }
-  if (panelImages.length < 2) {
+  if (modalLeadImages.length < 2) {
     fail(`${page.file}: ${item.case_id} modal needs at least two lead images`);
     return;
   }
@@ -187,9 +198,9 @@ function checkCaseOnPage(page, html, item) {
   checkImageAttrs(`${page.file} ${item.case_id} modal`, panelImages);
 
   const cardBefore = cardImages[0].file;
-  const cardAfter = cardImages[1].file;
-  const modalBefore = panelImages[0].file;
-  const modalAfter = panelImages[1].file;
+  const cardAfter = cardImages.at(-1).file;
+  const modalBefore = modalLeadImages[0].file;
+  const modalAfter = modalLeadImages.at(-1).file;
 
   if (cardBefore !== item.before_file || modalBefore !== item.before_file) {
     fail(`${page.file}: ${item.case_id} before mismatch. card=${cardBefore}, modal=${modalBefore}, expected=${item.before_file}`);
@@ -201,8 +212,8 @@ function checkCaseOnPage(page, html, item) {
   if (page.beforePrefix && !cardImages[0].alt.startsWith(page.beforePrefix)) {
     fail(`${page.file}: ${item.case_id} first card alt must start with ${page.beforePrefix}`);
   }
-  if (page.afterPrefix && !cardImages[1].alt.startsWith(page.afterPrefix)) {
-    fail(`${page.file}: ${item.case_id} second card alt must start with ${page.afterPrefix}`);
+  if (page.afterPrefix && !cardImages.at(-1).alt.startsWith(page.afterPrefix)) {
+    fail(`${page.file}: ${item.case_id} last card alt must start with ${page.afterPrefix}`);
   }
 
   for (const requiredFile of item.required_modal_context_files || []) {

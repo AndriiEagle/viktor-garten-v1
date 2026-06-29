@@ -4,74 +4,282 @@
   "rule": "This file is not a substitute for looking at the images. Update it only after direct visual inspection of the actual current image files/contact sheet. Filenames, alt text, catalog stages, old reports, and DOM order are not enough.",
   "cases": [
     {
-      "case_id": "terrace-pinus-placement",
+      "case_id": "parviflora-box-opening",
       "status": "VERIFIED_VISUAL_WITH_LIMITS",
       "filename_is_authoritative": false,
-      "before_file": "case-terrace-before.webp",
-      "before_path": "assets/img/foto/02_pryklady-robit/case-terrace-before.webp",
-      "before_sha256": "9DBD48993CDD19B4E17AC4903341B16540E41331D09C46012F671D02502D0ADF",
-      "after_file": "case-terrace-after.webp",
-      "after_path": "assets/img/foto/02_pryklady-robit/case-terrace-after.webp",
-      "after_sha256": "F50F570418B7A29D08518BB4298C61CAC29F5FDCD927989BF53670E16CF136AA",
+      "before_file": "case-parviflora-box-before-03.webp",
+      "before_path": "assets/img/foto/02_pryklady-robit/case-parviflora-box-before-03.webp",
+      "before_sha256": "03072EB8349DD7C6C505082DC10FB5A8340B90A8ECB1A149B36572C368580C47",
+      "after_file": "case-parviflora-box-after-02.webp",
+      "after_path": "assets/img/foto/02_pryklady-robit/case-parviflora-box-after-02.webp",
+      "after_sha256": "E4DAF0C3B36B6D2855F7DDCDC06B41C12E2F2A35235BFAA3D94374792C894C02",
       "catalog_before_stage_must_include": ["before"],
       "catalog_after_stage_must_include": ["after"],
-      "required_modal_context_files": ["sosna-bila-do-pislya-28.webp"],
-      "visual_reviewed_at": "2026-06-25",
-      "visual_reviewer": "Codex local visual check, limited by user review requirement",
+      "required_modal_context_files": [
+        "case-parviflora-box-before-01.webp",
+        "case-parviflora-box-before-02.webp",
+        "case-parviflora-box-after-01.webp"
+      ],
+      "visual_reviewed_at": "2026-06-29",
+      "visual_reviewer": "Codex local visual check, limited by user-supplied before/after folder grouping",
       "evidence": [
-        "direct local image inspection of both preview files",
-        "current galerie.html/en/galerie.html/uk/galerie.html card and modal DOM",
-        "tasks/gallery-repair/reports/final-handoff.md correction-aware state"
+        "direct local inspection of the source folder contact sheet for Pinus_Parviflora/Neuer Ordner (3)",
+        "source folder explicitly separates do and pislia subfolders",
+        "before detail frames show upright young candles on Pinus parviflora and Viktor working with hand shears",
+        "after result frames show calmer pads after seasonal candle-growth control",
+        "converted WebP files were checked for dimensions and current SHA256 hashes"
       ],
       "before_visual_signs": [
-        "tree is in delivery/pre-placement context",
-        "root/base area is still protected and not integrated into the final terrace composition"
+        "wooden planter Pinus parviflora reads denser and less settled before the hand work",
+        "source before frames include Viktor at work, upright young candles and dense pad detail"
       ],
       "after_visual_signs": [
-        "same low pine is placed into the terrace garden setting",
-        "composition reads as a settled placement case, not a pruning transformation"
+        "wooden planter Pinus parviflora reads calmer after young candle-growth control",
+        "after frames show two result angles from the same source group"
       ],
       "do_not_claim": [
-        "do not call this pruning",
-        "do not call this rescue",
-        "do not call this crown transformation"
+        "do not call this a rescue",
+        "do not claim identical camera angle",
+        "do not claim a heavy structural redesign; this is seasonal candle/growth control",
+        "do not rely on old gallery filenames instead of the source folder grouping"
       ],
-      "risk": "Verified as a placement/installation story only. It remains misleading if described as pruning or rescue."
+      "risk": "VERIFIED_WITH_LIMITS because before and after are source-folder grouped rather than identical camera-angle proof."
     },
     {
-      "case_id": "parviflora-candles-svichky",
+      "case_id": "parviflora-garden-solitaire",
       "status": "VERIFIED_VISUAL_WITH_LIMITS",
       "filename_is_authoritative": false,
-      "before_file": "case-svichky-before.webp",
-      "before_path": "assets/img/foto/02_pryklady-robit/case-svichky-before.webp",
-      "before_sha256": "C6CFACF5E7247B40B846FDF1B75F76B022296D5AA55061E21125384FB2363E94",
-      "after_file": "case-svichky-after.webp",
-      "after_path": "assets/img/foto/02_pryklady-robit/case-svichky-after.webp",
-      "after_sha256": "F04F7470AC8B03EDB31BEA037D1282F72649C74D04E53D5EA54092C515DC26EA",
+      "before_file": "case-parviflora-garden-before-01.webp",
+      "before_path": "assets/img/foto/02_pryklady-robit/case-parviflora-garden-before-01.webp",
+      "before_sha256": "3BCCC7A3D8C737DA767BF3D28473E7D5C471AB944087F536E9E2E8EC7F617184",
+      "after_file": "case-parviflora-garden-after-01.webp",
+      "after_path": "assets/img/foto/02_pryklady-robit/case-parviflora-garden-after-01.webp",
+      "after_sha256": "2CE67AC738AEDBD13359629ED2D389042ADD2F413EC933302DEA38EC6B60CD18",
+      "catalog_before_stage_must_include": ["before"],
+      "catalog_after_stage_must_include": ["after"],
+      "required_modal_context_files": [
+        "case-parviflora-garden-before-02.webp",
+        "case-parviflora-garden-after-02.webp",
+        "case-parviflora-garden-after-03.webp"
+      ],
+      "visual_reviewed_at": "2026-06-27",
+      "visual_reviewer": "Codex local visual check, limited by user-supplied before/after folder grouping",
+      "evidence": [
+        "direct local inspection of the source folder contact sheet for Pinus_Parviflora/Neuer Ordner (5)",
+        "source folder explicitly separates do and pislia subfolders",
+        "converted WebP files were checked for dimensions and current SHA256 hashes"
+      ],
+      "before_visual_signs": [
+        "large Pinus parviflora before frames show denser crown and needle/pad detail",
+        "source before folder labels these frames as pre-work context"
+      ],
+      "after_visual_signs": [
+        "after frames show the large pine with calmer separated cloud pads",
+        "after group contains three result angles from the same source folder"
+      ],
+      "do_not_claim": [
+        "do not call this a rescue",
+        "do not claim exact same camera angle",
+        "do not replace source folder grouping with assumptions from existing hero assets"
+      ],
+      "risk": "VERIFIED_WITH_LIMITS because the before detail frame and after full-tree result frames are not identical angles."
+    },
+    {
+      "case_id": "parviflora-compact-opening",
+      "status": "VERIFIED_VISUAL_WITH_LIMITS",
+      "filename_is_authoritative": false,
+      "before_file": "case-parviflora-compact-before-01.webp",
+      "before_path": "assets/img/foto/02_pryklady-robit/case-parviflora-compact-before-01.webp",
+      "before_sha256": "A46FDA412C2DB467F258F640670D2B7943F12B793ACA8385ED9EE4801C35CAC9",
+      "after_file": "case-parviflora-compact-after-02.webp",
+      "after_path": "assets/img/foto/02_pryklady-robit/case-parviflora-compact-after-02.webp",
+      "after_sha256": "42E102BEB146073A537104BD6C92721474466B88147A2986CC9444AA31627078",
+      "catalog_before_stage_must_include": ["before"],
+      "catalog_after_stage_must_include": ["after"],
+      "required_modal_context_files": [
+        "case-parviflora-compact-before-02.webp",
+        "case-parviflora-compact-after-01.webp"
+      ],
+      "visual_reviewed_at": "2026-06-27",
+      "visual_reviewer": "Codex local visual check, limited by user-supplied before/after folder grouping",
+      "evidence": [
+        "direct local inspection of the source folder contact sheet for Pinus_Parviflora/Neuer Ordner (7)",
+        "source folder explicitly separates do and pislia subfolders",
+        "converted WebP files were checked for dimensions and current SHA256 hashes"
+      ],
+      "before_visual_signs": [
+        "compact pine before frames show ladder/work context and dense green mass",
+        "source before folder labels these frames as pre-work context"
+      ],
+      "after_visual_signs": [
+        "after frames show the compact pine with more readable layers and open garden context",
+        "after group contains two result angles from the same source folder"
+      ],
+      "do_not_claim": [
+        "do not call this a rescue",
+        "do not claim identical camera angle",
+        "do not sell the before ladder frame as the final result"
+      ],
+      "risk": "VERIFIED_WITH_LIMITS because before frames are work-context and after frames are result context, not identical camera angles."
+    },
+    {
+      "case_id": "parviflora-low-crown-growth",
+      "status": "VERIFIED_VISUAL_WITH_LIMITS",
+      "filename_is_authoritative": false,
+      "before_file": "case-parviflora-low-crown-before-01.webp",
+      "before_path": "assets/img/foto/02_pryklady-robit/case-parviflora-low-crown-before-01.webp",
+      "before_sha256": "DEE3EA3A1707099ABEDB2B339F316F678A9FD38D6F320C57F09F2CBB58F0FA76",
+      "after_file": "case-parviflora-low-crown-after-03.webp",
+      "after_path": "assets/img/foto/02_pryklady-robit/case-parviflora-low-crown-after-03.webp",
+      "after_sha256": "C4CCBFCE3168CF1CD05759D585E9E43960D8340047C0754A3A59462FF655B16F",
+      "catalog_before_stage_must_include": ["before"],
+      "catalog_after_stage_must_include": ["after"],
+      "required_modal_context_files": [
+        "case-parviflora-low-crown-before-02.webp",
+        "case-parviflora-low-crown-after-01.webp",
+        "case-parviflora-low-crown-after-02.webp"
+      ],
+      "visual_reviewed_at": "2026-06-27",
+      "visual_reviewer": "Codex local visual check, limited by user-supplied before/after folder grouping",
+      "evidence": [
+        "direct local inspection of all five converted preview images from Pinus_Parviflora/Neuer Ordner (10)",
+        "source folder explicitly separates do and pislia subfolders",
+        "source text says: work to control growth of the niwaki crown of a low-crown Pinus parviflora",
+        "converted WebP files were checked for dimensions and current SHA256 hashes"
+      ],
+      "before_visual_signs": [
+        "low-crown Pinus parviflora reads denser and less opened before the growth-control work",
+        "source before folder labels these two frames as pre-work context"
+      ],
+      "after_visual_signs": [
+        "after frames show the same low-crown garden pine with calmer, more readable terrace-garden effect",
+        "after group contains three result angles from the same source folder"
+      ],
+      "do_not_claim": [
+        "do not call this a rescue",
+        "do not claim identical camera angle",
+        "do not claim heavy structural redesign beyond growth control"
+      ],
+      "risk": "VERIFIED_WITH_LIMITS because before/after proof follows source folder grouping and visual continuity, not identical camera angles."
+    },
+    {
+      "case_id": "parviflora-terrace-growth",
+      "status": "VERIFIED_VISUAL_WITH_LIMITS",
+      "filename_is_authoritative": false,
+      "before_file": "case-parviflora-terrace-growth-before-01.webp",
+      "before_path": "assets/img/foto/02_pryklady-robit/case-parviflora-terrace-growth-before-01.webp",
+      "before_sha256": "B37D2C2A9ECAC6D3A41A61882856C9438F26236D201A246273B127EBFD20D33E",
+      "after_file": "case-parviflora-terrace-growth-after-02.webp",
+      "after_path": "assets/img/foto/02_pryklady-robit/case-parviflora-terrace-growth-after-02.webp",
+      "after_sha256": "99F38AA650CFAFDF98E7D69F1E31D0C1E3CD7175854E536F602F9D068040AE1E",
+      "catalog_before_stage_must_include": ["before"],
+      "catalog_after_stage_must_include": ["after"],
+      "required_modal_context_files": [
+        "case-parviflora-terrace-growth-after-01.webp"
+      ],
+      "visual_reviewed_at": "2026-06-27",
+      "visual_reviewer": "Codex local visual check, limited by user-supplied before/after folder grouping",
+      "evidence": [
+        "direct local inspection of all three converted preview images from Pinus_Parviflora/Neuer Ordner (11)",
+        "source folder explicitly separates do and pislia subfolders",
+        "source text says the seasonal terrace work controlled the crown, limited annual needle growth and left the artistic form unchanged",
+        "converted WebP files were checked for dimensions and current SHA256 hashes"
+      ],
+      "before_visual_signs": [
+        "terrace Pinus parviflora already has an established artistic form before the work",
+        "annual growth and density read slightly heavier around the cloud edges",
+        "source before folder labels this frame as pre-work context"
+      ],
+      "after_visual_signs": [
+        "after frames show the same terrace pine with the artistic shape preserved",
+        "cloud pads read cleaner and controlled without a dramatic reshaping claim",
+        "after group contains two result angles from the same source folder"
+      ],
+      "do_not_claim": [
+        "do not call this a rescue",
+        "do not claim a dramatic transformation",
+        "do not claim heavy structural redesign",
+        "do not claim identical camera angle"
+      ],
+      "risk": "VERIFIED_WITH_LIMITS because the intended result is subtle seasonal maintenance; proof follows source folder grouping, Viktor's text and visual continuity, not an obvious structural transformation."
+    },
+    {
+      "case_id": "parviflora-house-candle-control",
+      "status": "VERIFIED_VISUAL_WITH_LIMITS",
+      "filename_is_authoritative": false,
+      "before_file": "case-parviflora-house-candle-before-01.webp",
+      "before_path": "assets/img/foto/02_pryklady-robit/case-parviflora-house-candle-before-01.webp",
+      "before_sha256": "7E1CA9B983A9504F8C0DEC173A758BA9E098CFACF6698F8C7DFF0CD2F3A21632",
+      "after_file": "case-parviflora-house-candle-after-01.webp",
+      "after_path": "assets/img/foto/02_pryklady-robit/case-parviflora-house-candle-after-01.webp",
+      "after_sha256": "B70D0B8D2FC8D44DA1345EBCE395EC6FD55564F2E157AC602D0D0B7B5F08337C",
       "catalog_before_stage_must_include": ["before"],
       "catalog_after_stage_must_include": ["after"],
       "required_modal_context_files": [],
-      "visual_reviewed_at": "2026-06-26",
-      "visual_reviewer": "Codex local visual inspection of current image files",
+      "visual_reviewed_at": "2026-06-28",
+      "visual_reviewer": "Codex local visual check, limited by user-supplied before/after folder grouping",
       "evidence": [
-        "direct local image inspection of case-svichky-before.webp and case-svichky-after.webp",
-        "current galerie.html/en/galerie.html/uk/galerie.html card and modal DOM",
-        "current image SHA256 hashes recorded on 2026-06-26"
+        "direct local inspection of both converted preview images from Pinus_Parviflora/Neuer Ordner (12)",
+        "source folder explicitly separates do and pislia subfolders",
+        "source text says: seasonal candle work on Pinus parviflora",
+        "converted WebP files were cropped to focus on the tree and checked for dimensions and current SHA256 hashes"
       ],
       "before_visual_signs": [
-        "multiple young green pine candles are still long and upright before hand shortening",
-        "frame reads as close botanical detail before the candle work, not a finished full-tree result"
+        "same house-side Pinus parviflora shows strong young candle growth and fuller cloud edges before work",
+        "source before folder labels this frame as pre-work context"
       ],
       "after_visual_signs": [
-        "gloved hand is pinching or shortening the candle by hand",
-        "shortened candle and visible future buds show the seasonal technique in progress"
+        "after frame shows the same tree from a closer angle with calmer, more controlled cloud pads",
+        "the existing niwaki structure is preserved rather than redesigned"
       ],
       "do_not_claim": [
-        "do not call this a full-tree before/after transformation",
-        "do not claim overall crown restructuring from this detail pair",
-        "do not infer same-tree continuity beyond the candle-work detail shown"
+        "do not call this a rescue",
+        "do not claim identical camera angle",
+        "do not claim heavy structural redesign",
+        "do not describe the work as hedge clipping"
       ],
-      "risk": "Verified as a close-detail seasonal candle-work case only. It should not be described as a complete tree transformation."
+      "risk": "VERIFIED_WITH_LIMITS because before and after angles are not identical; proof follows source folder grouping, Viktor's text and visual continuity."
+    },
+    {
+      "case_id": "taxus-baccata-topiary-growth",
+      "status": "VERIFIED_VISUAL_WITH_LIMITS",
+      "filename_is_authoritative": false,
+      "before_file": "case-taxus-baccata-topiary-before-01.webp",
+      "before_path": "assets/img/foto/02_pryklady-robit/case-taxus-baccata-topiary-before-01.webp",
+      "before_sha256": "B008392FA449C0A6CC5CE42BAB5429AFDC78F41F723C96EB81DD0C7CCCD342B8",
+      "after_file": "case-taxus-baccata-topiary-after-02.webp",
+      "after_path": "assets/img/foto/02_pryklady-robit/case-taxus-baccata-topiary-after-02.webp",
+      "after_sha256": "F8F2D5897D4B021805CD402773FD955BCD0AC1BE74593397A750C212883C3934",
+      "catalog_before_stage_must_include": ["before"],
+      "catalog_after_stage_must_include": ["after"],
+      "required_modal_context_files": [
+        "case-taxus-baccata-topiary-before-02.webp",
+        "case-taxus-baccata-topiary-love-01.webp",
+        "case-taxus-baccata-topiary-after-01.webp"
+      ],
+      "visual_reviewed_at": "2026-06-29",
+      "visual_reviewer": "Codex local visual check, limited by user-supplied before/work/after folder grouping",
+      "evidence": [
+        "direct local inspection of the two before, one love/work, and two after photos from Before_After/ДЕревоХХ",
+        "source folder explicitly separates ДО, Люблю-це, and після subfolders",
+        "source text says: seasonal work with young growth of Taxus baccata by topiary method",
+        "converted WebP files were checked for dimensions and current SHA256 hashes"
+      ],
+      "before_visual_signs": [
+        "before frames show Taxus baccata cloud pads with fresh young growth and a rougher, less settled outer line",
+        "ladder and ground protection indicate active pre-work context"
+      ],
+      "after_visual_signs": [
+        "after frames show calmer rounded cloud pads and a more coherent tiered topiary silhouette",
+        "the established Taxus architecture is preserved rather than redesigned"
+      ],
+      "do_not_claim": [
+        "do not call this a rescue",
+        "do not claim identical camera angle",
+        "do not describe the work as motor hedge trimming",
+        "do not claim heavy structural redesign"
+      ],
+      "risk": "VERIFIED_WITH_LIMITS because before and after angles are not identical; proof follows source folder grouping, Viktor's text and visual continuity."
     },
     {
       "case_id": "hedge-niwaki-structure",
@@ -90,11 +298,11 @@
         "hecke-niwaki-diagnose-01.webp",
         "hecke-niwaki-arbeit-01.webp"
       ],
-      "visual_reviewed_at": "2026-06-25",
+      "visual_reviewed_at": "2026-06-26",
       "visual_reviewer": "Codex local visual check after user screenshot correction",
       "evidence": [
         "direct local image inspection of hecke-niwaki-nachher-01.webp and hecke-niwaki-vorher-02.webp",
-        "user screenshot correction in current Codex thread on 2026-06-25",
+        "user screenshot correction in current Codex thread on 2026-06-26: the controlled close-up frame must be Nachher, and the wider site-context frame must be Vorher",
         "current galerie.html/en/galerie.html/uk/galerie.html card and modal DOM"
       ],
       "before_visual_signs": [
@@ -110,7 +318,45 @@
         "do not mark the controlled rounded frame as before",
         "do not mark the rougher site-context frame as after"
       ],
-      "risk": "Filename labels are misleading. Future edits must use visual evidence, not filename text."
+      "risk": "Filename labels are misleading. Future edits must use visual evidence and Viktor/user screenshot correction, not filename text."
+    },
+    {
+      "case_id": "watereri-cloud-density",
+      "status": "VERIFIED_VISUAL_WITH_LIMITS",
+      "filename_is_authoritative": false,
+      "before_file": "case-watereri-cloud-before-01.webp",
+      "before_path": "assets/img/foto/02_pryklady-robit/case-watereri-cloud-before-01.webp",
+      "before_sha256": "EC940585F243E1CECA5ABF2E311B064659E3A1077521DA6DCFC7674F665A81F8",
+      "after_file": "case-watereri-cloud-after-01.webp",
+      "after_path": "assets/img/foto/02_pryklady-robit/case-watereri-cloud-after-01.webp",
+      "after_sha256": "CCEA3E18CCDF178FE984B6DDCF66D02762E8FBEEB59D07A0ACF3D21304030836",
+      "catalog_before_stage_must_include": ["before"],
+      "catalog_after_stage_must_include": ["after"],
+      "required_modal_context_files": [
+        "case-watereri-cloud-before-02.webp",
+        "case-watereri-cloud-after-02.webp"
+      ],
+      "visual_reviewed_at": "2026-06-27",
+      "visual_reviewer": "Codex local visual check, limited by user-supplied before/after folder grouping",
+      "evidence": [
+        "direct local image inspection of all four supplied HEIC previews",
+        "source folder explicitly separates до and після with Viktor text",
+        "current generated gallery card and modal DOM after regeneration"
+      ],
+      "before_visual_signs": [
+        "close-up Watereri cloud pads read dense, with upright young shoots and limited inner air",
+        "supplied before folder labels these frames as pre-work context"
+      ],
+      "after_visual_signs": [
+        "Watereri cloud pads read calmer and more separated in the garden context",
+        "after frames show result views with opened rounded caps"
+      ],
+      "do_not_claim": [
+        "do not claim identical camera angle",
+        "do not call this a rescue",
+        "do not replace the user-supplied before/after grouping with filename assumptions"
+      ],
+      "risk": "VERIFIED_WITH_LIMITS because before frames are close-up process/context and after frames are wider result views, not identical camera angles."
     }
   ]
 }

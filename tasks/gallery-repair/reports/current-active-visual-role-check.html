@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>V1 Gallery Visual Role Check</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f6f4ed;
+      --ink: #172015;
+      --muted: #5d6659;
+      --line: #d8d2c4;
+      --before: #8a3a2f;
+      --after: #1f6b4a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.45;
+    }
+    main {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 32px auto 48px;
+    }
+    h1, h2, h3 { margin: 0; line-height: 1.15; }
+    h1 { font-size: 32px; }
+    h2 { margin-top: 32px; font-size: 24px; }
+    p { max-width: 860px; color: var(--muted); }
+    .warning {
+      margin: 18px 0 28px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+    .case {
+      margin-top: 18px;
+      border-top: 2px solid var(--line);
+      padding-top: 18px;
+    }
+    .pair {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+    figure {
+      margin: 0;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+    img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      background: #ddd;
+    }
+    figcaption {
+      padding: 12px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .label {
+      display: inline-block;
+      margin-bottom: 6px;
+      font-weight: 700;
+      color: #fff;
+      padding: 3px 8px;
+      border-radius: 999px;
+    }
+    .before { background: var(--before); }
+    .after { background: var(--after); }
+    code { font-family: Consolas, monospace; font-size: 13px; }
+    ul { margin-top: 8px; color: var(--muted); }
+    @media (max-width: 760px) {
+      .pair { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>V1 Gallery Visual Role Check</h1>
+    <div class="warning">
+      This page is a manual pixel-review aid. Do not trust filenames, catalog stages, alt text, old screenshots, or DOM order without looking at the images.
+      The machine gate is <code>node tools/audit-gallery-roles.mjs</code>.
+    </div>
+
+    <section class="case">
+      <h2>terrace-pinus-placement</h2>
+      <p>Verified with limits: this is a placement/installation story, not pruning or rescue.</p>
+      <div class="pair">
+        <figure>
+          <img src="../../../assets/img/foto/02_pryklady-robit/case-terrace-before.webp" alt="Terrace pine before placement">
+          <figcaption>
+            <span class="label before">Before</span><br>
+            <code>case-terrace-before.webp</code>
+            <ul>
+              <li>delivery/pre-placement context</li>
+              <li>not integrated into final terrace composition</li>
+            </ul>
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="../../../assets/img/foto/02_pryklady-robit/case-terrace-after.webp" alt="Terrace pine after placement">
+          <figcaption>
+            <span class="label after">After</span><br>
+            <code>case-terrace-after.webp</code>
+            <ul>
+              <li>tree placed into terrace garden setting</li>
+              <li>settled composition, not a pruning claim</li>
+            </ul>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="case">
+      <h2>hedge-niwaki-structure</h2>
+      <p>Verified with limits: filenames are misleading. The visual role is decided by current pixels.</p>
+      <div class="pair">
+        <figure>
+          <img src="../../../assets/img/foto/02_pryklady-robit/hecke-niwaki-nachher-01.webp" alt="Hedge before correction">
+          <figcaption>
+            <span class="label before">Before</span><br>
+            <code>hecke-niwaki-nachher-01.webp</code>
+            <ul>
+              <li>rougher site-context frame</li>
+              <li>less controlled outer hedge line</li>
+              <li>filename contains <code>nachher</code>, but do not trust it</li>
+            </ul>
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="../../../assets/img/foto/02_pryklady-robit/hecke-niwaki-vorher-02.webp" alt="Hedge after correction">
+          <figcaption>
+            <span class="label after">After</span><br>
+            <code>hecke-niwaki-vorher-02.webp</code>
+            <ul>
+              <li>controlled rounded form</li>
+              <li>cleaner finished hedge mass</li>
+              <li>filename contains <code>vorher</code>, but do not trust it</li>
+            </ul>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -19,6 +19,83 @@
     update();
   });
 
+  let imageLightbox = null;
+  let imageLightboxLastFocused = null;
+  const ensureImageLightbox = () => {
+    if (imageLightbox) return imageLightbox;
+    const pageLang = document.documentElement.lang || 'de-CH';
+    const closeLabel = pageLang.startsWith('uk') ? 'Закрити' : pageLang.startsWith('en') ? 'Close' : 'Schließen';
+    const modal = document.createElement('div');
+    modal.className = 'image-lightbox';
+    modal.hidden = true;
+    modal.setAttribute('aria-hidden', 'true');
+    modal.innerHTML = '<button class="image-lightbox-backdrop" type="button" data-image-lightbox-close aria-label="' + closeLabel + '"></button><figure class="image-lightbox-panel"><button class="image-lightbox-close" type="button" data-image-lightbox-close aria-label="' + closeLabel + '">&times;</button><img alt="" loading="eager" decoding="async"><figcaption class="image-lightbox-caption"></figcaption></figure>';
+    document.body.appendChild(modal);
+    $$('[data-image-lightbox-close]', modal).forEach((button) => button.addEventListener('click', closeImageLightbox));
+    imageLightbox = modal;
+    return modal;
+  };
+  const openImageLightbox = ({ src, alt = '', caption = '', trigger = null }) => {
+    if (!src) return;
+    const modal = ensureImageLightbox();
+    const img = $('img', modal);
+    const captionEl = $('.image-lightbox-caption', modal);
+    const resolvedSrc = new URL(src, document.baseURI).href;
+    imageLightboxLastFocused = trigger instanceof HTMLElement ? trigger : document.activeElement;
+    img.decoding = 'async';
+    img.loading = 'eager';
+    img.src = resolvedSrc;
+    img.alt = alt || caption || '';
+    captionEl.textContent = caption || alt || '';
+    captionEl.hidden = !(caption || alt);
+    modal.hidden = false;
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('image-lightbox-open');
+    $('[data-image-lightbox-close]', modal)?.focus();
+  };
+  function closeImageLightbox() {
+    if (!imageLightbox || imageLightbox.hidden) return;
+    const img = $('img', imageLightbox);
+    imageLightbox.hidden = true;
+    imageLightbox.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('image-lightbox-open');
+    if (img) img.removeAttribute('src');
+    imageLightboxLastFocused?.focus?.();
+    imageLightboxLastFocused = null;
+  }
+  document.addEventListener('click', (event) => {
+    const target = event.target instanceof Element ? event.target : null;
+    if (!target) return;
+    const zoomButton = target.closest('[data-image-lightbox-src]');
+    if (zoomButton) {
+      event.preventDefault();
+      event.stopPropagation();
+      openImageLightbox({
+        src: zoomButton.dataset.imageLightboxSrc,
+        alt: zoomButton.dataset.imageLightboxAlt,
+        caption: zoomButton.dataset.imageLightboxCaption,
+        trigger: zoomButton
+      });
+      return;
+    }
+    const lightboxLink = target.closest('a[data-lightbox]');
+    if (lightboxLink) {
+      event.preventDefault();
+      openImageLightbox({
+        src: lightboxLink.href,
+        alt: $('img', lightboxLink)?.getAttribute('alt') || '',
+        caption: lightboxLink.getAttribute('aria-label') || $('img', lightboxLink)?.getAttribute('alt') || '',
+        trigger: lightboxLink
+      });
+    }
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape' || !imageLightbox || imageLightbox.hidden) return;
+    event.preventDefault();
+    event.stopPropagation();
+    closeImageLightbox();
+  }, true);
+
   $$('[data-image-carousel]').forEach((carousel) => {
     const slides = $$('[data-carousel-track] > img', carousel);
     const dots = $$('[data-carousel-dot]', carousel);
@@ -71,11 +148,15 @@
     const loadCaseImages = (panel) => {
       $$('img', panel).forEach((img) => {
         img.loading = 'eager';
+        img.decoding = 'async';
         const src = img.getAttribute('src');
-        if (!src || img.complete) return;
+        if (!src) return;
+        if (!img.currentSrc) img.src = src;
+        img.decode?.().catch(() => {});
+        if (img.complete) return;
         const preload = new Image();
         preload.decoding = 'async';
-        preload.src = src;
+        preload.src = new URL(src, document.baseURI).href;
       });
     };
     const openCase = (id) => {
@@ -105,7 +186,7 @@
     });
     closeButtons.forEach((button) => button.addEventListener('click', closeCase));
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && !caseModal.hidden) closeCase();
+      if (event.key === 'Escape' && !caseModal.hidden && !document.body.classList.contains('image-lightbox-open')) closeCase();
     });
   }
 
@@ -284,24 +365,9 @@
     });
   });
 
-  const vision = $('[data-event-section="vision_section_view"]');
-  if ('IntersectionObserver' in window && vision) {
-    let seen = false;
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!seen && entry.isIntersecting) {
-          seen = true;
-          track('vision_section_view', { path: location.pathname });
-          observer.disconnect();
-        }
-      });
-    }, { threshold: 0.35 });
-    observer.observe(vision);
-  }
-
   const HERO_VARIANT_KEY = 'viktor_hero_variant';
   const hero = $('[data-hero-root]');
-  const heroSwitcher = hero ? $('[data-hero-switcher]', hero) : null;
+  const heroSwitcher = hero ? $('[data-hero-switcher]') : null;
   if (hero && heroSwitcher) {
     const desktopImage = $('[data-hero-desktop-image]', hero);
     const mobileImage = $('[data-hero-mobile-image]', hero);

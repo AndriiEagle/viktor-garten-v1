@@ -5,19 +5,22 @@ const root = process.cwd();
 const required = [
   "index.html","leistungen.html","philosophie.html","galerie.html","preise.html",
   "blog/index.html","blog/topiarschere.html","blog/energie-krone.html","blog/niwaki-bonsai-stile.html","blog/kiefer-kerzen.html","blog/fehler-alte-nadeln-moos-pilzrisiko.html","blog/boden-wurzeln.html","blog/klimastress.html",
+  "niwaki-schweiz.html","gartenbonsai-zuerich.html","japanischer-ahorn-pflege-schweiz.html","kiefer-kerzen-schneiden-schweiz.html","kosten-japanische-baumpflege-zuerich.html","zuerichsee.html","zug.html","luzern-aargau.html",
   "kontakt.html","impressum.html","datenschutz.html","themes.html",
   "en/index.html","en/leistungen.html","en/philosophie.html","en/galerie.html","en/preise.html",
   "en/blog/index.html","en/blog/topiarschere.html","en/blog/energie-krone.html","en/blog/niwaki-bonsai-stile.html","en/blog/kiefer-kerzen.html","en/blog/fehler-alte-nadeln-moos-pilzrisiko.html","en/blog/boden-wurzeln.html","en/blog/klimastress.html",
+  "en/niwaki-schweiz.html","en/gartenbonsai-zuerich.html","en/japanischer-ahorn-pflege-schweiz.html","en/kiefer-kerzen-schneiden-schweiz.html","en/kosten-japanische-baumpflege-zuerich.html","en/zuerichsee.html","en/zug.html","en/luzern-aargau.html",
   "en/kontakt.html","en/impressum.html","en/datenschutz.html","en/themes.html",
   "uk/index.html","uk/leistungen.html","uk/philosophie.html","uk/galerie.html","uk/preise.html",
   "uk/blog/index.html","uk/blog/topiarschere.html","uk/blog/energie-krone.html","uk/blog/niwaki-bonsai-stile.html","uk/blog/kiefer-kerzen.html","uk/blog/fehler-alte-nadeln-moos-pilzrisiko.html","uk/blog/boden-wurzeln.html","uk/blog/klimastress.html",
   "uk/kontakt.html","uk/impressum.html","uk/datenschutz.html","uk/themes.html",
   "fr/index.html","it/index.html",
   "assets/base.css","assets/main.js","assets/theme-v1.css","assets/theme-v2.css","assets/theme-v3.css","assets/theme-v4.css","assets/theme-v5.css",
-  "assets/img/logo.png","assets/img/foto/01_hero/hero-viktor-bonsai-main.webp","assets/img/foto/01_hero/hero-viktor-bonsai-mobile.webp","assets/img/foto/02_pryklady-robit/case-parviflora-before.webp","assets/img/foto/02_pryklady-robit/case-parviflora-after.webp","assets/img/foto/02_pryklady-robit/case-watereri-before.webp","assets/img/foto/02_pryklady-robit/case-watereri-after.webp","assets/img/foto/02_pryklady-robit/sosna-bila-17.webp","assets/img/foto/02_pryklady-robit/sosna-bila-18.webp","assets/img/foto/03_galereya/sosna-bila-01.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-01.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-08.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-16.webp","assets/img/foto/06_yaponski-kleny/klen-yaponskyi-01.webp","assets/img/foto/07_viktor/viktor-01.webp","assets/img/foto/08_fonovi/fon-foto-01.webp","assets/img/foto/09_pomylky/pomylka-svichka-01.webp","assets/img/foto/10_vidkrytka-yaponiya/kyoto-viktor-wife-2009.webp","assets/img/foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp","assets/img/MANIFEST.md","site.webmanifest","robots.txt","sitemap.xml","llms.txt","vercel.json","README.md",".env.example","api/contact.js","api/voice-lead.js"
+  "assets/img/logo.png","assets/img/foto/01_hero/hero-viktor-bonsai-main.webp","assets/img/foto/01_hero/hero-viktor-bonsai-mobile.webp","assets/img/foto/01_hero/hero-courtyard-niwaki-desktop.webp","assets/img/foto/01_hero/hero-courtyard-niwaki-mobile.webp","assets/img/foto/02_pryklady-robit/case-parviflora-before.webp","assets/img/foto/02_pryklady-robit/case-parviflora-after.webp","assets/img/foto/02_pryklady-robit/case-watereri-before.webp","assets/img/foto/02_pryklady-robit/case-watereri-after.webp","assets/img/foto/02_pryklady-robit/sosna-bila-17.webp","assets/img/foto/02_pryklady-robit/sosna-bila-18.webp","assets/img/foto/03_galereya/sosna-bila-01.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-01.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-08.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-16.webp","assets/img/foto/06_yaponski-kleny/klen-yaponskyi-01.webp","assets/img/foto/07_viktor/viktor-01.webp","assets/img/foto/08_fonovi/fon-foto-01.webp","assets/img/foto/09_pomylky/pomylka-svichka-01.webp","assets/img/foto/10_vidkrytka-yaponiya/kyoto-viktor-wife-2009.webp","assets/img/foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp","assets/img/MANIFEST.md","site.webmanifest","robots.txt","sitemap.xml","llms.txt","vercel.json","README.md","handoff/ai-local-discovery-checklist.md",".env.example","api/contact.js","api/voice-lead.js"
 ];
 
 const errors = [];
+const discoveryHtmlFiles = new Set(["niwaki-schweiz.html","gartenbonsai-zuerich.html","japanischer-ahorn-pflege-schweiz.html","kiefer-kerzen-schneiden-schweiz.html","kosten-japanische-baumpflege-zuerich.html","zuerichsee.html","zug.html","luzern-aargau.html","en/niwaki-schweiz.html","en/gartenbonsai-zuerich.html","en/japanischer-ahorn-pflege-schweiz.html","en/kiefer-kerzen-schneiden-schweiz.html","en/kosten-japanische-baumpflege-zuerich.html","en/zuerichsee.html","en/zug.html","en/luzern-aargau.html"]);
 for (const file of required) {
   if (!fs.existsSync(path.join(root, file))) errors.push("Missing " + file);
 }
@@ -59,7 +62,9 @@ for (const file of htmlFiles) {
   if (!html.includes(requiredContact.facebook)) errors.push(file + " missing current Facebook link");
   const h1 = [...html.matchAll(/<h1\b/gi)].length;
   if (h1 !== 1) errors.push(file + " has " + h1 + " H1 tags");
-  for (const needle of ["<title>", "name=\"description\"", "rel=\"canonical\"", "property=\"og:title\"", "hreflang=\"de-CH\"", "hreflang=\"en\"", "hreflang=\"uk\""]) {
+  const seoNeedles = ["<title>", "name=\"description\"", "rel=\"canonical\"", "property=\"og:title\"", "hreflang=\"de-CH\"", "hreflang=\"en\""];
+  if (!discoveryHtmlFiles.has(file)) seoNeedles.push("hreflang=\"uk\"");
+  for (const needle of seoNeedles) {
     if (!html.includes(needle)) errors.push(file + " missing " + needle);
   }
   if (!html.includes("application/ld+json") && !file.includes("impressum") && !file.includes("datenschutz") && !file.includes("themes")) {
@@ -135,19 +140,44 @@ for (const file of htmlFiles) {
     if (href.includes("PLACEHOLDER")) continue;
     const clean = href.split("#")[0].split("?")[0];
     if (!clean || clean.endsWith(".css") || clean.endsWith(".webmanifest")) continue;
-    const resolved = path.normalize(path.join(path.dirname(full), clean));
+    const resolved = clean.startsWith("/")
+      ? path.normalize(path.join(root, clean.slice(1)))
+      : path.normalize(path.join(path.dirname(full), clean));
     if (!fs.existsSync(resolved)) errors.push(file + " broken link -> " + href);
   }
 }
 
 const mainJs = fs.readFileSync(path.join(root, "assets/main.js"), "utf8");
-for (const eventName of ["cta_whatsapp_click","cta_call_click","cta_rueckruf_submit","contact_form_submit","vision_section_view"]) {
+for (const eventName of ["cta_whatsapp_click","cta_call_click","cta_rueckruf_submit","contact_form_submit"]) {
   const siteHas = htmlFiles.some((file) => fs.readFileSync(path.join(root, file), "utf8").includes(eventName)) || mainJs.includes(eventName);
   if (!siteHas) errors.push("Missing event " + eventName);
 }
 
 const baseCss = fs.readFileSync(path.join(root, "assets/base.css"), "utf8");
 if (baseCss.includes(".brand-symbol")) errors.push("Unused .brand-symbol CSS is still present");
+
+const robots = fs.readFileSync(path.join(root, "robots.txt"), "utf8");
+for (const agent of ["Googlebot","Bingbot","GPTBot","OAI-SearchBot","ChatGPT-User","PerplexityBot"]) {
+  if (!robots.includes("User-agent: " + agent) || !robots.includes("Sitemap: https://viktor-baumarchitektur.ch/sitemap.xml")) {
+    errors.push("robots.txt missing explicit crawler policy or sitemap for " + agent);
+  }
+}
+
+const sitemapXml = fs.readFileSync(path.join(root, "sitemap.xml"), "utf8");
+for (const urlPath of ["/niwaki-schweiz","/gartenbonsai-zuerich","/japanischer-ahorn-pflege-schweiz","/kiefer-kerzen-schneiden-schweiz","/kosten-japanische-baumpflege-zuerich","/zuerichsee","/zug","/luzern-aargau","/en/niwaki-schweiz","/en/gartenbonsai-zuerich","/en/japanischer-ahorn-pflege-schweiz","/en/kiefer-kerzen-schneiden-schweiz","/en/kosten-japanische-baumpflege-zuerich","/en/zuerichsee","/en/zug","/en/luzern-aargau"]) {
+  if (!sitemapXml.includes("https://viktor-baumarchitektur.ch" + urlPath)) {
+    errors.push("sitemap.xml missing discovery URL " + urlPath);
+  }
+}
+
+const llmsTxt = fs.readFileSync(path.join(root, "llms.txt"), "utf8");
+for (const marker of ["Positioning:", "Not a general cheap gardening service.", "Not emergency tree removal", "Answer pages:", "Service-area pages:"]) {
+  if (!llmsTxt.includes(marker)) errors.push("llms.txt missing AI/local marker: " + marker);
+}
+
+const indexHtml = fs.readFileSync(path.join(root, "index.html"), "utf8");
+if (!indexHtml.includes('"@graph"')) errors.push("index.html missing JSON-LD @graph entity schema");
+if (indexHtml.includes("aggregateRating")) errors.push("index.html must not contain placeholder aggregateRating");
 
 const previewFiles = ["v2/index.html"];
 for (const file of previewFiles) {
@@ -189,13 +219,15 @@ for (const file of previewFiles) {
     }
     const clean = ref.split("#")[0].split("?")[0];
     if (!clean) continue;
-    const resolved = path.normalize(path.join(path.dirname(full), clean));
+    const resolved = clean.startsWith("/")
+      ? path.normalize(path.join(root, clean.slice(1)))
+      : path.normalize(path.join(path.dirname(full), clean));
     if (!fs.existsSync(resolved)) errors.push(file + " broken preview ref -> " + ref);
   }
 }
 
 const manifest = fs.readFileSync(path.join(root, "assets/img/MANIFEST.md"), "utf8");
-for (const file of ["foto/01_hero/hero-viktor-bonsai-main.webp","foto/01_hero/hero-viktor-bonsai-mobile.webp","foto/02_pryklady-robit/*.webp","foto/03_galereya/*.webp","foto/05_nivaki-khmarky/*.webp","foto/06_yaponski-kleny/klen-yaponskyi-01.webp","foto/06_yaponski-kleny/klen-yaponskyi-02.webp","foto/07_viktor/*.webp","foto/08_fonovi/*.webp","foto/09_pomylky/*.webp","foto/10_vidkrytka-yaponiya/kyoto-viktor-wife-2009.webp","foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp","baumarchitektur-korrektur.png","baumarchitektur-live-crown-ratio.png"]) {
+for (const file of ["foto/01_hero/hero-viktor-bonsai-main.webp","foto/01_hero/hero-viktor-bonsai-mobile.webp","foto/01_hero/hero-courtyard-niwaki-desktop.webp","foto/01_hero/hero-courtyard-niwaki-mobile.webp","foto/02_pryklady-robit/*.webp","foto/03_galereya/*.webp","foto/05_nivaki-khmarky/*.webp","foto/06_yaponski-kleny/klen-yaponskyi-01.webp","foto/06_yaponski-kleny/klen-yaponskyi-02.webp","foto/06_yaponski-kleny/laubgehoelz-formschnitt-*.webp","foto/07_viktor/*.webp","foto/08_fonovi/*.webp","foto/09_pomylky/*.webp","foto/10_vidkrytka-yaponiya/kyoto-garden-2009.webp","foto/10_vidkrytka-yaponiya/kyoto-viktor-wife-2009.webp","foto/10_vidkrytka-yaponiya/kyoto-zen-garden-wife-2009.webp","foto/10_vidkrytka-yaponiya/kyoto-golden-pavilion-pine-2009.webp","foto/10_vidkrytka-yaponiya/kyoto-sand-cone-garden-2009.webp","foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp","baumarchitektur-korrektur.png","baumarchitektur-live-crown-ratio.png"]) {
   if (!manifest.includes(file)) errors.push("MANIFEST missing " + file);
 }
 

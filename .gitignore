@@ -6,6 +6,7 @@
 # Local/generated scratch
 /.tmp/
 /tmp/
+/output/
 *.tmp
 *.log
 

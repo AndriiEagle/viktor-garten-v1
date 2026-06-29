@@ -24,6 +24,21 @@ The blog now has seven DE articles plus EN/UK mirror pages:
 - `blog/boden-wurzeln.html` - Akadama, roots and substrate.
 - `blog/klimastress.html` - Swiss heat/drought context for premium gardens.
 
+## AI / local discovery pages
+
+The site includes focused DE/EN answer and service-area pages for retrieval search and local SEO:
+
+- `niwaki-schweiz.html` / `en/niwaki-schweiz.html` - Niwaki Schweiz.
+- `gartenbonsai-zuerich.html` / `en/gartenbonsai-zuerich.html` - Garten-Bonsai Zürich.
+- `japanischer-ahorn-pflege-schweiz.html` / `en/japanischer-ahorn-pflege-schweiz.html` - Acer palmatum Pflege.
+- `kiefer-kerzen-schneiden-schweiz.html` / `en/kiefer-kerzen-schneiden-schweiz.html` - Kiefer Kerzen schneiden.
+- `kosten-japanische-baumpflege-zuerich.html` / `en/kosten-japanische-baumpflege-zuerich.html` - Preise Zürich.
+- `zuerichsee.html` / `en/zuerichsee.html` - Niwaki und Gartenbonsai am Zürichsee.
+- `zug.html` / `en/zug.html` - Niwaki und japanische Baumpflege in Zug.
+- `luzern-aargau.html` / `en/luzern-aargau.html` - Niwaki-Pflege in Luzern und Aargau.
+
+External launch steps are tracked in `handoff/ai-local-discovery-checklist.md`: custom domain, Search Console, Bing Webmaster Tools, Google Business Profile, Apple/Bing/local.ch citations and monthly AI monitoring.
+
 ## Future FR/IT localization
 
 French and Italian are intentionally **not** full translations yet. The current generated files are noindex stubs only:
