@@ -4,15 +4,15 @@ import path from "node:path";
 const root = process.cwd();
 const required = [
   "index.html","leistungen.html","philosophie.html","galerie.html","preise.html",
-  "blog/index.html","blog/topiarschere.html","blog/energie-krone.html","blog/niwaki-bonsai-stile.html","blog/kiefer-kerzen.html","blog/fehler-alte-nadeln-moos-pilzrisiko.html","blog/boden-wurzeln.html","blog/klimastress.html",
+  "blog/index.html","blog/topiarschere.html","blog/energie-krone.html","blog/niwaki-bonsai-stile.html","blog/kiefer-kerzen.html","blog/klimastress.html",
   "niwaki-schweiz.html","gartenbonsai-zuerich.html","japanischer-ahorn-pflege-schweiz.html","kiefer-kerzen-schneiden-schweiz.html","kosten-japanische-baumpflege-zuerich.html","zuerichsee.html","zug.html","luzern-aargau.html",
   "kontakt.html","impressum.html","datenschutz.html","themes.html",
   "en/index.html","en/leistungen.html","en/philosophie.html","en/galerie.html","en/preise.html",
-  "en/blog/index.html","en/blog/topiarschere.html","en/blog/energie-krone.html","en/blog/niwaki-bonsai-stile.html","en/blog/kiefer-kerzen.html","en/blog/fehler-alte-nadeln-moos-pilzrisiko.html","en/blog/boden-wurzeln.html","en/blog/klimastress.html",
+  "en/blog/index.html","en/blog/topiarschere.html","en/blog/energie-krone.html","en/blog/niwaki-bonsai-stile.html","en/blog/kiefer-kerzen.html","en/blog/klimastress.html",
   "en/niwaki-schweiz.html","en/gartenbonsai-zuerich.html","en/japanischer-ahorn-pflege-schweiz.html","en/kiefer-kerzen-schneiden-schweiz.html","en/kosten-japanische-baumpflege-zuerich.html","en/zuerichsee.html","en/zug.html","en/luzern-aargau.html",
   "en/kontakt.html","en/impressum.html","en/datenschutz.html","en/themes.html",
   "uk/index.html","uk/leistungen.html","uk/philosophie.html","uk/galerie.html","uk/preise.html",
-  "uk/blog/index.html","uk/blog/topiarschere.html","uk/blog/energie-krone.html","uk/blog/niwaki-bonsai-stile.html","uk/blog/kiefer-kerzen.html","uk/blog/fehler-alte-nadeln-moos-pilzrisiko.html","uk/blog/boden-wurzeln.html","uk/blog/klimastress.html",
+  "uk/blog/index.html","uk/blog/topiarschere.html","uk/blog/energie-krone.html","uk/blog/niwaki-bonsai-stile.html","uk/blog/kiefer-kerzen.html","uk/blog/klimastress.html",
   "uk/kontakt.html","uk/impressum.html","uk/datenschutz.html","uk/themes.html",
   "fr/index.html","it/index.html",
   "assets/base.css","assets/main.js","assets/theme-v1.css","assets/theme-v2.css","assets/theme-v3.css","assets/theme-v4.css","assets/theme-v5.css",

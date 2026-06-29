@@ -1,4 +1,4 @@
-﻿import fs from "node:fs";
+import fs from "node:fs";
 import path from "node:path";
 
 const root = process.cwd();
@@ -4007,11 +4007,10 @@ function blogIndexDe() {
   <section class="page-hero section">
     <span class="eyebrow">Wissen</span>
     <h1>Wissen rund um Niwaki, Ahorne und Nadelgehölze.</h1>
-    <p>Kurze, klare Artikel zu Topiarschere, Formschnitt, Akadama, Wurzeln und gesunder Baumarchitektur.</p>
+    <p>Kurze, klare Artikel zu Topiarschere, Formschnitt und gesunder Baumarchitektur.</p>
   </section>
-  <section class="section card-grid two">
+  <section class="section card-grid">
     <article class="card article-card">${photoSlot({ folder: "07_viktor", file: "viktor-01.webp", lang: "de", label: "Topiarschere und sauberer Schnitt", ratio: "3 / 2" })}<h2>Warum ich mit der Topiarschere schneide</h2><p>Sauberer Schnitt statt gerissene Fasern: warum das Werkzeug die Gesundheit des Baumes beeinflusst.</p><a href="/blog/topiarschere.html">Artikel lesen</a></article>
-    <article class="card article-card">${photoSlot({ folder: "10_vidkrytka-yaponiya", file: "vidkrytka-yaponiya-01.webp", lang: "de", label: "Akadama, Bonsai-Erde und Wurzeln", ratio: "3 / 2" })}<h2>Der Boden entscheidet: Akadama & Wurzeln</h2><p>Fundament-Metapher, Akadama, Kanuma, pH 5,5-6,5 und gesunde Wurzeln.</p><a href="/blog/boden-wurzeln.html">Artikel lesen</a></article>
   </section>
   ${finalCtaDe("../")}`;
 }
@@ -4027,21 +4026,6 @@ function articleTopiaryDe() {
     <p>Mit der Topiarschere arbeite ich anders. Jeder Schnitt ist sichtbar entschieden: Wo braucht die Wolke Licht? Wo muss Luft durch die Krone? Welche Knospe bleibt, damit die Form in einem Jahr noch stimmt? Die scharfe japanische Schere macht einen sauberen Schnitt, der schneller verheilt und dem Baum weniger Kraft raubt.</p>
     <p>Das ist der Unterschied zwischen gewöhnlichem Gartenunterhalt und Feinarbeit. Ich schneide nicht jede Knospe nach Schema. Ich lese die Architektur des Baumes. Besonders bei Pinus, Taxus, Juniperus und Acer palmatum entscheidet diese Ruhe darüber, ob der Baum nur kurz gut aussieht - oder über Jahre Form und Gesundheit behält.</p>
     <p>Wenn Sie unsicher sind, ob Ihr Baum falsch geschnitten wurde, senden Sie mir Fotos. Oft erkennt man an Nadeln, trockenen Ästen und dichter Krone schon, ob ein sauberer Formschnitt helfen kann.</p>
-    <div class="btn-row">${cta("Foto senden - kostenlose Diagnose")}</div>
-  </article>`;
-}
-
-function articleSoilDe() {
-  return `
-  <article class="article section">
-    <span class="eyebrow">Akadama & Wurzeln</span>
-    <h1>Der Boden entscheidet: Akadama & Wurzeln.</h1>
-    ${photoSlot({ folder: "10_vidkrytka-yaponiya", file: "vidkrytka-yaponiya-01.webp", lang: "de", label: "Akadama Schweiz und gesunde Wurzeln", ratio: "16 / 9" })}
-    <p>Ein Baum steht nicht nur auf dem Boden. Er lebt aus ihm. Wie bei einem Haus entscheidet das Fundament, ob die sichtbare Form stabil bleibt. Bei japanischen Ahornen, Garten-Bonsai und Niwaki beginnt Gesundheit deshalb unter der Erde: bei Struktur, Wasserführung, Luft und Säure.</p>
-    <p>Akadama, Kanuma und Pemza sind nicht einfach schöne Namen aus Japan. Sie helfen, Wasser und Luft so zu führen, dass die Wurzeln arbeiten können. Für viele japanische Ahorne ist ein leicht saurer Bereich von etwa pH 5,5-6,5 sinnvoll. Ist der Boden zu schwer, zu nass oder zu verdichtet, entsteht Stress. Dann werden Blätter schwach, Moos und Pilzdruck steigen, und die Krone verliert Kraft.</p>
-    <p>Darum betrachte ich nicht nur die Form von aussen. Wenn ein Baum immer wieder Nadeln verliert, innen trocken wird oder die Krone nicht sauber reagiert, frage ich nach Standort, Substrat, Wasser und Pflege. Ein Schnitt kann viel korrigieren, aber er ersetzt kein gesundes Fundament.</p>
-    <p>Die richtige Erde ist auch eine Frage der Verantwortung. Ich gebe kein leeres Garantie-Versprechen über Ihren Kopf hinweg. Ich sage, was ich sehe, was ich ändern würde und welche Empfehlungen wichtig sind. Wenn Sie diese Empfehlungen befolgen, kann die Form über Jahre halten.</p>
-    <p>Senden Sie mir Fotos vom Baum, vom Standort und wenn möglich vom Bodenbereich. So lässt sich oft schnell einschätzen, ob nur die Krone Aufmerksamkeit braucht - oder ob die Wurzeln der eigentliche Schlüssel sind.</p>
     <div class="btn-row">${cta("Foto senden - kostenlose Diagnose")}</div>
   </article>`;
 }
@@ -4074,20 +4058,6 @@ const blogArticlesDeV2 = [
     teaser: "Warum verholzte Jahrestriebe bei Pinus thunbergii nicht einfach mittig geschnitten werden dürfen.",
     image: "foto/09_pomylky/pomylka-svichka-02.webp",
     label: "Pinus-Kerzen als neues Wachstum"
-  },
-  {
-    slug: "fehler-alte-nadeln-moos-pilzrisiko",
-    title: "Alte Nadeln, Moos und dichte Kronen: typische Fehler",
-    teaser: "Was braune Innenbereiche, Moos, alte Nadeln und kompakte Schalen über Licht, Luft und Pilzrisiko sagen.",
-    image: "foto/08_fonovi/fon-sosna-bila-01.webp",
-    label: "Alte Nadeln und Diagnose an wertvollen Nadelgehölzen"
-  },
-  {
-    slug: "boden-wurzeln",
-    title: "Der Boden entscheidet: Akadama & Wurzeln",
-    teaser: "Das Fundament der Baumarchitektur: Wasser, Luft, Säure und gesunde Wurzeln.",
-    image: "foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp",
-    label: "Wurzel- und Substratkontrolle"
   },
   {
     slug: "klimastress",
@@ -4231,47 +4201,6 @@ function articleCandlesDeV2() {
     ${sourceListV2([["NAJGA: Timing und Wirkung beim Schnitt japanischer Schwarzkiefer", "https://najga.org/pruning-japanese-black-pine/"], ["Chicago Botanic Garden: Was Candling bei Kiefern bedeutet", "https://www.chicagobotanic.org/blog/learning/candling-japanese-garden"], ["RHS: Koniferen und neues Wachstum", "https://www.rhs.org.uk/plants/types/conifers/growing-guide"]])}
     ${articleNavDeV2()}
     <div class="btn-row">${cta("Kiefer-Foto senden")}</div>
-  </article>`;
-}
-
-function articleMistakesDeV2() {
-  return `
-  <article class="article section">
-    <span class="eyebrow">Fehler & Diagnose</span>
-    <h1>Alte Nadeln, Moos und dichte Kronen: typische Fehler.</h1>
-    ${photoSlot({ folder: "08_fonovi", file: "fon-sosna-bila-01.webp", lang: "de", label: "Dichte Krone mit möglichem Stress an einem wertvollen Nadelgehölz", ratio: "16 / 9" })}
-    <p>Ein wertvoller Baum zeigt Probleme oft leise. Alte Nadeln im Inneren, braune Bereiche, Moos auf Ästen oder eine sehr dichte äussere Schale bedeuten nicht automatisch Krankheit. Aber sie sind Signale, die ich ernst nehme.</p>
-    <p>Wichtig ist der Zusammenhang. Moos, Algen und Flechten sind nach RHS nicht automatisch schädlich. Sie mögen aber feuchte, schattige Bedingungen. Wenn eine Krone zu dicht ist, Luft fehlt und Nadeln lange nass bleiben, entsteht genau das Mikroklima, in dem Pilzdruck leichter zum Problem wird.</p>
-    <div class="comparison-grid">
-      <div><h2>Alte Nadeln</h2><p>Ältere Nadeln können natürlich abfallen. Wenn der Baum aber innen schnell dünn wird oder viele braune Nadeln zeigt, prüfe ich Licht, Luft, Schnittfehler und mögliche Nadelkrankheiten.</p></div>
-      <div><h2>Moos und Belag</h2><p>Moos ist nicht automatisch der Feind. Es zeigt oft: hier ist es feucht, schattig oder wenig luftig. Dann muss man die Ursache lesen, nicht nur die Oberfläche reinigen.</p></div>
-      <div><h2>Dichte Schale</h2><p>Eine schnell geschorene Aussenhaut sieht kurz ordentlich aus, hält innen aber Licht und Luft zurück. Bei manchen Nadelgehölzen bleibt die Krone dadurch länger nass.</p></div>
-      <div><h2>Pilzrisiko</h2><p>Viele Nadelkrankheiten werden durch Feuchtigkeit, dichte Bestände, alte Nadeln und schlechte Luftbewegung begünstigt. Deshalb arbeite ich mit Öffnung, Hygiene und trockenem Timing.</p></div>
-    </div>
-    <p>Gefährlich ist die falsche Reaktion: zu schnell alles abschneiden, in altes braunes Holz schneiden oder die Krone jedes Jahr nur aussen verdichten. Bei vielen Koniferen wächst altes braunes Holz kaum oder gar nicht wieder. Ein Fehler kann deshalb viele Jahre sichtbar bleiben.</p>
-    <p>Meine erste Empfehlung ist einfach: Foto vom ganzen Baum, vom Innenbereich und von den Nadeln senden. Dann lässt sich unterscheiden, ob es um normale Alterung, Pflegefehler, Standortstress oder einen Verdacht auf Krankheit geht.</p>
-    ${sourceListV2([["RHS: Moos, Algen und Flechten auf Bäumen einordnen", "https://www.rhs.org.uk/biodiversity/algae-lichens-moss-on-trees-shrubs"], ["RHS: Koniferen nicht ins alte braune Holz schneiden", "https://www.rhs.org.uk/plants/types/conifers/growing-guide"], ["University of Minnesota: Brown spot needle blight und Luftzirkulation", "https://extension.umn.edu/plant-diseases/brown-spot-needle-blight"], ["University of Minnesota: Rhizosphaera needle cast, Feuchtigkeit und dichte Kronen", "https://extension.umn.edu/plant-diseases/rhizosphaera-needle-cast"], ["University of Maine: Rhizosphaera Needlecast, Feuchtigkeit und dichte Belaubung", "https://extension.umaine.edu/ipm/ipddl/publications/5104e/"]])}
-    ${articleNavDeV2()}
-    <div class="btn-row">${cta("Foto senden - Nadeln und Krone prüfen")}</div>
-  </article>`;
-}
-
-function articleSoilDeV2() {
-  return `
-  <article class="article section">
-    <span class="eyebrow">Akadama & Wurzeln</span>
-    <h1>Der Boden entscheidet: Akadama & Wurzeln.</h1>
-    ${photoSlot({ folder: "10_vidkrytka-yaponiya", file: "vidkrytka-yaponiya-01.webp", lang: "de", label: "Japanische Inspiration fuer Baumgesundheit und Substrat", ratio: "16 / 9" })}
-    <p>Ein Baum steht nicht nur auf dem Boden. Er lebt aus ihm. Wie bei einem Haus entscheidet das Fundament, ob die sichtbare Form stabil bleibt. Bei japanischen Ahornen, Garten-Bonsai und Niwaki beginnt Gesundheit deshalb unter der Erde: bei Struktur, Wasserführung, Luft und Säure.</p>
-    <div class="science-card"><h2>Die einfache Formel</h2><p><strong>Wurzeln brauchen Wasser und Luft.</strong> Zu trocken ist Stress. Zu nass ist ebenfalls Stress. Zu verdichtet bedeutet: wenig Sauerstoff, schwache Feinwurzeln, schlechte Reaktion in der Krone.</p></div>
-    <p>Akadama, Kanuma und Pemza sind nicht einfach schöne Namen aus Japan. Sie helfen, Wasser und Luft so zu führen, dass die Wurzeln arbeiten können. Für viele japanische Ahorne ist ein leicht saurer Bereich von etwa pH 5,5-6,5 sinnvoll. Ist der Boden zu schwer, zu nass oder zu verdichtet, steigen Stress, Moosdruck und Pilzrisiko.</p>
-    ${photoSlot({ folder: "08_fonovi", file: "fon-foto-01.webp", lang: "de", label: "Feuchtigkeit und Mikroklima im Garten", ratio: "3 / 2" })}
-    <h2>Warum ein Kronenproblem oft im Boden beginnt.</h2>
-    <p>Wenn ein Baum Nadeln verliert, innen trocken wird oder nach dem Schnitt nicht sauber reagiert, reicht der Blick auf die Krone nicht. Standort, Substrat, Wasser und Pflege gehören zur Diagnose. Ein Schnitt kann viel korrigieren, aber er ersetzt kein gesundes Fundament.</p>
-    <p>Darum frage ich nicht nur: Welche Form wünschen Sie? Ich frage: Wie steht der Baum? Wie fliesst Wasser ab? Wo ist Schatten? Wie wurde vorher geschnitten? Erst dann ist eine ehrliche Empfehlung möglich.</p>
-    ${sourceListV2([["WSL: Wetterextreme und Trockenheit setzen Bäume unter Stress", "https://www.wsl.ch/en/natural-hazards/weather-and-climate-extremes-and-drought/"], ["BAFU: Dürre-Monitoring und Warnsystem Schweiz", "https://www.bafu.admin.ch/en/drought"]])}
-    ${articleNavDeV2()}
-    <div class="btn-row">${cta("Foto vom Baum und Boden senden")}</div>
   </article>`;
 }
 
@@ -4454,8 +4383,6 @@ const blogArticlesEnV2 = [
   ["energie-krone", "Why the crown must be opened", "Light, air and energy distribution explained in simple language.", "foto/04_khvoyni/energie-krone-pinus-crown-01.webp"],
   ["niwaki-bonsai-stile", "Artistic tree shaping: principles and methods", "How an ordinary garden tree becomes a remarkable form through reading, opening and guiding.", "foto/05_nivaki-khmarky/sosna-watereri-do-pislya-01.webp"],
   ["kiefer-kerzen", "Pine candles: timing matters", "Why hardened Pinus thunbergii extensions should not be cut blindly in the middle.", "foto/09_pomylky/pomylka-svichka-02.webp"],
-  ["fehler-alte-nadeln-moos-pilzrisiko", "Old needles, moss and dense crowns: common mistakes", "Why air, light and dry needles matter before fungal risk grows.", "foto/08_fonovi/fon-sosna-bila-01.webp"],
-  ["boden-wurzeln", "The soil decides: Akadama and roots", "Water, air, pH and root health as the foundation of tree architecture.", "foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp"],
   ["klimastress", "Why Swiss premium gardens need diagnosis", "Heat, dry summers and heavy rain make early assessment more valuable.", "foto/08_fonovi/fon-sosna-bila-01.webp"]
 ];
 
@@ -4464,7 +4391,7 @@ function articleNavEnV2() {
 }
 
 function blogIndexEnV2() {
-  return `<section class="page-hero section"><span class="eyebrow">Knowledge</span><h1>Knowledge about niwaki, maples and valuable garden trees.</h1><p>Seven English mirror articles explain my craft: artistic tree shaping, tools, crown energy, pine candles, old needles, moss, roots and climate stress in Swiss premium gardens.</p></section><section class="section article-grid">${blogArticlesEnV2.map(([slug, title, teaser, image]) => `<article class="card article-card">${assetSlot({ file: image, label: title, ratio: "3 / 2" })}<span class="eyebrow">Knowledge</span><h2>${title}</h2><p>${teaser}</p><a href="/en/blog/${slug}.html">Read article</a></article>`).join("")}</section>${finalCtaEn("../")}`;
+  return `<section class="page-hero section"><span class="eyebrow">Knowledge</span><h1>Knowledge about niwaki, maples and valuable garden trees.</h1><p>Five English mirror articles explain my craft: artistic tree shaping, tools, crown energy, pine candles and climate stress in Swiss premium gardens.</p></section><section class="section article-grid">${blogArticlesEnV2.map(([slug, title, teaser, image]) => `<article class="card article-card">${assetSlot({ file: image, label: title, ratio: "3 / 2" })}<span class="eyebrow">Knowledge</span><h2>${title}</h2><p>${teaser}</p><a href="/en/blog/${slug}.html">Read article</a></article>`).join("")}</section>${finalCtaEn("../")}`;
 }
 
 function articleEnV2(type) {
@@ -4481,24 +4408,15 @@ function articleEnV2(type) {
   if (type === "candles") {
     return `<article class="article section"><span class="eyebrow">Pinus</span><h1>Pine candles: timing matters.</h1>${photoSlot({ folder: "09_pomylky", file: "pomylka-svichka-01.webp", lang: "en", label: "New pine candles", ratio: "16 / 9" })}<p>New pine shoots, or candles, show where the tree is pushing strength. Treating every candle the same is a mistake. Strong areas may need calming; weak areas may need protection. Timing and selectivity build refinement without exhausting the tree.</p><div class="process-grid"><div><strong>Read</strong><p>Where is the strongest push?</p></div><div><strong>Select</strong><p>Which shoots build the next cloud?</p></div><div><strong>Preserve</strong><p>Leave enough strength for recovery.</p></div></div><div class="science-card"><h2>Mistake example: hardened growth on <em>Pinus thunbergii</em>.</h2>${photoSlot({ folder: "09_pomylky", file: "pomylka-svichka-02.webp", lang: "en", label: "Pinus thunbergii mistake: hardened yearly shoot cut in the middle", ratio: "3 / 4" })}<p>On Japanese black pine, the timing is critical. If an already hardened yearly extension is cut in the middle, it often becomes a blind section: no useful new buds form at that point, and the branch stays empty.</p><p>That is why candle work is not random shortening of green growth. It must happen at the right candle stage or deliberately around existing buds and needle areas. Otherwise the branch loses its next branching point.</p></div>${sourceListEnV2([["NAJGA: Japanese black pine pruning and timing", "https://najga.org/pruning-japanese-black-pine/"], ["Chicago Botanic Garden: pine candling", "https://www.chicagobotanic.org/blog/learning/candling-japanese-garden"], ["RHS: conifers and careful pruning", "https://www.rhs.org.uk/plants/types/conifers/growing-guide"]])}${articleNavEnV2()}<div class="btn-row">${cta("Send pine photo")}</div></article>`;
   }
-  if (type === "mistakes") {
-    return `<article class="article section"><span class="eyebrow">Mistakes and diagnosis</span><h1>Old needles, moss and dense crowns: common mistakes.</h1>${photoSlot({ folder: "08_fonovi", file: "fon-sosna-bila-01.webp", lang: "en", label: "Dense crown and possible stress on a valuable conifer", ratio: "16 / 9" })}<p>Old needles, brown inner areas or moss on branches do not automatically mean disease. They are signals. I read the whole pattern: light, air, water, previous cuts and how long needles stay wet.</p><p>RHS sources treat moss, algae and lichens as generally harmless on bark. But damp, shaded and congested conditions can make them more visible. Plant disease sources also point to moisture, poor air movement and dense growth as risk factors for needle problems.</p><div class="comparison-grid"><div><h2>Old needles</h2><p>Natural ageing is possible. Rapid thinning or heavy browning needs a closer check.</p></div><div><h2>Moss and coating</h2><p>The coating is often a symptom of local conditions, not the root cause.</p></div><div><h2>Dense shell</h2><p>Fast shearing can trap shade and moisture inside the crown.</p></div><div><h2>Fungal risk</h2><p>Air movement, dry timing and hygiene matter before a small issue becomes structural.</p></div></div>${sourceListEnV2([["RHS: algae, lichens and moss on trees", "https://www.rhs.org.uk/biodiversity/algae-lichens-moss-on-trees-shrubs"], ["RHS: conifers and old brown wood", "https://www.rhs.org.uk/plants/types/conifers/growing-guide"], ["University of Minnesota: brown spot needle blight", "https://extension.umn.edu/plant-diseases/brown-spot-needle-blight"], ["University of Minnesota: Rhizosphaera needle cast", "https://extension.umn.edu/plant-diseases/rhizosphaera-needle-cast"], ["University of Maine: Rhizosphaera Needlecast", "https://extension.umaine.edu/ipm/ipddl/publications/5104e/"]])}${articleNavEnV2()}<div class="btn-row">${cta("Send photo - check needles and crown")}</div></article>`;
-  }
-  if (type === "soil") {
-    return `<article class="article section"><span class="eyebrow">Roots</span><h1>The soil decides: Akadama and roots.</h1>${photoSlot({ folder: "10_vidkrytka-yaponiya", file: "vidkrytka-yaponiya-01.webp", lang: "en", label: "Roots and substrate", ratio: "16 / 9" })}<p>A tree lives from its foundation. Water, air, pH and root health decide whether the crown can react. If the soil is too dense, too wet or too dry, the visible problem often starts below the surface.</p><p>I check the tree as a system: crown, trunk, roots, water and location. A cut can correct a lot, but it cannot replace a healthy foundation.</p>${sources}${articleNavEnV2()}<div class="btn-row">${cta("Send tree and soil photo")}</div></article>`;
-  }
   return `<article class="article section"><span class="eyebrow">Swiss climate stress</span><h1>Why Swiss premium gardens need diagnosis.</h1>${photoSlot({ folder: "08_fonovi", file: "fon-sosna-bila-01.webp", lang: "en", label: "Stress signs on a valuable tree", ratio: "16 / 9" })}<p>Swiss gardens face more heat, drier summers and heavier rain events. For valuable solitary trees, this means water stress, dense crowns, compacted soil and old pruning mistakes can reinforce each other.</p>${stressChainV2()}<p>Early photo diagnosis protects value: the whole tree, the problem area and a close-up are often enough to decide whether an on-site visit makes sense.</p>${sources}${articleNavEnV2()}<div class="btn-row">${cta("Send photo - assess stress")}</div></article>`;
 }
 
 function blogIndexEn() {
-  return `<section class="page-hero section"><span class="eyebrow">Knowledge</span><h1>Knowledge about niwaki, maples and conifers.</h1><p>Two starter articles translated for English visitors.</p></section><section class="section card-grid two"><article class="card article-card"><h2>Why I cut with topiary scissors</h2><p>Clean cuts, energy and Japanese tools.</p><a href="/en/blog/topiarschere.html">Read article</a></article><article class="card article-card"><h2>The soil decides</h2><p>Akadama, pH and healthy roots.</p><a href="/en/blog/boden-wurzeln.html">Read article</a></article></section>${finalCtaEn("../")}`;
+  return `<section class="page-hero section"><span class="eyebrow">Knowledge</span><h1>Knowledge about niwaki, maples and conifers.</h1><p>Starter articles translated for English visitors.</p></section><section class="section card-grid"><article class="card article-card"><h2>Why I cut with topiary scissors</h2><p>Clean cuts, energy and Japanese tools.</p><a href="/en/blog/topiarschere.html">Read article</a></article></section>${finalCtaEn("../")}`;
 }
 
 function articleEn(type) {
-  if (type === "topiary") {
-    return `<article class="article section"><span class="eyebrow">Topiary scissors</span><h1>Why I cut with topiary scissors.</h1>${photoSlot({ folder: "07_viktor", file: "viktor-01.webp", lang: "en", label: "Topiary scissors and clean cut", ratio: "16 / 9" })}<p>A clean cut is not a detail. A hedge trimmer tears fibres and makes the tree send energy into wounds. With sharp Japanese topiary scissors, each cut is deliberate: where light must enter, which bud should stay, and how the cloud will develop next year.</p><p>This is the difference between quick garden maintenance and precise niwaki work. If you suspect your tree was cut too hard or too schematically, send photos for a free first assessment.</p>${cta("Send photo - free diagnosis")}</article>`;
-  }
-  return `<article class="article section"><span class="eyebrow">Akadama & roots</span><h1>The soil decides: Akadama and roots.</h1>${photoSlot({ folder: "10_vidkrytka-yaponiya", file: "vidkrytka-yaponiya-01.webp", lang: "en", label: "Akadama and healthy roots", ratio: "16 / 9" })}<p>A tree lives from its foundation. Akadama, Kanuma, pumice, water flow and pH all influence whether a Japanese maple or niwaki can stay healthy. Many visible problems in the crown begin below the surface.</p><p>Send photos of the tree, location and soil area. Often this is enough to decide whether the crown needs work or the roots are the real key.</p>${cta("Send photo - free diagnosis")}</article>`;
+  return `<article class="article section"><span class="eyebrow">Topiary scissors</span><h1>Why I cut with topiary scissors.</h1>${photoSlot({ folder: "07_viktor", file: "viktor-01.webp", lang: "en", label: "Topiary scissors and clean cut", ratio: "16 / 9" })}<p>A clean cut is not a detail. A hedge trimmer tears fibres and makes the tree send energy into wounds. With sharp Japanese topiary scissors, each cut is deliberate: where light must enter, which bud should stay, and how the cloud will develop next year.</p><p>This is the difference between quick garden maintenance and precise niwaki work. If you suspect your tree was cut too hard or too schematically, send photos for a free first assessment.</p>${cta("Send photo - free diagnosis")}</article>`;
 }
 
 function finalCtaUk(contactPrefix = "") {
@@ -4664,11 +4582,9 @@ function blogIndexUk() {
     ["energie-krone", "Чому крону треба відкривати", "Світло, повітря і розподіл сили в дереві простими словами.", "foto/04_khvoyni/energie-krone-pinus-crown-01.webp"],
     ["niwaki-bonsai-stile", "Художнє формування дерев: принципи і методи", "Як зі звичайного дерева через читання структури, світло і вибірковий зріз зробити виразну садову форму.", "foto/05_nivaki-khmarky/sosna-watereri-do-pislya-01.webp"],
     ["kiefer-kerzen", "Свічки сосни: важливий момент", "Чому задерев'янілий приріст Pinus thunbergii не можна просто різати посередині.", "foto/09_pomylky/pomylka-svichka-02.webp"],
-    ["fehler-alte-nadeln-moos-pilzrisiko", "Стара хвоя, мох і щільна крона: типові помилки", "Чому повітря, світло і суха хвоя важливі до появи грибкового ризику.", "foto/08_fonovi/fon-sosna-bila-01.webp"],
-    ["boden-wurzeln", "Ґрунт вирішує: Akadama і коріння", "Вода, повітря, pH і здорове коріння як фундамент форми.", "foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp"],
     ["klimastress", "Кліматичний стрес у преміум-саді", "Спека, сухі літа і сильні дощі роблять ранню діагностику важливішою.", "foto/08_fonovi/fon-sosna-bila-01.webp"]
   ];
-  return `<section class="page-hero section"><span class="eyebrow">Знання</span><h1>Знання про Niwaki, клени і цінні садові дерева.</h1><p>Сім коротких матеріалів пояснюють мій підхід: художнє формування дерев, інструмент, енергія крони, свічки сосни, стара хвоя, мох, коріння і кліматичний стрес у Швейцарії.</p></section><section class="section article-grid">${articles.map(([slug, title, teaser, image]) => `<article class="card article-card">${assetSlotUk({ file: image, label: title, ratio: "3 / 2" })}<span class="eyebrow">Знання</span><h2>${title}</h2><p>${teaser}</p><a href="/uk/blog/${slug}.html">Читати статтю</a></article>`).join("")}</section>${finalCtaUk("../")}`;
+  return `<section class="page-hero section"><span class="eyebrow">Знання</span><h1>Знання про Niwaki, клени і цінні садові дерева.</h1><p>П'ять коротких матеріалів пояснюють мій підхід: художнє формування дерев, інструмент, енергія крони, свічки сосни і кліматичний стрес у Швейцарії.</p></section><section class="section article-grid">${articles.map(([slug, title, teaser, image]) => `<article class="card article-card">${assetSlotUk({ file: image, label: title, ratio: "3 / 2" })}<span class="eyebrow">Знання</span><h2>${title}</h2><p>${teaser}</p><a href="/uk/blog/${slug}.html">Читати статтю</a></article>`).join("")}</section>${finalCtaUk("../")}`;
 }
 
 function articleNavUk() {
@@ -4677,8 +4593,6 @@ function articleNavUk() {
     ["energie-krone", "Енергія крони"],
     ["niwaki-bonsai-stile", "Художнє формування"],
     ["kiefer-kerzen", "Свічки сосни"],
-    ["fehler-alte-nadeln-moos-pilzrisiko", "Хвоя і мох"],
-    ["boden-wurzeln", "Ґрунт і коріння"],
     ["klimastress", "Кліматичний стрес"]
   ];
   return `<nav class="article-nav" aria-label="Інші статті">${links.map(([slug, title]) => `<a href="${slug}.html">${title}</a>`).join("")}</nav>`;
@@ -4701,8 +4615,6 @@ function articleUk(type) {
     crown: `<span class="eyebrow">Крона і енергія</span><h1>Чому крону треба відкривати.</h1>${photoSlot({ folder: "05_nivaki-khmarky", file: "sosna-watereri-do-pislya-01.webp", lang: "uk", label: "Відкрита крона Niwaki", ratio: "16 / 9" })}<p>Багато цінних дерев спочатку втрачають не красу, а внутрішній простір. Зовні крона ще зелена, але всередині накопичуються тінь, волога, сухі гілки і слабкий приріст. Саме тут починається різниця між простою стрижкою і деревною архітектурою.</p>${photoSlot({ folder: "04_khvoyni", file: "energie-krone-pinus-crown-01.webp", lang: "uk", label: "Крупний план хвойної крони з молодим приростом", ratio: "4 / 3" })}<p>Я працюю з простим принципом: крона витрачає силу, стовбур проводить, коріння забезпечує. Якщо крона занадто щільна, дерево витрачає енергію не там, де потрібно. Якщо всередину не заходить світло, структура слабшає зсередини.</p><h2>Крону не роблять порожньою. Її роблять читабельною.</h2><p>Відкрити крону не означає радикально прорідити дерево. Це означає створити правильні вікна: повітря через крону, світло на внутрішні бруньки, менше тертя між гілками і менше вологості в тісних місцях. Добра робота виглядає природно, а не “підстрижено”.</p><div class="process-grid"><div><strong>1. Прочитати</strong><p>Де дерево витрачає силу і яка лінія тримає характер?</p></div><div><strong>2. Розвантажити</strong><p>Забрати сухе, зайве, затінене і неправильний приріст.</p></div><div><strong>3. Залишити майбутнє</strong><p>Зберегти бруньки, які будуватимуть форму наступні роки.</p></div></div><p>Для преміум-саду це не дрібниця. Крона визначає, як дерево виглядає з дому, з тераси і з доріжки. Майстер бачить не тільки сьогоднішній кадр, а й те, що дерево зробить через один, два і три роки.</p>`,
     styles: `<span class="eyebrow">Художнє формування дерев</span><h1>Художнє формування дерев: принципи і методи.</h1>${photoSlot({ folder: "05_nivaki-khmarky", file: "sosna-watereri-do-pislya-01.webp", lang: "uk", label: "Художнє формування дерева у спокійну хмарну форму", ratio: "16 / 9" })}<p>Зі звичайного садового дерева можна зробити надзвичайну і живу форму. Але не через швидкий шаблон, а через читання дерева: рух стовбура, каркас гілок, порожні місця всередині крони, світлові вікна і реакцію дерева на зріз.</p><p>Cloud pruning - це японський метод ведення дерев і кущів у хмарні форми; Niwaki означає garden tree. Я використовую bonsai-мислення для пропорції, руху стовбура і майбутніх бруньок, але в саду працюю з живим деревом, а не з декорацією.</p><div class="process-grid"><div><strong>1. Прочитати структуру</strong><p>Вид, вік, рух стовбура, опорні гілки і внутрішня сила показують, яка форма можлива.</p></div><div><strong>2. Створити простір</strong><p>Добра форма потребує повітря, світла, дистанції між масами і спокійних порожніх місць.</p></div><div><strong>3. Вести майбутнє</strong><p>Кожен зріз вирішує, яка брунька, гілка і силует будуватимуть дерево наступні роки.</p></div></div><p>Ключовий метод - вибіркова робота. Тример рівняє поверхню; художня обрізка вирішує всередині крони: яка лінія несе характер, яка гілка забирає силу і де треба відкрити крону, щоб дерево здорово відповіло.</p>${sourceListUkV2([["RHS: cloud pruning і Niwaki", "https://www.rhs.org.uk/plants/types/trees/cloud-pruning"], ["RHS: conifers", "https://www.rhs.org.uk/plants/types/conifers/growing-guide"], ["Garden Group: Андрей Дарусенков, майстер bonsai та niwaki, Sady i Lyudi 2023", "https://gardengroup.ru/stati/xvi-festival-sady-i-lyudi-2023-obzornye-ekskursii-i-master-klassy/"], ["YouTube: Sady i Lyudi 2023 - Андрей Дарусенков", "https://www.youtube.com/watch?v=MAyh--g4f4g"]])}`,
     candles: `<span class="eyebrow">Pinus</span><h1>Свічки сосни: момент вирішує.</h1>${photoSlot({ folder: "09_pomylky", file: "pomylka-svichka-01.webp", lang: "uk", label: "Нові свічки сосни перед роботою", ratio: "16 / 9" })}<p>Нові пагони сосни показують, куди дерево зараз штовхає силу. Якщо ставитися до всіх свічок однаково, легко збити баланс. Сильні зони треба заспокоїти, слабкі - захистити.</p><div class="science-card"><h2>Помилка: задерев'янілий приріст у <em>Pinus thunbergii</em>.</h2>${photoSlot({ folder: "09_pomylky", file: "pomylka-svichka-02.webp", lang: "uk", label: "Помилка у Pinus thunbergii: задерев'янілий приріст зрізаний посередині", ratio: "3 / 4" })}<p>На сосні японській чорній момент роботи зі свічками критичний. Якщо зрізати вже задерев'янілий приріст посередині, часто лишається сліпий відрізок: у місці зрізу не закладаються корисні нові бруньки, і гілка залишається порожньою.</p><p>Тому свічки не вкорочують випадково там, де зручно. Працювати треба у правильній м'якій фазі або свідомо біля наявних бруньок і хвої. Інакше гілка втрачає наступне розгалуження.</p></div><p>Раннє фото часто достатнє, щоб зрозуміти, чи потрібен виїзд.</p>`,
-    mistakes: `<span class="eyebrow">Помилки і діагностика</span><h1>Стара хвоя, мох і щільна крона: типові помилки.</h1>${photoSlot({ folder: "08_fonovi", file: "fon-sosna-bila-01.webp", lang: "uk", label: "Щільна крона і можливий стрес у цінного хвойного дерева", ratio: "16 / 9" })}<p>Стара хвоя всередині, коричневі зони або мох на гілках не завжди означають хворобу. Але це сигнали, які треба читати разом: світло, повітря, вода, попередній зріз і те, як довго хвоя залишається мокрою.</p><p>Мох і лишайники часто не шкодять корі самі по собі. Проблема в іншому: вологе, затінене і загущене місце може створювати умови, де грибковий тиск легше стає проблемою.</p><div class="comparison-grid"><div><h2>Стара хвоя</h2><p>Природне старіння можливе, але швидке прорідження потребує перевірки.</p></div><div><h2>Мох і наліт</h2><p>Часто це симптом умов, а не головна причина.</p></div><div><h2>Щільна оболонка</h2><p>Швидке стриження може закрити всередині тінь і вологу.</p></div><div><h2>Грибковий ризик</h2><p>Повітря, сухий момент роботи і гігієна важливі до структурної проблеми.</p></div></div>`,
-    soil: `<span class="eyebrow">Akadama і коріння</span><h1>Ґрунт вирішує: Akadama і коріння.</h1>${photoSlot({ folder: "10_vidkrytka-yaponiya", file: "vidkrytka-yaponiya-01.webp", lang: "uk", label: "Коріння і субстрат", ratio: "16 / 9" })}<p>Дерево живе з фундаменту. Вода, повітря, кислотність і стан коріння визначають, чи може крона реагувати. Якщо ґрунт занадто щільний, мокрий або сухий, видима проблема часто починається нижче поверхні.</p><p>Я дивлюся на дерево як на систему: крона, стовбур, коріння, вода і місце.</p>`,
     climate: `<span class="eyebrow">Швейцарія і клімат</span><h1>Чому преміум-сади потребують діагностики.</h1>${photoSlot({ folder: "08_fonovi", file: "fon-sosna-bila-01.webp", lang: "uk", label: "Ознаки стресу на цінному дереві", ratio: "16 / 9" })}<p>Швейцарські сади стикаються з більшою спекою, сухішими літами і сильнішими опадами. Для цінних солітерних дерев це означає водний стрес, щільні крони, ущільнений ґрунт і старі помилки обрізки, які підсилюють одна одну.</p><p>Рання фото-діагностика захищає цінність: все дерево, проблемна зона і крупний план часто достатні для першого рішення.</p>`
   };
   return `<article class="article section">${map[type]}${type === "styles" ? "" : sourceNote}${articleNavUk()}<div class="btn-row">${ctaUk("Надіслати фото - отримати оцінку")}</div></article>`;
@@ -5355,11 +5267,11 @@ function siteManifest() {
 
 function sitemap() {
   const paths = [
-    "/", "/leistungen", "/philosophie", "/galerie", "/preise", "/blog", "/blog/topiarschere", "/blog/energie-krone", "/blog/niwaki-bonsai-stile", "/blog/kiefer-kerzen", "/blog/fehler-alte-nadeln-moos-pilzrisiko", "/blog/boden-wurzeln", "/blog/klimastress", "/kontakt", "/impressum", "/datenschutz", "/themes",
+    "/", "/leistungen", "/philosophie", "/galerie", "/preise", "/blog", "/blog/topiarschere", "/blog/energie-krone", "/blog/niwaki-bonsai-stile", "/blog/kiefer-kerzen", "/blog/klimastress", "/kontakt", "/impressum", "/datenschutz", "/themes",
     ...discoveryPaths,
-    "/en/", "/en/leistungen", "/en/philosophie", "/en/galerie", "/en/preise", "/en/blog", "/en/blog/topiarschere", "/en/blog/energie-krone", "/en/blog/niwaki-bonsai-stile", "/en/blog/kiefer-kerzen", "/en/blog/fehler-alte-nadeln-moos-pilzrisiko", "/en/blog/boden-wurzeln", "/en/blog/klimastress", "/en/kontakt", "/en/impressum", "/en/datenschutz", "/en/themes",
+    "/en/", "/en/leistungen", "/en/philosophie", "/en/galerie", "/en/preise", "/en/blog", "/en/blog/topiarschere", "/en/blog/energie-krone", "/en/blog/niwaki-bonsai-stile", "/en/blog/kiefer-kerzen", "/en/blog/klimastress", "/en/kontakt", "/en/impressum", "/en/datenschutz", "/en/themes",
     ...discoveryPaths.map((p) => `/en${p}`),
-    "/uk/", "/uk/leistungen", "/uk/philosophie", "/uk/galerie", "/uk/preise", "/uk/blog", "/uk/blog/topiarschere", "/uk/blog/energie-krone", "/uk/blog/niwaki-bonsai-stile", "/uk/blog/kiefer-kerzen", "/uk/blog/fehler-alte-nadeln-moos-pilzrisiko", "/uk/blog/boden-wurzeln", "/uk/blog/klimastress", "/uk/kontakt", "/uk/impressum", "/uk/datenschutz", "/uk/themes"
+    "/uk/", "/uk/leistungen", "/uk/philosophie", "/uk/galerie", "/uk/preise", "/uk/blog", "/uk/blog/topiarschere", "/uk/blog/energie-krone", "/uk/blog/niwaki-bonsai-stile", "/uk/blog/kiefer-kerzen", "/uk/blog/klimastress", "/uk/kontakt", "/uk/impressum", "/uk/datenschutz", "/uk/themes"
   ];
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -5433,14 +5345,12 @@ Static multipage DE/EN site for Viktor Baumarchitektur. It opens directly from \
 
 ## Blog / knowledge section
 
-The blog now has seven DE articles plus EN/UK mirror pages:
+The blog now has five DE articles plus EN/UK mirror pages:
 
 - \`blog/topiarschere.html\` - tool choice and clean cuts.
 - \`blog/energie-krone.html\` - crown energy, light and air.
 - \`blog/niwaki-bonsai-stile.html\` - Niwaki, bonsai and cloud pruning style direction.
 - \`blog/kiefer-kerzen.html\` - pine candles and timing.
-- \`blog/fehler-alte-nadeln-moos-pilzrisiko.html\` - old needles, moss, dense crowns and fungal risk.
-- \`blog/boden-wurzeln.html\` - Akadama, roots and substrate.
 - \`blog/klimastress.html\` - Swiss heat/drought context for premium gardens.
 
 ## AI / local discovery pages
@@ -5511,21 +5421,21 @@ import path from "node:path";
 const root = process.cwd();
 const required = [
   "index.html","leistungen.html","philosophie.html","galerie.html","preise.html",
-  "blog/index.html","blog/topiarschere.html","blog/energie-krone.html","blog/niwaki-bonsai-stile.html","blog/kiefer-kerzen.html","blog/fehler-alte-nadeln-moos-pilzrisiko.html","blog/boden-wurzeln.html","blog/klimastress.html",
+  "blog/index.html","blog/topiarschere.html","blog/energie-krone.html","blog/niwaki-bonsai-stile.html","blog/kiefer-kerzen.html","blog/klimastress.html",
   ${JSON.stringify([
     ...answerPages.map((page) => `${page.slug}.html`),
     ...geoPages.map((page) => `${page.slug}.html`)
   ]).slice(1, -1)},
   "kontakt.html","impressum.html","datenschutz.html","themes.html",
   "en/index.html","en/leistungen.html","en/philosophie.html","en/galerie.html","en/preise.html",
-  "en/blog/index.html","en/blog/topiarschere.html","en/blog/energie-krone.html","en/blog/niwaki-bonsai-stile.html","en/blog/kiefer-kerzen.html","en/blog/fehler-alte-nadeln-moos-pilzrisiko.html","en/blog/boden-wurzeln.html","en/blog/klimastress.html",
+  "en/blog/index.html","en/blog/topiarschere.html","en/blog/energie-krone.html","en/blog/niwaki-bonsai-stile.html","en/blog/kiefer-kerzen.html","en/blog/klimastress.html",
   ${JSON.stringify([
     ...answerPages.map((page) => `en/${page.slug}.html`),
     ...geoPages.map((page) => `en/${page.slug}.html`)
   ]).slice(1, -1)},
   "en/kontakt.html","en/impressum.html","en/datenschutz.html","en/themes.html",
   "uk/index.html","uk/leistungen.html","uk/philosophie.html","uk/galerie.html","uk/preise.html",
-  "uk/blog/index.html","uk/blog/topiarschere.html","uk/blog/energie-krone.html","uk/blog/niwaki-bonsai-stile.html","uk/blog/kiefer-kerzen.html","uk/blog/fehler-alte-nadeln-moos-pilzrisiko.html","uk/blog/boden-wurzeln.html","uk/blog/klimastress.html",
+  "uk/blog/index.html","uk/blog/topiarschere.html","uk/blog/energie-krone.html","uk/blog/niwaki-bonsai-stile.html","uk/blog/kiefer-kerzen.html","uk/blog/klimastress.html",
   "uk/kontakt.html","uk/impressum.html","uk/datenschutz.html","uk/themes.html",
   "fr/index.html","it/index.html",
   "assets/base.css","assets/main.js","assets/theme-v1.css","assets/theme-v2.css","assets/theme-v3.css","assets/theme-v4.css","assets/theme-v5.css",
@@ -5885,8 +5795,6 @@ const pages = [
   ["blog/energie-krone.html", "de", "Krone öffnen - Energie, Licht und Luft im Niwaki", "Warum ich die Krone öffne: Energieverteilung, Licht, Luft und langfristige Form statt schneller Heckenlogik.", articleCrownDeV2(), [localBusinessLd()]],
   ["blog/niwaki-bonsai-stile.html", "de", "Künstlerische Baumformung - Prinzipien & Methoden", "Wie aus einem gewöhnlichen Gartenbaum durch Lesen, Entlasten und Führen eine besondere Form entsteht.", articleStylesDeV2(), [localBusinessLd()]],
   ["blog/kiefer-kerzen.html", "de", "Kiefer-Kerzen schneiden - Fehler bei Pinus thunbergii", "Kiefer-Kerzen, Pinus-Formschnitt und warum verholzte Jahrestriebe nicht blind mittig geschnitten werden dürfen.", articleCandlesDeV2(), [localBusinessLd()]],
-  ["blog/fehler-alte-nadeln-moos-pilzrisiko.html", "de", "Alte Nadeln, Moos & Pilzrisiko - typische Fehler", "Alte Nadeln, Moos, dichte Kronen und Pilzrisiko bei wertvollen Nadelgehölzen richtig einordnen.", articleMistakesDeV2(), [localBusinessLd()]],
-  ["blog/boden-wurzeln.html", "de", "Akadama & Bonsai-Erde - der richtige Boden", "Akadama Schweiz, Bonsai Erde, pH 5,5-6,5 und gesunde Wurzeln als Fundament für japanische Baumkunst.", articleSoilDeV2(), [localBusinessLd()]],
   ["blog/klimastress.html", "de", "Klimastress im Schweizer Premium-Garten", "Warum Hitze, trockene Sommer und Starkregen wertvolle Gartenbäume belasten und frühe Foto-Diagnose hilft.", articleClimateDeV2(), [localBusinessLd()]],
   ...answerPageEntries.filter(([file]) => !file.startsWith("en/")),
   ...geoPageEntries.filter(([file]) => !file.startsWith("en/")),
@@ -5904,8 +5812,6 @@ const pages = [
   ["en/blog/energie-krone.html", "en", "Opening the Crown - Energy, Light and Air", "Why I open a niwaki crown for light, air and long-term form.", articleEnV2("crown"), [localBusinessLd()]],
   ["en/blog/niwaki-bonsai-stile.html", "en", "Artistic Tree Shaping - Principles & Methods", "How an ordinary garden tree becomes a remarkable form through reading, opening and guiding.", articleEnV2("styles"), [localBusinessLd()]],
   ["en/blog/kiefer-kerzen.html", "en", "Pine Candles - Timing and Pinus thunbergii Mistakes", "Pine candles, timing and why hardened yearly extensions should not be cut blindly in the middle.", articleEnV2("candles"), [localBusinessLd()]],
-  ["en/blog/fehler-alte-nadeln-moos-pilzrisiko.html", "en", "Old Needles, Moss and Fungal Risk", "How I read old needles, moss, dense crowns and fungal risk in valuable conifers.", articleEnV2("mistakes"), [localBusinessLd()]],
-  ["en/blog/boden-wurzeln.html", "en", "Akadama & Bonsai Soil - Healthy Roots", "Akadama, pH and healthy roots for Japanese tree care.", articleEnV2("soil"), [localBusinessLd()]],
   ["en/blog/klimastress.html", "en", "Climate Stress in Swiss Premium Gardens", "Why Swiss climate stress makes early tree diagnosis more valuable.", articleEnV2("climate"), [localBusinessLd()]],
   ...answerPageEntries.filter(([file]) => file.startsWith("en/")),
   ...geoPageEntries.filter(([file]) => file.startsWith("en/")),
@@ -5925,8 +5831,6 @@ const pages = [
   ["uk/blog/energie-krone.html", "uk", "Відкрити крону - енергія, світло і повітря", "Тимчасове українське дзеркало статті про енергію крони.", articleCrownDeV2(), [localBusinessLd()]],
   ["uk/blog/niwaki-bonsai-stile.html", "uk", "Художнє формування дерев - принципи і методи", "Тимчасове українське дзеркало статті про художнє формування дерев.", articleStylesDeV2(), [localBusinessLd()]],
   ["uk/blog/kiefer-kerzen.html", "uk", "Свічки сосни - помилка у Pinus thunbergii", "Тимчасове українське дзеркало статті про свічки сосни і помилки зі зрізом задерев'янілого приросту.", articleCandlesDeV2(), [localBusinessLd()]],
-  ["uk/blog/fehler-alte-nadeln-moos-pilzrisiko.html", "uk", "Стара хвоя, мох і грибковий ризик", "Тимчасове українське дзеркало статті про стару хвою, мох, щільну крону і ризик грибків.", articleMistakesDeV2(), [localBusinessLd()]],
-  ["uk/blog/boden-wurzeln.html", "uk", "Akadama та коріння - правильний грунт", "Тимчасове українське дзеркало статті про Akadama, грунт і коріння.", articleSoilDeV2(), [localBusinessLd()]],
   ["uk/blog/klimastress.html", "uk", "Кліматичний стрес у преміум-саді Швейцарії", "Тимчасове українське дзеркало статті про кліматичний стрес.", articleClimateDeV2(), [localBusinessLd()]],
   ["uk/kontakt.html", "uk", "Контакт і безкоштовна фото-діагностика", "Тимчасове українське дзеркало контактної сторінки Viktor Baumarchitektur.", contactDe(), [localBusinessLd()]],
   ["uk/impressum.html", "uk", "Impressum - Viktor Baumarchitektur", "Тимчасове українське дзеркало legal notice. Перед публікацією перевірити юридично.", legalDe("impressum"), []],
@@ -5940,13 +5844,11 @@ const ukPageOverrides = new Map([
   ["uk/philosophie.html", ["uk/philosophie.html", "uk", "Філософія та майстерність - Viktor Baumarchitektur", "Українська сторінка про мою філософію, досвід і підхід до японської деревної архітектури.", philosophyUk(), [localBusinessLd(), personLd()]]],
   ["uk/galerie.html", ["uk/galerie.html", "uk", "Галерея - до і після, Garten-Bonsai та Niwaki", "Українська галерея Viktor Baumarchitektur: реальні фото до і після, Niwaki, садовий бонсай і етапи роботи.", galleryUk(), [localBusinessLd()]]],
   ["uk/preise.html", ["uk/preise.html", "uk", "Ціни - японський догляд за деревами", "Українська сторінка цін Viktor Baumarchitektur: робота від 110 CHF/год, виїзд від 90 CHF, фото-діагностика безкоштовна.", genericUkPage("prices"), [localBusinessLd(), faqLd()]]],
-  ["uk/blog/index.html", ["uk/blog/index.html", "uk", "Знання Niwaki - стилі, інструменти, сосна і діагностика", "Українські матеріали про Niwaki, стилі, японські ножиці, енергію крони, сосни, стару хвою, мох, коріння і кліматичний стрес.", blogIndexUk(), [localBusinessLd()]]],
+  ["uk/blog/index.html", ["uk/blog/index.html", "uk", "Знання Niwaki - стилі, інструменти, сосна і діагностика", "Українські матеріали про Niwaki, стилі, японські ножиці, енергію крони, сосни і кліматичний стрес.", blogIndexUk(), [localBusinessLd()]]],
   ["uk/blog/topiarschere.html", ["uk/blog/topiarschere.html", "uk", "Японські ножиці проти тримера - чистий зріз", "Українська стаття про чистий зріз, японські ножиці і контроль майбутньої форми дерева.", articleUk("topiary"), [localBusinessLd()]]],
   ["uk/blog/energie-krone.html", ["uk/blog/energie-krone.html", "uk", "Відкрити крону - енергія, світло і повітря", "Українська стаття про те, чому крону Niwaki треба відкривати для світла, повітря і довгої форми.", articleUk("crown"), [localBusinessLd()]]],
   ["uk/blog/niwaki-bonsai-stile.html", ["uk/blog/niwaki-bonsai-stile.html", "uk", "Художнє формування дерев - принципи і методи", "Українська стаття про те, як зі звичайного дерева через читання структури, світло і вибірковий зріз зробити виразну садову форму.", articleUk("styles"), [localBusinessLd()]]],
   ["uk/blog/kiefer-kerzen.html", ["uk/blog/kiefer-kerzen.html", "uk", "Свічки сосни - помилка у Pinus thunbergii", "Українська стаття про свічки сосни, правильний момент і помилку зі зрізом задерев'янілого приросту.", articleUk("candles"), [localBusinessLd()]]],
-  ["uk/blog/fehler-alte-nadeln-moos-pilzrisiko.html", ["uk/blog/fehler-alte-nadeln-moos-pilzrisiko.html", "uk", "Стара хвоя, мох і грибковий ризик", "Українська стаття про стару хвою, мох, щільну крону, повітря і грибкові ризики у хвойних дерев.", articleUk("mistakes"), [localBusinessLd()]]],
-  ["uk/blog/boden-wurzeln.html", ["uk/blog/boden-wurzeln.html", "uk", "Akadama та коріння - правильний ґрунт", "Українська стаття про Akadama, ґрунт, pH і здорове коріння як фундамент японської деревної архітектури.", articleUk("soil"), [localBusinessLd()]]],
   ["uk/blog/klimastress.html", ["uk/blog/klimastress.html", "uk", "Кліматичний стрес у преміум-саді Швейцарії", "Українська стаття про спеку, сухі літа, сильні дощі і ранню фото-діагностику цінних садових дерев.", articleUk("climate"), [localBusinessLd()]]],
   ["uk/kontakt.html", ["uk/kontakt.html", "uk", "Контакт і безкоштовна фото-діагностика", "Українська контактна сторінка Viktor Baumarchitektur: надішліть фото дерева у WhatsApp або запросіть дзвінок.", contactUk(), [localBusinessLd()]]],
   ["uk/impressum.html", ["uk/impressum.html", "uk", "Юридична інформація - Viktor Baumarchitektur", "Українська чернетка юридичної сторінки. Перед публікацією потрібна юридична перевірка.", legalUk("impressum"), []]],
@@ -6014,8 +5916,6 @@ Knowledge pages:
 - ${domain}/blog/energie-krone
 - ${domain}/blog/niwaki-bonsai-stile
 - ${domain}/blog/kiefer-kerzen
-- ${domain}/blog/fehler-alte-nadeln-moos-pilzrisiko
-- ${domain}/blog/boden-wurzeln
 - ${domain}/blog/klimastress
 `);
 writeFile("vercel.json", JSON.stringify({
