@@ -16,7 +16,7 @@ const required = [
   "uk/kontakt.html","uk/impressum.html","uk/datenschutz.html","uk/themes.html",
   "fr/index.html","it/index.html",
   "assets/base.css","assets/main.js","assets/theme-v1.css","assets/theme-v2.css","assets/theme-v3.css","assets/theme-v4.css","assets/theme-v5.css",
-  "assets/img/logo.png","assets/img/foto/01_hero/hero-viktor-bonsai-main.webp","assets/img/foto/01_hero/hero-viktor-bonsai-mobile.webp","assets/img/foto/01_hero/hero-courtyard-niwaki-desktop.webp","assets/img/foto/01_hero/hero-courtyard-niwaki-mobile.webp","assets/img/foto/02_pryklady-robit/case-parviflora-before.webp","assets/img/foto/02_pryklady-robit/case-parviflora-after.webp","assets/img/foto/02_pryklady-robit/case-watereri-before.webp","assets/img/foto/02_pryklady-robit/case-watereri-after.webp","assets/img/foto/02_pryklady-robit/sosna-bila-17.webp","assets/img/foto/02_pryklady-robit/sosna-bila-18.webp","assets/img/foto/03_galereya/sosna-bila-01.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-01.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-08.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-16.webp","assets/img/foto/06_yaponski-kleny/klen-yaponskyi-01.webp","assets/img/foto/07_viktor/viktor-01.webp","assets/img/foto/08_fonovi/fon-foto-01.webp","assets/img/foto/09_pomylky/pomylka-svichka-01.webp","assets/img/foto/10_vidkrytka-yaponiya/kyoto-viktor-wife-2009.webp","assets/img/foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp","assets/img/MANIFEST.md","site.webmanifest","robots.txt","sitemap.xml","llms.txt","vercel.json","README.md","handoff/ai-local-discovery-checklist.md",".env.example","api/contact.js","api/voice-lead.js"
+  "assets/img/logo.png","assets/img/foto/01_hero/hero-viktor-bonsai-main.webp","assets/img/foto/01_hero/hero-viktor-bonsai-mobile.webp","assets/img/foto/01_hero/hero-courtyard-niwaki-desktop.webp","assets/img/foto/01_hero/hero-courtyard-niwaki-mobile.webp","assets/img/foto/02_pryklady-robit/case-parviflora-before.webp","assets/img/foto/02_pryklady-robit/case-parviflora-after.webp","assets/img/foto/02_pryklady-robit/case-watereri-before.webp","assets/img/foto/02_pryklady-robit/case-watereri-after.webp","assets/img/foto/02_pryklady-robit/sosna-bila-17.webp","assets/img/foto/02_pryklady-robit/sosna-bila-18.webp","assets/img/foto/03_galereya/sosna-bila-01.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-01.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-08.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-16.webp","assets/img/foto/06_yaponski-kleny/klen-yaponskyi-01.webp","assets/img/foto/07_viktor/viktor-01.webp","assets/img/foto/08_fonovi/fon-foto-01.webp","assets/img/foto/09_pomylky/pomylka-svichka-01.webp","assets/img/foto/10_vidkrytka-yaponiya/kyoto-viktor-wife-2009.webp","assets/img/foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp","assets/img/MANIFEST.md","site.webmanifest","robots.txt","sitemap.xml","llms.txt","vercel.json","README.md","handoff/ai-local-discovery-checklist.md",".env.example","api/contact.js","api/voice-lead.js","functions/api/contact.js","tools/build-cloudflare-pages.mjs"
 ];
 
 const errors = [];
@@ -25,7 +25,7 @@ for (const file of required) {
   if (!fs.existsSync(path.join(root, file))) errors.push("Missing " + file);
 }
 
-const brandWordmark = "Viktor Garden";
+const brandWordmark = "Viktor Garten";
 const requiredContact = {
   phone: "+41783130330",
   whatsapp: "https://wa.me/41783130330",
@@ -158,14 +158,14 @@ if (baseCss.includes(".brand-symbol")) errors.push("Unused .brand-symbol CSS is 
 
 const robots = fs.readFileSync(path.join(root, "robots.txt"), "utf8");
 for (const agent of ["Googlebot","Bingbot","GPTBot","OAI-SearchBot","ChatGPT-User","PerplexityBot"]) {
-  if (!robots.includes("User-agent: " + agent) || !robots.includes("Sitemap: https://viktor-baumarchitektur.ch/sitemap.xml")) {
+  if (!robots.includes("User-agent: " + agent) || !robots.includes("Sitemap: https://v-garten.ch/sitemap.xml")) {
     errors.push("robots.txt missing explicit crawler policy or sitemap for " + agent);
   }
 }
 
 const sitemapXml = fs.readFileSync(path.join(root, "sitemap.xml"), "utf8");
 for (const urlPath of ["/niwaki-schweiz","/gartenbonsai-zuerich","/japanischer-ahorn-pflege-schweiz","/kiefer-kerzen-schneiden-schweiz","/kosten-japanische-baumpflege-zuerich","/zuerichsee","/zug","/luzern-aargau","/en/niwaki-schweiz","/en/gartenbonsai-zuerich","/en/japanischer-ahorn-pflege-schweiz","/en/kiefer-kerzen-schneiden-schweiz","/en/kosten-japanische-baumpflege-zuerich","/en/zuerichsee","/en/zug","/en/luzern-aargau"]) {
-  if (!sitemapXml.includes("https://viktor-baumarchitektur.ch" + urlPath)) {
+  if (!sitemapXml.includes("https://v-garten.ch" + urlPath)) {
     errors.push("sitemap.xml missing discovery URL " + urlPath);
   }
 }

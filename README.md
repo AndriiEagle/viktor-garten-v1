@@ -1,6 +1,6 @@
 # Viktor Baumarchitektur Static Website
 
-Static multipage DE/EN site for Viktor Baumarchitektur. It opens directly from `index.html` and is ready for static hosting on Vercel after human approval.
+Static multipage DE/EN/UK V1 site for Viktor Baumarchitektur. It is prepared for Cloudflare Pages Free at `https://v-garten.ch`.
 
 ## Edit checklist
 
@@ -35,7 +35,7 @@ The site includes focused DE/EN answer and service-area pages for retrieval sear
 - `zug.html` / `en/zug.html` - Niwaki und japanische Baumpflege in Zug.
 - `luzern-aargau.html` / `en/luzern-aargau.html` - Niwaki-Pflege in Luzern und Aargau.
 
-External launch steps are tracked in `handoff/ai-local-discovery-checklist.md`: custom domain, Search Console, Bing Webmaster Tools, Google Business Profile, Apple/Bing/local.ch citations and monthly AI monitoring.
+External launch steps are tracked in `handoff/ai-local-discovery-checklist.md`: Cloudflare Pages custom domain, Search Console, Bing Webmaster Tools, Google Business Profile, Apple/Bing/local.ch citations and monthly AI monitoring.
 
 ## Future FR/IT localization
 
@@ -63,8 +63,8 @@ Switch to another design direction by replacing `theme-v4.css` with `theme-v1.cs
 
 ## Placeholders still requiring human approval
 
-- Contact callback production secrets: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`.
-- Voice Lead production secrets: `OPENAI_API_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`.
+- Cloudflare Pages Function secrets for V1 contact delivery: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`.
+- V2 voice/OpenAI lead flow is intentionally excluded from Cloudflare Pages V1 deployment. Do not configure `OPENAI_API_KEY` for this launch.
 - Real before/after photos, Japan postcard and testimonial.
 - Final approval/originals for the supplied real Viktor master/work photos.
 - Public Instagram/website photo usage permission and original files from Viktor.
@@ -79,11 +79,11 @@ Run:
 ```powershell
 node tools/generate-site.mjs
 node tools/audit-site.mjs
-node tools/test-contact-api.mjs
+node tools/build-cloudflare-pages.mjs
 node tools/qa-site-interactions.mjs
 ```
 
-`kontakt.html` posts callback requests to `/api/contact`, which validates the phone number, blocks honeypot spam and sends a Telegram summary with server-side env only. `v2/index.html` includes a microphone lead flow. The browser records up to 300 seconds with `MediaRecorder`, sends the audio to `/api/voice-lead`, transcribes with OpenAI audio transcription, extracts lead fields locally and sends a Telegram summary to Viktor. The serverless functions do not store lead content; they only process the request and forward the message. Required server-side variables are documented in `.env.example`.
+`kontakt.html` posts callback requests to `/api/contact`, which validates the phone number, blocks honeypot spam and sends a Telegram summary with Cloudflare Pages Function env only. `v2/` and `/api/voice-lead` are not copied to `dist` and are not part of the Cloudflare Pages V1 launch.
 
-No build step is required for visitors. The generator is kept as the source of truth for consistent header/footer, DE pages and EN mirrors.
+Cloudflare Pages build command: `node tools/generate-site.mjs && node tools/build-cloudflare-pages.mjs`. Output directory: `dist`.
 

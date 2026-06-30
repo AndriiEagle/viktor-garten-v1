@@ -12,6 +12,7 @@ const LIVE_DIR = path.join(HANDOFF, "live-qa");
 const LIVE_SCREENSHOT_DIR = path.join(LIVE_DIR, "screenshots");
 const REPORT = path.join(HANDOFF, "LIVE_QA.md");
 const RESULT_JSON = path.join(LIVE_DIR, "site-interaction-results.json");
+const EXPECTED_BRAND = "Viktor Garten";
 
 const EDGE_CANDIDATES = [
   process.env.EDGE_PATH,
@@ -398,9 +399,9 @@ async function main() {
   const pageIssues = pageResults.flatMap((result) => {
     const issues = [];
     if (result.overflowX) issues.push("horizontal overflow");
-    if (result.brandHeader !== "Viktor Baumarchitektur") issues.push(`header brand=${result.brandHeader}`);
-    if (result.brandFooter !== "Viktor Baumarchitektur") issues.push(`footer brand=${result.brandFooter}`);
-    if (result.logoAlt !== "Viktor Baumarchitektur") issues.push(`logo alt=${result.logoAlt}`);
+    if (result.brandHeader !== EXPECTED_BRAND) issues.push(`header brand=${result.brandHeader}`);
+    if (result.brandFooter !== EXPECTED_BRAND) issues.push(`footer brand=${result.brandFooter}`);
+    if (result.logoAlt !== EXPECTED_BRAND) issues.push(`logo alt=${result.logoAlt}`);
     if (result.placeholderHit) issues.push("visible placeholder text");
     if (result.brokenImages.length) issues.push(`broken images: ${result.brokenImages.join(", ")}`);
     if (result.imageAttrIssues.length) issues.push(`image attr issues: ${result.imageAttrIssues.length}`);
@@ -422,7 +423,7 @@ async function main() {
   const allIssues = [...pageIssues, ...formIssues, ...navIssues];
 
   const md = [
-    "# Viktor Baumarchitektur Live Interaction QA",
+    "# Viktor Garten Live Interaction QA",
     "",
     `Generated: ${new Date().toISOString()}`,
     "",

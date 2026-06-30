@@ -3,8 +3,8 @@ import path from "node:path";
 
 const root = process.cwd();
 const brand = "Viktor Baumarchitektur";
-const brandWordmark = "Viktor Garden";
-const domain = "https://viktor-baumarchitektur.ch";
+const brandWordmark = "Viktor Garten";
+const domain = "https://v-garten.ch";
 const phone = "+41783130330";
 const phoneDisplay = "+41 78 313 03 30";
 const telHref = `tel:${phone}`;
@@ -21,41 +21,16 @@ const whatsappTextUk = encodeURIComponent(
 );
 const whatsappHrefUk = `https://wa.me/${phone.replace("+", "")}?text=${whatsappTextUk}`;
 const ogImageFile = "foto/01_hero/hero-viktor-bonsai-main.webp";
-const heroDesktopFile = "hero-viktor-bonsai-main.webp";
-const heroMobileFile = "hero-viktor-bonsai-mobile.webp";
 const heroCourtyardDesktopFile = "hero-courtyard-niwaki-desktop.webp";
 const heroCourtyardMobileFile = "hero-courtyard-niwaki-mobile.webp";
+const heroPreloadFile = "foto/01_hero/hero-courtyard-niwaki-desktop.webp";
 const ogImageUrl = `${domain}/assets/img/${ogImageFile}`;
-const heroVariants = [
-  {
-    id: "1",
-    names: { de: "Original", en: "Original", uk: "Оригінал" },
-    desktop: photoPath("01_hero", heroDesktopFile),
-    mobile: photoPath("01_hero", heroMobileFile),
-    altPhoto: ["01_hero", heroDesktopFile]
-  },
-  {
-    id: "2",
-    names: { de: "Saftig", en: "Vivid", uk: "Соковито" },
-    desktop: photoPath("01_hero", heroDesktopFile),
-    mobile: photoPath("01_hero", heroMobileFile),
-    altPhoto: ["01_hero", heroDesktopFile]
-  },
-  {
-    id: "3",
-    names: { de: "Hof-Niwaki", en: "Courtyard niwaki", uk: "Нівакі у дворі" },
-    desktop: photoPath("01_hero", heroCourtyardDesktopFile),
-    mobile: photoPath("01_hero", heroCourtyardMobileFile),
-    altPhoto: ["01_hero", heroCourtyardMobileFile]
-  },
-  {
-    id: "4",
-    names: { de: "Hof kompakt", en: "Compact courtyard", uk: "Двір компактно" },
-    desktop: photoPath("01_hero", heroCourtyardDesktopFile),
-    mobile: photoPath("01_hero", heroCourtyardMobileFile),
-    altPhoto: ["01_hero", heroCourtyardMobileFile]
-  }
-];
+const activeHeroVariant = {
+  id: "4",
+  desktop: photoPath("01_hero", heroCourtyardDesktopFile),
+  mobile: photoPath("01_hero", heroCourtyardMobileFile),
+  altPhoto: ["01_hero", heroCourtyardMobileFile]
+};
 const photoCatalogPath = path.join(root, "tools", "photo-catalog.json");
 const photoCatalog = fs.existsSync(photoCatalogPath)
   ? JSON.parse(fs.readFileSync(photoCatalogPath, "utf8"))
@@ -617,8 +592,12 @@ function heroVariantAlt(variant, lang, fallback) {
   return photoAlt(folder, file, lang, fallback);
 }
 
+function heroServiceLine() {
+  return `<span class="eyebrow hero-service-line"><span class="hero-service-line-row">NIWAKI-PFLEGE | BAUMARCHITEKTUR | JAPANISCHE AHORNE | KRONENGESTALTUNG |</span><span class="hero-service-line-row">EXKLUSIVE GEHÖLZPFLEGE | <span class="hero-service-accent">TERRASSENPFLEGE</span> | <span class="hero-service-accent">GARTENPFLEGE</span></span></span>`;
+}
+
 function heroPhotoSlot({ lang = "de", label = "Niwaki im Schweizer Garten" }) {
-  const variant = heroVariants[0];
+  const variant = activeHeroVariant;
   const desktop = variant.desktop;
   const mobile = variant.mobile;
   const alt = heroVariantAlt(variant, lang, label);
@@ -627,24 +606,6 @@ function heroPhotoSlot({ lang = "de", label = "Niwaki im Schweizer Garten" }) {
       <img class="hero-img-desktop" data-hero-desktop-image src="__ASSET_PREFIX__assets/img/${desktop}" alt="${alt}" loading="eager" decoding="async" width="2400" height="1350" fetchpriority="high">
       <img class="hero-img-mobile" data-hero-mobile-image src="__ASSET_PREFIX__assets/img/${mobile}" alt="${alt}" loading="eager" decoding="async" width="1200" height="1600" fetchpriority="high">
     </figure>`;
-}
-
-function heroVariantSwitcher(lang = "de", label = "Niwaki im Schweizer Garten") {
-  const copy = {
-    de: { label: "Hero", aria: "Hero-Foto Varianten", toggle: "Hero-Foto wählen" },
-    en: { label: "Hero", aria: "Hero photo variants", toggle: "Choose hero photo" },
-    uk: { label: "Hero", aria: "Варіанти hero-фото", toggle: "Вибрати hero-фото" }
-  }[lang] || { label: "Hero", aria: "Hero photo variants" };
-  const optionsId = `hero-variant-options-${lang}`;
-  return `<div class="hero-variant-switcher" data-hero-switcher aria-label="${copy.aria}">
-    <button class="hero-variant-toggle" type="button" data-hero-switcher-toggle aria-expanded="false" aria-controls="${optionsId}" aria-label="${copy.toggle}">
-      <span>${copy.label}</span>
-      <strong data-hero-active-label>1</strong>
-    </button>
-    <div class="hero-variant-options" id="${optionsId}" data-hero-variant-options hidden>
-      ${heroVariants.map((variant) => `<button class="hero-variant-option" type="button" data-hero-variant-option="${variant.id}" data-hero-desktop-src="__ASSET_PREFIX__assets/img/${variant.desktop}" data-hero-mobile-src="__ASSET_PREFIX__assets/img/${variant.mobile}" data-hero-alt="${heroVariantAlt(variant, lang, label)}" aria-label="${copy.aria}: ${variant.names[lang] || variant.names.de}" aria-pressed="${variant.id === "1" ? "true" : "false"}">${variant.id}</button>`).join("")}
-    </div>
-  </div>`;
 }
 
 function photoImg({ folder, file, lang = "de", className = "", label = "", loading = "lazy", width = 1200, height = 900 }) {
@@ -2897,10 +2858,12 @@ function aiLocalDiscoveryChecklist() {
 
 Status: repo-side implementation is prepared. External accounts still need human access and approval.
 
-## 1. Domain and Vercel
+## 1. Domain and Cloudflare Pages
 
-- Add \`${domain.replace("https://", "")}\` and \`www.${domain.replace("https://", "")}\` to the Vercel project \`viktor-baumarchitektur\`.
-- DNS target: follow Vercel's shown records for apex and www. Do not guess records if Vercel shows a different target.
+- Deploy V1 through Cloudflare Pages Free from the GitHub repository.
+- Add \`${domain.replace("https://", "")}\` and \`www.${domain.replace("https://", "")}\` as Cloudflare Pages custom domains.
+- Keep Hostpoint mail MX/TXT/SPF/DMARC records as DNS-only records in Cloudflare.
+- Do not publish \`v2/\`, \`/api/voice-lead\`, OpenAI transcription code, or raw handoff/transcription folders in the Cloudflare Pages output.
 - Acceptance:
   - \`${domain}/\` returns 200.
   - \`${domain}/robots.txt\`, \`${domain}/sitemap.xml\`, and \`${domain}/llms.txt\` return 200.
@@ -3350,9 +3313,7 @@ function layout({ file, lang = "de", title, description, body, jsonLd = [], page
     : lang === "en"
       ? "Niwaki in a Swiss garden"
       : "Niwaki im Schweizer Garten";
-  const headerHeroSwitcher = preloadHero
-    ? heroVariantSwitcher(lang, heroSwitcherLabel).replaceAll("__ASSET_PREFIX__", prefix)
-    : "";
+  const headerHeroSwitcher = "";
   return `<!doctype html>
 <html lang="${ui.htmlLang}">
 <head>
@@ -3374,7 +3335,7 @@ function layout({ file, lang = "de", title, description, body, jsonLd = [], page
   <meta property="og:url" content="${cleanUrl(canonicalPath)}">
   <meta property="og:image" content="${ogImageUrl}">
   <meta name="twitter:card" content="summary_large_image">
-  ${preloadHero ? `<link rel="preload" as="image" href="${prefix}assets/img/${ogImageFile}" fetchpriority="high">` : ""}
+  ${preloadHero ? `<link rel="preload" as="image" href="${prefix}assets/img/${heroPreloadFile}" fetchpriority="high">` : ""}
   <link id="theme-link" rel="stylesheet" href="${prefix}assets/theme-v4.css">
   <link rel="stylesheet" href="${prefix}assets/base.css?v=${assetVersion}">
   <link rel="manifest" href="${prefix}site.webmanifest">
@@ -3568,10 +3529,10 @@ function geoPage(page, lang = "de") {
 
 function homeDe() {
   return `
-  <section class="hero section" data-hero-root data-hero-variant="1">
+  <section class="hero section" data-hero-root data-hero-variant="4">
     <div class="hero-media">${heroPhotoSlot({ lang: "de", label: "Niwaki im Schweizer Garten" })}</div>
     <div class="hero-panel">
-      <span class="eyebrow">NIWAKI-PFLEGE | BAUMARCHITEKTUR | JAPANISCHE AHORNE | KRONENGESTALTUNG | EXKLUSIVE GEHÖLZPFLEGE</span>
+      ${heroServiceLine()}
       <h1>Gartenbonsais (<span class="hero-accent">Niwaki</span>) & japanische Baumkunst in der Schweiz</h1>
       <p class="motto">Schweizer Qualität mit japanischer Philosophie.</p>
       <p class="hero-copy hero-copy-variant hero-copy-v2">Schweizer Perfektion trifft auf japanische Philosophie. Ich schneide nicht einfach Bäume – ich erschaffe lebende Skulpturen durch präzise, meisterhafte Handarbeit für Form, Kraft und zeitlose Ästhetik.</p>
@@ -4328,10 +4289,10 @@ function themesPage() {
 
 function homeEn() {
   return `
-  <section class="hero section" data-hero-root data-hero-variant="1">
+  <section class="hero section" data-hero-root data-hero-variant="4">
     <div class="hero-media">${heroPhotoSlot({ lang: "en", label: "Niwaki in a Swiss garden" })}</div>
     <div class="hero-panel">
-      <span class="eyebrow">NIWAKI · GARDEN BONSAI · EVERGREEN DESIGN · JAPANESE GARDEN ART</span>
+      ${heroServiceLine()}
       <h1><span class="hero-accent">Niwaki</span> and Japanese tree art.<br><span>With Swiss precision.</span></h1>
       <p class="motto">Swiss quality in resonance with Japanese philosophy.</p>
       <p class="hero-copy hero-copy-variant hero-copy-v2">Swiss perfection meets Japanese philosophy. I do not simply cut trees - I create living sculptures through precise, masterful handwork for form, strength and timeless aesthetics.</p>
@@ -4476,10 +4437,10 @@ const serviceCardsUk = `
 
 function homeUk() {
   return `
-  <section class="hero section" data-hero-root data-hero-variant="1">
+  <section class="hero section" data-hero-root data-hero-variant="4">
     <div class="hero-media">${heroPhotoSlot({ lang: "uk", label: "Niwaki у швейцарському саду" })}</div>
     <div class="hero-panel">
-      <span class="eyebrow">FORMGEHÖLZE · NIWAKI · EVERGREEN DESIGN · ЯПОНСЬКЕ САДОВЕ МИСТЕЦТВО</span>
+      ${heroServiceLine()}
       <h1><span class="hero-accent">Niwaki</span> і японська деревна архітектура.<br><span>Зі швейцарською точністю.</span></h1>
       <p class="motto">Швейцарська якість у резонансі з японською філософією.</p>
       <p class="hero-copy hero-copy-variant hero-copy-v2">Швейцарська довершеність зустрічається з японською філософією. Я не просто ріжу дерева - я створюю живі скульптури через точну майстерну ручну роботу для форми, сили й позачасової естетики.</p>
@@ -4785,6 +4746,10 @@ function heroThreeModePolishCss() {
 
 function heroFourModeCss() {
   return `.site-nav .hero-variant-options{grid-template-columns:repeat(4,32px)}.hero[data-hero-variant="4"]{--hero-desktop-pos:50% 44%;--hero-mobile-pos:58% 44%;--hero-mobile-scale:1.02;--hero-mobile-origin:58% 44%;--hero-filter:saturate(1.08) contrast(1.03) brightness(1.02);--hero-overlay-left:rgba(7,16,10,.46);--hero-overlay-mid:rgba(7,16,10,.22);--hero-overlay-right:rgba(7,16,10,.02);--hero-overlay-edge:rgba(7,16,10,.04);--hero-overlay-bottom:rgba(7,16,10,.20)}.hero[data-hero-variant="4"] .hero-copy-desktop,.hero[data-hero-variant="4"] .hero-copy-mobile{display:none!important}.hero[data-hero-variant="4"] .hero-accent{color:#ffe6a8;text-shadow:0 2px 18px rgba(0,0,0,.48),0 0 18px rgba(255,230,168,.22)}@media (min-width:621px){.hero[data-hero-variant="4"] .hero-panel{align-self:end;width:min(760px,100%);margin-bottom:52px;overflow:visible}.hero[data-hero-variant="4"] .hero-panel .eyebrow{position:relative;top:auto;display:inline-flex;flex-wrap:wrap;width:fit-content;max-width:min(100%,840px);margin-bottom:18px;padding:9px 14px;border:1px solid rgba(255,230,168,.24);border-radius:999px;background:linear-gradient(135deg,rgba(6,23,12,.42),rgba(8,30,17,.18));box-shadow:0 12px 30px rgba(0,0,0,.16);backdrop-filter:blur(6px);color:#fff;font-size:clamp(.95rem,.92vw,1.08rem);line-height:1.24;font-weight:900;text-shadow:0 2px 14px rgba(0,0,0,.56)}.hero[data-hero-variant="4"] .hero-panel .eyebrow:before{flex:0 0 38px;width:38px;background:#ffe6a8}.hero[data-hero-variant="4"] .hero-panel h1{width:auto!important;max-width:12.8ch!important;margin-bottom:16px;padding:10px 14px 12px!important;border:1px solid rgba(255,255,255,.13)!important;border-radius:13px!important;background:linear-gradient(90deg,rgba(5,24,12,.42),rgba(5,24,12,.12) 86%,rgba(5,24,12,0))!important;box-shadow:0 14px 34px rgba(0,0,0,.16)!important;backdrop-filter:blur(2px)!important;font-size:clamp(2.18rem,2.85vw,2.62rem)!important;line-height:1.025}.hero[data-hero-variant="4"] .hero-panel .motto{max-width:560px;margin-bottom:0;font-size:clamp(1.13rem,1.25vw,1.28rem)}}@media (max-width:620px){.site-nav .hero-variant-options{grid-template-columns:repeat(4,31px)}.hero[data-hero-variant="4"] .hero-media:after{background:radial-gradient(ellipse 92% 52% at 20% 22%,rgba(5,18,10,.48) 0%,rgba(5,18,10,.30) 40%,rgba(5,18,10,0) 74%),linear-gradient(90deg,rgba(5,18,10,.32) 0%,rgba(5,18,10,.10) 58%,rgba(5,18,10,0) 100%),linear-gradient(0deg,rgba(5,15,9,.12) 0%,rgba(5,15,9,0) 48%)}.hero[data-hero-variant="4"] .hero-panel{align-self:start;display:grid;grid-template-columns:minmax(0,1fr);padding:clamp(56px,12vh,74px) 0 calc(88px + env(safe-area-inset-bottom));overflow:visible;text-align:left}.hero[data-hero-variant="4"] .hero-panel .eyebrow{position:relative;display:block;justify-self:center;width:calc(100% - 32px);max-width:calc(100% - 32px);margin:0 16px 14px;padding:16px 10px 9px;border:1px solid rgba(255,230,168,.24);border-radius:12px;background:linear-gradient(135deg,rgba(6,23,12,.34),rgba(6,23,12,.16));box-shadow:0 10px 24px rgba(0,0,0,.16);backdrop-filter:blur(2px);color:#fff;font-size:clamp(14px,3.55vw,16px);line-height:1.2;font-weight:900;letter-spacing:0;text-wrap:balance;white-space:normal;overflow-wrap:normal;word-break:normal;hyphens:none;text-shadow:0 2px 14px rgba(0,0,0,.64),0 0 2px rgba(0,0,0,.70)}.hero[data-hero-variant="4"] .hero-panel .eyebrow:before{position:absolute;left:10px;top:10px;display:block;flex:none;width:36px;height:1px;margin:0;background:#ffe6a8}.hero[data-hero-variant="4"] .hero-panel h1{justify-self:center;width:calc(100% - 32px)!important;max-width:calc(100% - 32px)!important;margin:0 16px 12px;padding:8px 10px 10px!important;border:1px solid rgba(255,255,255,.13)!important;border-radius:13px!important;background:linear-gradient(135deg,rgba(5,24,12,.32),rgba(5,24,12,.12))!important;box-shadow:0 12px 28px rgba(0,0,0,.16)!important;backdrop-filter:blur(2px)!important;font-size:clamp(25px,6.25vw,30px)!important;line-height:1.03;text-wrap:balance;overflow-wrap:normal}.hero[data-hero-variant="4"] .hero-panel .motto{justify-self:center;width:calc(100% - 40px);max-width:calc(100% - 40px);margin:0 20px 16px;background:linear-gradient(135deg,rgba(5,24,12,.38),rgba(5,24,12,.16));font-size:clamp(1.02rem,4vw,1.14rem);line-height:1.35}.hero[data-hero-variant="4"] .hero-panel .btn-row,.hero[data-hero-variant="4"] .hero-panel .trust-row{justify-self:center;width:calc(100% - 40px);max-width:calc(100% - 40px);margin-left:20px;margin-right:20px}.hero[data-hero-variant="4"] .hero-panel .btn-row{margin-top:0}.hero[data-hero-variant="4"] .hero-panel .trust-row{margin-top:10px}}`;
+}
+
+function heroFourFixedLayoutCss() {
+  return `.hero-variant-switcher{display:none!important}.hero-service-accent{color:#ffe6a8;text-shadow:0 0 18px rgba(255,230,168,.30),0 2px 14px rgba(0,0,0,.58)}.hero-service-line-row{display:block;white-space:nowrap}.hero[data-hero-variant="4"] .hero-panel .hero-service-line .hero-service-accent{color:#ffe6a8}@media (min-width:621px){.hero[data-hero-variant="4"] .hero-panel{width:min(1280px,calc(100vw - 120px));margin-bottom:52px}.hero[data-hero-variant="4"] .hero-panel .hero-service-line{left:0;top:-66px;display:inline-grid;grid-template-columns:max-content;row-gap:8px;width:max-content;max-width:calc(100vw - 44px);margin-bottom:-36px;padding:12px 18px 12px 68px;border-radius:28px;white-space:normal;font-size:clamp(11px,1.2vw,16px);line-height:1.12}.hero[data-hero-variant="4"] .hero-panel .hero-service-line:before{position:absolute;left:18px;top:19px;display:block;flex:none;width:42px;height:1px;margin:0;background:#ffe6a8}}@media (max-width:620px){.hero-service-line-row{display:inline;white-space:normal}.hero[data-hero-variant="4"] .hero-panel{padding:clamp(30px,7vh,48px) 0 calc(88px + env(safe-area-inset-bottom))}.hero[data-hero-variant="4"] .hero-panel .hero-service-line{width:calc(100% - 28px);max-width:calc(100% - 28px);margin:0 14px 12px;padding:16px 11px 10px;font-size:clamp(12px,3.05vw,14px);line-height:1.22;text-wrap:balance}.hero[data-hero-variant="4"] .hero-panel .hero-service-line:before{left:11px;top:10px;width:34px}.hero[data-hero-variant="4"] .hero-panel h1{margin-top:0}}`;
 }
 
 function meisterCarouselResponsiveCss() {
@@ -5208,86 +5173,6 @@ function jsMain() {
     });
   });
 
-  const HERO_VARIANT_KEY = 'viktor_hero_variant';
-  const hero = $('[data-hero-root]');
-  const heroSwitcher = hero ? $('[data-hero-switcher]') : null;
-  if (hero && heroSwitcher) {
-    const desktopImage = $('[data-hero-desktop-image]', hero);
-    const mobileImage = $('[data-hero-mobile-image]', hero);
-    const toggle = $('[data-hero-switcher-toggle]', heroSwitcher);
-    const options = $('[data-hero-variant-options]', heroSwitcher);
-    const activeLabel = $('[data-hero-active-label]', heroSwitcher);
-    const buttons = $$('[data-hero-variant-option]', heroSwitcher);
-    const validVariants = new Set(buttons.map((button) => button.dataset.heroVariantOption));
-    const setSwitcherOpen = (open) => {
-      heroSwitcher.classList.toggle('is-open', open);
-      toggle?.setAttribute('aria-expanded', String(open));
-      if (options) options.hidden = !open;
-    };
-    const readStoredHeroVariant = () => {
-      try {
-        const stored = window.localStorage.getItem(HERO_VARIANT_KEY);
-        return validVariants.has(stored) ? stored : null;
-      } catch (error) {
-        return null;
-      }
-    };
-    const writeStoredHeroVariant = (variant) => {
-      try {
-        window.localStorage.setItem(HERO_VARIANT_KEY, variant);
-      } catch (error) {
-        // Storage can be disabled in private browsing; the current page still switches.
-      }
-    };
-    const applyHeroVariant = (variant, { persist = true, announce = false } = {}) => {
-      if (!validVariants.has(variant)) return;
-      const activeButton = buttons.find((button) => button.dataset.heroVariantOption === variant);
-      if (!activeButton) return;
-      hero.dataset.heroVariant = variant;
-      hero.style.setProperty('--active-hero-variant', variant);
-      if (desktopImage && activeButton.dataset.heroDesktopSrc && desktopImage.getAttribute('src') !== activeButton.dataset.heroDesktopSrc) {
-        desktopImage.setAttribute('src', activeButton.dataset.heroDesktopSrc);
-      }
-      if (mobileImage && activeButton.dataset.heroMobileSrc && mobileImage.getAttribute('src') !== activeButton.dataset.heroMobileSrc) {
-        mobileImage.setAttribute('src', activeButton.dataset.heroMobileSrc);
-      }
-      if (activeButton.dataset.heroAlt) {
-        desktopImage?.setAttribute('alt', activeButton.dataset.heroAlt);
-        mobileImage?.setAttribute('alt', activeButton.dataset.heroAlt);
-      }
-      buttons.forEach((button) => {
-        const isActive = button === activeButton;
-        button.classList.toggle('is-active', isActive);
-        button.setAttribute('aria-pressed', String(isActive));
-      });
-      if (activeLabel) activeLabel.textContent = variant;
-      if (persist) writeStoredHeroVariant(variant);
-      if (announce) showToast('Hero V' + variant);
-    };
-    const requestedHeroVariant = new URLSearchParams(window.location.search).get('hero');
-    const initialHeroVariant = validVariants.has(requestedHeroVariant) ? requestedHeroVariant : readStoredHeroVariant() || hero.dataset.heroVariant || '1';
-    applyHeroVariant(initialHeroVariant, { persist: validVariants.has(requestedHeroVariant), announce: false });
-    setSwitcherOpen(false);
-    toggle?.addEventListener('click', (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      setSwitcherOpen(options ? options.hidden : true);
-    });
-    buttons.forEach((button) => {
-      button.addEventListener('click', () => {
-        applyHeroVariant(button.dataset.heroVariantOption, { persist: true, announce: true });
-        setSwitcherOpen(false);
-        toggle?.focus?.();
-      });
-    });
-    document.addEventListener('click', (event) => {
-      if (!heroSwitcher.contains(event.target)) setSwitcherOpen(false);
-    });
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') setSwitcherOpen(false);
-    });
-  }
-
   $$('[data-theme-option]').forEach((button) => {
     button.addEventListener('click', () => {
       const theme = button.dataset.themeOption;
@@ -5455,7 +5340,7 @@ No build step is required for visitors. The generator is kept only as a maintena
 function readmeV2() {
   return `# Viktor Baumarchitektur Static Website
 
-Static multipage DE/EN site for Viktor Baumarchitektur. It opens directly from \`index.html\` and is ready for static hosting on Vercel after human approval.
+Static multipage DE/EN/UK V1 site for Viktor Baumarchitektur. It is prepared for Cloudflare Pages Free at \`${domain}\`.
 
 ## Edit checklist
 
@@ -5484,7 +5369,7 @@ The site includes focused DE/EN answer and service-area pages for retrieval sear
 ${answerPages.map((page) => `- \`${page.slug}.html\` / \`en/${page.slug}.html\` - ${page.eyebrowDe}.`).join("\n")}
 ${geoPages.map((page) => `- \`${page.slug}.html\` / \`en/${page.slug}.html\` - ${page.h1De.replace(/\.$/, "")}.`).join("\n")}
 
-External launch steps are tracked in \`handoff/ai-local-discovery-checklist.md\`: custom domain, Search Console, Bing Webmaster Tools, Google Business Profile, Apple/Bing/local.ch citations and monthly AI monitoring.
+External launch steps are tracked in \`handoff/ai-local-discovery-checklist.md\`: Cloudflare Pages custom domain, Search Console, Bing Webmaster Tools, Google Business Profile, Apple/Bing/local.ch citations and monthly AI monitoring.
 
 ## Future FR/IT localization
 
@@ -5512,8 +5397,8 @@ Switch to another design direction by replacing \`theme-v4.css\` with \`theme-v1
 
 ## Placeholders still requiring human approval
 
-- Contact callback production secrets: \`TELEGRAM_BOT_TOKEN\`, \`TELEGRAM_CHAT_ID\`.
-- Voice Lead production secrets: \`OPENAI_API_KEY\`, \`TELEGRAM_BOT_TOKEN\`, \`TELEGRAM_CHAT_ID\`.
+- Cloudflare Pages Function secrets for V1 contact delivery: \`TELEGRAM_BOT_TOKEN\`, \`TELEGRAM_CHAT_ID\`.
+- V2 voice/OpenAI lead flow is intentionally excluded from Cloudflare Pages V1 deployment. Do not configure \`OPENAI_API_KEY\` for this launch.
 - Real before/after photos, Japan postcard and testimonial.
 - Final approval/originals for the supplied real Viktor master/work photos.
 - Public Instagram/website photo usage permission and original files from Viktor.
@@ -5528,13 +5413,13 @@ Run:
 \`\`\`powershell
 node tools/generate-site.mjs
 node tools/audit-site.mjs
-node tools/test-contact-api.mjs
+node tools/build-cloudflare-pages.mjs
 node tools/qa-site-interactions.mjs
 \`\`\`
 
-\`kontakt.html\` posts callback requests to \`/api/contact\`, which validates the phone number, blocks honeypot spam and sends a Telegram summary with server-side env only. \`v2/index.html\` includes a microphone lead flow. The browser records up to 300 seconds with \`MediaRecorder\`, sends the audio to \`/api/voice-lead\`, transcribes with OpenAI audio transcription, extracts lead fields locally and sends a Telegram summary to Viktor. The serverless functions do not store lead content; they only process the request and forward the message. Required server-side variables are documented in \`.env.example\`.
+\`kontakt.html\` posts callback requests to \`/api/contact\`, which validates the phone number, blocks honeypot spam and sends a Telegram summary with Cloudflare Pages Function env only. \`v2/\` and \`/api/voice-lead\` are not copied to \`dist\` and are not part of the Cloudflare Pages V1 launch.
 
-No build step is required for visitors. The generator is kept as the source of truth for consistent header/footer, DE pages and EN mirrors.
+Cloudflare Pages build command: \`node tools/generate-site.mjs && node tools/build-cloudflare-pages.mjs\`. Output directory: \`dist\`.
 `;
 }
 
@@ -5563,7 +5448,7 @@ const required = [
   "uk/kontakt.html","uk/impressum.html","uk/datenschutz.html","uk/themes.html",
   "fr/index.html","it/index.html",
   "assets/base.css","assets/main.js","assets/theme-v1.css","assets/theme-v2.css","assets/theme-v3.css","assets/theme-v4.css","assets/theme-v5.css",
-  "assets/img/logo.png","assets/img/foto/01_hero/hero-viktor-bonsai-main.webp","assets/img/foto/01_hero/hero-viktor-bonsai-mobile.webp","assets/img/foto/01_hero/hero-courtyard-niwaki-desktop.webp","assets/img/foto/01_hero/hero-courtyard-niwaki-mobile.webp","assets/img/foto/02_pryklady-robit/case-parviflora-before.webp","assets/img/foto/02_pryklady-robit/case-parviflora-after.webp","assets/img/foto/02_pryklady-robit/case-watereri-before.webp","assets/img/foto/02_pryklady-robit/case-watereri-after.webp","assets/img/foto/02_pryklady-robit/sosna-bila-17.webp","assets/img/foto/02_pryklady-robit/sosna-bila-18.webp","assets/img/foto/03_galereya/sosna-bila-01.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-01.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-08.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-16.webp","assets/img/foto/06_yaponski-kleny/klen-yaponskyi-01.webp","assets/img/foto/07_viktor/viktor-01.webp","assets/img/foto/08_fonovi/fon-foto-01.webp","assets/img/foto/09_pomylky/pomylka-svichka-01.webp","assets/img/foto/10_vidkrytka-yaponiya/kyoto-viktor-wife-2009.webp","assets/img/foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp","assets/img/MANIFEST.md","site.webmanifest","robots.txt","sitemap.xml","llms.txt","vercel.json","README.md","handoff/ai-local-discovery-checklist.md",".env.example","api/contact.js","api/voice-lead.js"
+  "assets/img/logo.png","assets/img/foto/01_hero/hero-viktor-bonsai-main.webp","assets/img/foto/01_hero/hero-viktor-bonsai-mobile.webp","assets/img/foto/01_hero/hero-courtyard-niwaki-desktop.webp","assets/img/foto/01_hero/hero-courtyard-niwaki-mobile.webp","assets/img/foto/02_pryklady-robit/case-parviflora-before.webp","assets/img/foto/02_pryklady-robit/case-parviflora-after.webp","assets/img/foto/02_pryklady-robit/case-watereri-before.webp","assets/img/foto/02_pryklady-robit/case-watereri-after.webp","assets/img/foto/02_pryklady-robit/sosna-bila-17.webp","assets/img/foto/02_pryklady-robit/sosna-bila-18.webp","assets/img/foto/03_galereya/sosna-bila-01.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-01.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-08.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-16.webp","assets/img/foto/06_yaponski-kleny/klen-yaponskyi-01.webp","assets/img/foto/07_viktor/viktor-01.webp","assets/img/foto/08_fonovi/fon-foto-01.webp","assets/img/foto/09_pomylky/pomylka-svichka-01.webp","assets/img/foto/10_vidkrytka-yaponiya/kyoto-viktor-wife-2009.webp","assets/img/foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp","assets/img/MANIFEST.md","site.webmanifest","robots.txt","sitemap.xml","llms.txt","vercel.json","README.md","handoff/ai-local-discovery-checklist.md",".env.example","api/contact.js","api/voice-lead.js","functions/api/contact.js","tools/build-cloudflare-pages.mjs"
 ];
 
 const errors = [];
@@ -5577,7 +5462,7 @@ for (const file of required) {
   if (!fs.existsSync(path.join(root, file))) errors.push("Missing " + file);
 }
 
-const brandWordmark = "Viktor Garden";
+const brandWordmark = "Viktor Garten";
 const requiredContact = {
   phone: "+41783130330",
   whatsapp: "https://wa.me/41783130330",
@@ -5710,7 +5595,7 @@ if (baseCss.includes(".brand-symbol")) errors.push("Unused .brand-symbol CSS is 
 
 const robots = fs.readFileSync(path.join(root, "robots.txt"), "utf8");
 for (const agent of ${JSON.stringify(aiCrawlerAgents)}) {
-  if (!robots.includes("User-agent: " + agent) || !robots.includes("Sitemap: https://viktor-baumarchitektur.ch/sitemap.xml")) {
+  if (!robots.includes("User-agent: " + agent) || !robots.includes("Sitemap: ${domain}/sitemap.xml")) {
     errors.push("robots.txt missing explicit crawler policy or sitemap for " + agent);
   }
 }
@@ -5720,7 +5605,7 @@ for (const urlPath of ${JSON.stringify([
   ...discoveryPaths,
   ...discoveryPaths.map((p) => `/en${p}`)
 ])}) {
-  if (!sitemapXml.includes("https://viktor-baumarchitektur.ch" + urlPath)) {
+  if (!sitemapXml.includes("${domain}" + urlPath)) {
     errors.push("sitemap.xml missing discovery URL " + urlPath);
   }
 }
@@ -5858,6 +5743,7 @@ ${heroThreeModeCss()}
 ${heroThreeModeTypographyCss()}
 ${heroThreeModePolishCss()}
 ${heroFourModeCss()}
+${heroFourFixedLayoutCss()}
 ${inspirationBooksCss()}
 ${experienceAccentCss()}
 ${meisterCarouselResponsiveCss()}`;
