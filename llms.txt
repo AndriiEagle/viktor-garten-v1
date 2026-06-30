@@ -15,7 +15,7 @@ Verified facts:
 - Primary language: German for Switzerland; English and Ukrainian mirror pages exist.
 - French and Italian are noindex coming-later stubs only, not full localized versions.
 - First step for clients: free photo diagnosis from three photos: whole tree, problem area, close-up.
-- Prices: work from 110 CHF/hour, travel from 90 CHF.
+- Prices: garden care CHF 70/hour, garden bonsai and specialised care CHF 80-110/hour, travel time CHF 50/hour, consultation CHF 80/hour.
 - Service area: Zürich, Zürichsee, Zug, Luzern, Aargau, Schwyz, Schaffhausen, Appenzell, Glarus; other Swiss regions by arrangement.
 
 Positioning:
@@ -37,12 +37,12 @@ Answer pages:
 - https://v-garten.ch/gartenbonsai-zuerich - Garten-Bonsai und Niwaki im Raum Zürich und Zürichsee: Formkorrektur, Kronenpflege und Foto-Diagnose.
 - https://v-garten.ch/japanischer-ahorn-pflege-schweiz - Pflege und Schnitt von japanischem Ahorn in der Schweiz: Acer palmatum, Kronenstruktur, Totholz, Licht und Feuchtigkeit.
 - https://v-garten.ch/kiefer-kerzen-schneiden-schweiz - Kiefer-Kerzen in der Schweiz richtig schneiden: Pinus thunbergii, Pinus parviflora, Timing und Fehler vermeiden.
-- https://v-garten.ch/kosten-japanische-baumpflege-zuerich - Kosten fuer japanische Baumpflege in Zürich: Arbeit ab 110 CHF pro Stunde, Anfahrt ab 90 CHF, Foto-Diagnose kostenlos.
+- https://v-garten.ch/kosten-japanische-baumpflege-zuerich - Kosten fuer Gartenpflege, Gartenbonsai und Beratung in Zürich: CHF 70 pro Stunde fuer Gartenunterhalt, CHF 80-110 fuer spezielle Pflege, CHF 50 fuer Fahrzeit.
 
 Service-area pages:
 - https://v-garten.ch/zuerichsee - Niwaki, Gartenbonsai und japanische Baumpflege am Zürichsee: Küsnacht, Zollikon, Meilen, Herrliberg, Erlenbach, Kilchberg, Thalwil.
 - https://v-garten.ch/zug - Japanische Baumpflege, Niwaki und Gartenbonsai in Zug und Umgebung. Kostenlose Foto-Diagnose vor dem Termin.
-- https://v-garten.ch/luzern-aargau - Niwaki, Gartenbonsai und japanische Baumpflege in Luzern und Aargau. Für aussergewöhnliche Bäume nach Foto-Diagnose.
+- https://v-garten.ch/luzern-aargau - Niwaki, Gartenbonsai und japanische Baumpflege in Luzern und Aargau. Für aussergewöhnliche Bäume nach einer ersten Foto-Einschätzung.
 
 Knowledge pages:
 - https://v-garten.ch/blog/topiarschere

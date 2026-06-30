@@ -436,14 +436,14 @@ const answerPages = [
     slug: "kosten-japanische-baumpflege-zuerich",
     titleDe: "Was kostet japanische Baumpflege in Zürich?",
     titleEn: "What Does Japanese Tree Care Cost in Zurich?",
-    descDe: "Kosten fuer japanische Baumpflege in Zürich: Arbeit ab 110 CHF pro Stunde, Anfahrt ab 90 CHF, Foto-Diagnose kostenlos.",
-    descEn: "Japanese tree care costs in Zurich: work from 110 CHF per hour, travel from 90 CHF, free photo diagnosis.",
+    descDe: "Kosten fuer Gartenpflege, Gartenbonsai und Beratung in Zürich: CHF 70 pro Stunde fuer Gartenunterhalt, CHF 80-110 fuer spezielle Pflege, CHF 50 fuer Fahrzeit.",
+    descEn: "Garden care, garden bonsai and consultation costs in Zurich: CHF 70 per hour for maintenance, CHF 80-110 for specialised care, CHF 50 for travel time.",
     eyebrowDe: "Preise Zürich",
     eyebrowEn: "Zurich prices",
     h1De: "Was kostet japanische Baumpflege in Zürich?",
     h1En: "What does Japanese tree care cost in Zurich?",
-    introDe: "Die Arbeit beginnt ab 110 CHF pro Stunde, die Anfahrt ab 90 CHF. Der Preis haengt nicht nur von der Hoehe ab, sondern von Dichte, Art, Zustand, Zugang, Risiko und davon, ob eine Form erhalten, gerettet oder neu aufgebaut werden soll.",
-    introEn: "Work starts from 110 CHF per hour, travel from 90 CHF. Price depends not only on height, but also density, species, condition, access, risk and whether the form must be maintained, rescued or rebuilt.",
+    introDe: "Gartenpflege und Gartenunterhalt kosten CHF 70 pro Stunde. Gartenbonsai und spezielle Pflege liegen je nach Arbeitsaufwand und Schwierigkeitsgrad bei CHF 80-110 pro Stunde. Die Fahrzeit wird fair mit CHF 50 pro Stunde berechnet und entfällt ab 2 Stunden Arbeitszeit.",
+    introEn: "Garden care and maintenance cost CHF 70 per hour. Garden bonsai and specialised care are CHF 80-110 per hour depending on effort and difficulty. Travel time is charged fairly at CHF 50 per hour and is waived from 2 hours of work.",
     image: ["07_viktor", "viktor-01.webp"],
     bulletsDe: ["Kostenlose Foto-Diagnose als erster Filter.", "Vor-Ort-Termin erst, wenn der Baum zur Arbeit passt.", "Kein Billig-Gartenunterhalt und keine Notfall-Faellarbeiten."],
     bulletsEn: ["Free photo diagnosis as the first filter.", "On-site appointment only when the tree fits the work.", "Not cheap garden maintenance and not emergency tree removal."],
@@ -487,7 +487,7 @@ const geoPages = [
     slug: "luzern-aargau",
     titleDe: "Niwaki Luzern & Aargau - Gartenbonsai Pflege",
     titleEn: "Niwaki Lucerne and Aargau - Garden Bonsai Care",
-    descDe: "Niwaki, Gartenbonsai und japanische Baumpflege in Luzern und Aargau. Für aussergewöhnliche Bäume nach Foto-Diagnose.",
+    descDe: "Niwaki, Gartenbonsai und japanische Baumpflege in Luzern und Aargau. Für aussergewöhnliche Bäume nach einer ersten Foto-Einschätzung.",
     descEn: "Niwaki, garden bonsai and Japanese tree care in Lucerne and Aargau. For exceptional trees after photo diagnosis.",
     h1De: "Niwaki-Pflege in Luzern und Aargau.",
     h1En: "Niwaki care in Lucerne and Aargau.",
@@ -2938,7 +2938,7 @@ function localBusinessLd() {
         image: ogImageUrl,
         logo: `${domain}/assets/img/logo.png`,
         telephone: phone,
-        priceRange: "ab 110 CHF/Std.",
+        priceRange: "CHF 70-110/Stunde",
         slogan: "Schweizer Qualität mit japanischer Philosophie.",
         description: "Spezialist für Niwaki, Garten-Bonsai, japanische Ahorne und Nadelgehölze in der Region Zürich und der Schweiz.",
         areaServed,
@@ -3053,7 +3053,7 @@ function faqLd() {
         name: "Was kostet japanische Baumpflege in der Region Zürich?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Die Arbeit beginnt ab 110 CHF pro Stunde, die Anfahrt ab 90 CHF. Die Foto-Diagnose vorab ist kostenlos."
+          text: "Gartenpflege und Gartenunterhalt kosten CHF 70 pro Stunde, Gartenbonsai und spezielle Pflege je nach Aufwand CHF 80 bis 110 pro Stunde. Die Fahrzeit wird transparent mit CHF 50 pro Stunde berechnet und entfällt ab 2 Stunden Arbeitszeit."
         }
       }
     ]
@@ -3388,7 +3388,9 @@ function layout({ file, lang = "de", title, description, body, jsonLd = [], page
       </div>
       <div>
         <h2>${ui.footerAreas}</h2>
-        <p>Zürich · Zug · Luzern · Aargau · Schwyz · Schaffhausen · Appenzell · Glarus</p>
+        <ul class="footer-canton-list">
+          ${areaServed.slice(0, 8).map((canton) => `<li>${canton}</li>`).join("")}
+        </ul>
       </div>
       <div>
         <h2>${ui.footerContact}</h2>
@@ -3522,7 +3524,7 @@ function geoPage(page, lang = "de") {
       <p>${isEn ? "Viktor travels when the tree is worth the work: niwaki, garden bonsai, Japanese maples, pines and other valuable shaped trees. The photo diagnosis filters whether an on-site visit makes sense." : "Viktor reist, wenn der Baum die Arbeit wert ist: Niwaki, Garten-Bonsai, japanische Ahorne, Kiefern und andere wertvolle Formgehoelze. Die Foto-Diagnose klaert, ob ein Vor-Ort-Termin Sinn ergibt."}</p>
       <ul class="check-list">
         <li>${isEn ? "Send one full tree photo, one problem area and one close-up." : "Senden Sie ein Foto vom ganzen Baum, eine Problemstelle und eine Nahaufnahme."}</li>
-        <li>${isEn ? "Work from 110 CHF/hour, travel from 90 CHF." : "Arbeit ab 110 CHF/Std., Anfahrt ab 90 CHF."}</li>
+        <li>${isEn ? "Garden care from CHF 70/hour, specialised tree care CHF 80-110/hour, travel time CHF 50/hour." : "Gartenpflege CHF 70/Stunde, spezielle Baumpflege CHF 80-110/Stunde, Fahrzeit CHF 50/Stunde."}</li>
         <li>${isEn ? "No emergency felling, no cheap hedge trimming, no lawn maintenance." : "Keine Notfall-Faellarbeiten, kein Billig-Heckenschnitt, kein Rasenunterhalt."}</li>
       </ul>
       ${isEn ? cta("Send photos from this area") : cta("Fotos aus dieser Region senden")}
@@ -3635,8 +3637,8 @@ function homeDe() {
 
   <section class="section price-teaser">
     <span class="eyebrow">Preise</span>
-    <h2>Qualität statt Eile.</h2>
-    <p>Vier Stunden gute Arbeit sind mehr wert als zwei Stunden schnelle. Arbeit ab 110 CHF/Std., Anfahrt ab 90 CHF.</p>
+    <h2>Klare Preise für echte Pflege.</h2>
+    <p>Gartenpflege CHF 70/Stunde, Gartenbonsai und spezielle Pflege CHF 80-110/Stunde, Beratung CHF 80/Stunde. Fahrzeit wird transparent mit CHF 50/Stunde berechnet und entfällt ab 2 Stunden Arbeitszeit.</p>
     <a class="btn btn-secondary" href="preise.html">Preise ansehen</a>
   </section>
 
@@ -3655,7 +3657,7 @@ function homeDe() {
     </div>
     <details><summary>Wie rette ich meinen Niwaki oder japanischen Ahorn?</summary><p>Senden Sie drei Fotos: den ganzen Baum, die Problemstelle und eine Nahaufnahme. Die erste Einschätzung ist kostenlos.</p></details>
     <details><summary>Warum verliert mein Baum die Form?</summary><p>Meist wurde die Energieverteilung der Krone ignoriert. Dann wachsen innen Feuchtigkeit, Totholz und falsche Triebe.</p></details>
-    <details><summary>Was kostet japanische Baumpflege in der Region Zürich?</summary><p>Arbeit ab 110 CHF/Std., Anfahrt ab 90 CHF. Der Vor-Ort-Termin folgt nach der Foto-Diagnose.</p></details>
+    <details><summary>Was kostet Gartenpflege und spezielle Baumpflege in der Region Zürich?</summary><p>Gartenpflege kostet CHF 70/Stunde. Gartenbonsai und spezielle Pflege kosten CHF 80-110/Stunde, Beratung CHF 80/Stunde. Fahrzeit kostet CHF 50/Stunde und entfällt ab 2 Stunden Arbeitszeit.</p></details>
   </section>
   ${finalCtaDe()}`;
 }
@@ -3967,30 +3969,163 @@ function galleryUk() {
   return galleryPage("uk");
 }
 
-function pricesDe() {
-  return `
-  <section class="page-hero section">
-    <span class="eyebrow">Preise</span>
-    <h1>Preise - Qualität statt Eile.</h1>
-    <p>Was kostet professionelle <strong>japanische Baumpflege</strong>ss Vier Stunden gute Arbeit sind mehr wert als zwei Stunden schnelle. Wer am Schnitt spart, zahlt mit der Form und der Gesundheit des Baumes - oft über Jahre.</p>
-  </section>
-  <section class="section price-grid">
-    <article class="card"><span class="eyebrow">Arbeit</span><h2>ab 110 CHF/Std.</h2><p>Feinarbeit von Hand. Keine pauschale Schnellpflege.</p></article>
-    <article class="card"><span class="eyebrow">Anfahrt</span><h2>ab 90 CHF</h2><p>Distanzabhängig. Schwerpunkt Zürich, Zug und angrenzende Kantone.</p></article>
-    <article class="card"><span class="eyebrow">Termin</span><h2>nach Foto-Diagnose</h2><p>Die Foto-Diagnose ist kostenlos und schützt vor unnötigen Wegen.</p></article>
-  </section>
-  <section class="section note-block speed-quality-note">
-    <span class="eyebrow">Tempo gegen Qualität</span>
-    <h2>Warum nicht schneller?</h2>
-    <p>Einen Ast kann man in einer Sekunde abschneiden. Einen neuen Ast aufzubauen dauert Jahre. Deshalb ist Geschwindigkeit beim Formschnitt kein Qualitätsmerkmal, sondern oft ein Risiko.</p>
-    <div class="speed-quality-contrast" aria-label="Zeitvergleich zwischen schnellem Schnitt und neuem Wachstum">
-      <div><strong>1 Sekunde</strong><span>Ast abschneiden</span></div>
-      <div class="speed-quality-vs">gegen</div>
-      <div><strong>Jahre</strong><span>neuen Ast aufbauen</span></div>
-    </div>
-    <p class="speed-quality-warning">Ich arbeite lieber langsamer und sauber, damit der Baum Kraft behält, sauber verheilt und seine Form nicht für Jahre verliert.</p>
-    <div class="btn-row">${cta("Foto senden - kostenlose Diagnose")} <a class="btn btn-secondary" href="kontakt.html#rueckruf" data-event="cta_callback_click">Rückruf anfordern</a></div>
+function pricingCard(card) {
+  return `<article class="pricing-card card">
+    <span class="eyebrow">${card.eyebrow}</span>
+    <h2>${card.title}</h2>
+    <p class="pricing-card-copy">${card.description}</p>
+    ${card.services?.length ? `<div class="pricing-services"><h3>${card.servicesLabel}</h3><ul>${card.services.map((item) => `<li>${item}</li>`).join("")}</ul></div>` : ""}
+    <p class="pricing-price">${card.price}</p>
+    ${card.note ? `<p class="pricing-note">${card.note}</p>` : ""}
+  </article>`;
+}
+
+function pricingGrid(cards) {
+  return `<section class="section pricing-service-grid">${cards.map(pricingCard).join("")}</section>`;
+}
+
+function qualityPricingNote({ eyebrow, title, body, ctaText, callbackText }) {
+  return `<section class="section note-block pricing-quality-note">
+    <span class="eyebrow">${eyebrow}</span>
+    <h2>${title}</h2>
+    ${body.map((paragraph) => `<p>${paragraph}</p>`).join("")}
+    <div class="btn-row">${cta(ctaText)} <a class="btn btn-secondary" href="kontakt.html#rueckruf" data-event="cta_callback_click">${callbackText}</a></div>
   </section>`;
+}
+
+const pricingCardsDe = [
+  {
+    eyebrow: "Gartenpflege",
+    title: "Gartenpflege & Gartenunterhalt",
+    description: "Professionelle Pflege für Privatgärten, Terrassen, Wohnanlagen und Grünanlagen.",
+    servicesLabel: "Leistungen",
+    services: ["Gartenunterhalt", "Terrassenpflege", "Pflege von Kübelpflanzen", "Rückschnitt von Sträuchern und Gehölzen", "Pflege von Zierpflanzen", "Saisonale Gartenarbeiten", "Allgemeine Gartenpflege"],
+    price: "CHF 70 / Stunde"
+  },
+  {
+    eyebrow: "Spezielle Pflege",
+    title: "Gartenbonsai & spezielle Pflege",
+    description: "Professionelle Pflege von Gartenbonsai, Niwaki, Formgehölzen und exklusiven Kübelpflanzen. Jeder Baum wird individuell beurteilt und mit Rücksicht auf Form, Gesundheit und langfristige Entwicklung gepflegt.",
+    servicesLabel: "Leistungen",
+    services: ["Form- und Erhaltungsschnitt", "Strukturaufbau", "Gesundheitspflege", "Individuelle Pflegeberatung", "Pflege von Gartenbonsai auf Terrassen und in exklusiven Gartenanlagen"],
+    price: "CHF 80–110 / Stunde",
+    note: "Je nach Arbeitsaufwand und Schwierigkeitsgrad."
+  },
+  {
+    eyebrow: "Anfahrt",
+    title: "Transparente Fahrzeit",
+    description: "Ich berechne die Fahrzeit fair und ausschliesslich für die tatsächliche Fahrzeit zwischen meinem Standort und Ihrem Objekt, inklusive Hin- und Rückfahrt.",
+    servicesLabel: "Berechnung",
+    services: ["Tatsächliche Fahrzeit", "Hin- und Rückfahrt", "Transparent vor dem Termin"],
+    price: "CHF 50 / Stunde Fahrzeit",
+    note: "Ab 2 Stunden Arbeitszeit entfällt die Berechnung der Anfahrt."
+  },
+  {
+    eyebrow: "Beratung",
+    title: "Persönliche Beratung",
+    description: "Persönliche Beratung rund um Gärten, Terrassen, Gartenbonsai, Niwaki und Formgehölze.",
+    servicesLabel: "Leistungen",
+    services: ["Pflegekonzepte", "Standortbeurteilung", "Entwicklungsplanung", "Individuelle Empfehlungen"],
+    price: "CHF 80 / Stunde"
+  }
+];
+
+const pricingCardsEn = [
+  {
+    eyebrow: "Garden care",
+    title: "Garden care & maintenance",
+    description: "Professional care for private gardens, terraces, residential properties and green areas.",
+    servicesLabel: "Services",
+    services: ["Garden maintenance", "Terrace care", "Care for container plants", "Pruning shrubs and woody plants", "Ornamental plant care", "Seasonal garden work", "General garden care"],
+    price: "CHF 70 / hour"
+  },
+  {
+    eyebrow: "Special care",
+    title: "Garden bonsai & special care",
+    description: "Professional care for garden bonsai, niwaki, shaped trees and exclusive container plants. Each tree is assessed individually with respect for form, health and long-term development.",
+    servicesLabel: "Services",
+    services: ["Shaping and maintenance pruning", "Structure development", "Health care", "Individual care advice", "Care for garden bonsai on terraces and in exclusive gardens"],
+    price: "CHF 80–110 / hour",
+    note: "Depending on effort and difficulty."
+  },
+  {
+    eyebrow: "Travel",
+    title: "Transparent travel time",
+    description: "Travel time is charged fairly and only for the actual time between my location and your property, including the return trip.",
+    servicesLabel: "Calculation",
+    services: ["Actual travel time", "Outbound and return trip", "Transparent before the appointment"],
+    price: "CHF 50 / hour travel time",
+    note: "From 2 hours of work, travel time is not charged."
+  },
+  {
+    eyebrow: "Consultation",
+    title: "Personal consultation",
+    description: "Personal advice for gardens, terraces, garden bonsai, niwaki and shaped trees.",
+    servicesLabel: "Services",
+    services: ["Care concepts", "Site assessment", "Development planning", "Individual recommendations"],
+    price: "CHF 80 / hour"
+  }
+];
+
+const pricingCardsUk = [
+  {
+    eyebrow: "Догляд за садом",
+    title: "Догляд за садом і садовий сервіс",
+    description: "Професійний догляд за приватними садами, терасами, житловими комплексами та зеленими зонами.",
+    servicesLabel: "Послуги",
+    services: ["Садовий догляд", "Догляд за терасами", "Догляд за рослинами в контейнерах", "Обрізка кущів і деревних рослин", "Догляд за декоративними рослинами", "Сезонні садові роботи", "Загальний догляд за садом"],
+    price: "CHF 70 / година"
+  },
+  {
+    eyebrow: "Спеціальний догляд",
+    title: "Садові бонсай і спеціальний догляд",
+    description: "Професійний догляд за садовими бонсай, Niwaki, формованими деревами та ексклюзивними контейнерними рослинами. Кожне дерево оцінюється індивідуально з повагою до форми, здоров'я і довгострокового розвитку.",
+    servicesLabel: "Послуги",
+    services: ["Формувальна та підтримувальна обрізка", "Побудова структури", "Догляд за здоров'ям дерева", "Індивідуальна консультація", "Догляд за садовими бонсай на терасах і в ексклюзивних садах"],
+    price: "CHF 80–110 / година",
+    note: "Залежно від обсягу роботи та складності."
+  },
+  {
+    eyebrow: "Дорога",
+    title: "Прозорий розрахунок дороги",
+    description: "Час у дорозі розраховується чесно: тільки фактичний час між моїм місцем перебування і вашим об'єктом, включно з дорогою туди й назад.",
+    servicesLabel: "Розрахунок",
+    services: ["Фактичний час у дорозі", "Дорога туди й назад", "Прозоро перед візитом"],
+    price: "CHF 50 / година дороги",
+    note: "Від 2 годин роботи дорога не нараховується."
+  },
+  {
+    eyebrow: "Консультація",
+    title: "Персональна консультація",
+    description: "Персональна консультація щодо садів, терас, садових бонсай, Niwaki та формованих дерев.",
+    servicesLabel: "Послуги",
+    services: ["Концепції догляду", "Оцінка місця", "План розвитку", "Індивідуальні рекомендації"],
+    price: "CHF 80 / година"
+  }
+];
+
+function pricingIntroDe() {
+  return `<section class="page-hero section">
+    <span class="eyebrow">Preise</span>
+    <h1>Preise - Gartenpflege, Bonsai und Beratung.</h1>
+    <p>Transparente Stundenansätze für Gartenpflege, Terrassenpflege, Gartenbonsai, Niwaki und Beratung. Sie sehen sofort, welche Arbeit zu welchem Ansatz gehört und wann Fahrzeit berechnet wird.</p>
+  </section>`;
+}
+
+function pricesDe() {
+  return `${pricingIntroDe()}
+  ${pricingGrid(pricingCardsDe)}
+  ${qualityPricingNote({
+    eyebrow: "Qualität",
+    title: "Qualität statt Schnellarbeit",
+    body: [
+      "Jeder Garten, jede Terrasse und jeder Baum verdient Aufmerksamkeit und Sorgfalt.",
+      "Ich arbeite sauber, zuverlässig und mit hohem Anspruch an Qualität. Mein Ziel ist nicht nur ein schönes Ergebnis für heute, sondern die gesunde und nachhaltige Entwicklung Ihrer Pflanzen über viele Jahre.",
+      "Sie erhalten eine ehrliche Beratung, faire Preise und eine sorgfältige Ausführung ohne versteckte Kosten."
+    ],
+    ctaText: "Foto senden - Baumform einschätzen",
+    callbackText: "Rückruf anfordern"
+  })}`;
 }
 
 function blogIndexDe() {
@@ -4358,10 +4493,30 @@ function genericEnPage(kind) {
     },
     prices: {
       h1: "Prices - quality before speed.",
-      body: `<p>Professional Japanese tree care starts at 110 CHF per hour. Travel starts at 90 CHF depending on distance. The first photo diagnosis is free.</p><div class="price-grid"><article class="card"><h2>110 CHF/h</h2><p>Work from</p></article><article class="card"><h2>90 CHF</h2><p>Travel from</p></article><article class="card"><h2>Free</h2><p>Photo diagnosis</p></article></div>`
+      body: `<p>Garden care is CHF 70 per hour. Garden bonsai and specialised care are CHF 80-110 per hour, depending on effort and difficulty. Travel time is CHF 50 per hour and is waived from 2 hours of work.</p>`
     }
   };
   return `<section class="page-hero section"><span class="eyebrow">English mirror</span><h1>${map[kind].h1}</h1>${map[kind].body}</section>${kind === "services" ? plantNameGuideEn() : ""}${finalCtaEn()}`;
+}
+
+function pricesEn() {
+  return `<section class="page-hero section">
+    <span class="eyebrow">Prices</span>
+    <h1>Prices - garden care, bonsai and consultation.</h1>
+    <p>Transparent hourly rates for garden care, terrace care, garden bonsai, niwaki and consultation. You can see which work belongs to which rate and when travel time is charged.</p>
+  </section>
+  ${pricingGrid(pricingCardsEn)}
+  ${qualityPricingNote({
+    eyebrow: "Quality",
+    title: "Quality instead of rushed work",
+    body: [
+      "Every garden, terrace and tree deserves attention and care.",
+      "I work cleanly, reliably and with a high standard of quality. The goal is not only a beautiful result today, but healthy and sustainable plant development over many years.",
+      "You receive honest advice, fair prices and careful execution without hidden costs."
+    ],
+    ctaText: "Send photo - assess tree shape",
+    callbackText: "Request callback"
+  })}`;
 }
 
 function contactEn() {
@@ -4531,8 +4686,8 @@ function homeUk() {
 
   <section class="section price-teaser">
     <span class="eyebrow">Ціни</span>
-    <h2>Якість замість поспіху.</h2>
-    <p>Чотири години доброї роботи варті більше, ніж дві години швидкої. Робота від 110 CHF/год, виїзд від 90 CHF.</p>
+    <h2>Прозорі ціни для справжнього догляду.</h2>
+    <p>Догляд за садом CHF 70/година, садові бонсай і спеціальний догляд CHF 80-110/година, консультація CHF 80/година. Дорога рахується прозоро: CHF 50/година і не нараховується від 2 годин роботи.</p>
     <a class="btn btn-secondary" href="preise.html">Переглянути ціни</a>
   </section>
 
@@ -4551,7 +4706,7 @@ function homeUk() {
     </div>
     <details><summary>Як врятувати мій нівакі або японський клен?</summary><p>Надішліть три фото: усе дерево, проблемну зону і крупний план. Перша оцінка - безкоштовна.</p></details>
     <details><summary>Чому моє дерево втрачає форму?</summary><p>Найчастіше було проігноровано розподіл енергії в кроні. Тоді всередині накопичуються вологість, суховіття і неправильні пагони.</p></details>
-    <details><summary>Скільки коштує японський догляд за деревами в регіоні Цюриха?</summary><p>Робота від 110 CHF/год, виїзд від 90 CHF. Зустріч на місці - після фото-діагностики.</p></details>
+    <details><summary>Скільки коштує догляд за садом і спеціальний догляд за деревами в регіоні Цюриха?</summary><p>Догляд за садом коштує CHF 70/година. Садові бонсай і спеціальний догляд - CHF 80-110/година, консультація - CHF 80/година. Дорога коштує CHF 50/година і не нараховується від 2 годин роботи.</p></details>
   </section>
   ${finalCtaUk()}`;
 }
@@ -4595,7 +4750,7 @@ function genericUkPage(kind) {
     prices: {
       eyebrow: "Ціни",
       h1: "Ціни - якість замість поспіху.",
-      body: `<p>Професійний японський догляд за деревами стартує від 110 CHF за годину. Виїзд - від 90 CHF залежно від відстані. Перша фото-діагностика безкоштовна.</p><div class="price-grid"><article class="card"><h2>від 110 CHF/год</h2><p>Ручна робота</p></article><article class="card"><h2>від 90 CHF</h2><p>Виїзд</p></article><article class="card"><h2>Безкоштовно</h2><p>Фото-діагностика</p></article></div><p>Швидкий зріз часто коштує дорожче, якщо він забирає форму і здоров'я дерева на роки.</p>`
+      body: `<p>Догляд за садом коштує CHF 70 за годину. Садові бонсай і спеціальний догляд коштують CHF 80-110 за годину залежно від обсягу та складності. Час у дорозі - CHF 50 за годину і не нараховується від 2 годин роботи.</p>`
     }
   };
   const page = pages[kind];
@@ -4603,21 +4758,23 @@ function genericUkPage(kind) {
 }
 
 function pricesUk() {
-  return `
-  <section class="page-hero section"><span class="eyebrow">Ціни</span><h1>Ціни - якість замість поспіху.</h1><p>Професійний японський догляд за деревами стартує від 110 CHF за годину. Виїзд - від 90 CHF залежно від відстані. Перша фото-діагностика безкоштовна.</p><div class="price-grid"><article class="card"><h2>від 110 CHF/год</h2><p>Ручна робота</p></article><article class="card"><h2>від 90 CHF</h2><p>Виїзд</p></article><article class="card"><h2>Безкоштовно</h2><p>Фото-діагностика</p></article></div><p>Швидкий зріз часто коштує дорожче, якщо він забирає форму і здоров'я дерева на роки.</p></section>
-  <section class="section note-block speed-quality-note">
-    <span class="eyebrow">Швидкість проти якості</span>
-    <h2>Чому не швидше?</h2>
-    <p>Гілку можна зрізати за секунду. А виростити нову гілку - це роки. Тому швидкість у формувальному зрізі не є ознакою якості, а часто є ризиком.</p>
-    <div class="speed-quality-contrast" aria-label="Порівняння часу між швидким зрізом і новим ростом">
-      <div><strong>1 секунда</strong><span>зрізати гілку</span></div>
-      <div class="speed-quality-vs">проти</div>
-      <div><strong>Роки</strong><span>відростити нову гілку</span></div>
-    </div>
-    <p class="speed-quality-warning">Я волію працювати повільніше і чисто, щоб дерево зберегло силу, рана чисто загоїлася, а форма не втратилася на роки.</p>
-    <div class="btn-row">${ctaUk("Надіслати фото - безкоштовна діагностика")} <a class="btn btn-secondary" href="kontakt.html#rueckruf" data-event="cta_callback_click">Запросити дзвінок</a></div>
+  return `<section class="page-hero section">
+    <span class="eyebrow">Ціни</span>
+    <h1>Ціни - догляд за садом, бонсай і консультація.</h1>
+    <p>Прозорі погодинні тарифи для догляду за садом, терасою, садовими бонсай, Niwaki та консультацій. Одразу видно, яка робота до якого тарифу належить і коли нараховується дорога.</p>
   </section>
-  ${finalCtaUk()}`;
+  ${pricingGrid(pricingCardsUk)}
+  ${qualityPricingNote({
+    eyebrow: "Якість",
+    title: "Якість замість швидкої роботи",
+    body: [
+      "Кожен сад, кожна тераса і кожне дерево заслуговують уваги та акуратності.",
+      "Я працюю чисто, надійно і з високою вимогою до якості. Мета - не тільки красивий результат сьогодні, а здоровий і сталий розвиток ваших рослин на багато років.",
+      "Ви отримуєте чесну консультацію, справедливі ціни і ретельне виконання без прихованих витрат."
+    ],
+    ctaText: "Надіслати фото - оцінити форму дерева",
+    callbackText: "Запросити дзвінок"
+  })}`;
 }
 
 function blogIndexUk() {
@@ -5727,7 +5884,7 @@ function homepageRescueSliderCss() {
 }
 
 function pricePageCss() {
-  return `.price-page .price-grid{max-width:none;margin:0;padding:clamp(42px,7vw,82px) max(18px,calc((100vw - var(--maxw))/2));background:linear-gradient(135deg,#16301f,#22452f);color:#f4f1e8;border-top:1px solid rgba(244,241,232,.14);border-bottom:1px solid rgba(244,241,232,.14)}.price-page .price-grid .card{background:rgba(244,241,232,.045);border:1px solid rgba(244,241,232,.22);box-shadow:0 18px 54px rgba(0,0,0,.18);color:#f4f1e8;border-radius:8px}.price-page .price-grid .eyebrow{color:#c9a24b}.price-page .price-grid .eyebrow:before{background:#c9a24b}.price-page .price-grid h2{color:#c9a24b;font-size:clamp(2rem,3.4vw,2.85rem)}.price-page .price-grid p{color:rgba(244,241,232,.78);font-weight:650}.price-page .page-hero .price-grid{margin-top:28px;border-radius:0}.price-page .page-hero .price-grid .card{box-shadow:none}@media (max-width:620px){.price-page .price-grid{padding:36px 16px}.price-page .price-grid h2{font-size:2rem}}`;
+  return `.footer-canton-list{display:grid;gap:4px;margin:8px 0 0;padding:0;list-style:none;color:color-mix(in srgb,var(--primary-ink) 82%,transparent);font-weight:650;line-height:1.35}.footer-canton-list li{margin:0}.price-page .pricing-service-grid{max-width:none;margin:0;padding:clamp(42px,7vw,82px) max(18px,calc((100vw - var(--maxw))/2));display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;background:linear-gradient(135deg,#16301f,#22452f);color:#f4f1e8;border-top:1px solid rgba(244,241,232,.14);border-bottom:1px solid rgba(244,241,232,.14)}.pricing-card{display:flex;flex-direction:column;gap:12px;min-width:0}.price-page .pricing-card{background:rgba(244,241,232,.045);border:1px solid rgba(244,241,232,.22);box-shadow:0 18px 54px rgba(0,0,0,.18);color:#f4f1e8;border-radius:8px;padding:clamp(18px,2.4vw,26px)}.price-page .pricing-card .eyebrow{color:#c9a24b}.price-page .pricing-card .eyebrow:before{background:#c9a24b}.pricing-card h2{font-size:clamp(1.5rem,2.1vw,2rem);line-height:1.08;margin:0}.price-page .pricing-card h2{color:#f4f1e8}.pricing-card h3{font-family:var(--font-body);font-size:.82rem;text-transform:uppercase;margin:0 0 8px;color:var(--primary);letter-spacing:0}.price-page .pricing-card h3{color:#c9a24b}.pricing-card-copy{margin:0;color:var(--muted);font-weight:650}.price-page .pricing-card-copy,.price-page .pricing-services li,.price-page .pricing-note{color:rgba(244,241,232,.78)}.pricing-services{margin-top:2px}.pricing-services ul{display:grid;gap:6px;margin:0;padding-left:18px}.pricing-services li{padding-left:2px}.pricing-price{margin-top:auto!important;padding-top:14px;border-top:1px solid color-mix(in srgb,var(--accent) 34%,var(--line));font-family:var(--font-head);font-size:clamp(1.55rem,2.4vw,2.35rem);line-height:1.05;color:var(--primary);font-weight:760}.price-page .pricing-price{color:#ffe6a8}.pricing-note{margin:-6px 0 0;font-size:.92rem;font-weight:720}.pricing-quality-note{max-width:var(--maxw);border-left:6px solid var(--accent);background:linear-gradient(135deg,color-mix(in srgb,var(--surface) 90%,var(--accent)),var(--surface))}.pricing-quality-note p{max-width:880px}.pricing-quality-note p:last-of-type{font-weight:760}.price-page .price-grid{grid-template-columns:repeat(2,minmax(0,1fr))}@media (max-width:920px){.price-page .pricing-service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:620px){.footer-canton-list{gap:3px}.price-page .pricing-service-grid{grid-template-columns:1fr;padding:36px 16px;gap:14px}.pricing-card h2{font-size:1.45rem}.pricing-price{font-size:1.75rem}.pricing-services ul{padding-left:17px}}`;
 }
 
 function mobileCookieBannerCss() {
@@ -5831,7 +5988,7 @@ const pages = [
   ["leistungen.html", "de", "Niwaki, japanischer Ahorn & Kiefer-Formschnitt", "Leistungen für Niwaki Schnitt, Acer palmatum Pflege und Formschnitt von Nadelgehölzen in der Schweiz.", servicesDe(), [localBusinessLd(), serviceLd("Niwaki, Ahorn und Kiefer-Formschnitt", "Japanische Baumpflege, Niwaki Schnitt und Formschnitt für Nadelgehölze.")]],
   ["philosophie.html", "de", "Philosophie & Meister - japanische Gartenkunst", "Mein Weg vom einfachen Schnitt zur japanischen Baumkunst: Kyoto 2009, Respekt vor dem Baum und Arbeit nach Naturgesetzen.", philosophyDe(), [localBusinessLd(), personLd()]],
   ["galerie.html", "de", "Vorher / Nachher - Garten-Bonsai & Niwaki", "Reale Vorher-/Nachher-Fotos, Gartenbonsai, Niwaki-Beispiele und Arbeitsphasen aus meiner Arbeit.", galleryDe(), [localBusinessLd()]],
-  ["preise.html", "de", "Japanische Baumpflege - Preise & Kosten", "Preise für japanische Baumpflege: Arbeit ab 110 CHF pro Stunde, Anfahrt ab 90 CHF, Foto-Diagnose kostenlos.", pricesDe(), [localBusinessLd(), faqLd()]],
+  ["preise.html", "de", "Gartenpflege, Bonsai & Beratung - Preise", "Preise für Gartenpflege, Terrassenpflege, Gartenbonsai, spezielle Pflege, Anfahrt und Beratung bei Viktor Garden.", pricesDe(), [localBusinessLd(), faqLd()]],
   ["blog/index.html", "de", "Niwaki Wissen - Stil, Topiarschere, Kiefer & Diagnose", "Meine fachlichen Artikel zu Niwaki-Stilen, Topiarschere, Krone, Kiefer-Kerzen, alten Nadeln, Moos, Akadama, Wurzeln und Klimastress.", blogIndexDeV2(), [localBusinessLd()]],
   ["blog/topiarschere.html", "de", "Topiarschere vs. Heckenschere - sauberer Schnitt", "Warum ich beim Formschnitt mit der Topiarschere arbeite: sauberer Schnitt, weniger Energieverlust, japanisches Werkzeug.", articleTopiaryDeV2(), [localBusinessLd()]],
   ["blog/energie-krone.html", "de", "Krone öffnen - Energie, Licht und Luft im Niwaki", "Warum ich die Krone öffne: Energieverteilung, Licht, Luft und langfristige Form statt schneller Heckenlogik.", articleCrownDeV2(), [localBusinessLd()]],
@@ -5848,7 +6005,7 @@ const pages = [
   ["en/leistungen.html", "en", "Services - Niwaki, Maples & Conifers", "English service page for niwaki, Japanese maple and conifer shaping services.", servicesEn(), [localBusinessLd(), serviceLd("Niwaki, maples and conifers", "Japanese tree care and shaping.")]],
   ["en/philosophie.html", "en", "Philosophy & Master - Japanese Garden Art", "My path from simple cutting to Japanese tree art: Kyoto 2009, respect for the tree and work with nature's laws.", philosophyEn(), [localBusinessLd(), personLd()]],
   ["en/galerie.html", "en", "Before / After - Garden Bonsai & Niwaki", "Real before/after photos, niwaki examples, garden bonsai and work stages from my work.", galleryEn(), [localBusinessLd()]],
-  ["en/preise.html", "en", "Japanese Tree Care - Prices & Costs", "Prices: work from 110 CHF per hour, travel from 90 CHF, free photo diagnosis.", genericEnPage("prices"), [localBusinessLd(), faqLd()]],
+  ["en/preise.html", "en", "Garden Care, Bonsai & Consultation - Prices", "Prices for garden care, terrace care, garden bonsai, special care, travel time and consultation at Viktor Garden.", pricesEn(), [localBusinessLd(), faqLd()]],
   ["en/blog/index.html", "en", "Niwaki Knowledge - Styles, Tools, Pines & Diagnosis", "English mirror articles about niwaki styles, topiary scissors, crown energy, pine candles, old needles, moss, roots and climate stress.", blogIndexEnV2(), [localBusinessLd()]],
   ["en/blog/topiarschere.html", "en", "Topiary Scissors vs Hedge Trimmer", "Why I cut with topiary scissors for cleaner tree shaping.", articleEnV2("topiary"), [localBusinessLd()]],
   ["en/blog/energie-krone.html", "en", "Opening the Crown - Energy, Light and Air", "Why I open a niwaki crown for light, air and long-term form.", articleEnV2("crown"), [localBusinessLd()]],
@@ -5885,7 +6042,7 @@ const ukPageOverrides = new Map([
   ["uk/leistungen.html", ["uk/leistungen.html", "uk", "Послуги - Niwaki, японські клени та хвойні", "Українська сторінка послуг Viktor Garden: Niwaki, японські клени, сосни та хвойні дерева.", servicesUk(), [localBusinessLd(), serviceLd("Niwaki, Ahorn und Kiefer-Formschnitt", "Japanische Baumpflege, Niwaki Schnitt und Formschnitt für Nadelgehölze.")]]],
   ["uk/philosophie.html", ["uk/philosophie.html", "uk", "Філософія та майстерність - Viktor Garden", "Українська сторінка про мою філософію, досвід і підхід до японської деревної архітектури.", philosophyUk(), [localBusinessLd(), personLd()]]],
   ["uk/galerie.html", ["uk/galerie.html", "uk", "Галерея - до і після, Garten-Bonsai та Niwaki", "Українська галерея Viktor Garden: реальні фото до і після, Niwaki, садовий бонсай і етапи роботи.", galleryUk(), [localBusinessLd()]]],
-  ["uk/preise.html", ["uk/preise.html", "uk", "Ціни - японський догляд за деревами", "Українська сторінка цін Viktor Garden: робота від 110 CHF/год, виїзд від 90 CHF, фото-діагностика безкоштовна.", pricesUk(), [localBusinessLd(), faqLd()]]],
+  ["uk/preise.html", ["uk/preise.html", "uk", "Ціни - догляд за садом, бонсай і консультація", "Українська сторінка цін Viktor Garden: садовий догляд, спеціальний догляд, дорога і консультація з прозорими CHF тарифами.", pricesUk(), [localBusinessLd(), faqLd()]]],
   ["uk/blog/index.html", ["uk/blog/index.html", "uk", "Знання Niwaki - стилі, інструменти, сосна і діагностика", "Українські матеріали про Niwaki, стилі, японські ножиці, енергію крони, сосни і кліматичний стрес.", blogIndexUk(), [localBusinessLd()]]],
   ["uk/blog/topiarschere.html", ["uk/blog/topiarschere.html", "uk", "Японські ножиці проти тримера - чистий зріз", "Українська стаття про чистий зріз, японські ножиці і контроль майбутньої форми дерева.", articleUk("topiary"), [localBusinessLd()]]],
   ["uk/blog/energie-krone.html", ["uk/blog/energie-krone.html", "uk", "Відкрити крону - енергія, світло і повітря", "Українська стаття про те, чому крону Niwaki треба відкривати для світла, повітря і довгої форми.", articleUk("crown"), [localBusinessLd()]]],
@@ -5930,7 +6087,7 @@ Verified facts:
 - Primary language: German for Switzerland; English and Ukrainian mirror pages exist.
 - French and Italian are noindex coming-later stubs only, not full localized versions.
 - First step for clients: free photo diagnosis from three photos: whole tree, problem area, close-up.
-- Prices: work from 110 CHF/hour, travel from 90 CHF.
+- Prices: garden care CHF 70/hour, garden bonsai and specialised care CHF 80-110/hour, travel time CHF 50/hour, consultation CHF 80/hour.
 - Service area: Zürich, Zürichsee, Zug, Luzern, Aargau, Schwyz, Schaffhausen, Appenzell, Glarus; other Swiss regions by arrangement.
 
 Positioning:
