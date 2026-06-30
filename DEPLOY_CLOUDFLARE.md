@@ -9,12 +9,11 @@
 
 ## Production Handoff Gate
 
-- Legal data is not available yet.
+- Legal data approved by Viktor/Andrii is implemented in the German, English and Ukrainian legal pages.
+- UID/MWST/VAT is intentionally omitted because no real number has been provided.
 - Cloudflare Pages preview deployment is OK for technical testing.
-- Do not add production custom domains and do not hand over the site to the client while `impressum.html`, `datenschutz.html`, `en/impressum.html`, `en/datenschutz.html`, `uk/impressum.html`, or `uk/datenschutz.html` contain placeholder legal text.
-- Required legal data is listed in `LEGAL_DATA_REQUIRED.md`.
 - After building `dist`, run `node tools/audit-production-handoff.mjs`.
-- The handoff audit must pass before production custom-domain launch, unless Viktor explicitly approves publishing draft legal pages.
+- The handoff audit must pass before production custom-domain launch.
 
 ## Environment Variables
 
@@ -45,7 +44,7 @@ Only add these production custom domains after:
 
 - Pages preview has been tested.
 - `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` are configured and contact form delivery is verified.
-- Legal placeholders are replaced with approved legal text or explicitly approved for publication by Viktor.
+- `node tools/audit-production-handoff.mjs` passes after the latest build.
 
 If Cloudflare reports DNS conflicts, remove or replace only old Hostpoint web records that point to parking/origin and are not needed:
 

@@ -4390,22 +4390,89 @@ function contactDe() {
 
 function legalDe(kind) {
   const isPrivacy = kind === "datenschutz";
-  return `
-  <!-- Draft legal page: must be reviewed and completed by Viktor/Andrii before publication. -->
+  if (!isPrivacy) {
+    return `
   <section class="page-hero section legal">
-    <span class="eyebrow">Entwurf</span>
-    <h1>${isPrivacy ? "Datenschutzerklärung" : "Impressum"}.</h1>
-    <p>Diese Seite ist strukturiert, aber nicht final. Alle rechtlichen Angaben müssen vor Veröffentlichung geprüft und ergänzt werden.</p>
+    <span class="eyebrow">Impressum</span>
+    <h1>Impressum.</h1>
+    <p>Angaben zur verantwortlichen Person und zum Betreiber dieser Website.</p>
   </section>
   <section class="section legal-content">
-    <h2>${isPrivacy ? "Verantwortliche Stelle" : "Angaben gemäss Schweizer Recht"}</h2>
-    <p>${brand}<br>Adresse folgt nach Freigabe<br>Schweiz</p>
+    <h2>Betreiber</h2>
+    <p>Viktor Kolesnikov / Viktor Garten<br>Grosswiesenstrasse 63<br>8422 Pfungen<br>Schweiz</p>
     <h2>Kontakt</h2>
-    <p>Telefon und E-Mail folgen nach Freigabe.</p>
-    <h2>${isPrivacy ? "Personendaten, Formulare und Analyse" : "Haftung für Inhalte"}</h2>
-    <p>${isPrivacy ? "Kontaktformulare, Foto-Uploads, Analytics und Ads-Messung werden erst nach finaler technischer und rechtlicher Prüfung produktiv geschaltet. Google Consent Mode ist im Code vorbereitet; externe IDs sind noch nicht aktiv." : "Die Inhalte werden sorgfältig erstellt. Für Vollständigkeit, Richtigkeit und Aktualität wird bis zur finalen Freigabe keine Gewähr übernommen."}</p>
-    <h2>${isPrivacy ? "Cookies und Einwilligung" : "Haftung für Links"}</h2>
-    <p>${isPrivacy ? "Analyse- und Marketing-Speicher sind standardmässig abgelehnt und werden erst nach Zustimmung aktiviert. Externe Dienste bleiben bis zur finalen Konfiguration deaktiviert." : "Externe Links werden vor Veröffentlichung geprüft. Für Inhalte externer Seiten sind ausschliesslich deren Betreiber verantwortlich."}</p>
+    <p><a href="mailto:vik.garten@gmail.com">vik.garten@gmail.com</a><br><a href="tel:+41783130330">+41 78 313 03 30</a></p>
+    <h2>Verantwortlich für den Inhalt</h2>
+    <p>Viktor Kolesnikov</p>
+    <h2>Haftung für Inhalte und Links</h2>
+    <p>Die Inhalte dieser Website werden sorgfältig erstellt. Für externe Links sind ausschliesslich die Betreiber der verlinkten Seiten verantwortlich.</p>
+  </section>`;
+  }
+  return `
+  <section class="page-hero section legal">
+    <span class="eyebrow">Datenschutz</span>
+    <h1>Datenschutzerklärung.</h1>
+    <p>Diese Hinweise erklären kurz, wie personenbezogene Daten auf dieser Website verarbeitet werden.</p>
+  </section>
+  <section class="section legal-content">
+    <h2>Verantwortliche Stelle</h2>
+    <p>Viktor Kolesnikov / Viktor Garten<br>Grosswiesenstrasse 63<br>8422 Pfungen<br>Schweiz<br><a href="mailto:vik.garten@gmail.com">vik.garten@gmail.com</a><br><a href="tel:+41783130330">+41 78 313 03 30</a></p>
+    <h2>Verarbeitete Daten</h2>
+    <p>Bei Anfragen können Name, Telefonnummer, E-Mail-Adresse, Nachricht, gewünschte Leistung, Rückrufzeit, Kanton und technische Zugriffsdaten verarbeitet werden.</p>
+    <h2>Zweck der Verarbeitung</h2>
+    <p>Die Daten werden verwendet, um Anfragen zu beantworten, Rückrufe zu organisieren, Aufträge vorzubereiten sowie die Website sicher und stabil zu betreiben.</p>
+    <h2>Kontaktformulare und Telegram</h2>
+    <p>Kontakt- und Rückrufanfragen werden über die Website entgegengenommen und als Telegram-Bot-Benachrichtigung an Viktor Kolesnikov weitergeleitet. Telegram wird nur zur Benachrichtigung über neue Anfragen genutzt.</p>
+    <h2>Dienstleister</h2>
+    <p>Die Website wird über Cloudflare Pages bereitgestellt. Cloudflare kann für Hosting, DNS, CDN und Sicherheitsfunktionen technische Zugriffsdaten verarbeiten. E-Mail und mailbezogene DNS-Einträge laufen über Hostpoint.</p>
+    <h2>Analytics, Ads und Search Console</h2>
+    <p>Google Analytics 4 und Google Ads sind nicht aktiv, solange keine echten IDs konfiguriert sind. Falls Analyse- oder Werbedienste später aktiviert werden, muss diese Datenschutzerklärung vorab aktualisiert werden. Google Search Console kann später über einen DNS-TXT-Eintrag verifiziert werden.</p>
+    <h2>Kontakt zu Datenschutzfragen</h2>
+    <p>Fragen zu Personendaten oder Datenschutz können per E-Mail an <a href="mailto:vik.garten@gmail.com">vik.garten@gmail.com</a> gesendet werden.</p>
+  </section>`;
+}
+
+function legalEn(kind) {
+  const isPrivacy = kind === "datenschutz";
+  if (!isPrivacy) {
+    return `
+  <section class="page-hero section legal">
+    <span class="eyebrow">Legal Notice</span>
+    <h1>Legal Notice.</h1>
+    <p>Legal information about the responsible person and website operator.</p>
+  </section>
+  <section class="section legal-content">
+    <h2>Operator</h2>
+    <p>Viktor Kolesnikov / Viktor Garten<br>Grosswiesenstrasse 63<br>8422 Pfungen<br>Switzerland</p>
+    <h2>Contact</h2>
+    <p><a href="mailto:vik.garten@gmail.com">vik.garten@gmail.com</a><br><a href="tel:+41783130330">+41 78 313 03 30</a></p>
+    <h2>Responsible for Content</h2>
+    <p>Viktor Kolesnikov</p>
+    <h2>Content and Links</h2>
+    <p>The website content is prepared with care. External links remain the responsibility of the respective website operators.</p>
+  </section>`;
+  }
+  return `
+  <section class="page-hero section legal">
+    <span class="eyebrow">Privacy</span>
+    <h1>Privacy Policy.</h1>
+    <p>This page summarizes how personal data may be processed on this website.</p>
+  </section>
+  <section class="section legal-content">
+    <h2>Controller</h2>
+    <p>Viktor Kolesnikov / Viktor Garten<br>Grosswiesenstrasse 63<br>8422 Pfungen<br>Switzerland<br><a href="mailto:vik.garten@gmail.com">vik.garten@gmail.com</a><br><a href="tel:+41783130330">+41 78 313 03 30</a></p>
+    <h2>Processed Data</h2>
+    <p>When you submit an inquiry, the processed data may include name, phone number, email address, message, requested service, callback time, canton and technical access data.</p>
+    <h2>Purpose</h2>
+    <p>The data is used to answer inquiries, arrange callbacks, prepare service requests and operate the website securely.</p>
+    <h2>Contact Forms and Telegram</h2>
+    <p>Contact and callback form submissions are received through the website and forwarded to Viktor Kolesnikov as Telegram bot notifications.</p>
+    <h2>Service Providers</h2>
+    <p>The website is hosted on Cloudflare Pages. Cloudflare may process technical access data for hosting, DNS, CDN and security. Email and mail-related DNS records are provided through Hostpoint.</p>
+    <h2>Analytics, Ads and Search Console</h2>
+    <p>Google Analytics 4 and Google Ads are not active while no real IDs are configured. If analytics or advertising services are activated later, this privacy policy must be updated first. Google Search Console may later be verified through a DNS TXT record.</p>
+    <h2>Privacy Contact</h2>
+    <p>Privacy questions can be sent to <a href="mailto:vik.garten@gmail.com">vik.garten@gmail.com</a>.</p>
   </section>`;
 }
 
@@ -4846,7 +4913,10 @@ function contactUk() {
 
 function legalUk(kind) {
   const isPrivacy = kind === "datenschutz";
-  return `<section class="page-hero section legal"><span class="eyebrow">Чернетка</span><h1>${isPrivacy ? "Політика приватності" : "Юридична інформація"}.</h1><p>Ця сторінка структурована, але не фінальна. Юридичні дані треба перевірити і доповнити перед публікацією.</p></section><section class="section legal-content"><h2>${isPrivacy ? "Відповідальна сторона" : "Дані за швейцарськими вимогами"}</h2><p>${brand}<br>Адреса після погодження<br>Швейцарія</p><h2>Контакт</h2><p>Телефон і e-mail додаються після фінального погодження.</p><h2>${isPrivacy ? "Персональні дані, форми і аналітика" : "Відповідальність за контент"}</h2><p>${isPrivacy ? "Форми, фото-завантаження, Analytics і Ads вимірювання вмикаються тільки після фінальної технічної та юридичної перевірки. Consent Mode підготовлений у коді; зовнішні IDs ще не активні." : "Контент підготовлений уважно, але до фінального погодження не є юридично завершеним документом."}</p><h2>${isPrivacy ? "Cookies і згода" : "Відповідальність за посилання"}</h2><p>${isPrivacy ? "Аналітичні та маркетингові сховища за замовчуванням вимкнені і активуються лише після згоди. Зовнішні сервіси залишаються вимкненими до фінальної конфігурації." : "Зовнішні посилання перевіряються перед публікацією. За зміст зовнішніх сторінок відповідають виключно їхні оператори."}</p></section>`;
+  if (!isPrivacy) {
+    return `<section class="page-hero section legal"><span class="eyebrow">Юридична інформація</span><h1>Юридична інформація.</h1><p>Дані про відповідальну особу та оператора цього сайту.</p></section><section class="section legal-content"><h2>Оператор</h2><p>Viktor Kolesnikov / Viktor Garten<br>Grosswiesenstrasse 63<br>8422 Pfungen<br>Switzerland</p><h2>Контакт</h2><p><a href="mailto:vik.garten@gmail.com">vik.garten@gmail.com</a><br><a href="tel:+41783130330">+41 78 313 03 30</a></p><h2>Відповідальний за контент</h2><p>Viktor Kolesnikov</p><h2>Контент і посилання</h2><p>Матеріали сайту підготовлені уважно. За зовнішні посилання відповідають оператори відповідних сайтів.</p></section>`;
+  }
+  return `<section class="page-hero section legal"><span class="eyebrow">Приватність</span><h1>Політика приватності.</h1><p>Коротке пояснення, які персональні дані можуть оброблятися на цьому сайті.</p></section><section class="section legal-content"><h2>Відповідальна сторона</h2><p>Viktor Kolesnikov / Viktor Garten<br>Grosswiesenstrasse 63<br>8422 Pfungen<br>Switzerland<br><a href="mailto:vik.garten@gmail.com">vik.garten@gmail.com</a><br><a href="tel:+41783130330">+41 78 313 03 30</a></p><h2>Які дані обробляються</h2><p>Під час запиту можуть оброблятися ім'я, телефон, e-mail, повідомлення, бажана послуга, час зворотного дзвінка, кантон і технічні дані доступу.</p><h2>Мета обробки</h2><p>Дані використовуються для відповіді на запити, організації зворотних дзвінків, підготовки послуг і безпечної роботи сайту.</p><h2>Форми і Telegram</h2><p>Запити з контактної форми та форми зворотного дзвінка надходять через сайт і пересилаються Viktor Kolesnikov як Telegram bot notification.</p><h2>Постачальники сервісів</h2><p>Сайт розміщений на Cloudflare Pages. Cloudflare може обробляти технічні дані доступу для hosting, DNS, CDN і security. E-mail та mail-related DNS records працюють через Hostpoint.</p><h2>Analytics, Ads і Search Console</h2><p>Google Analytics 4 і Google Ads не активні, поки не налаштовані реальні IDs. Якщо analytics або advertising services будуть активовані пізніше, цю політику приватності треба оновити до активації. Google Search Console може бути підтверджений пізніше через DNS TXT record.</p><h2>Контакт з питань приватності</h2><p>Питання щодо персональних даних можна надсилати на <a href="mailto:vik.garten@gmail.com">vik.garten@gmail.com</a>.</p></section>`;
 }
 
 function themesPageUk() {
@@ -5998,8 +6068,8 @@ const pages = [
   ...answerPageEntries.filter(([file]) => !file.startsWith("en/")),
   ...geoPageEntries.filter(([file]) => !file.startsWith("en/")),
   ["kontakt.html", "de", "Kontakt & kostenlose Foto-Diagnose - Baumpflege", "Senden Sie mir Fotos, erhalten Sie eine kostenlose Diagnose und fordern Sie einen Rückruf an.", contactDe(), [localBusinessLd()]],
-  ["impressum.html", "de", "Impressum - Viktor Garden", "Platzhalter-Impressum für Viktor Garden. Vor Veröffentlichung rechtlich ergänzen.", legalDe("impressum"), []],
-  ["datenschutz.html", "de", "Datenschutz - Viktor Garden", "Platzhalter-Datenschutzerklärung mit Consent Mode Hinweis. Vor Veröffentlichung rechtlich prüfen.", legalDe("datenschutz"), []],
+  ["impressum.html", "de", "Impressum - Viktor Garden", "Impressum von Viktor Kolesnikov / Viktor Garten in Pfungen, Schweiz.", legalDe("impressum"), []],
+  ["datenschutz.html", "de", "Datenschutz - Viktor Garden", "Datenschutzerklärung von Viktor Garten: Kontaktformulare, Telegram-Benachrichtigungen, Cloudflare, Hostpoint und inaktive Analytics/Ads.", legalDe("datenschutz"), []],
   ["themes.html", "de", "Theme Preview - Viktor Garden", "Interne Vorschau für Design Themes V1 bis V5.", themesPage(), []],
   ["en/index.html", "en", "Niwaki & Japanese Tree Art - Viktor Garden", "Japanese tree care, niwaki and garden bonsai in the Zurich region. Free photo diagnosis.", homeEn(), [localBusinessLd(), personLd(), faqLd()]],
   ["en/leistungen.html", "en", "Services - Niwaki, Maples & Conifers", "English service page for niwaki, Japanese maple and conifer shaping services.", servicesEn(), [localBusinessLd(), serviceLd("Niwaki, maples and conifers", "Japanese tree care and shaping.")]],
@@ -6015,8 +6085,8 @@ const pages = [
   ...answerPageEntries.filter(([file]) => file.startsWith("en/")),
   ...geoPageEntries.filter(([file]) => file.startsWith("en/")),
   ["en/kontakt.html", "en", "Contact & Free Photo Diagnosis", "Send photos of your tree and request a free first assessment.", contactEn(), [localBusinessLd()]],
-  ["en/impressum.html", "en", "Legal Notice - Viktor Garden", "Placeholder legal notice. Complete before publication.", legalDe("impressum").replaceAll("Impressum", "Legal Notice").replaceAll("Datenschutzerklärung", "Privacy Policy"), []],
-  ["en/datenschutz.html", "en", "Privacy Policy - Viktor Garden", "Placeholder privacy policy. Complete before publication.", legalDe("datenschutz").replaceAll("Datenschutzerklärung", "Privacy Policy"), []]
+  ["en/impressum.html", "en", "Legal Notice - Viktor Garden", "Legal notice for Viktor Kolesnikov / Viktor Garten in Pfungen, Switzerland.", legalEn("impressum"), []],
+  ["en/datenschutz.html", "en", "Privacy Policy - Viktor Garden", "Privacy policy for Viktor Garten: contact forms, Telegram notifications, Cloudflare, Hostpoint and inactive Analytics/Ads.", legalEn("datenschutz"), []]
   ,["en/themes.html", "en", "Theme Preview - Viktor Garden", "Internal preview for design themes V1 to V5.", themesPage(), []],
   ["fr/index.html", "fr", "Version française en préparation - Viktor Garden", "Maquette noindex pour une future version française de Viktor Garden. La traduction complète sera préparée plus tard.", frItPlaceholderPage("fr"), [localBusinessLd()]],
   ["it/index.html", "it", "Versione italiana in preparazione - Viktor Garden", "Maquette noindex per una futura versione italiana di Viktor Garden. La traduzione completa sarà preparata più tardi.", frItPlaceholderPage("it"), [localBusinessLd()]],
@@ -6050,8 +6120,8 @@ const ukPageOverrides = new Map([
   ["uk/blog/kiefer-kerzen.html", ["uk/blog/kiefer-kerzen.html", "uk", "Свічки сосни - помилка у Pinus thunbergii", "Українська стаття про свічки сосни, правильний момент і помилку зі зрізом задерев'янілого приросту.", articleUk("candles"), [localBusinessLd()]]],
   ["uk/blog/klimastress.html", ["uk/blog/klimastress.html", "uk", "Кліматичний стрес у преміум-саді Швейцарії", "Українська стаття про спеку, сухі літа, сильні дощі і ранню фото-діагностику цінних садових дерев.", articleUk("climate"), [localBusinessLd()]]],
   ["uk/kontakt.html", ["uk/kontakt.html", "uk", "Контакт і безкоштовна фото-діагностика", "Українська контактна сторінка Viktor Garden: надішліть фото дерева у WhatsApp або запросіть дзвінок.", contactUk(), [localBusinessLd()]]],
-  ["uk/impressum.html", ["uk/impressum.html", "uk", "Юридична інформація - Viktor Garden", "Українська чернетка юридичної сторінки. Перед публікацією потрібна юридична перевірка.", legalUk("impressum"), []]],
-  ["uk/datenschutz.html", ["uk/datenschutz.html", "uk", "Політика приватності - Viktor Garden", "Українська чернетка політики приватності. Перед публікацією потрібна юридична перевірка.", legalUk("datenschutz"), []]],
+  ["uk/impressum.html", ["uk/impressum.html", "uk", "Юридична інформація - Viktor Garden", "Юридична інформація про Viktor Kolesnikov / Viktor Garten у Pfungen, Switzerland.", legalUk("impressum"), []]],
+  ["uk/datenschutz.html", ["uk/datenschutz.html", "uk", "Політика приватності - Viktor Garden", "Політика приватності Viktor Garten: контактні форми, Telegram notifications, Cloudflare, Hostpoint та неактивні Analytics/Ads.", legalUk("datenschutz"), []]],
   ["uk/themes.html", ["uk/themes.html", "uk", "Theme Preview - Viktor Garden", "Український внутрішній preview дизайн-тем V1-V5.", themesPageUk(), []]]
 ]);
 
