@@ -12,7 +12,9 @@
 *.log
 
 # Local source/raw/handoff artifacts that are not part of the public site
-/handoff/
+/handoff/*
+!/handoff/ai-local-discovery-checklist.md
+!/handoff/fr-it-localization-reminder.md
 /*.jpg
 /*.png
 
