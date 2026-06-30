@@ -11,6 +11,31 @@
     });
   }
 
+  $$('[data-lang-switch]').forEach((switcher) => {
+    const toggle = $('[data-lang-toggle]', switcher);
+    const menu = $('[data-lang-menu]', switcher);
+    if (!toggle || !menu) return;
+    const setOpen = (open) => {
+      switcher.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      menu.hidden = !open;
+    };
+    setOpen(false);
+    toggle.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      setOpen(menu.hidden);
+    });
+    $$('a', menu).forEach((link) => link.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('click', (event) => {
+      const target = event.target instanceof Element ? event.target : null;
+      if (!target || !switcher.contains(target)) setOpen(false);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') setOpen(false);
+    });
+  });
+
   $$('[data-before-after-slider]').forEach((slider) => {
     const input = $('.before-after-range', slider);
     if (!input) return;
@@ -24,7 +49,7 @@
   const ensureImageLightbox = () => {
     if (imageLightbox) return imageLightbox;
     const pageLang = document.documentElement.lang || 'de-CH';
-    const closeLabel = pageLang.startsWith('uk') ? 'Закрити' : pageLang.startsWith('en') ? 'Close' : 'Schließen';
+    const closeLabel = pageLang.startsWith('uk') ? 'Закрити' : pageLang.startsWith('en') ? 'Close' : 'Schliessen';
     const modal = document.createElement('div');
     modal.className = 'image-lightbox';
     modal.hidden = true;

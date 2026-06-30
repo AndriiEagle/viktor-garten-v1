@@ -21,18 +21,18 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <link id="theme-link" rel="stylesheet" href="assets/theme-v4.css">
-  <link rel="stylesheet" href="assets/base.css?v=20260629-book-covers-amazon">
+  <link rel="stylesheet" href="assets/base.css?v=20260630-header-lang-phone">
   <link rel="manifest" href="site.webmanifest">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["LocalBusiness","ProfessionalService"],"@id":"https://viktor-baumarchitektur.ch/#business","name":"Viktor Baumarchitektur","url":"https://viktor-baumarchitektur.ch","image":"https://viktor-baumarchitektur.ch/assets/img/foto/01_hero/hero-viktor-bonsai-main.webp","logo":"https://viktor-baumarchitektur.ch/assets/img/logo.png","telephone":"+41783130330","priceRange":"ab 110 CHF/Std.","slogan":"Schweizer Qualität mit japanischer Philosophie.","description":"Spezialist für Niwaki, Garten-Bonsai, japanische Ahorne und Nadelgehölze in der Region Zürich und der Schweiz.","areaServed":["Zürich","Zug","Luzern","Aargau","Schwyz","Schaffhausen","Appenzell","Glarus","Küsnacht","Zollikon","Meilen","Herrliberg","Erlenbach","Kilchberg","Thalwil","Zürichsee","Wollerau","Freienbach"],"address":{"@type":"PostalAddress","addressCountry":"CH","addressRegion":"Zürich"},"contactPoint":{"@type":"ContactPoint","@id":"https://viktor-baumarchitektur.ch/#contact","telephone":"+41783130330","contactType":"customer service","areaServed":"CH","availableLanguage":["de-CH","en","uk"]},"founder":{"@id":"https://viktor-baumarchitektur.ch/#viktor"},"hasOfferCatalog":{"@id":"https://viktor-baumarchitektur.ch/#offer-catalog"},"sameAs":["https://www.instagram.com/viktor_bonsai_niwaki","https://www.facebook.com/viktor.bonsai.niwaki"]},{"@type":"Person","@id":"https://viktor-baumarchitektur.ch/#viktor","name":"Viktor","jobTitle":"Meister für japanische Baumkunst","worksFor":{"@id":"https://viktor-baumarchitektur.ch/#business"},"knowsAbout":["Niwaki","Garten-Bonsai","Acer palmatum","Pinus","Taxus baccata","Juniperus","Kiefer Formschnitt","Topiarschere"],"description":"27 Jahre Erfahrung in japanischer Baumkunst, Niwaki und Formschnitt."},{"@type":"WebSite","@id":"https://viktor-baumarchitektur.ch/#website","name":"Viktor Baumarchitektur","url":"https://viktor-baumarchitektur.ch","publisher":{"@id":"https://viktor-baumarchitektur.ch/#business"},"inLanguage":["de-CH","en","uk"]},{"@type":"OfferCatalog","@id":"https://viktor-baumarchitektur.ch/#offer-catalog","name":"Japanische Baumpflege und Baumarchitektur","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","@id":"https://viktor-baumarchitektur.ch/leistungen#niwaki","name":"Niwaki Schnitt und Pflege","serviceType":"Niwaki / Garten-Bonsai"}},{"@type":"Offer","itemOffered":{"@type":"Service","@id":"https://viktor-baumarchitektur.ch/leistungen#ahorn","name":"Acer palmatum Pflege / Japanischer Ahorn","serviceType":"Japanischer Ahorn Pflege"}},{"@type":"Offer","itemOffered":{"@type":"Service","@id":"https://viktor-baumarchitektur.ch/leistungen#nadelgehoelze","name":"Pinus Formschnitt / Kiefer","serviceType":"Kiefer und Nadelgehölze"}}]}]}</script>
 </head>
 <body class="">
   <a class="skip-link" href="#main">Zum Inhalt springen</a>
   <header class="site-header" data-header>
-    <a class="brand" href="index.html" aria-label="Viktor Baumarchitektur">
-      <img class="brand-logo" src="assets/img/logo.png" alt="Viktor Baumarchitektur" loading="eager" decoding="async" width="53" height="53">
+    <a class="brand" href="index.html" aria-label="Viktor Garden">
+      <img class="brand-logo" src="assets/img/logo.png" alt="Viktor Garden" loading="eager" decoding="async" width="53" height="53">
       <span class="brand-text">
-        <span class="brand-name">Viktor Baumarchitektur</span>
-        <span class="brand-line">Gartenbonsais · Gartengestaltung · Formgehölze</span>
+        <span class="brand-name">Viktor Garden</span>
+        <span class="brand-line">Baumarchitektur · Gartenbonsais · Gartengestaltung · Formgehölze</span>
       </span>
     </a>
     <button class="nav-toggle" type="button" data-nav-toggle aria-controls="site-nav" aria-expanded="false">
@@ -41,7 +41,15 @@
     </button>
     <nav class="site-nav" id="site-nav" data-nav>
       <a href="index.html">Start</a><a href="leistungen.html">Leistungen</a><a href="philosophie.html">Philosophie</a><a href="galerie.html" aria-current="page">Galerie</a><a href="preise.html">Preise</a><a href="blog/index.html">Wissen</a><a href="kontakt.html">Kontakt</a>
-      <span class="lang-switch" aria-label="Language switcher"><a href="galerie.html" aria-current="true">DE</a> / <a href="en/galerie.html">EN</a> / <a href="uk/galerie.html">UA</a> / <a href="fr/index.html">FR</a> / <a href="it/index.html">IT</a></span>
+      <span class="lang-switch" data-lang-switch aria-label="Sprache wählen">
+        <button class="lang-current" type="button" data-lang-toggle aria-expanded="false" aria-controls="language-switch-de">
+          <span class="sr-only">Sprache wählen</span><span aria-hidden="true">DE</span>
+        </button>
+        <span class="lang-menu" id="language-switch-de" data-lang-menu hidden>
+          <a href="galerie.html" aria-current="true">DE</a><a href="en/galerie.html">EN</a><a href="uk/galerie.html">UA</a><a href="fr/index.html">FR</a><a href="it/index.html">IT</a>
+        </span>
+      </span>
+      <a class="header-phone" href="tel:+41783130330" data-event="cta_call_click" aria-label="Anrufen: +41 78 313 03 30" title="Anrufen: +41 78 313 03 30"><span aria-hidden="true">☎</span><span class="sr-only">Anrufen: +41 78 313 03 30</span></a>
 
     </nav>
   </header>
@@ -79,18 +87,18 @@
     <a class="case-card" href="#case-parviflora-garden-solitaire" data-case-open="parviflora-garden-solitaire" aria-haspopup="dialog">
       <div class="case-pair">
         <figure class="case-frame case-frame-before" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-parviflora-garden-before-01.webp')">
-    <img src="assets/img/foto/02_pryklady-robit/case-parviflora-garden-before-01.webp" alt="Vorher: Große Pinus parviflora: stärkere Silhouette beruhigt 1" loading="eager" decoding="async" width="900" height="675">
+    <img src="assets/img/foto/02_pryklady-robit/case-parviflora-garden-before-01.webp" alt="Vorher: Grosse Pinus parviflora: stärkere Silhouette beruhigt 1" loading="eager" decoding="async" width="900" height="675">
     <figcaption>Vorher</figcaption>
   </figure><figure class="case-frame case-frame-after" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-parviflora-garden-after-01.webp')">
-    <img src="assets/img/foto/02_pryklady-robit/case-parviflora-garden-after-01.webp" alt="Nachher: Große Pinus parviflora: stärkere Silhouette beruhigt 2" loading="eager" decoding="async" width="900" height="675">
+    <img src="assets/img/foto/02_pryklady-robit/case-parviflora-garden-after-01.webp" alt="Nachher: Grosse Pinus parviflora: stärkere Silhouette beruhigt 2" loading="eager" decoding="async" width="900" height="675">
     <figcaption>Nachher</figcaption>
   </figure>
       </div>
       <div class="case-copy">
-        <strong>Große Pinus parviflora: stärkere Silhouette beruhigt</strong>
-        <span>Diese Serie zeigt dieselbe große Gartenkiefer aus der sortierten Vorher/Nachher-Quelle: Dichte und Detail vor der Arbeit, danach die ruhigere Wirkung aus drei Blickwinkeln.</span>
+        <strong>Grosse Pinus parviflora: stärkere Silhouette beruhigt</strong>
+        <span>Diese Serie zeigt dieselbe grosse Gartenkiefer aus der sortierten Vorher/Nachher-Quelle: Dichte und Detail vor der Arbeit, danach die ruhigere Wirkung aus drei Blickwinkeln.</span>
         <dl class="case-diagnosis case-diagnosis-compact">
-    <div><dt>Problem</dt><dd>Die starke Krone brauchte Ordnung in Dichte, Etagen und Lesbarkeit.</dd></div><div><dt>Eingriff</dt><dd>Die Form wurde von Hand selektiv korrigiert, ohne den Charakter des großen Solitärs zu verlieren.</dd></div><div><dt>Ergebnis</dt><dd>Die Wolken lesen klarer, die Krone wirkt leichter und der Baum bleibt ein starker Blickpunkt im Garten.</dd></div>
+    <div><dt>Problem</dt><dd>Die starke Krone brauchte Ordnung in Dichte, Etagen und Lesbarkeit.</dd></div><div><dt>Eingriff</dt><dd>Die Form wurde von Hand selektiv korrigiert, ohne den Charakter des grossen Solitärs zu verlieren.</dd></div><div><dt>Ergebnis</dt><dd>Die Wolken lesen klarer, die Krone wirkt leichter und der Baum bleibt ein starker Blickpunkt im Garten.</dd></div>
   </dl>
         <em>Was wurde gemacht -></em>
       </div>
@@ -109,7 +117,7 @@
         <strong>Kompakte Pinus parviflora: vom dichten Block zur lesbaren Form</strong>
         <span>Zwei Vorher- und zwei Nachher-Bilder: die kompakte Pinus parviflora wurde nicht flach geschnitten, sondern innen kritisch geöffnet, damit Licht, Luft und Tiefe zurückkommen.</span>
         <dl class="case-diagnosis case-diagnosis-compact">
-    <div><dt>Problem</dt><dd>Die Krone war zu dicht: außen grün, innen dunkel. So verliert die Kiefer Tiefe, Licht und zukünftige Knospen.</dd></div><div><dt>Eingriff</dt><dd>Innen wurde selektiv ausgelichtet; außen wurde nur so viel genommen, dass die Wolken wieder lesbar werden.</dd></div><div><dt>Ergebnis</dt><dd>Die Form bleibt kompakt, aber nicht blockig: mehr Luft, klarere Etagen und bessere Kontrolle für die nächste Pflege.</dd></div>
+    <div><dt>Problem</dt><dd>Die Krone war zu dicht: aussen grün, innen dunkel. So verliert die Kiefer Tiefe, Licht und zukünftige Knospen.</dd></div><div><dt>Eingriff</dt><dd>Innen wurde selektiv ausgelichtet; aussen wurde nur so viel genommen, dass die Wolken wieder lesbar werden.</dd></div><div><dt>Ergebnis</dt><dd>Die Form bleibt kompakt, aber nicht blockig: mehr Luft, klarere Etagen und bessere Kontrolle für die nächste Pflege.</dd></div>
   </dl>
         <em>Was wurde gemacht -></em>
       </div>
@@ -128,7 +136,7 @@
         <strong>Pinus parviflora mit niedriger Krone: Wachstum kontrolliert</strong>
         <span>Viktors Notiz: Arbeit zur Kontrolle des Kronenwachstums an einer niedrigen Pinus parviflora. Die Serie zeigt die dichtere Krone vorher und die ruhigere Wirkung im Terrassengarten danach.</span>
         <dl class="case-diagnosis case-diagnosis-compact">
-    <div><dt>Problem</dt><dd>Die niedrige Krone war dicht und das Wachstum drohte die klaren Wolken zu schließen.</dd></div><div><dt>Eingriff</dt><dd>Das Wachstum wurde selektiv kontrolliert, ohne die niedrige, breite Form zu zerstören.</dd></div><div><dt>Ergebnis</dt><dd>Die Krone bleibt niedrig, lesbar und luftiger im modernen Terrassengarten.</dd></div>
+    <div><dt>Problem</dt><dd>Die niedrige Krone war dicht und das Wachstum drohte die klaren Wolken zu schliessen.</dd></div><div><dt>Eingriff</dt><dd>Das Wachstum wurde selektiv kontrolliert, ohne die niedrige, breite Form zu zerstören.</dd></div><div><dt>Ergebnis</dt><dd>Die Krone bleibt niedrig, lesbar und luftiger im modernen Terrassengarten.</dd></div>
   </dl>
         <em>Was wurde gemacht -></em>
       </div>
@@ -166,7 +174,7 @@
         <strong>Pinus parviflora am Haus: Kerzenarbeit und ruhigere Wolken</strong>
         <span>Viktors Notiz: saisonale Arbeit an den Kerzen einer Pinus parviflora. Die Bilder zeigen denselben Baum am Haus; der Nachher-Winkel ist naeher, deshalb wird hier keine identische Kameraachse behauptet.</span>
         <dl class="case-diagnosis case-diagnosis-compact">
-    <div><dt>Problem</dt><dd>Der junge Austrieb war sichtbar stark und begann die flachen Wolken breiter und dichter wirken zu lassen.</dd></div><div><dt>Eingriff</dt><dd>Die Kerzen wurden selektiv von Hand geführt, damit die Kraft nicht nur in die starken Außenkanten geht.</dd></div><div><dt>Ergebnis</dt><dd>Die Wolken bleiben voll, lesen sich aber ruhiger, kontrollierter und besser getrennt am Haus.</dd></div>
+    <div><dt>Problem</dt><dd>Der junge Austrieb war sichtbar stark und begann die flachen Wolken breiter und dichter wirken zu lassen.</dd></div><div><dt>Eingriff</dt><dd>Die Kerzen wurden selektiv von Hand geführt, damit die Kraft nicht nur in die starken Aussenkanten geht.</dd></div><div><dt>Ergebnis</dt><dd>Die Wolken bleiben voll, lesen sich aber ruhiger, kontrollierter und besser getrennt am Haus.</dd></div>
   </dl>
         <em>Was wurde gemacht -></em>
       </div>
@@ -207,7 +215,7 @@
         <strong>Taxus baccata: junger Austrieb topiarisch beruhigt</strong>
         <span>Die Quelle zeigt zwei Vorher-Bilder, Viktors Arbeitsmoment und zwei Nachher-Bilder: der junge Taxus-Austrieb wurde mit Topiarschere gesammelt, ohne die lebendige Wolkenstruktur flach zu machen.</span>
         <dl class="case-diagnosis case-diagnosis-compact">
-    <div><dt>Problem</dt><dd>Der frische Austrieb machte die Wolken unruhig; die Außenlinie verlor Präzision und einzelne Polster begannen zusammenzulaufen.</dd></div><div><dt>Eingriff</dt><dd>Der junge Austrieb wurde topiarisch von Hand gelesen und gekürzt: nicht mit Motor, sondern kontrolliert mit Schere entlang der vorhandenen Form.</dd></div><div><dt>Ergebnis</dt><dd>Die Wolkenpolster sind wieder ruhiger, die Etagen trennen sich klarer und der Taxus bleibt dicht, aber nicht grob blockig.</dd></div>
+    <div><dt>Problem</dt><dd>Der frische Austrieb machte die Wolken unruhig; die Aussenlinie verlor Präzision und einzelne Polster begannen zusammenzulaufen.</dd></div><div><dt>Eingriff</dt><dd>Der junge Austrieb wurde topiarisch von Hand gelesen und gekürzt: nicht mit Motor, sondern kontrolliert mit Schere entlang der vorhandenen Form.</dd></div><div><dt>Ergebnis</dt><dd>Die Wolkenpolster sind wieder ruhiger, die Etagen trennen sich klarer und der Taxus bleibt dicht, aber nicht grob blockig.</dd></div>
   </dl>
         <em>Was wurde gemacht -></em>
       </div>
@@ -226,26 +234,26 @@
         <strong>Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie</strong>
         <span>Diese Serie zeigt eine reale Formhecke: dichte Masse, Diagnose im Inneren, Arbeit mit Leiter und die ruhigere Linie danach.</span>
         <dl class="case-diagnosis case-diagnosis-compact">
-    <div><dt>Problem</dt><dd>Die Außenlinie war dicht und unruhig; innen fehlten Licht und Luft.</dd></div><div><dt>Eingriff</dt><dd>Die Masse wurde kontrolliert zurückgenommen, die Linie gesammelt und der Innenbereich diagnostiziert.</dd></div><div><dt>Ergebnis</dt><dd>Die Hecke liest ruhiger, bekommt mehr Luft und bleibt langfristig pflegbar.</dd></div>
+    <div><dt>Problem</dt><dd>Die Aussenlinie war dicht und unruhig; innen fehlten Licht und Luft.</dd></div><div><dt>Eingriff</dt><dd>Die Masse wurde kontrolliert zurückgenommen, die Linie gesammelt und der Innenbereich diagnostiziert.</dd></div><div><dt>Ergebnis</dt><dd>Die Hecke liest ruhiger, bekommt mehr Luft und bleibt langfristig pflegbar.</dd></div>
   </dl>
         <em>Was wurde gemacht -></em>
       </div>
     </a></div>
     <div class="case-modal" data-case-modal hidden aria-hidden="true">
-      <button class="case-modal-backdrop" type="button" data-case-close aria-label="Schließen"></button>
+      <button class="case-modal-backdrop" type="button" data-case-close aria-label="Schliessen"></button>
       <div class="case-modal-panel" role="dialog" aria-modal="true" aria-label="Beschreibung der Vorher-Nachher-Arbeit">
-        <button class="case-modal-close" type="button" data-case-close aria-label="Schließen">&times;</button>
+        <button class="case-modal-close" type="button" data-case-close aria-label="Schliessen">&times;</button>
 
     <article class="case-detail" data-case-panel="parviflora-box-opening" hidden>
       <div class="case-detail-media">
         <div class="case-detail-pair">
           <figure class="case-frame case-frame-zoomable case-frame-before" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-parviflora-box-before-03.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-box-before-03.webp" data-image-lightbox-alt="Vorher: Pinus parviflora: Kerzenarbeit am jungen Austrieb 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrößern: Vorher: Pinus parviflora: Kerzenarbeit am jungen Austrieb 1">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-box-before-03.webp" data-image-lightbox-alt="Vorher: Pinus parviflora: Kerzenarbeit am jungen Austrieb 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrössern: Vorher: Pinus parviflora: Kerzenarbeit am jungen Austrieb 1">
       <img src="assets/img/foto/02_pryklady-robit/case-parviflora-box-before-03.webp" alt="Vorher: Pinus parviflora: Kerzenarbeit am jungen Austrieb 1" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Vorher</figcaption>
   </figure><figure class="case-frame case-frame-zoomable case-frame-after" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-parviflora-box-after-02.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-box-after-02.webp" data-image-lightbox-alt="Nachher: Pinus parviflora: Kerzenarbeit am jungen Austrieb 2" data-image-lightbox-caption="Nachher" aria-label="Bild vergrößern: Nachher: Pinus parviflora: Kerzenarbeit am jungen Austrieb 2">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-box-after-02.webp" data-image-lightbox-alt="Nachher: Pinus parviflora: Kerzenarbeit am jungen Austrieb 2" data-image-lightbox-caption="Nachher" aria-label="Bild vergrössern: Nachher: Pinus parviflora: Kerzenarbeit am jungen Austrieb 2">
       <img src="assets/img/foto/02_pryklady-robit/case-parviflora-box-after-02.webp" alt="Nachher: Pinus parviflora: Kerzenarbeit am jungen Austrieb 2" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Nachher</figcaption>
@@ -256,12 +264,12 @@
     <section class="case-series-group">
     <h3>Vorher / Arbeitskontext</h3>
     <div class="case-series-grid"><figure class="case-frame case-frame-zoomable" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-parviflora-box-before-01.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-box-before-01.webp" data-image-lightbox-alt="Vorher: Pinus parviflora: Kerzenarbeit am jungen Austrieb 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrößern: Vorher: Pinus parviflora: Kerzenarbeit am jungen Austrieb 1">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-box-before-01.webp" data-image-lightbox-alt="Vorher: Pinus parviflora: Kerzenarbeit am jungen Austrieb 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrössern: Vorher: Pinus parviflora: Kerzenarbeit am jungen Austrieb 1">
       <img src="assets/img/foto/02_pryklady-robit/case-parviflora-box-before-01.webp" alt="Vorher: Pinus parviflora: Kerzenarbeit am jungen Austrieb 1" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Vorher</figcaption>
   </figure><figure class="case-frame case-frame-zoomable" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-parviflora-box-before-02.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-box-before-02.webp" data-image-lightbox-alt="Vorher: Pinus parviflora: Kerzenarbeit am jungen Austrieb 2" data-image-lightbox-caption="Vorher" aria-label="Bild vergrößern: Vorher: Pinus parviflora: Kerzenarbeit am jungen Austrieb 2">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-box-before-02.webp" data-image-lightbox-alt="Vorher: Pinus parviflora: Kerzenarbeit am jungen Austrieb 2" data-image-lightbox-caption="Vorher" aria-label="Bild vergrössern: Vorher: Pinus parviflora: Kerzenarbeit am jungen Austrieb 2">
       <img src="assets/img/foto/02_pryklady-robit/case-parviflora-box-before-02.webp" alt="Vorher: Pinus parviflora: Kerzenarbeit am jungen Austrieb 2" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Vorher</figcaption>
@@ -271,7 +279,7 @@
     <section class="case-series-group">
     <h3>Nachher</h3>
     <div class="case-series-grid"><figure class="case-frame case-frame-zoomable" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-parviflora-box-after-01.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-box-after-01.webp" data-image-lightbox-alt="Nachher: Pinus parviflora: Kerzenarbeit am jungen Austrieb 1" data-image-lightbox-caption="Nachher" aria-label="Bild vergrößern: Nachher: Pinus parviflora: Kerzenarbeit am jungen Austrieb 1">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-box-after-01.webp" data-image-lightbox-alt="Nachher: Pinus parviflora: Kerzenarbeit am jungen Austrieb 1" data-image-lightbox-caption="Nachher" aria-label="Bild vergrössern: Nachher: Pinus parviflora: Kerzenarbeit am jungen Austrieb 1">
       <img src="assets/img/foto/02_pryklady-robit/case-parviflora-box-after-01.webp" alt="Nachher: Pinus parviflora: Kerzenarbeit am jungen Austrieb 1" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Nachher</figcaption>
@@ -297,13 +305,13 @@
       <div class="case-detail-media">
         <div class="case-detail-pair">
           <figure class="case-frame case-frame-zoomable case-frame-before" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-parviflora-garden-before-01.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-garden-before-01.webp" data-image-lightbox-alt="Vorher: Große Pinus parviflora: stärkere Silhouette beruhigt 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrößern: Vorher: Große Pinus parviflora: stärkere Silhouette beruhigt 1">
-      <img src="assets/img/foto/02_pryklady-robit/case-parviflora-garden-before-01.webp" alt="Vorher: Große Pinus parviflora: stärkere Silhouette beruhigt 1" loading="eager" decoding="async" width="900" height="675">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-garden-before-01.webp" data-image-lightbox-alt="Vorher: Grosse Pinus parviflora: stärkere Silhouette beruhigt 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrössern: Vorher: Grosse Pinus parviflora: stärkere Silhouette beruhigt 1">
+      <img src="assets/img/foto/02_pryklady-robit/case-parviflora-garden-before-01.webp" alt="Vorher: Grosse Pinus parviflora: stärkere Silhouette beruhigt 1" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Vorher</figcaption>
   </figure><figure class="case-frame case-frame-zoomable case-frame-after" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-parviflora-garden-after-01.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-garden-after-01.webp" data-image-lightbox-alt="Nachher: Große Pinus parviflora: stärkere Silhouette beruhigt 2" data-image-lightbox-caption="Nachher" aria-label="Bild vergrößern: Nachher: Große Pinus parviflora: stärkere Silhouette beruhigt 2">
-      <img src="assets/img/foto/02_pryklady-robit/case-parviflora-garden-after-01.webp" alt="Nachher: Große Pinus parviflora: stärkere Silhouette beruhigt 2" loading="eager" decoding="async" width="900" height="675">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-garden-after-01.webp" data-image-lightbox-alt="Nachher: Grosse Pinus parviflora: stärkere Silhouette beruhigt 2" data-image-lightbox-caption="Nachher" aria-label="Bild vergrössern: Nachher: Grosse Pinus parviflora: stärkere Silhouette beruhigt 2">
+      <img src="assets/img/foto/02_pryklady-robit/case-parviflora-garden-after-01.webp" alt="Nachher: Grosse Pinus parviflora: stärkere Silhouette beruhigt 2" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Nachher</figcaption>
   </figure>
@@ -313,8 +321,8 @@
     <section class="case-series-group">
     <h3>Vorher / Arbeitskontext</h3>
     <div class="case-series-grid"><figure class="case-frame case-frame-zoomable" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-parviflora-garden-before-02.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-garden-before-02.webp" data-image-lightbox-alt="Vorher: Große Pinus parviflora: stärkere Silhouette beruhigt 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrößern: Vorher: Große Pinus parviflora: stärkere Silhouette beruhigt 1">
-      <img src="assets/img/foto/02_pryklady-robit/case-parviflora-garden-before-02.webp" alt="Vorher: Große Pinus parviflora: stärkere Silhouette beruhigt 1" loading="eager" decoding="async" width="900" height="675">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-garden-before-02.webp" data-image-lightbox-alt="Vorher: Grosse Pinus parviflora: stärkere Silhouette beruhigt 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrössern: Vorher: Grosse Pinus parviflora: stärkere Silhouette beruhigt 1">
+      <img src="assets/img/foto/02_pryklady-robit/case-parviflora-garden-before-02.webp" alt="Vorher: Grosse Pinus parviflora: stärkere Silhouette beruhigt 1" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Vorher</figcaption>
   </figure></div>
@@ -323,13 +331,13 @@
     <section class="case-series-group">
     <h3>Nachher</h3>
     <div class="case-series-grid"><figure class="case-frame case-frame-zoomable" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-parviflora-garden-after-02.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-garden-after-02.webp" data-image-lightbox-alt="Nachher: Große Pinus parviflora: stärkere Silhouette beruhigt 1" data-image-lightbox-caption="Nachher" aria-label="Bild vergrößern: Nachher: Große Pinus parviflora: stärkere Silhouette beruhigt 1">
-      <img src="assets/img/foto/02_pryklady-robit/case-parviflora-garden-after-02.webp" alt="Nachher: Große Pinus parviflora: stärkere Silhouette beruhigt 1" loading="eager" decoding="async" width="900" height="675">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-garden-after-02.webp" data-image-lightbox-alt="Nachher: Grosse Pinus parviflora: stärkere Silhouette beruhigt 1" data-image-lightbox-caption="Nachher" aria-label="Bild vergrössern: Nachher: Grosse Pinus parviflora: stärkere Silhouette beruhigt 1">
+      <img src="assets/img/foto/02_pryklady-robit/case-parviflora-garden-after-02.webp" alt="Nachher: Grosse Pinus parviflora: stärkere Silhouette beruhigt 1" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Nachher</figcaption>
   </figure><figure class="case-frame case-frame-zoomable" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-parviflora-garden-after-03.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-garden-after-03.webp" data-image-lightbox-alt="Nachher: Große Pinus parviflora: stärkere Silhouette beruhigt 2" data-image-lightbox-caption="Nachher" aria-label="Bild vergrößern: Nachher: Große Pinus parviflora: stärkere Silhouette beruhigt 2">
-      <img src="assets/img/foto/02_pryklady-robit/case-parviflora-garden-after-03.webp" alt="Nachher: Große Pinus parviflora: stärkere Silhouette beruhigt 2" loading="eager" decoding="async" width="900" height="675">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-garden-after-03.webp" data-image-lightbox-alt="Nachher: Grosse Pinus parviflora: stärkere Silhouette beruhigt 2" data-image-lightbox-caption="Nachher" aria-label="Bild vergrössern: Nachher: Grosse Pinus parviflora: stärkere Silhouette beruhigt 2">
+      <img src="assets/img/foto/02_pryklady-robit/case-parviflora-garden-after-03.webp" alt="Nachher: Grosse Pinus parviflora: stärkere Silhouette beruhigt 2" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Nachher</figcaption>
   </figure></div>
@@ -338,15 +346,15 @@
       </div>
       <div class="case-detail-copy">
         <span class="eyebrow">Was wurde gemacht</span>
-        <h2>Große Pinus parviflora: stärkere Silhouette beruhigt</h2>
-        <p>Diese Serie zeigt dieselbe große Gartenkiefer aus der sortierten Vorher/Nachher-Quelle: Dichte und Detail vor der Arbeit, danach die ruhigere Wirkung aus drei Blickwinkeln.</p>
+        <h2>Grosse Pinus parviflora: stärkere Silhouette beruhigt</h2>
+        <p>Diese Serie zeigt dieselbe grosse Gartenkiefer aus der sortierten Vorher/Nachher-Quelle: Dichte und Detail vor der Arbeit, danach die ruhigere Wirkung aus drei Blickwinkeln.</p>
         <dl class="case-diagnosis">
-    <div><dt>Problem</dt><dd>Die starke Krone brauchte Ordnung in Dichte, Etagen und Lesbarkeit.</dd></div><div><dt>Eingriff</dt><dd>Die Form wurde von Hand selektiv korrigiert, ohne den Charakter des großen Solitärs zu verlieren.</dd></div><div><dt>Ergebnis</dt><dd>Die Wolken lesen klarer, die Krone wirkt leichter und der Baum bleibt ein starker Blickpunkt im Garten.</dd></div>
+    <div><dt>Problem</dt><dd>Die starke Krone brauchte Ordnung in Dichte, Etagen und Lesbarkeit.</dd></div><div><dt>Eingriff</dt><dd>Die Form wurde von Hand selektiv korrigiert, ohne den Charakter des grossen Solitärs zu verlieren.</dd></div><div><dt>Ergebnis</dt><dd>Die Wolken lesen klarer, die Krone wirkt leichter und der Baum bleibt ein starker Blickpunkt im Garten.</dd></div>
   </dl>
         <dl class="case-notes">
-          <div><dt>Was wurde gemacht</dt><dd>Dichte Partien wurden selektiv geöffnet, die Außenlinie gesammelt und die vorhandenen Wolken so beruhigt, dass die große Kiefer aus mehreren Blickwinkeln funktioniert.</dd></div>
-          <div><dt>Warum</dt><dd>Große Gartenbonsai müssen nicht kleiner wirken; sie müssen kontrolliert, luftig und lesbar bleiben.</dd></div>
-          <div><dt>Mein Wert</dt><dd>Mein Wert liegt im Maß: genug Eingriff für Ruhe und Luft, aber nicht so viel, dass der alte Charakter verloren geht.</dd></div>
+          <div><dt>Was wurde gemacht</dt><dd>Dichte Partien wurden selektiv geöffnet, die Aussenlinie gesammelt und die vorhandenen Wolken so beruhigt, dass die grosse Kiefer aus mehreren Blickwinkeln funktioniert.</dd></div>
+          <div><dt>Warum</dt><dd>Grosse Gartenbonsai müssen nicht kleiner wirken; sie müssen kontrolliert, luftig und lesbar bleiben.</dd></div>
+          <div><dt>Mein Wert</dt><dd>Mein Wert liegt im Mass: genug Eingriff für Ruhe und Luft, aber nicht so viel, dass der alte Charakter verloren geht.</dd></div>
         </dl>
       </div>
     </article>
@@ -354,12 +362,12 @@
       <div class="case-detail-media">
         <div class="case-detail-pair">
           <figure class="case-frame case-frame-zoomable case-frame-before" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-parviflora-compact-before-01.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-compact-before-01.webp" data-image-lightbox-alt="Vorher: Kompakte Pinus parviflora: vom dichten Block zur lesbaren Form 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrößern: Vorher: Kompakte Pinus parviflora: vom dichten Block zur lesbaren Form 1">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-compact-before-01.webp" data-image-lightbox-alt="Vorher: Kompakte Pinus parviflora: vom dichten Block zur lesbaren Form 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrössern: Vorher: Kompakte Pinus parviflora: vom dichten Block zur lesbaren Form 1">
       <img src="assets/img/foto/02_pryklady-robit/case-parviflora-compact-before-01.webp" alt="Vorher: Kompakte Pinus parviflora: vom dichten Block zur lesbaren Form 1" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Vorher</figcaption>
   </figure><figure class="case-frame case-frame-zoomable case-frame-after" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-parviflora-compact-after-02.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-compact-after-02.webp" data-image-lightbox-alt="Nachher: Kompakte Pinus parviflora: vom dichten Block zur lesbaren Form 2" data-image-lightbox-caption="Nachher" aria-label="Bild vergrößern: Nachher: Kompakte Pinus parviflora: vom dichten Block zur lesbaren Form 2">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-compact-after-02.webp" data-image-lightbox-alt="Nachher: Kompakte Pinus parviflora: vom dichten Block zur lesbaren Form 2" data-image-lightbox-caption="Nachher" aria-label="Bild vergrössern: Nachher: Kompakte Pinus parviflora: vom dichten Block zur lesbaren Form 2">
       <img src="assets/img/foto/02_pryklady-robit/case-parviflora-compact-after-02.webp" alt="Nachher: Kompakte Pinus parviflora: vom dichten Block zur lesbaren Form 2" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Nachher</figcaption>
@@ -370,7 +378,7 @@
     <section class="case-series-group">
     <h3>Vorher / Arbeitskontext</h3>
     <div class="case-series-grid"><figure class="case-frame case-frame-zoomable" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-parviflora-compact-before-02.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-compact-before-02.webp" data-image-lightbox-alt="Vorher: Kompakte Pinus parviflora: vom dichten Block zur lesbaren Form 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrößern: Vorher: Kompakte Pinus parviflora: vom dichten Block zur lesbaren Form 1">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-compact-before-02.webp" data-image-lightbox-alt="Vorher: Kompakte Pinus parviflora: vom dichten Block zur lesbaren Form 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrössern: Vorher: Kompakte Pinus parviflora: vom dichten Block zur lesbaren Form 1">
       <img src="assets/img/foto/02_pryklady-robit/case-parviflora-compact-before-02.webp" alt="Vorher: Kompakte Pinus parviflora: vom dichten Block zur lesbaren Form 1" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Vorher</figcaption>
@@ -380,7 +388,7 @@
     <section class="case-series-group">
     <h3>Nachher</h3>
     <div class="case-series-grid"><figure class="case-frame case-frame-zoomable" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-parviflora-compact-after-01.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-compact-after-01.webp" data-image-lightbox-alt="Nachher: Kompakte Pinus parviflora: vom dichten Block zur lesbaren Form 1" data-image-lightbox-caption="Nachher" aria-label="Bild vergrößern: Nachher: Kompakte Pinus parviflora: vom dichten Block zur lesbaren Form 1">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-compact-after-01.webp" data-image-lightbox-alt="Nachher: Kompakte Pinus parviflora: vom dichten Block zur lesbaren Form 1" data-image-lightbox-caption="Nachher" aria-label="Bild vergrössern: Nachher: Kompakte Pinus parviflora: vom dichten Block zur lesbaren Form 1">
       <img src="assets/img/foto/02_pryklady-robit/case-parviflora-compact-after-01.webp" alt="Nachher: Kompakte Pinus parviflora: vom dichten Block zur lesbaren Form 1" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Nachher</figcaption>
@@ -393,12 +401,12 @@
         <h2>Kompakte Pinus parviflora: vom dichten Block zur lesbaren Form</h2>
         <p>Zwei Vorher- und zwei Nachher-Bilder: die kompakte Pinus parviflora wurde nicht flach geschnitten, sondern innen kritisch geöffnet, damit Licht, Luft und Tiefe zurückkommen.</p>
         <dl class="case-diagnosis">
-    <div><dt>Problem</dt><dd>Die Krone war zu dicht: außen grün, innen dunkel. So verliert die Kiefer Tiefe, Licht und zukünftige Knospen.</dd></div><div><dt>Eingriff</dt><dd>Innen wurde selektiv ausgelichtet; außen wurde nur so viel genommen, dass die Wolken wieder lesbar werden.</dd></div><div><dt>Ergebnis</dt><dd>Die Form bleibt kompakt, aber nicht blockig: mehr Luft, klarere Etagen und bessere Kontrolle für die nächste Pflege.</dd></div>
+    <div><dt>Problem</dt><dd>Die Krone war zu dicht: aussen grün, innen dunkel. So verliert die Kiefer Tiefe, Licht und zukünftige Knospen.</dd></div><div><dt>Eingriff</dt><dd>Innen wurde selektiv ausgelichtet; aussen wurde nur so viel genommen, dass die Wolken wieder lesbar werden.</dd></div><div><dt>Ergebnis</dt><dd>Die Form bleibt kompakt, aber nicht blockig: mehr Luft, klarere Etagen und bessere Kontrolle für die nächste Pflege.</dd></div>
   </dl>
         <dl class="case-notes">
           <div><dt>Was wurde gemacht</dt><dd>Dichte Zonen wurden von Hand geöffnet, alte und überfüllte Partien reduziert und die Wolken so getrennt, dass Stamm und Tiefe sichtbar bleiben.</dd></div>
-          <div><dt>Warum</dt><dd>Wenn eine kompakte Kiefer nur außen geschlossen wird, staut sich innen Schatten und Feuchtigkeit. Dann wird die nächste Korrektur härter.</dd></div>
-          <div><dt>Mein Wert</dt><dd>Mein Wert liegt darin, innen zu lesen und außen nur so viel zu nehmen, wie die Form wirklich braucht.</dd></div>
+          <div><dt>Warum</dt><dd>Wenn eine kompakte Kiefer nur aussen geschlossen wird, staut sich innen Schatten und Feuchtigkeit. Dann wird die nächste Korrektur härter.</dd></div>
+          <div><dt>Mein Wert</dt><dd>Mein Wert liegt darin, innen zu lesen und aussen nur so viel zu nehmen, wie die Form wirklich braucht.</dd></div>
         </dl>
       </div>
     </article>
@@ -406,12 +414,12 @@
       <div class="case-detail-media">
         <div class="case-detail-pair">
           <figure class="case-frame case-frame-zoomable case-frame-before" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-parviflora-low-crown-before-01.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-low-crown-before-01.webp" data-image-lightbox-alt="Vorher: Pinus parviflora mit niedriger Krone: Wachstum kontrolliert 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrößern: Vorher: Pinus parviflora mit niedriger Krone: Wachstum kontrolliert 1">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-low-crown-before-01.webp" data-image-lightbox-alt="Vorher: Pinus parviflora mit niedriger Krone: Wachstum kontrolliert 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrössern: Vorher: Pinus parviflora mit niedriger Krone: Wachstum kontrolliert 1">
       <img src="assets/img/foto/02_pryklady-robit/case-parviflora-low-crown-before-01.webp" alt="Vorher: Pinus parviflora mit niedriger Krone: Wachstum kontrolliert 1" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Vorher</figcaption>
   </figure><figure class="case-frame case-frame-zoomable case-frame-after" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-parviflora-low-crown-after-03.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-low-crown-after-03.webp" data-image-lightbox-alt="Nachher: Pinus parviflora mit niedriger Krone: Wachstum kontrolliert 2" data-image-lightbox-caption="Nachher" aria-label="Bild vergrößern: Nachher: Pinus parviflora mit niedriger Krone: Wachstum kontrolliert 2">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-low-crown-after-03.webp" data-image-lightbox-alt="Nachher: Pinus parviflora mit niedriger Krone: Wachstum kontrolliert 2" data-image-lightbox-caption="Nachher" aria-label="Bild vergrössern: Nachher: Pinus parviflora mit niedriger Krone: Wachstum kontrolliert 2">
       <img src="assets/img/foto/02_pryklady-robit/case-parviflora-low-crown-after-03.webp" alt="Nachher: Pinus parviflora mit niedriger Krone: Wachstum kontrolliert 2" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Nachher</figcaption>
@@ -422,7 +430,7 @@
     <section class="case-series-group">
     <h3>Vorher / Arbeitskontext</h3>
     <div class="case-series-grid"><figure class="case-frame case-frame-zoomable" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-parviflora-low-crown-before-02.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-low-crown-before-02.webp" data-image-lightbox-alt="Vorher: Pinus parviflora mit niedriger Krone: Wachstum kontrolliert 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrößern: Vorher: Pinus parviflora mit niedriger Krone: Wachstum kontrolliert 1">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-low-crown-before-02.webp" data-image-lightbox-alt="Vorher: Pinus parviflora mit niedriger Krone: Wachstum kontrolliert 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrössern: Vorher: Pinus parviflora mit niedriger Krone: Wachstum kontrolliert 1">
       <img src="assets/img/foto/02_pryklady-robit/case-parviflora-low-crown-before-02.webp" alt="Vorher: Pinus parviflora mit niedriger Krone: Wachstum kontrolliert 1" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Vorher</figcaption>
@@ -432,12 +440,12 @@
     <section class="case-series-group">
     <h3>Nachher</h3>
     <div class="case-series-grid"><figure class="case-frame case-frame-zoomable" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-parviflora-low-crown-after-01.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-low-crown-after-01.webp" data-image-lightbox-alt="Nachher: Pinus parviflora mit niedriger Krone: Wachstum kontrolliert 1" data-image-lightbox-caption="Nachher" aria-label="Bild vergrößern: Nachher: Pinus parviflora mit niedriger Krone: Wachstum kontrolliert 1">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-low-crown-after-01.webp" data-image-lightbox-alt="Nachher: Pinus parviflora mit niedriger Krone: Wachstum kontrolliert 1" data-image-lightbox-caption="Nachher" aria-label="Bild vergrössern: Nachher: Pinus parviflora mit niedriger Krone: Wachstum kontrolliert 1">
       <img src="assets/img/foto/02_pryklady-robit/case-parviflora-low-crown-after-01.webp" alt="Nachher: Pinus parviflora mit niedriger Krone: Wachstum kontrolliert 1" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Nachher</figcaption>
   </figure><figure class="case-frame case-frame-zoomable" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-parviflora-low-crown-after-02.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-low-crown-after-02.webp" data-image-lightbox-alt="Nachher: Pinus parviflora mit niedriger Krone: Wachstum kontrolliert 2" data-image-lightbox-caption="Nachher" aria-label="Bild vergrößern: Nachher: Pinus parviflora mit niedriger Krone: Wachstum kontrolliert 2">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-low-crown-after-02.webp" data-image-lightbox-alt="Nachher: Pinus parviflora mit niedriger Krone: Wachstum kontrolliert 2" data-image-lightbox-caption="Nachher" aria-label="Bild vergrössern: Nachher: Pinus parviflora mit niedriger Krone: Wachstum kontrolliert 2">
       <img src="assets/img/foto/02_pryklady-robit/case-parviflora-low-crown-after-02.webp" alt="Nachher: Pinus parviflora mit niedriger Krone: Wachstum kontrolliert 2" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Nachher</figcaption>
@@ -450,11 +458,11 @@
         <h2>Pinus parviflora mit niedriger Krone: Wachstum kontrolliert</h2>
         <p>Viktors Notiz: Arbeit zur Kontrolle des Kronenwachstums an einer niedrigen Pinus parviflora. Die Serie zeigt die dichtere Krone vorher und die ruhigere Wirkung im Terrassengarten danach.</p>
         <dl class="case-diagnosis">
-    <div><dt>Problem</dt><dd>Die niedrige Krone war dicht und das Wachstum drohte die klaren Wolken zu schließen.</dd></div><div><dt>Eingriff</dt><dd>Das Wachstum wurde selektiv kontrolliert, ohne die niedrige, breite Form zu zerstören.</dd></div><div><dt>Ergebnis</dt><dd>Die Krone bleibt niedrig, lesbar und luftiger im modernen Terrassengarten.</dd></div>
+    <div><dt>Problem</dt><dd>Die niedrige Krone war dicht und das Wachstum drohte die klaren Wolken zu schliessen.</dd></div><div><dt>Eingriff</dt><dd>Das Wachstum wurde selektiv kontrolliert, ohne die niedrige, breite Form zu zerstören.</dd></div><div><dt>Ergebnis</dt><dd>Die Krone bleibt niedrig, lesbar und luftiger im modernen Terrassengarten.</dd></div>
   </dl>
         <dl class="case-notes">
           <div><dt>Was wurde gemacht</dt><dd>Junge Triebe und zu dichte Partien wurden von Hand reguliert, damit die Wolken nicht zu einem schweren Block zusammenwachsen.</dd></div>
-          <div><dt>Warum</dt><dd>Gerade niedrige Kiefern verlieren schnell ihre Architektur, wenn Wachstum nur außen stehen bleibt und innen Licht fehlt.</dd></div>
+          <div><dt>Warum</dt><dd>Gerade niedrige Kiefern verlieren schnell ihre Architektur, wenn Wachstum nur aussen stehen bleibt und innen Licht fehlt.</dd></div>
           <div><dt>Mein Wert</dt><dd>Mein Wert liegt in ruhiger Wachstumskontrolle: die Kraft bremsen, Licht hineinlassen und die breite Krone als Niwaki lesbar halten.</dd></div>
         </dl>
       </div>
@@ -463,12 +471,12 @@
       <div class="case-detail-media">
         <div class="case-detail-pair">
           <figure class="case-frame case-frame-zoomable case-frame-before" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-parviflora-terrace-growth-before-01.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-terrace-growth-before-01.webp" data-image-lightbox-alt="Vorher: Pinus parviflora auf der Terrasse: Jahreszuwachs begrenzt 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrößern: Vorher: Pinus parviflora auf der Terrasse: Jahreszuwachs begrenzt 1">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-terrace-growth-before-01.webp" data-image-lightbox-alt="Vorher: Pinus parviflora auf der Terrasse: Jahreszuwachs begrenzt 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrössern: Vorher: Pinus parviflora auf der Terrasse: Jahreszuwachs begrenzt 1">
       <img src="assets/img/foto/02_pryklady-robit/case-parviflora-terrace-growth-before-01.webp" alt="Vorher: Pinus parviflora auf der Terrasse: Jahreszuwachs begrenzt 1" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Vorher</figcaption>
   </figure><figure class="case-frame case-frame-zoomable case-frame-after" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-parviflora-terrace-growth-after-02.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-terrace-growth-after-02.webp" data-image-lightbox-alt="Nachher: Pinus parviflora auf der Terrasse: Jahreszuwachs begrenzt 2" data-image-lightbox-caption="Nachher" aria-label="Bild vergrößern: Nachher: Pinus parviflora auf der Terrasse: Jahreszuwachs begrenzt 2">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-terrace-growth-after-02.webp" data-image-lightbox-alt="Nachher: Pinus parviflora auf der Terrasse: Jahreszuwachs begrenzt 2" data-image-lightbox-caption="Nachher" aria-label="Bild vergrössern: Nachher: Pinus parviflora auf der Terrasse: Jahreszuwachs begrenzt 2">
       <img src="assets/img/foto/02_pryklady-robit/case-parviflora-terrace-growth-after-02.webp" alt="Nachher: Pinus parviflora auf der Terrasse: Jahreszuwachs begrenzt 2" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Nachher</figcaption>
@@ -481,7 +489,7 @@
     <section class="case-series-group">
     <h3>Nachher</h3>
     <div class="case-series-grid"><figure class="case-frame case-frame-zoomable" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-parviflora-terrace-growth-after-01.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-terrace-growth-after-01.webp" data-image-lightbox-alt="Nachher: Pinus parviflora auf der Terrasse: Jahreszuwachs begrenzt 1" data-image-lightbox-caption="Nachher" aria-label="Bild vergrößern: Nachher: Pinus parviflora auf der Terrasse: Jahreszuwachs begrenzt 1">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-terrace-growth-after-01.webp" data-image-lightbox-alt="Nachher: Pinus parviflora auf der Terrasse: Jahreszuwachs begrenzt 1" data-image-lightbox-caption="Nachher" aria-label="Bild vergrössern: Nachher: Pinus parviflora auf der Terrasse: Jahreszuwachs begrenzt 1">
       <img src="assets/img/foto/02_pryklady-robit/case-parviflora-terrace-growth-after-01.webp" alt="Nachher: Pinus parviflora auf der Terrasse: Jahreszuwachs begrenzt 1" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Nachher</figcaption>
@@ -499,7 +507,7 @@
         <dl class="case-notes">
           <div><dt>Was wurde gemacht</dt><dd>Der Jahreszuwachs der Nadeln wurde von Hand begrenzt; die Etagen, Stammbewegung und künstlerische Struktur blieben bewusst unverändert.</dd></div>
           <div><dt>Warum</dt><dd>Bei einer reifen Pinus parviflora ist gute Pflege oft unspektakulaer: rechtzeitig bremsen, damit die Architektur nicht spaeter schwer korrigiert werden muss.</dd></div>
-          <div><dt>Mein Wert</dt><dd>Der Wert liegt hier im Maßhalten: erkennen, was nicht verändert werden soll, und nur den neuen Zuwachs präzise führen.</dd></div>
+          <div><dt>Mein Wert</dt><dd>Der Wert liegt hier im Masshalten: erkennen, was nicht verändert werden soll, und nur den neuen Zuwachs präzise führen.</dd></div>
         </dl>
       </div>
     </article>
@@ -507,12 +515,12 @@
       <div class="case-detail-media">
         <div class="case-detail-pair">
           <figure class="case-frame case-frame-zoomable case-frame-before" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-parviflora-house-candle-before-01.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-house-candle-before-01.webp" data-image-lightbox-alt="Vorher: Pinus parviflora am Haus: Kerzenarbeit und ruhigere Wolken 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrößern: Vorher: Pinus parviflora am Haus: Kerzenarbeit und ruhigere Wolken 1">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-house-candle-before-01.webp" data-image-lightbox-alt="Vorher: Pinus parviflora am Haus: Kerzenarbeit und ruhigere Wolken 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrössern: Vorher: Pinus parviflora am Haus: Kerzenarbeit und ruhigere Wolken 1">
       <img src="assets/img/foto/02_pryklady-robit/case-parviflora-house-candle-before-01.webp" alt="Vorher: Pinus parviflora am Haus: Kerzenarbeit und ruhigere Wolken 1" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Vorher</figcaption>
   </figure><figure class="case-frame case-frame-zoomable case-frame-after" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-parviflora-house-candle-after-01.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-house-candle-after-01.webp" data-image-lightbox-alt="Nachher: Pinus parviflora am Haus: Kerzenarbeit und ruhigere Wolken 2" data-image-lightbox-caption="Nachher" aria-label="Bild vergrößern: Nachher: Pinus parviflora am Haus: Kerzenarbeit und ruhigere Wolken 2">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-parviflora-house-candle-after-01.webp" data-image-lightbox-alt="Nachher: Pinus parviflora am Haus: Kerzenarbeit und ruhigere Wolken 2" data-image-lightbox-caption="Nachher" aria-label="Bild vergrössern: Nachher: Pinus parviflora am Haus: Kerzenarbeit und ruhigere Wolken 2">
       <img src="assets/img/foto/02_pryklady-robit/case-parviflora-house-candle-after-01.webp" alt="Nachher: Pinus parviflora am Haus: Kerzenarbeit und ruhigere Wolken 2" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Nachher</figcaption>
@@ -525,7 +533,7 @@
         <h2>Pinus parviflora am Haus: Kerzenarbeit und ruhigere Wolken</h2>
         <p>Viktors Notiz: saisonale Arbeit an den Kerzen einer Pinus parviflora. Die Bilder zeigen denselben Baum am Haus; der Nachher-Winkel ist naeher, deshalb wird hier keine identische Kameraachse behauptet.</p>
         <dl class="case-diagnosis">
-    <div><dt>Problem</dt><dd>Der junge Austrieb war sichtbar stark und begann die flachen Wolken breiter und dichter wirken zu lassen.</dd></div><div><dt>Eingriff</dt><dd>Die Kerzen wurden selektiv von Hand geführt, damit die Kraft nicht nur in die starken Außenkanten geht.</dd></div><div><dt>Ergebnis</dt><dd>Die Wolken bleiben voll, lesen sich aber ruhiger, kontrollierter und besser getrennt am Haus.</dd></div>
+    <div><dt>Problem</dt><dd>Der junge Austrieb war sichtbar stark und begann die flachen Wolken breiter und dichter wirken zu lassen.</dd></div><div><dt>Eingriff</dt><dd>Die Kerzen wurden selektiv von Hand geführt, damit die Kraft nicht nur in die starken Aussenkanten geht.</dd></div><div><dt>Ergebnis</dt><dd>Die Wolken bleiben voll, lesen sich aber ruhiger, kontrollierter und besser getrennt am Haus.</dd></div>
   </dl>
         <dl class="case-notes">
           <div><dt>Was wurde gemacht</dt><dd>Saisonale Kerzenarbeit: starke Spitzen wurden beruhigt, die Polster wurden nicht hart geschnitten und die bestehende Niwaki-Form blieb erhalten.</dd></div>
@@ -538,12 +546,12 @@
       <div class="case-detail-media">
         <div class="case-detail-pair">
           <figure class="case-frame case-frame-zoomable case-frame-before" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-watereri-cloud-before-01.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-watereri-cloud-before-01.webp" data-image-lightbox-alt="Vorher: Pinus sylvestris 'Watereri': dichte Wolken geöffnet 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrößern: Vorher: Pinus sylvestris 'Watereri': dichte Wolken geöffnet 1">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-watereri-cloud-before-01.webp" data-image-lightbox-alt="Vorher: Pinus sylvestris 'Watereri': dichte Wolken geöffnet 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrössern: Vorher: Pinus sylvestris 'Watereri': dichte Wolken geöffnet 1">
       <img src="assets/img/foto/02_pryklady-robit/case-watereri-cloud-before-01.webp" alt="Vorher: Pinus sylvestris 'Watereri': dichte Wolken geöffnet 1" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Vorher</figcaption>
   </figure><figure class="case-frame case-frame-zoomable case-frame-after" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-watereri-cloud-after-01.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-watereri-cloud-after-01.webp" data-image-lightbox-alt="Nachher: Pinus sylvestris 'Watereri': dichte Wolken geöffnet 2" data-image-lightbox-caption="Nachher" aria-label="Bild vergrößern: Nachher: Pinus sylvestris 'Watereri': dichte Wolken geöffnet 2">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-watereri-cloud-after-01.webp" data-image-lightbox-alt="Nachher: Pinus sylvestris 'Watereri': dichte Wolken geöffnet 2" data-image-lightbox-caption="Nachher" aria-label="Bild vergrössern: Nachher: Pinus sylvestris 'Watereri': dichte Wolken geöffnet 2">
       <img src="assets/img/foto/02_pryklady-robit/case-watereri-cloud-after-01.webp" alt="Nachher: Pinus sylvestris 'Watereri': dichte Wolken geöffnet 2" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Nachher</figcaption>
@@ -554,7 +562,7 @@
     <section class="case-series-group">
     <h3>Vorher / Arbeitskontext</h3>
     <div class="case-series-grid"><figure class="case-frame case-frame-zoomable" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-watereri-cloud-before-02.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-watereri-cloud-before-02.webp" data-image-lightbox-alt="Vorher: Pinus sylvestris 'Watereri': dichte Wolken geöffnet 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrößern: Vorher: Pinus sylvestris 'Watereri': dichte Wolken geöffnet 1">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-watereri-cloud-before-02.webp" data-image-lightbox-alt="Vorher: Pinus sylvestris 'Watereri': dichte Wolken geöffnet 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrössern: Vorher: Pinus sylvestris 'Watereri': dichte Wolken geöffnet 1">
       <img src="assets/img/foto/02_pryklady-robit/case-watereri-cloud-before-02.webp" alt="Vorher: Pinus sylvestris 'Watereri': dichte Wolken geöffnet 1" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Vorher</figcaption>
@@ -564,7 +572,7 @@
     <section class="case-series-group">
     <h3>Nachher</h3>
     <div class="case-series-grid"><figure class="case-frame case-frame-zoomable" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-watereri-cloud-after-02.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-watereri-cloud-after-02.webp" data-image-lightbox-alt="Nachher: Pinus sylvestris 'Watereri': dichte Wolken geöffnet 1" data-image-lightbox-caption="Nachher" aria-label="Bild vergrößern: Nachher: Pinus sylvestris 'Watereri': dichte Wolken geöffnet 1">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-watereri-cloud-after-02.webp" data-image-lightbox-alt="Nachher: Pinus sylvestris 'Watereri': dichte Wolken geöffnet 1" data-image-lightbox-caption="Nachher" aria-label="Bild vergrössern: Nachher: Pinus sylvestris 'Watereri': dichte Wolken geöffnet 1">
       <img src="assets/img/foto/02_pryklady-robit/case-watereri-cloud-after-02.webp" alt="Nachher: Pinus sylvestris 'Watereri': dichte Wolken geöffnet 1" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Nachher</figcaption>
@@ -590,17 +598,17 @@
       <div class="case-detail-media">
         <div class="case-detail-pair case-pair-feature">
           <figure class="case-frame case-frame-zoomable case-frame-before" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-taxus-baccata-topiary-before-01.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-taxus-baccata-topiary-before-01.webp" data-image-lightbox-alt="Vorher: Taxus baccata: junger Austrieb topiarisch beruhigt 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrößern: Vorher: Taxus baccata: junger Austrieb topiarisch beruhigt 1">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-taxus-baccata-topiary-before-01.webp" data-image-lightbox-alt="Vorher: Taxus baccata: junger Austrieb topiarisch beruhigt 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrössern: Vorher: Taxus baccata: junger Austrieb topiarisch beruhigt 1">
       <img src="assets/img/foto/02_pryklady-robit/case-taxus-baccata-topiary-before-01.webp" alt="Vorher: Taxus baccata: junger Austrieb topiarisch beruhigt 1" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Vorher</figcaption>
   </figure><figure class="case-frame case-frame-zoomable case-frame-work" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-taxus-baccata-topiary-love-01.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-taxus-baccata-topiary-love-01.webp" data-image-lightbox-alt="Ich liebe diese Arbeit: Taxus baccata: junger Austrieb topiarisch beruhigt 2" data-image-lightbox-caption="Ich liebe diese Arbeit" aria-label="Bild vergrößern: Ich liebe diese Arbeit: Taxus baccata: junger Austrieb topiarisch beruhigt 2">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-taxus-baccata-topiary-love-01.webp" data-image-lightbox-alt="Ich liebe diese Arbeit: Taxus baccata: junger Austrieb topiarisch beruhigt 2" data-image-lightbox-caption="Ich liebe diese Arbeit" aria-label="Bild vergrössern: Ich liebe diese Arbeit: Taxus baccata: junger Austrieb topiarisch beruhigt 2">
       <img src="assets/img/foto/02_pryklady-robit/case-taxus-baccata-topiary-love-01.webp" alt="Ich liebe diese Arbeit: Taxus baccata: junger Austrieb topiarisch beruhigt 2" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Ich liebe diese Arbeit</figcaption>
   </figure><figure class="case-frame case-frame-zoomable case-frame-after" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-taxus-baccata-topiary-after-02.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-taxus-baccata-topiary-after-02.webp" data-image-lightbox-alt="Nachher: Taxus baccata: junger Austrieb topiarisch beruhigt 3" data-image-lightbox-caption="Nachher" aria-label="Bild vergrößern: Nachher: Taxus baccata: junger Austrieb topiarisch beruhigt 3">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-taxus-baccata-topiary-after-02.webp" data-image-lightbox-alt="Nachher: Taxus baccata: junger Austrieb topiarisch beruhigt 3" data-image-lightbox-caption="Nachher" aria-label="Bild vergrössern: Nachher: Taxus baccata: junger Austrieb topiarisch beruhigt 3">
       <img src="assets/img/foto/02_pryklady-robit/case-taxus-baccata-topiary-after-02.webp" alt="Nachher: Taxus baccata: junger Austrieb topiarisch beruhigt 3" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Nachher</figcaption>
@@ -611,7 +619,7 @@
     <section class="case-series-group">
     <h3>Vorher / Arbeitskontext</h3>
     <div class="case-series-grid"><figure class="case-frame case-frame-zoomable" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-taxus-baccata-topiary-before-02.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-taxus-baccata-topiary-before-02.webp" data-image-lightbox-alt="Vorher: Taxus baccata: junger Austrieb topiarisch beruhigt 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrößern: Vorher: Taxus baccata: junger Austrieb topiarisch beruhigt 1">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-taxus-baccata-topiary-before-02.webp" data-image-lightbox-alt="Vorher: Taxus baccata: junger Austrieb topiarisch beruhigt 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrössern: Vorher: Taxus baccata: junger Austrieb topiarisch beruhigt 1">
       <img src="assets/img/foto/02_pryklady-robit/case-taxus-baccata-topiary-before-02.webp" alt="Vorher: Taxus baccata: junger Austrieb topiarisch beruhigt 1" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Vorher</figcaption>
@@ -621,7 +629,7 @@
     <section class="case-series-group">
     <h3>Nachher</h3>
     <div class="case-series-grid"><figure class="case-frame case-frame-zoomable" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/case-taxus-baccata-topiary-after-01.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-taxus-baccata-topiary-after-01.webp" data-image-lightbox-alt="Nachher: Taxus baccata: junger Austrieb topiarisch beruhigt 1" data-image-lightbox-caption="Nachher" aria-label="Bild vergrößern: Nachher: Taxus baccata: junger Austrieb topiarisch beruhigt 1">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/case-taxus-baccata-topiary-after-01.webp" data-image-lightbox-alt="Nachher: Taxus baccata: junger Austrieb topiarisch beruhigt 1" data-image-lightbox-caption="Nachher" aria-label="Bild vergrössern: Nachher: Taxus baccata: junger Austrieb topiarisch beruhigt 1">
       <img src="assets/img/foto/02_pryklady-robit/case-taxus-baccata-topiary-after-01.webp" alt="Nachher: Taxus baccata: junger Austrieb topiarisch beruhigt 1" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Nachher</figcaption>
@@ -634,12 +642,12 @@
         <h2>Taxus baccata: junger Austrieb topiarisch beruhigt</h2>
         <p>Die Quelle zeigt zwei Vorher-Bilder, Viktors Arbeitsmoment und zwei Nachher-Bilder: der junge Taxus-Austrieb wurde mit Topiarschere gesammelt, ohne die lebendige Wolkenstruktur flach zu machen.</p>
         <dl class="case-diagnosis">
-    <div><dt>Problem</dt><dd>Der frische Austrieb machte die Wolken unruhig; die Außenlinie verlor Präzision und einzelne Polster begannen zusammenzulaufen.</dd></div><div><dt>Eingriff</dt><dd>Der junge Austrieb wurde topiarisch von Hand gelesen und gekürzt: nicht mit Motor, sondern kontrolliert mit Schere entlang der vorhandenen Form.</dd></div><div><dt>Ergebnis</dt><dd>Die Wolkenpolster sind wieder ruhiger, die Etagen trennen sich klarer und der Taxus bleibt dicht, aber nicht grob blockig.</dd></div>
+    <div><dt>Problem</dt><dd>Der frische Austrieb machte die Wolken unruhig; die Aussenlinie verlor Präzision und einzelne Polster begannen zusammenzulaufen.</dd></div><div><dt>Eingriff</dt><dd>Der junge Austrieb wurde topiarisch von Hand gelesen und gekürzt: nicht mit Motor, sondern kontrolliert mit Schere entlang der vorhandenen Form.</dd></div><div><dt>Ergebnis</dt><dd>Die Wolkenpolster sind wieder ruhiger, die Etagen trennen sich klarer und der Taxus bleibt dicht, aber nicht grob blockig.</dd></div>
   </dl>
         <dl class="case-notes">
           <div><dt>Was wurde gemacht</dt><dd>Saisonale Arbeit am jungen Austrieb von Taxus baccata: die überstehenden Spitzen wurden gesammelt, die Wolkenlinie nachgeführt und die Tiefe zwischen den Etagen erhalten.</dd></div>
-          <div><dt>Warum</dt><dd>Bei Taxus ist die Gefahr, die Form nur außen zuzukleben. Dann sieht sie kurz sauber aus, verliert aber Licht, Tiefe und die feine Architektur.</dd></div>
-          <div><dt>Mein Wert</dt><dd>Mein Wert liegt im Maß: die Wolke sauber beruhigen, aber genug Leben und innere Luft im Gehölz lassen.</dd></div>
+          <div><dt>Warum</dt><dd>Bei Taxus ist die Gefahr, die Form nur aussen zuzukleben. Dann sieht sie kurz sauber aus, verliert aber Licht, Tiefe und die feine Architektur.</dd></div>
+          <div><dt>Mein Wert</dt><dd>Mein Wert liegt im Mass: die Wolke sauber beruhigen, aber genug Leben und innere Luft im Gehölz lassen.</dd></div>
         </dl>
       </div>
     </article>
@@ -647,12 +655,12 @@
       <div class="case-detail-media">
         <div class="case-detail-pair">
           <figure class="case-frame case-frame-zoomable case-frame-before" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/hecke-niwaki-nachher-01.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/hecke-niwaki-nachher-01.webp" data-image-lightbox-alt="Vorher: Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrößern: Vorher: Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie 1">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/hecke-niwaki-nachher-01.webp" data-image-lightbox-alt="Vorher: Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrössern: Vorher: Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie 1">
       <img src="assets/img/foto/02_pryklady-robit/hecke-niwaki-nachher-01.webp" alt="Vorher: Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie 1" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Vorher</figcaption>
   </figure><figure class="case-frame case-frame-zoomable case-frame-after" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/hecke-niwaki-vorher-02.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/hecke-niwaki-vorher-02.webp" data-image-lightbox-alt="Nachher: Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie 2" data-image-lightbox-caption="Nachher" aria-label="Bild vergrößern: Nachher: Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie 2">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/hecke-niwaki-vorher-02.webp" data-image-lightbox-alt="Nachher: Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie 2" data-image-lightbox-caption="Nachher" aria-label="Bild vergrössern: Nachher: Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie 2">
       <img src="assets/img/foto/02_pryklady-robit/hecke-niwaki-vorher-02.webp" alt="Nachher: Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie 2" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Nachher</figcaption>
@@ -663,7 +671,7 @@
     <section class="case-series-group">
     <h3>Vorher / Arbeitskontext</h3>
     <div class="case-series-grid"><figure class="case-frame case-frame-zoomable" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/hecke-niwaki-vorher-01.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/hecke-niwaki-vorher-01.webp" data-image-lightbox-alt="Vorher: Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrößern: Vorher: Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie 1">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/hecke-niwaki-vorher-01.webp" data-image-lightbox-alt="Vorher: Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie 1" data-image-lightbox-caption="Vorher" aria-label="Bild vergrössern: Vorher: Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie 1">
       <img src="assets/img/foto/02_pryklady-robit/hecke-niwaki-vorher-01.webp" alt="Vorher: Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie 1" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Vorher</figcaption>
@@ -672,12 +680,12 @@
     <section class="case-series-group">
     <h3>Arbeitskontext</h3>
     <div class="case-series-grid"><figure class="case-frame case-frame-zoomable" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/hecke-niwaki-diagnose-01.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/hecke-niwaki-diagnose-01.webp" data-image-lightbox-alt="Arbeit: Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie 1" data-image-lightbox-caption="Arbeit" aria-label="Bild vergrößern: Arbeit: Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie 1">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/hecke-niwaki-diagnose-01.webp" data-image-lightbox-alt="Arbeit: Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie 1" data-image-lightbox-caption="Arbeit" aria-label="Bild vergrössern: Arbeit: Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie 1">
       <img src="assets/img/foto/02_pryklady-robit/hecke-niwaki-diagnose-01.webp" alt="Arbeit: Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie 1" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Arbeit</figcaption>
   </figure><figure class="case-frame case-frame-zoomable" style="--case-position:center center;--case-image:url('/assets/img/foto/02_pryklady-robit/hecke-niwaki-arbeit-01.webp')">
-    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/hecke-niwaki-arbeit-01.webp" data-image-lightbox-alt="Arbeit: Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie 2" data-image-lightbox-caption="Arbeit" aria-label="Bild vergrößern: Arbeit: Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie 2">
+    <button class="case-frame-zoom" type="button" data-image-lightbox-src="assets/img/foto/02_pryklady-robit/hecke-niwaki-arbeit-01.webp" data-image-lightbox-alt="Arbeit: Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie 2" data-image-lightbox-caption="Arbeit" aria-label="Bild vergrössern: Arbeit: Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie 2">
       <img src="assets/img/foto/02_pryklady-robit/hecke-niwaki-arbeit-01.webp" alt="Arbeit: Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie 2" loading="eager" decoding="async" width="900" height="675">
     </button>
     <figcaption>Arbeit</figcaption>
@@ -691,12 +699,12 @@
         <h2>Nadelgehölz-Hecke: vom dichten Block zur kontrollierten Linie</h2>
         <p>Diese Serie zeigt eine reale Formhecke: dichte Masse, Diagnose im Inneren, Arbeit mit Leiter und die ruhigere Linie danach.</p>
         <dl class="case-diagnosis">
-    <div><dt>Problem</dt><dd>Die Außenlinie war dicht und unruhig; innen fehlten Licht und Luft.</dd></div><div><dt>Eingriff</dt><dd>Die Masse wurde kontrolliert zurückgenommen, die Linie gesammelt und der Innenbereich diagnostiziert.</dd></div><div><dt>Ergebnis</dt><dd>Die Hecke liest ruhiger, bekommt mehr Luft und bleibt langfristig pflegbar.</dd></div>
+    <div><dt>Problem</dt><dd>Die Aussenlinie war dicht und unruhig; innen fehlten Licht und Luft.</dd></div><div><dt>Eingriff</dt><dd>Die Masse wurde kontrolliert zurückgenommen, die Linie gesammelt und der Innenbereich diagnostiziert.</dd></div><div><dt>Ergebnis</dt><dd>Die Hecke liest ruhiger, bekommt mehr Luft und bleibt langfristig pflegbar.</dd></div>
   </dl>
         <dl class="case-notes">
-          <div><dt>Was wurde gemacht</dt><dd>Die übervolle Außenfläche wurde kontrolliert zurückgenommen, die Linie gesammelt und der trockene Innenbereich als Pflegehinweis dokumentiert.</dd></div>
+          <div><dt>Was wurde gemacht</dt><dd>Die übervolle Aussenfläche wurde kontrolliert zurückgenommen, die Linie gesammelt und der trockene Innenbereich als Pflegehinweis dokumentiert.</dd></div>
           <div><dt>Warum</dt><dd>Bei dichten Nadelgehölzen entscheidet der Schnitt über Licht, Luft und zukünftige Regeneration; ein schneller Flächenschnitt reicht nicht.</dd></div>
-          <div><dt>Mein Wert</dt><dd>Mein Wert liegt in der Diagnose vor dem Schnitt: Ich sehe nicht nur die Außenkontur, sondern auch, was im Inneren des Gehölzes passiert.</dd></div>
+          <div><dt>Mein Wert</dt><dd>Mein Wert liegt in der Diagnose vor dem Schnitt: Ich sehe nicht nur die Aussenkontur, sondern auch, was im Inneren des Gehölzes passiert.</dd></div>
         </dl>
       </div>
     </article>
@@ -752,7 +760,7 @@
       </article>
       <article class="watereri-tree-card watereri-tree-card-wide">
         <h3>Baum 2: dieselbe Logik an der ganzen Krone.</h3>
-        <p>Am zweiten Baum sieht man die Wirkung im Maßstab: Wolkenpolster bleiben lesbar, aber Licht und Luft müssen zwischen den Etagen arbeiten können.</p>
+        <p>Am zweiten Baum sieht man die Wirkung im Massstab: Wolkenpolster bleiben lesbar, aber Licht und Luft müssen zwischen den Etagen arbeiten können.</p>
         <div class="watereri-tree-media watereri-tree-media-wide">
     <figure class="image-slot image-slot-real  " style="--ratio:4 / 3" data-asset="foto/04_khvoyni/watereri-wolkenpflege-tree2-01.webp">
       <img src="assets/img/foto/04_khvoyni/watereri-wolkenpflege-tree2-01.webp" alt="Pinus sylvestris Watereri Baum 2, Kronenarchitektur mit dichten Wolkenpolstern" loading="lazy" decoding="async" width="1200" height="900">
@@ -765,9 +773,9 @@
     <details class="gallery-readmore">
       <summary>Mehr lesen</summary>
       <div class="gallery-readmore-body">
-        <p>Viktors Notiz: Das sind zwei verschiedene Bäume. Beide sind Pinus sylvestris 'Watereri', und die Arbeit ist dieselbe: Wolkenpflege, damit die Schappen nicht zu stark verdichten, keine stehende Feuchtigkeit halten und Pilzkrankheiten weniger Chancen bekommen. Für diese Kiefer ist das eine der wichtigsten Pflegemaßnahmen und sollte je nach Wuchs mindestens alle 2-3 Jahre kontrolliert werden.</p>
-        <p>Bei Watereri reicht ein runder Außenschnitt nicht. Ich lese die Dichte jeder Wolke: wo junge Triebe bleiben, wo Luft hineinkommen muss und wo die Krone innen nicht dunkel werden darf. So bleibt der Baum kompakt, aber lebendig.</p>
-        <p>Wenn die Wolken nur außen geschlossen werden, sammelt sich innen Feuchtigkeit. Dann sterben innere Nadeln und feine Zweige ab, die Polster werden schwer und Pilzdruck nimmt zu. Die saubere Arbeit ist deshalb selektiv, langsam und mit Blick auf die nächsten Jahre.</p>
+        <p>Viktors Notiz: Das sind zwei verschiedene Bäume. Beide sind Pinus sylvestris 'Watereri', und die Arbeit ist dieselbe: Wolkenpflege, damit die Schappen nicht zu stark verdichten, keine stehende Feuchtigkeit halten und Pilzkrankheiten weniger Chancen bekommen. Für diese Kiefer ist das eine der wichtigsten Pflegemassnahmen und sollte je nach Wuchs mindestens alle 2-3 Jahre kontrolliert werden.</p>
+        <p>Bei Watereri reicht ein runder Aussenschnitt nicht. Ich lese die Dichte jeder Wolke: wo junge Triebe bleiben, wo Luft hineinkommen muss und wo die Krone innen nicht dunkel werden darf. So bleibt der Baum kompakt, aber lebendig.</p>
+        <p>Wenn die Wolken nur aussen geschlossen werden, sammelt sich innen Feuchtigkeit. Dann sterben innere Nadeln und feine Zweige ab, die Polster werden schwer und Pilzdruck nimmt zu. Die saubere Arbeit ist deshalb selektiv, langsam und mit Blick auf die nächsten Jahre.</p>
       </div>
     </details>
   </section>
@@ -784,9 +792,9 @@
   </figure></div>
       <div class="connected-series-copy">
         <h3>Pinus parviflora am Haus: dichter Austrieb und ruhigere Wolkenlinie.</h3>
-        <p>Die Gruppe zeigt denselben Arbeitskontext am Haus: dichter Austrieb, unruhige Außenlinie und die geöffnetere, sauberere Wolkenform nach Handarbeit.</p>
+        <p>Die Gruppe zeigt denselben Arbeitskontext am Haus: dichter Austrieb, unruhige Aussenlinie und die geöffnetere, sauberere Wolkenform nach Handarbeit.</p>
         <dl class="connected-series-notes">
-          <div><dt>Baum</dt><dd>Japanische Weißkiefer - Pinus parviflora</dd></div>
+          <div><dt>Baum</dt><dd>Japanische Weisskiefer - Pinus parviflora</dd></div>
           <div><dt>Was wurde gemacht</dt><dd>Der junge Austrieb wurde selektiv zurückgenommen, die Polster wurden geöffnet und die untere Linie so beruhigt, dass der Baum wieder klar neben Wand und Kies steht.</dd></div>
         </dl>
       </div>
@@ -800,9 +808,9 @@
   </figure></div>
       <div class="connected-series-copy">
         <h3>Pinus parviflora im Holzkasten: niedrige Krone, Standort und Proportion.</h3>
-        <p>Die Serie erklärt, warum ein großer Gartenbonsai nicht nur frontal bewertet wird: Höhe, Kasten, Nachbarpflanzen und Blickrichtung gehören zusammen.</p>
+        <p>Die Serie erklärt, warum ein grosser Gartenbonsai nicht nur frontal bewertet wird: Höhe, Kasten, Nachbarpflanzen und Blickrichtung gehören zusammen.</p>
         <dl class="connected-series-notes">
-          <div><dt>Baum</dt><dd>Japanische Weißkiefer - Pinus parviflora</dd></div>
+          <div><dt>Baum</dt><dd>Japanische Weisskiefer - Pinus parviflora</dd></div>
           <div><dt>Was wurde gemacht</dt><dd>Die Form wurde so gelesen, dass die unteren Wolken nicht drücken, die oberen Ebenen sichtbar bleiben und der Baum am Standort Ruhe bekommt.</dd></div>
         </dl>
       </div>
@@ -821,7 +829,7 @@
         <h3>Pinus parviflora: dichte Krone, getrennte Wolken, fertige Wirkung.</h3>
         <p>Diese Gruppe bleibt eine verbundene Arbeitsserie, nicht der obere Beweisblock: dichter Zustand, geöffnete Form und Wirkung aus dem zweiten Winkel.</p>
         <dl class="connected-series-notes">
-          <div><dt>Baum</dt><dd>Japanische Weißkiefer - Pinus parviflora</dd></div>
+          <div><dt>Baum</dt><dd>Japanische Weisskiefer - Pinus parviflora</dd></div>
           <div><dt>Was wurde gemacht</dt><dd>Übervolle Partien wurden selektiv geöffnet, junge Triebe reduziert und die Wolken so getrennt, dass die Form nicht flach wirkt.</dd></div>
         </dl>
       </div>
@@ -848,7 +856,7 @@
   </section>
 
   <section class="section parviflora-candle-set">
-    <div class="section-head"><span class="eyebrow">Pinus parviflora / Kerzenarbeit</span><h2>Zwei japanische Weißkiefern nach dem Setzen des jungen Austriebs.</h2><p>Diese Serie ist kein Vorher-/Nachher-Beweis. Sie zeigt zwei Pinus parviflora im Garten des Besitzers nach der abendlichen Arbeit an den Kerzen: Der junge Austrieb setzt sich, die Wolkenlinie wird ruhiger und die Bäume bleiben im Landschaftsraum lesbar.</p></div>
+    <div class="section-head"><span class="eyebrow">Pinus parviflora / Kerzenarbeit</span><h2>Zwei japanische Weisskiefern nach dem Setzen des jungen Austriebs.</h2><p>Diese Serie ist kein Vorher-/Nachher-Beweis. Sie zeigt zwei Pinus parviflora im Garten des Besitzers nach der abendlichen Arbeit an den Kerzen: Der junge Austrieb setzt sich, die Wolkenlinie wird ruhiger und die Bäume bleiben im Landschaftsraum lesbar.</p></div>
     <div class="parviflora-candle-grid">
     <figure class="image-slot image-slot-real  " style="--ratio:3 / 4" data-asset="foto/04_khvoyni/parviflora-kerzenabsenkung-01.webp">
       <img src="assets/img/foto/04_khvoyni/parviflora-kerzenabsenkung-01.webp" alt="Pinus parviflora im Garten nach der Arbeit an Kerzen und jungem Austrieb, Baum 1" loading="lazy" decoding="async" width="900" height="1200">
@@ -866,7 +874,7 @@
       <summary>Mehr lesen</summary>
       <div class="gallery-readmore-body">
         <p>Viktors Notiz: Das sind zwei Pinus parviflora im Garten- und Landschaftsinterieur des Besitzers nach der abendlichen Arbeit an den Kerzen, genauer: das Absenken beziehungsweise Setzen des jungen Austriebs.</p>
-        <p>Der Wert dieser Arbeit liegt im Zeitpunkt. Junge Kerzen sind noch weich und lenkbar; wenn sie richtig geführt werden, verteilt sich die Kraft gleichmäßiger und die Polster werden flacher, ruhiger und leichter lesbar. Wartet man zu lange, verholzt der Austrieb, lässt sich schlechter korrigieren und kann bei grober Arbeit brechen.</p>
+        <p>Der Wert dieser Arbeit liegt im Zeitpunkt. Junge Kerzen sind noch weich und lenkbar; wenn sie richtig geführt werden, verteilt sich die Kraft gleichmässiger und die Polster werden flacher, ruhiger und leichter lesbar. Wartet man zu lange, verholzt der Austrieb, lässt sich schlechter korrigieren und kann bei grober Arbeit brechen.</p>
         <p>Die Gefahr ist, Kerzen wie eine Hecke zu schneiden. Dann verliert die Kiefer zukünftige Knospen, innere Bereiche werden dunkel und die Wolken können schwer nach unten hängen. Saubere Handarbeit hält genug Nadeln für Energie, nimmt aber Druck aus zu starken Zonen.</p>
       </div>
     </details>
@@ -877,7 +885,7 @@
     <div class="pinus-nigra-grid">
 
     <figure class="image-slot image-slot-real  " style="--ratio:3 / 4" data-asset="foto/04_khvoyni/sosna-avstr-01.webp">
-      <img src="assets/img/foto/04_khvoyni/sosna-avstr-01.webp" alt="Viktor neben einer großen Schwarzkiefer Pinus nigra - Maßstab der Handarbeit am Baum" loading="lazy" decoding="async" width="900" height="1200">
+      <img src="assets/img/foto/04_khvoyni/sosna-avstr-01.webp" alt="Viktor neben einer grossen Schwarzkiefer Pinus nigra - Massstab der Handarbeit am Baum" loading="lazy" decoding="async" width="900" height="1200">
     </figure>
 
     <figure class="image-slot image-slot-real  " style="--ratio:3 / 4" data-asset="foto/04_khvoyni/sosna-avstr-02.webp">
@@ -919,19 +927,19 @@
   </section>
 
   <section class="section pumilio-feature">
-    <div class="section-head"><span class="eyebrow">Pinus mugo 'Pumilio' / Pilzkrone</span><h2>Bergkiefer mit ruhiger Pilzkrone.</h2><p>Ein einzelnes Portfoliofoto, kein Vorher-/Nachher-Fall: Pinus mugo 'Pumilio' wird als kompakte, schirmartige Krone in einer großen Schale aufgebaut.</p></div>
+    <div class="section-head"><span class="eyebrow">Pinus mugo 'Pumilio' / Pilzkrone</span><h2>Bergkiefer mit ruhiger Pilzkrone.</h2><p>Ein einzelnes Portfoliofoto, kein Vorher-/Nachher-Fall: Pinus mugo 'Pumilio' wird als kompakte, schirmartige Krone in einer grossen Schale aufgebaut.</p></div>
     <div class="pumilio-feature-layout">
 
     <figure class="image-slot image-slot-real  " style="--ratio:3 / 4" data-asset="foto/04_khvoyni/pinus-mugo-pumilio-pilzkrone-01.webp">
-      <img src="assets/img/foto/04_khvoyni/pinus-mugo-pumilio-pilzkrone-01.webp" alt="Pinus mugo Pumilio in großer Schale mit künstlerisch geformter Pilzkrone" loading="lazy" decoding="async" width="900" height="1200">
+      <img src="assets/img/foto/04_khvoyni/pinus-mugo-pumilio-pilzkrone-01.webp" alt="Pinus mugo Pumilio in grosser Schale mit künstlerisch geformter Pilzkrone" loading="lazy" decoding="async" width="900" height="1200">
     </figure>
       <div class="pumilio-feature-copy">
         <p>Viktors Notiz: Das ist Pinus mugo 'Pumilio'. Die Arbeit ist eine künstlerisch-architektonische Kronenformung in Form eines Pilzes.</p>
         <details class="gallery-readmore">
           <summary>Mehr lesen</summary>
           <div class="gallery-readmore-body">
-            <p>Bei Pumilio entsteht die Wirkung nicht durch einen flachen Heckenschnitt. Die Krone braucht eine ruhige Außenlinie, darunter aber klare Aststruktur, Luft und Licht. Die jungen Triebe werden selektiv geführt, damit die runde Pilzform dicht wirkt, innen aber nicht erstickt.</p>
-            <p>Wichtig ist auch der Maßstab der Schale: Stammbasis, Astfächer und Schirmkante müssen zusammenpassen. So bleibt die Pflanze kompakt und skulptural, ohne wie ein harter grüner Block zu wirken.</p>
+            <p>Bei Pumilio entsteht die Wirkung nicht durch einen flachen Heckenschnitt. Die Krone braucht eine ruhige Aussenlinie, darunter aber klare Aststruktur, Luft und Licht. Die jungen Triebe werden selektiv geführt, damit die runde Pilzform dicht wirkt, innen aber nicht erstickt.</p>
+            <p>Wichtig ist auch der Massstab der Schale: Stammbasis, Astfächer und Schirmkante müssen zusammenpassen. So bleibt die Pflanze kompakt und skulptural, ohne wie ein harter grüner Block zu wirken.</p>
           </div>
         </details>
       </div>
@@ -963,37 +971,37 @@
     </details>
   </section>
   <section class="section">
-    <div class="section-head"><span class="eyebrow">Fertige Niwaki</span><h2>Die stärksten fertigen Bäume und Gartenbonsais.</h2><p>Kuratiert statt Foto-Lager: Form, Proportion, Wolkenetagen und Baum-Maßstab. Diese Sektion zeigt fertige Wirkung, nicht Vorher-/Nachher-Beweis.</p></div>
+    <div class="section-head"><span class="eyebrow">Fertige Niwaki</span><h2>Die stärksten fertigen Bäume und Gartenbonsais.</h2><p>Kuratiert statt Foto-Lager: Form, Proportion, Wolkenetagen und Baum-Massstab. Diese Sektion zeigt fertige Wirkung, nicht Vorher-/Nachher-Beweis.</p></div>
     <div class="gallery-real-grid">
     <a class="gallery-photo" href="assets/img/foto/03_galereya/sosna-bila-01.webp" data-lightbox>
-      <img src="assets/img/foto/03_galereya/sosna-bila-01.webp" alt="Japanische Weißkiefer (Pinus parviflora) als Garten-Bonsai / Niwaki, von Hand geformt – Region Zürich" loading="eager" decoding="async" width="900" height="675">
+      <img src="assets/img/foto/03_galereya/sosna-bila-01.webp" alt="Japanische Weisskiefer (Pinus parviflora) als Garten-Bonsai / Niwaki, von Hand geformt – Region Zürich" loading="eager" decoding="async" width="900" height="675">
     </a>
     <a class="gallery-photo" href="assets/img/foto/03_galereya/sosna-bila-02.webp" data-lightbox>
-      <img src="assets/img/foto/03_galereya/sosna-bila-02.webp" alt="Japanische Weißkiefer (Pinus parviflora) als Garten-Bonsai / Niwaki, von Hand geformt – Region Zürich" loading="eager" decoding="async" width="900" height="675">
+      <img src="assets/img/foto/03_galereya/sosna-bila-02.webp" alt="Japanische Weisskiefer (Pinus parviflora) als Garten-Bonsai / Niwaki, von Hand geformt – Region Zürich" loading="eager" decoding="async" width="900" height="675">
     </a>
     <a class="gallery-photo" href="assets/img/foto/03_galereya/sosna-bila-08.webp" data-lightbox>
-      <img src="assets/img/foto/03_galereya/sosna-bila-08.webp" alt="Japanische Weißkiefer (Pinus parviflora) als Garten-Bonsai / Niwaki, von Hand geformt – Region Zürich" loading="eager" decoding="async" width="900" height="675">
+      <img src="assets/img/foto/03_galereya/sosna-bila-08.webp" alt="Japanische Weisskiefer (Pinus parviflora) als Garten-Bonsai / Niwaki, von Hand geformt – Region Zürich" loading="eager" decoding="async" width="900" height="675">
     </a>
     <a class="gallery-photo" href="assets/img/foto/03_galereya/sosna-bila-12.webp" data-lightbox>
-      <img src="assets/img/foto/03_galereya/sosna-bila-12.webp" alt="Japanische Weißkiefer (Pinus parviflora) als Garten-Bonsai / Niwaki, von Hand geformt – Region Zürich" loading="eager" decoding="async" width="900" height="675">
+      <img src="assets/img/foto/03_galereya/sosna-bila-12.webp" alt="Japanische Weisskiefer (Pinus parviflora) als Garten-Bonsai / Niwaki, von Hand geformt – Region Zürich" loading="eager" decoding="async" width="900" height="675">
     </a>
     <a class="gallery-photo" href="assets/img/foto/03_galereya/sosna-bila-13.webp" data-lightbox>
-      <img src="assets/img/foto/03_galereya/sosna-bila-13.webp" alt="Japanische Weißkiefer (Pinus parviflora) als Garten-Bonsai / Niwaki, von Hand geformt – Region Zürich" loading="eager" decoding="async" width="900" height="675">
+      <img src="assets/img/foto/03_galereya/sosna-bila-13.webp" alt="Japanische Weisskiefer (Pinus parviflora) als Garten-Bonsai / Niwaki, von Hand geformt – Region Zürich" loading="eager" decoding="async" width="900" height="675">
     </a>
     <a class="gallery-photo" href="assets/img/foto/03_galereya/sosna-bila-14.webp" data-lightbox>
-      <img src="assets/img/foto/03_galereya/sosna-bila-14.webp" alt="Japanische Weißkiefer (Pinus parviflora) als Garten-Bonsai / Niwaki, von Hand geformt – Region Zürich" loading="eager" decoding="async" width="900" height="675">
+      <img src="assets/img/foto/03_galereya/sosna-bila-14.webp" alt="Japanische Weisskiefer (Pinus parviflora) als Garten-Bonsai / Niwaki, von Hand geformt – Region Zürich" loading="eager" decoding="async" width="900" height="675">
     </a>
     <a class="gallery-photo" href="assets/img/foto/03_galereya/sosna-bila-15.webp" data-lightbox>
-      <img src="assets/img/foto/03_galereya/sosna-bila-15.webp" alt="Japanische Weißkiefer (Pinus parviflora) als Garten-Bonsai / Niwaki, von Hand geformt – Region Zürich" loading="lazy" decoding="async" width="900" height="675">
+      <img src="assets/img/foto/03_galereya/sosna-bila-15.webp" alt="Japanische Weisskiefer (Pinus parviflora) als Garten-Bonsai / Niwaki, von Hand geformt – Region Zürich" loading="lazy" decoding="async" width="900" height="675">
     </a>
     <a class="gallery-photo" href="assets/img/foto/02_pryklady-robit/sosna-bila-22.webp" data-lightbox>
-      <img src="assets/img/foto/02_pryklady-robit/sosna-bila-22.webp" alt="Japanische Weißkiefer Pinus parviflora als Arbeits- oder Kontextansicht eines Niwaki" loading="lazy" decoding="async" width="900" height="675">
+      <img src="assets/img/foto/02_pryklady-robit/sosna-bila-22.webp" alt="Japanische Weisskiefer Pinus parviflora als Arbeits- oder Kontextansicht eines Niwaki" loading="lazy" decoding="async" width="900" height="675">
     </a>
     <a class="gallery-photo" href="assets/img/foto/02_pryklady-robit/sosna-bila-23.webp" data-lightbox>
-      <img src="assets/img/foto/02_pryklady-robit/sosna-bila-23.webp" alt="Japanische Weißkiefer Pinus parviflora als Arbeits- oder Kontextansicht eines Niwaki" loading="lazy" decoding="async" width="900" height="675">
+      <img src="assets/img/foto/02_pryklady-robit/sosna-bila-23.webp" alt="Japanische Weisskiefer Pinus parviflora als Arbeits- oder Kontextansicht eines Niwaki" loading="lazy" decoding="async" width="900" height="675">
     </a>
     <a class="gallery-photo" href="assets/img/foto/05_nivaki-khmarky/parviflora-niwaki-01.webp" data-lightbox>
-      <img src="assets/img/foto/05_nivaki-khmarky/parviflora-niwaki-01.webp" alt="Japanische Weißkiefer Pinus parviflora – reifer Gartenbonsai-Niwaki mit offenen Etagen" loading="lazy" decoding="async" width="900" height="675">
+      <img src="assets/img/foto/05_nivaki-khmarky/parviflora-niwaki-01.webp" alt="Japanische Weisskiefer Pinus parviflora – reifer Gartenbonsai-Niwaki mit offenen Etagen" loading="lazy" decoding="async" width="900" height="675">
     </a></div>
   </section>
 
@@ -1004,19 +1012,16 @@
       <img src="assets/img/foto/01_hero/hero-sad-02.webp" alt="Japanischer Garten mit Niwaki und Formgehölzen – Region Zürich" loading="lazy" decoding="async" width="900" height="675">
     </a>
     <a class="gallery-photo" href="assets/img/foto/02_pryklady-robit/sosna-bila-do-pislya-02.webp" data-lightbox>
-      <img src="assets/img/foto/02_pryklady-robit/sosna-bila-do-pislya-02.webp" alt="Japanische Weißkiefer Pinus parviflora als Arbeits- oder Kontextansicht eines Niwaki" loading="lazy" decoding="async" width="900" height="675">
+      <img src="assets/img/foto/02_pryklady-robit/sosna-bila-do-pislya-02.webp" alt="Japanische Weisskiefer Pinus parviflora als Arbeits- oder Kontextansicht eines Niwaki" loading="lazy" decoding="async" width="900" height="675">
     </a>
     <a class="gallery-photo" href="assets/img/foto/02_pryklady-robit/sosna-bila-do-pislya-04.webp" data-lightbox>
-      <img src="assets/img/foto/02_pryklady-robit/sosna-bila-do-pislya-04.webp" alt="Japanische Weißkiefer Pinus parviflora als Arbeits- oder Kontextansicht eines Niwaki" loading="lazy" decoding="async" width="900" height="675">
-    </a>
-    <a class="gallery-photo" href="assets/img/foto/02_pryklady-robit/sosna-bila-do-pislya-05.webp" data-lightbox>
-      <img src="assets/img/foto/02_pryklady-robit/sosna-bila-do-pislya-05.webp" alt="Japanische Weißkiefer Pinus parviflora als Arbeits- oder Kontextansicht eines Niwaki" loading="lazy" decoding="async" width="900" height="675">
+      <img src="assets/img/foto/02_pryklady-robit/sosna-bila-do-pislya-04.webp" alt="Japanische Weisskiefer Pinus parviflora als Arbeits- oder Kontextansicht eines Niwaki" loading="lazy" decoding="async" width="900" height="675">
     </a>
     <a class="gallery-photo" href="assets/img/foto/02_pryklady-robit/sosna-bila-do-pislya-30.webp" data-lightbox>
-      <img src="assets/img/foto/02_pryklady-robit/sosna-bila-do-pislya-30.webp" alt="Japanische Weißkiefer Pinus parviflora als Arbeits- oder Kontextansicht eines Niwaki" loading="lazy" decoding="async" width="900" height="675">
+      <img src="assets/img/foto/02_pryklady-robit/sosna-bila-do-pislya-30.webp" alt="Japanische Weisskiefer Pinus parviflora als Arbeits- oder Kontextansicht eines Niwaki" loading="lazy" decoding="async" width="900" height="675">
     </a>
     <a class="gallery-photo" href="assets/img/foto/03_galereya/sosna-bila-03.webp" data-lightbox>
-      <img src="assets/img/foto/03_galereya/sosna-bila-03.webp" alt="Japanische Weißkiefer (Pinus parviflora) als Garten-Bonsai / Niwaki, von Hand geformt – Region Zürich" loading="lazy" decoding="async" width="900" height="675">
+      <img src="assets/img/foto/03_galereya/sosna-bila-03.webp" alt="Japanische Weisskiefer (Pinus parviflora) als Garten-Bonsai / Niwaki, von Hand geformt – Region Zürich" loading="lazy" decoding="async" width="900" height="675">
     </a></div>
   </section>
   <section class="section">
@@ -1025,14 +1030,8 @@
     <a class="gallery-photo" href="assets/img/foto/05_nivaki-khmarky/yalivets-01.webp" data-lightbox>
       <img src="assets/img/foto/05_nivaki-khmarky/yalivets-01.webp" alt="Wacholder (Juniperus) als Niwaki mit Wolkenschnitt, von Hand geformt – Region Zürich" loading="lazy" decoding="async" width="900" height="675">
     </a>
-    <a class="gallery-photo" href="assets/img/foto/05_nivaki-khmarky/yalivets-02.webp" data-lightbox>
-      <img src="assets/img/foto/05_nivaki-khmarky/yalivets-02.webp" alt="Wacholder (Juniperus) als Niwaki mit Wolkenschnitt, von Hand geformt – Region Zürich" loading="lazy" decoding="async" width="900" height="675">
-    </a>
     <a class="gallery-photo" href="assets/img/foto/05_nivaki-khmarky/yalivets-03.webp" data-lightbox>
       <img src="assets/img/foto/05_nivaki-khmarky/yalivets-03.webp" alt="Wacholder (Juniperus) als Niwaki mit Wolkenschnitt, von Hand geformt – Region Zürich" loading="lazy" decoding="async" width="900" height="675">
-    </a>
-    <a class="gallery-photo" href="assets/img/foto/05_nivaki-khmarky/yalivets-04.webp" data-lightbox>
-      <img src="assets/img/foto/05_nivaki-khmarky/yalivets-04.webp" alt="Wacholder (Juniperus) als Niwaki mit Wolkenschnitt, von Hand geformt – Region Zürich" loading="lazy" decoding="async" width="900" height="675">
     </a></div>
   </section>
   <section class="section">
@@ -1040,12 +1039,6 @@
     <div class="gallery-real-grid gallery-portrait-grid">
     <a class="gallery-photo" href="assets/img/foto/06_yaponski-kleny/klen-yaponskyi-02.webp" data-lightbox>
       <img src="assets/img/foto/06_yaponski-kleny/klen-yaponskyi-02.webp" alt="Japanischer Ahorn (Acer) – Formschnitt und Pflege, Region Zürich" loading="lazy" decoding="async" width="900" height="675">
-    </a>
-    <a class="gallery-photo" href="assets/img/foto/06_yaponski-kleny/laubgehoelz-formschnitt-01.webp" data-lightbox>
-      <img src="assets/img/foto/06_yaponski-kleny/laubgehoelz-formschnitt-01.webp" alt="Laubgehoelz im Kuebel nach Handformung und Auslichtung der Krone" loading="lazy" decoding="async" width="900" height="675">
-    </a>
-    <a class="gallery-photo" href="assets/img/foto/06_yaponski-kleny/laubgehoelz-formschnitt-02.webp" data-lightbox>
-      <img src="assets/img/foto/06_yaponski-kleny/laubgehoelz-formschnitt-02.webp" alt="Zweiter Blick auf handgeschnittenes Laubgehoelz mit geoeffneter Krone" loading="lazy" decoding="async" width="900" height="675">
     </a></div>
   </section>
   <section class="section">
@@ -1077,10 +1070,10 @@
       <img src="assets/img/foto/09_pomylky/pomylka-svichka-02.webp" alt="Falscher Schnitt an der Kiefernkerze – Beispiel, wie man es nicht macht" loading="lazy" decoding="async" width="900" height="675">
     </a>
     <a class="gallery-photo" href="assets/img/foto/03_galereya/sosna-bila-04.webp" data-lightbox>
-      <img src="assets/img/foto/03_galereya/sosna-bila-04.webp" alt="Japanische Weißkiefer (Pinus parviflora) als Garten-Bonsai / Niwaki, von Hand geformt – Region Zürich" loading="lazy" decoding="async" width="900" height="675">
+      <img src="assets/img/foto/03_galereya/sosna-bila-04.webp" alt="Japanische Weisskiefer (Pinus parviflora) als Garten-Bonsai / Niwaki, von Hand geformt – Region Zürich" loading="lazy" decoding="async" width="900" height="675">
     </a>
     <a class="gallery-photo" href="assets/img/foto/02_pryklady-robit/sosna-bila-20.webp" data-lightbox>
-      <img src="assets/img/foto/02_pryklady-robit/sosna-bila-20.webp" alt="Japanische Weißkiefer Pinus parviflora als Arbeits- oder Kontextansicht eines Niwaki" loading="lazy" decoding="async" width="900" height="675">
+      <img src="assets/img/foto/02_pryklady-robit/sosna-bila-20.webp" alt="Japanische Weisskiefer Pinus parviflora als Arbeits- oder Kontextansicht eines Niwaki" loading="lazy" decoding="async" width="900" height="675">
     </a></div>
   </section>
   <section class="section final-cta">
@@ -1096,9 +1089,9 @@
   <footer class="site-footer">
     <div class="footer-grid">
       <div>
-        <a class="footer-brand" href="index.html">Viktor Baumarchitektur</a>
+        <a class="footer-brand" href="index.html">Viktor Garden</a>
         <p>Japanische Baumkunst, Niwaki, Garten-Bonsai und Formschnitt in der Region Zürich.</p>
-        <img class="footer-logo" src="assets/img/logo.png" alt="Viktor Baumarchitektur logo" loading="lazy" decoding="async" width="240" height="120">
+        <img class="footer-logo" src="assets/img/logo.png" alt="Viktor Garden logo" loading="lazy" decoding="async" width="240" height="120">
       </div>
       <div>
         <h2>Leistungen</h2>
@@ -1135,6 +1128,6 @@
     </div>
   </div>
   <div class="toast" data-toast hidden></div>
-  <script src="assets/main.js?v=20260629-book-covers-amazon" defer></script>
+  <script src="assets/main.js?v=20260630-header-lang-phone" defer></script>
 </body>
 </html>

@@ -3,7 +3,7 @@ import path from "node:path";
 
 const root = process.cwd();
 const brand = "Viktor Baumarchitektur";
-const brandWordmark = "Viktor Baumarchitektur";
+const brandWordmark = "Viktor Garden";
 const domain = "https://viktor-baumarchitektur.ch";
 const phone = "+41783130330";
 const phoneDisplay = "+41 78 313 03 30";
@@ -11,7 +11,7 @@ const telHref = `tel:${phone}`;
 const instagramUrl = "https://www.instagram.com/viktor_bonsai_niwaki";
 const facebookUrl = "https://www.facebook.com/viktor.bonsai.niwaki";
 const publicSameAs = [instagramUrl, facebookUrl];
-const assetVersion = "20260629-book-covers-amazon";
+const assetVersion = "20260630-header-lang-phone";
 const whatsappText = encodeURIComponent(
   "Guten Tag Viktor, ich sende Ihnen Fotos meines Baumes (Kanton: ..., Baumart: ...). Können Sie einschätzen, welche Formung oder Kronenpflege sinnvoll ist?"
 );
@@ -195,7 +195,7 @@ function photoAlt(folder, file, lang = "de", fallback = "") {
   if (folder === "04_khvoyni" && file === "sosna-avstr-01.webp") {
     if (lang === "uk") return "Віктор поряд із великою чорною сосною Pinus nigra — масштаб дерева під час ручної роботи";
     if (lang === "en") return "Viktor beside a large black pine Pinus nigra, showing the scale of hand shaping work";
-    return "Viktor neben einer großen Schwarzkiefer Pinus nigra - Maßstab der Handarbeit am Baum";
+    return "Viktor neben einer grossen Schwarzkiefer Pinus nigra - Massstab der Handarbeit am Baum";
   }
   if (folder === "04_khvoyni" && file === "sosna-avstr-02.webp") {
     if (lang === "uk") return "Сосна австрійська чорна Pinus nigra після санітарної чистки крони від сухої хвої";
@@ -225,7 +225,7 @@ function photoAlt(folder, file, lang = "de", fallback = "") {
   if (folder === "04_khvoyni" && file === "pinus-mugo-pumilio-pilzkrone-01.webp") {
     if (lang === "uk") return "Pinus mugo Pumilio у великій чаші з художньо сформованою грибоподібною кроною";
     if (lang === "en") return "Pinus mugo Pumilio in a large planter with an artistically shaped mushroom crown";
-    return "Pinus mugo Pumilio in großer Schale mit künstlerisch geformter Pilzkrone";
+    return "Pinus mugo Pumilio in grosser Schale mit künstlerisch geformter Pilzkrone";
   }
   if (folder === "04_khvoyni" && /^pinus-thunbergii-krone-0[123]\.webp$/.test(file)) {
     const thunbergiiAlt = {
@@ -313,7 +313,7 @@ function photoAlt(folder, file, lang = "de", fallback = "") {
     if (file.startsWith("sosna-bila")) {
       if (lang === "uk") return "Японська біла сосна Pinus parviflora як робочий або контекстний кадр Niwaki";
       if (lang === "en") return "Japanese white pine Pinus parviflora as a niwaki work or context view";
-      return "Japanische Weißkiefer Pinus parviflora als Arbeits- oder Kontextansicht eines Niwaki";
+      return "Japanische Weisskiefer Pinus parviflora als Arbeits- oder Kontextansicht eines Niwaki";
     }
     if (lang === "uk") return "Тис Taxus baccata як робочий або контекстний кадр топіарної форми";
     if (lang === "en") return "Taxus baccata topiary work or context view, not a strict before-after proof";
@@ -770,7 +770,6 @@ function gardenContextGalleryItems() {
     ...selectedGalleryItems("02_pryklady-robit", [
       "sosna-bila-do-pislya-02.webp",
       "sosna-bila-do-pislya-04.webp",
-      "sosna-bila-do-pislya-05.webp",
       "sosna-bila-do-pislya-30.webp"
     ]),
     ...selectedGalleryItems("03_galereya", ["sosna-bila-03.webp"])
@@ -802,9 +801,7 @@ function taxusFormGalleryItems() {
   return [
     ...selectedGalleryItems("05_nivaki-khmarky", [
       "yalivets-01.webp",
-      "yalivets-02.webp",
-      "yalivets-03.webp",
-      "yalivets-04.webp"
+      "yalivets-03.webp"
     ])
   ];
 }
@@ -824,9 +821,7 @@ function coniferGalleryItems() {
 
 function mapleGalleryItems() {
   return selectedGalleryItems("06_yaponski-kleny", [
-    "klen-yaponskyi-02.webp",
-    "laubgehoelz-formschnitt-01.webp",
-    "laubgehoelz-formschnitt-02.webp"
+    "klen-yaponskyi-02.webp"
   ]);
 }
 
@@ -1001,12 +996,12 @@ function pumilioFeatureSection(lang = "de") {
     de: {
       eyebrow: "Pinus mugo 'Pumilio' / Pilzkrone",
       title: "Bergkiefer mit ruhiger Pilzkrone.",
-      text: "Ein einzelnes Portfoliofoto, kein Vorher-/Nachher-Fall: Pinus mugo 'Pumilio' wird als kompakte, schirmartige Krone in einer großen Schale aufgebaut.",
+      text: "Ein einzelnes Portfoliofoto, kein Vorher-/Nachher-Fall: Pinus mugo 'Pumilio' wird als kompakte, schirmartige Krone in einer grossen Schale aufgebaut.",
       more: "Mehr lesen",
       viktor: "Viktors Notiz: Das ist Pinus mugo 'Pumilio'. Die Arbeit ist eine künstlerisch-architektonische Kronenformung in Form eines Pilzes.",
-      why: "Bei Pumilio entsteht die Wirkung nicht durch einen flachen Heckenschnitt. Die Krone braucht eine ruhige Außenlinie, darunter aber klare Aststruktur, Luft und Licht. Die jungen Triebe werden selektiv geführt, damit die runde Pilzform dicht wirkt, innen aber nicht erstickt.",
-      detail: "Wichtig ist auch der Maßstab der Schale: Stammbasis, Astfächer und Schirmkante müssen zusammenpassen. So bleibt die Pflanze kompakt und skulptural, ohne wie ein harter grüner Block zu wirken.",
-      label: "Pinus mugo Pumilio mit künstlerisch geformter Pilzkrone in großer Schale"
+      why: "Bei Pumilio entsteht die Wirkung nicht durch einen flachen Heckenschnitt. Die Krone braucht eine ruhige Aussenlinie, darunter aber klare Aststruktur, Luft und Licht. Die jungen Triebe werden selektiv geführt, damit die runde Pilzform dicht wirkt, innen aber nicht erstickt.",
+      detail: "Wichtig ist auch der Massstab der Schale: Stammbasis, Astfächer und Schirmkante müssen zusammenpassen. So bleibt die Pflanze kompakt und skulptural, ohne wie ein harter grüner Block zu wirken.",
+      label: "Pinus mugo Pumilio mit künstlerisch geformter Pilzkrone in grosser Schale"
     },
     en: {
       eyebrow: "Pinus mugo 'Pumilio' / mushroom crown",
@@ -1219,12 +1214,12 @@ const connectedGallerySeries = [
       en: "Pinus parviflora beside the house: dense growth and a calmer cloud line."
     },
     species: {
-      de: "Japanische Weißkiefer - Pinus parviflora",
+      de: "Japanische Weisskiefer - Pinus parviflora",
       uk: "Японська біла сосна - Pinus parviflora",
       en: "Japanese white pine - Pinus parviflora"
     },
     summary: {
-      de: "Die Gruppe zeigt denselben Arbeitskontext am Haus: dichter Austrieb, unruhige Außenlinie und die geöffnetere, sauberere Wolkenform nach Handarbeit.",
+      de: "Die Gruppe zeigt denselben Arbeitskontext am Haus: dichter Austrieb, unruhige Aussenlinie und die geöffnetere, sauberere Wolkenform nach Handarbeit.",
       uk: "Група показує один робочий контекст біля дому: густий приріст, неспокійну зовнішню лінію і відкритішу, чистішу хмарну форму після ручної роботи.",
       en: "The group shows one work context beside the house: dense growth, a restless outer line and the opened, cleaner cloud form after hand work."
     },
@@ -1251,12 +1246,12 @@ const connectedGallerySeries = [
       en: "Pinus parviflora in a wooden box: low crown, setting and proportion."
     },
     species: {
-      de: "Japanische Weißkiefer - Pinus parviflora",
+      de: "Japanische Weisskiefer - Pinus parviflora",
       uk: "Японська біла сосна - Pinus parviflora",
       en: "Japanese white pine - Pinus parviflora"
     },
     summary: {
-      de: "Die Serie erklärt, warum ein großer Gartenbonsai nicht nur frontal bewertet wird: Höhe, Kasten, Nachbarpflanzen und Blickrichtung gehören zusammen.",
+      de: "Die Serie erklärt, warum ein grosser Gartenbonsai nicht nur frontal bewertet wird: Höhe, Kasten, Nachbarpflanzen und Blickrichtung gehören zusammen.",
       uk: "Серія пояснює, чому великий садовий бонсай не оцінюється тільки фронтально: висота, контейнер, сусідні рослини і напрям погляду працюють разом.",
       en: "The series explains why a large garden bonsai is not judged only from the front: height, container, surrounding plants and viewing direction belong together."
     },
@@ -1284,7 +1279,7 @@ const connectedGallerySeries = [
       en: "Pinus parviflora: dense crown, separated clouds, finished effect."
     },
     species: {
-      de: "Japanische Weißkiefer - Pinus parviflora",
+      de: "Japanische Weisskiefer - Pinus parviflora",
       uk: "Японська біла сосна - Pinus parviflora",
       en: "Japanese white pine - Pinus parviflora"
     },
@@ -1341,13 +1336,13 @@ function watereriTwoTreesFeatureSection(lang = "de") {
       title: "Zwei Watereri, gleiche Pflegeaufgabe.",
       text: "Diese Serie ist kein strenger Vorher-/Nachher-Fall. Sie zeigt zwei verschiedene Pinus sylvestris 'Watereri': einmal die Arbeit im Detail, einmal die ganze Krone im Terrassengarten.",
       more: "Mehr lesen",
-      viktor: "Viktors Notiz: Das sind zwei verschiedene Bäume. Beide sind Pinus sylvestris 'Watereri', und die Arbeit ist dieselbe: Wolkenpflege, damit die Schappen nicht zu stark verdichten, keine stehende Feuchtigkeit halten und Pilzkrankheiten weniger Chancen bekommen. Für diese Kiefer ist das eine der wichtigsten Pflegemaßnahmen und sollte je nach Wuchs mindestens alle 2-3 Jahre kontrolliert werden.",
-      value: "Bei Watereri reicht ein runder Außenschnitt nicht. Ich lese die Dichte jeder Wolke: wo junge Triebe bleiben, wo Luft hineinkommen muss und wo die Krone innen nicht dunkel werden darf. So bleibt der Baum kompakt, aber lebendig.",
-      danger: "Wenn die Wolken nur außen geschlossen werden, sammelt sich innen Feuchtigkeit. Dann sterben innere Nadeln und feine Zweige ab, die Polster werden schwer und Pilzdruck nimmt zu. Die saubere Arbeit ist deshalb selektiv, langsam und mit Blick auf die nächsten Jahre.",
+      viktor: "Viktors Notiz: Das sind zwei verschiedene Bäume. Beide sind Pinus sylvestris 'Watereri', und die Arbeit ist dieselbe: Wolkenpflege, damit die Schappen nicht zu stark verdichten, keine stehende Feuchtigkeit halten und Pilzkrankheiten weniger Chancen bekommen. Für diese Kiefer ist das eine der wichtigsten Pflegemassnahmen und sollte je nach Wuchs mindestens alle 2-3 Jahre kontrolliert werden.",
+      value: "Bei Watereri reicht ein runder Aussenschnitt nicht. Ich lese die Dichte jeder Wolke: wo junge Triebe bleiben, wo Luft hineinkommen muss und wo die Krone innen nicht dunkel werden darf. So bleibt der Baum kompakt, aber lebendig.",
+      danger: "Wenn die Wolken nur aussen geschlossen werden, sammelt sich innen Feuchtigkeit. Dann sterben innere Nadeln und feine Zweige ab, die Polster werden schwer und Pilzdruck nimmt zu. Die saubere Arbeit ist deshalb selektiv, langsam und mit Blick auf die nächsten Jahre.",
       tree1Title: "Baum 1: Dichte am jungen Austrieb lesen.",
       tree1Text: "Die Nahaufnahmen zeigen, wie fein entschieden wird: nicht alles wird gekürzt, sondern starke und zu dichte Zonen werden geöffnet.",
       tree2Title: "Baum 2: dieselbe Logik an der ganzen Krone.",
-      tree2Text: "Am zweiten Baum sieht man die Wirkung im Maßstab: Wolkenpolster bleiben lesbar, aber Licht und Luft müssen zwischen den Etagen arbeiten können.",
+      tree2Text: "Am zweiten Baum sieht man die Wirkung im Massstab: Wolkenpolster bleiben lesbar, aber Licht und Luft müssen zwischen den Etagen arbeiten können.",
       labels: [
         "Baum 1: dichte Watereri-Wolke bei der selektiven Pflege",
         "Baum 1: junger Austrieb und Nadeldichte in der Wolke",
@@ -1501,11 +1496,11 @@ function parvifloraCandleSetSection(lang = "de") {
   const copyByLang = {
     de: {
       eyebrow: "Pinus parviflora / Kerzenarbeit",
-      title: "Zwei japanische Weißkiefern nach dem Setzen des jungen Austriebs.",
+      title: "Zwei japanische Weisskiefern nach dem Setzen des jungen Austriebs.",
       text: "Diese Serie ist kein Vorher-/Nachher-Beweis. Sie zeigt zwei Pinus parviflora im Garten des Besitzers nach der abendlichen Arbeit an den Kerzen: Der junge Austrieb setzt sich, die Wolkenlinie wird ruhiger und die Bäume bleiben im Landschaftsraum lesbar.",
       more: "Mehr lesen",
       viktor: "Viktors Notiz: Das sind zwei Pinus parviflora im Garten- und Landschaftsinterieur des Besitzers nach der abendlichen Arbeit an den Kerzen, genauer: das Absenken beziehungsweise Setzen des jungen Austriebs.",
-      value: "Der Wert dieser Arbeit liegt im Zeitpunkt. Junge Kerzen sind noch weich und lenkbar; wenn sie richtig geführt werden, verteilt sich die Kraft gleichmäßiger und die Polster werden flacher, ruhiger und leichter lesbar. Wartet man zu lange, verholzt der Austrieb, lässt sich schlechter korrigieren und kann bei grober Arbeit brechen.",
+      value: "Der Wert dieser Arbeit liegt im Zeitpunkt. Junge Kerzen sind noch weich und lenkbar; wenn sie richtig geführt werden, verteilt sich die Kraft gleichmässiger und die Polster werden flacher, ruhiger und leichter lesbar. Wartet man zu lange, verholzt der Austrieb, lässt sich schlechter korrigieren und kann bei grober Arbeit brechen.",
       danger: "Die Gefahr ist, Kerzen wie eine Hecke zu schneiden. Dann verliert die Kiefer zukünftige Knospen, innere Bereiche werden dunkel und die Wolken können schwer nach unten hängen. Saubere Handarbeit hält genug Nadeln für Energie, nimmt aber Druck aus zu starken Zonen.",
       labels: [
         "Baum 1: Pinus parviflora nach Kerzenarbeit im Garten",
@@ -1649,12 +1644,12 @@ const beforeAfterCases = [
       ])
     },
     title: {
-      de: "Große Pinus parviflora: stärkere Silhouette beruhigt",
+      de: "Grosse Pinus parviflora: stärkere Silhouette beruhigt",
       uk: "Велика Pinus parviflora: сильний силует заспокоєно",
       en: "Large Pinus parviflora: strong silhouette calmed"
     },
     summary: {
-      de: "Diese Serie zeigt dieselbe große Gartenkiefer aus der sortierten Vorher/Nachher-Quelle: Dichte und Detail vor der Arbeit, danach die ruhigere Wirkung aus drei Blickwinkeln.",
+      de: "Diese Serie zeigt dieselbe grosse Gartenkiefer aus der sortierten Vorher/Nachher-Quelle: Dichte und Detail vor der Arbeit, danach die ruhigere Wirkung aus drei Blickwinkeln.",
       uk: "Ця серія показує ту саму велику садову сосну з відсортованого джерела до/після: густоту й деталь до роботи, потім спокійніший ефект із трьох ракурсів.",
       en: "This series shows the same large garden pine from the sorted before/after source: density and detail before the work, then the calmer effect from three angles."
     },
@@ -1665,7 +1660,7 @@ const beforeAfterCases = [
         en: "The strong crown needed order in density, layers and readability."
       },
       intervention: {
-        de: "Die Form wurde von Hand selektiv korrigiert, ohne den Charakter des großen Solitärs zu verlieren.",
+        de: "Die Form wurde von Hand selektiv korrigiert, ohne den Charakter des grossen Solitärs zu verlieren.",
         uk: "Форму вибірково скориговано вручну, не втрачаючи характер великого солітера.",
         en: "The form was selectively corrected by hand without losing the character of the large specimen."
       },
@@ -1676,17 +1671,17 @@ const beforeAfterCases = [
       }
     },
     done: {
-      de: "Dichte Partien wurden selektiv geöffnet, die Außenlinie gesammelt und die vorhandenen Wolken so beruhigt, dass die große Kiefer aus mehreren Blickwinkeln funktioniert.",
+      de: "Dichte Partien wurden selektiv geöffnet, die Aussenlinie gesammelt und die vorhandenen Wolken so beruhigt, dass die grosse Kiefer aus mehreren Blickwinkeln funktioniert.",
       uk: "Густі частини вибірково відкрито, зовнішню лінію зібрано, а наявні хмари заспокоєно так, щоб велика сосна працювала з кількох ракурсів.",
       en: "Dense areas were selectively opened, the outer line gathered and the existing clouds calmed so the large pine works from several angles."
     },
     why: {
-      de: "Große Gartenbonsai müssen nicht kleiner wirken; sie müssen kontrolliert, luftig und lesbar bleiben.",
+      de: "Grosse Gartenbonsai müssen nicht kleiner wirken; sie müssen kontrolliert, luftig und lesbar bleiben.",
       uk: "Великі садові бонсаї не мають виглядати меншими; вони мають лишатися контрольованими, повітряними й читабельними.",
       en: "Large garden bonsai do not need to look smaller; they need to stay controlled, airy and readable."
     },
     value: {
-      de: "Mein Wert liegt im Maß: genug Eingriff für Ruhe und Luft, aber nicht so viel, dass der alte Charakter verloren geht.",
+      de: "Mein Wert liegt im Mass: genug Eingriff für Ruhe und Luft, aber nicht so viel, dass der alte Charakter verloren geht.",
       uk: "Моя цінність у мірі: достатньо втручання для спокою й повітря, але не настільки, щоб втратити старий характер.",
       en: "My value is judgment: enough intervention for calm and air, but not so much that the mature character is lost."
     }
@@ -1719,12 +1714,12 @@ const beforeAfterCases = [
     },
     diagnosis: {
       problem: {
-        de: "Die Krone war zu dicht: außen grün, innen dunkel. So verliert die Kiefer Tiefe, Licht und zukünftige Knospen.",
+        de: "Die Krone war zu dicht: aussen grün, innen dunkel. So verliert die Kiefer Tiefe, Licht und zukünftige Knospen.",
         uk: "Крона була занадто щільна: зовні зелена, всередині темна. Так сосна втрачає глибину, світло і майбутні бруньки.",
         en: "The crown was too dense: green outside, dark inside. That costs the pine depth, light and future buds."
       },
       intervention: {
-        de: "Innen wurde selektiv ausgelichtet; außen wurde nur so viel genommen, dass die Wolken wieder lesbar werden.",
+        de: "Innen wurde selektiv ausgelichtet; aussen wurde nur so viel genommen, dass die Wolken wieder lesbar werden.",
         uk: "Всередині зроблено вибіркове прорідження; зовні знято тільки стільки, щоб хмари знову читались.",
         en: "The inside was selectively thinned; outside, only enough was taken for the cloud pads to read again."
       },
@@ -1740,12 +1735,12 @@ const beforeAfterCases = [
       en: "Dense zones were opened by hand, old and crowded areas reduced, and the clouds separated so trunk and depth stay visible."
     },
     why: {
-      de: "Wenn eine kompakte Kiefer nur außen geschlossen wird, staut sich innen Schatten und Feuchtigkeit. Dann wird die nächste Korrektur härter.",
+      de: "Wenn eine kompakte Kiefer nur aussen geschlossen wird, staut sich innen Schatten und Feuchtigkeit. Dann wird die nächste Korrektur härter.",
       uk: "Якщо компактну сосну закривати тільки зовні, всередині накопичуються тінь і волога. Потім наступна корекція стає грубішою.",
       en: "If a compact pine is only closed on the outside, shade and moisture build up inside. The next correction then becomes harsher."
     },
     value: {
-      de: "Mein Wert liegt darin, innen zu lesen und außen nur so viel zu nehmen, wie die Form wirklich braucht.",
+      de: "Mein Wert liegt darin, innen zu lesen und aussen nur so viel zu nehmen, wie die Form wirklich braucht.",
       uk: "Моя цінність у тому, щоб читати середину і зовні знімати лише стільки, скільки форма справді потребує.",
       en: "My value is reading the inside and taking only as much from the outside as the form truly needs."
     }
@@ -1779,7 +1774,7 @@ const beforeAfterCases = [
     },
     diagnosis: {
       problem: {
-        de: "Die niedrige Krone war dicht und das Wachstum drohte die klaren Wolken zu schließen.",
+        de: "Die niedrige Krone war dicht und das Wachstum drohte die klaren Wolken zu schliessen.",
         uk: "Низька крона була густою, і приріст починав закривати чисті хмарні яруси.",
         en: "The low crown was dense and the growth was starting to close the clean cloud layers."
       },
@@ -1800,7 +1795,7 @@ const beforeAfterCases = [
       en: "Young shoots and overly dense areas were regulated by hand so the clouds do not grow into one heavy block."
     },
     why: {
-      de: "Gerade niedrige Kiefern verlieren schnell ihre Architektur, wenn Wachstum nur außen stehen bleibt und innen Licht fehlt.",
+      de: "Gerade niedrige Kiefern verlieren schnell ihre Architektur, wenn Wachstum nur aussen stehen bleibt und innen Licht fehlt.",
       uk: "Низькі сосни швидко втрачають архітектуру, якщо приріст лишається тільки зовні, а всередині бракує світла.",
       en: "Low pines quickly lose their architecture when growth stays only on the outside and the inner crown lacks light."
     },
@@ -1863,7 +1858,7 @@ const beforeAfterCases = [
       en: "With a mature Pinus parviflora, good care is often quiet: slow the growth in time so the architecture does not need heavy correction later."
     },
     value: {
-      de: "Der Wert liegt hier im Maßhalten: erkennen, was nicht verändert werden soll, und nur den neuen Zuwachs präzise führen.",
+      de: "Der Wert liegt hier im Masshalten: erkennen, was nicht verändert werden soll, und nur den neuen Zuwachs präzise führen.",
       uk: "Цінність тут у мірі: побачити, що не треба змінювати, і точно повести лише новий приріст.",
       en: "The value here is restraint: seeing what should not be changed and guiding only the new growth precisely."
     }
@@ -1899,7 +1894,7 @@ const beforeAfterCases = [
         en: "The young growth was visibly strong and was starting to make the flat cloud pads look broader and denser."
       },
       intervention: {
-        de: "Die Kerzen wurden selektiv von Hand geführt, damit die Kraft nicht nur in die starken Außenkanten geht.",
+        de: "Die Kerzen wurden selektiv von Hand geführt, damit die Kraft nicht nur in die starken Aussenkanten geht.",
         uk: "Свічки вибірково пропрацьовано вручну, щоб сила не йшла тільки у сильні зовнішні краї.",
         en: "The candles were guided selectively by hand so the force does not run only into the strong outer edges."
       },
@@ -2031,7 +2026,7 @@ const beforeAfterCases = [
     },
     diagnosis: {
       problem: {
-        de: "Der frische Austrieb machte die Wolken unruhig; die Außenlinie verlor Präzision und einzelne Polster begannen zusammenzulaufen.",
+        de: "Der frische Austrieb machte die Wolken unruhig; die Aussenlinie verlor Präzision und einzelne Polster begannen zusammenzulaufen.",
         uk: "Свіжий приріст зробив хмари неспокійними: зовнішня лінія втратила точність, а окремі подушки почали зливатися.",
         en: "Fresh growth made the clouds restless; the outer line lost precision and individual pads started to merge."
       },
@@ -2052,12 +2047,12 @@ const beforeAfterCases = [
       en: "Seasonal work on young Taxus baccata growth: protruding tips were gathered, the cloud line was guided and depth between layers was preserved."
     },
     why: {
-      de: "Bei Taxus ist die Gefahr, die Form nur außen zuzukleben. Dann sieht sie kurz sauber aus, verliert aber Licht, Tiefe und die feine Architektur.",
+      de: "Bei Taxus ist die Gefahr, die Form nur aussen zuzukleben. Dann sieht sie kurz sauber aus, verliert aber Licht, Tiefe und die feine Architektur.",
       uk: "У Taxus ризик у тому, щоб просто заклеїти форму зовні. Вона ненадовго виглядає чисто, але втрачає світло, глибину і тонку архітектуру.",
       en: "With Taxus, the risk is simply sealing the outside. It looks clean for a moment, but loses light, depth and fine architecture."
     },
     value: {
-      de: "Mein Wert liegt im Maß: die Wolke sauber beruhigen, aber genug Leben und innere Luft im Gehölz lassen.",
+      de: "Mein Wert liegt im Mass: die Wolke sauber beruhigen, aber genug Leben und innere Luft im Gehölz lassen.",
       uk: "Моя цінність у мірі: чисто заспокоїти хмару, але залишити достатньо життя й внутрішнього повітря в рослині.",
       en: "My value is judgment: calming the cloud cleanly while leaving enough life and inner air in the plant."
     }
@@ -2093,7 +2088,7 @@ const beforeAfterCases = [
     },
     diagnosis: {
       problem: {
-        de: "Die Außenlinie war dicht und unruhig; innen fehlten Licht und Luft.",
+        de: "Die Aussenlinie war dicht und unruhig; innen fehlten Licht und Luft.",
         uk: "Зовнішня лінія була щільною і неспокійною; всередині бракувало світла й повітря.",
         en: "The outer line was dense and restless; inside, light and air were missing."
       },
@@ -2109,7 +2104,7 @@ const beforeAfterCases = [
       }
     },
     done: {
-      de: "Die übervolle Außenfläche wurde kontrolliert zurückgenommen, die Linie gesammelt und der trockene Innenbereich als Pflegehinweis dokumentiert.",
+      de: "Die übervolle Aussenfläche wurde kontrolliert zurückgenommen, die Linie gesammelt und der trockene Innenbereich als Pflegehinweis dokumentiert.",
       uk: "Переповнену зовнішню масу контрольовано зібрано, лінію вирівняно, суху внутрішню зону зафіксовано як важливий сигнал догляду.",
       en: "The overfull outer mass was corrected, the line was gathered and the dry inner area was documented as an important care signal."
     },
@@ -2119,7 +2114,7 @@ const beforeAfterCases = [
       en: "With dense conifers, cutting affects light, air and future recovery; a fast surface trim is not enough."
     },
     value: {
-      de: "Mein Wert liegt in der Diagnose vor dem Schnitt: Ich sehe nicht nur die Außenkontur, sondern auch, was im Inneren des Gehölzes passiert.",
+      de: "Mein Wert liegt in der Diagnose vor dem Schnitt: Ich sehe nicht nur die Aussenkontur, sondern auch, was im Inneren des Gehölzes passiert.",
       uk: "Моя цінність у діагностиці перед зрізом: я дивлюся не тільки на зовнішній контур, а й на те, що відбувається всередині рослини.",
       en: "My value is diagnosis before cutting: I look beyond the outside contour and read what is happening inside the plant."
     }
@@ -2196,8 +2191,8 @@ function galleryCaseLabels(lang = "de") {
     problem: "Problem",
     intervention: "Eingriff",
     result: "Ergebnis",
-    close: "Schließen",
-    zoom: "Bild vergrößern",
+    close: "Schliessen",
+    zoom: "Bild vergrössern",
     modal: "Beschreibung der Vorher-Nachher-Arbeit"
   };
 }
@@ -2213,7 +2208,7 @@ function caseImage(image, label, lang = "de", loading = "lazy", altText = "", op
   const frameClass = `case-frame${options.zoomable ? " case-frame-zoomable" : ""}${options.className ? ` ${options.className}` : ""}`;
   if (options.zoomable) {
     const caption = htmlAttr(label);
-    const aria = htmlAttr(`${options.zoomLabel || "Bild vergrößern"}: ${alt}`);
+    const aria = htmlAttr(`${options.zoomLabel || "Bild vergrössern"}: ${alt}`);
     return `<figure class="${frameClass}"${style}>
     <button class="case-frame-zoom" type="button" data-image-lightbox-src="${src}" data-image-lightbox-alt="${htmlAttr(alt)}" data-image-lightbox-caption="${caption}" aria-label="${aria}">
       ${img}
@@ -2586,7 +2581,7 @@ function inspirationBookSection(lang = "de") {
     <div class="book-grid">
       ${inspirationBooks.map((book, index) => `
       <article class="book-card book-card-${book.id}">
-        <img class="book-cover" src="__ASSET_PREFIX__assets/img/books/${book.id}.png" alt="${book.title} - ${book.author}" loading="lazy" decoding="async" width="1024" height="1024">
+        <img class="book-cover" src="__ASSET_PREFIX__assets/img/books/${book.id}.png" alt="${book.title} - ${book.author}" loading="eager" decoding="async" width="1024" height="1024">
         <span class="book-index">${copy.source} ${String(index + 1).padStart(2, "0")}</span>
         <h3>${book.title}</h3>
         <p>${book.text[lang] || book.text.de}</p>
@@ -3202,7 +3197,25 @@ function layout({ file, lang = "de", title, description, body, jsonLd = [], page
     ["FR", frPath],
     ["IT", itPath]
   ];
-  const languageSwitch = languageSwitchEntries.map(([label, targetPath]) => `<a href="${prefix}${fileFromCleanPath(targetPath)}"${targetPath === canonicalPath ? " aria-current=\"true\"" : ""}>${label}</a>`).join(" / ");
+  const languageSwitchId = `language-switch-${lang}`;
+  const currentLanguageLabel = languageSwitchEntries.find(([, targetPath]) => targetPath === canonicalPath)?.[0] || "DE";
+  const languageToggleLabel = lang === "uk"
+    ? "Вибрати мову"
+    : lang === "en"
+      ? "Choose language"
+      : lang === "fr"
+        ? "Choisir la langue"
+        : lang === "it"
+          ? "Scegli lingua"
+          : "Sprache wählen";
+  const languageSwitch = `<span class="lang-switch" data-lang-switch aria-label="${languageToggleLabel}">
+        <button class="lang-current" type="button" data-lang-toggle aria-expanded="false" aria-controls="${languageSwitchId}">
+          <span class="sr-only">${languageToggleLabel}</span><span aria-hidden="true">${currentLanguageLabel}</span>
+        </button>
+        <span class="lang-menu" id="${languageSwitchId}" data-lang-menu hidden>
+          ${languageSwitchEntries.map(([label, targetPath]) => `<a href="${prefix}${fileFromCleanPath(targetPath)}"${targetPath === canonicalPath ? " aria-current=\"true\"" : ""}>${label}</a>`).join("")}
+        </span>
+      </span>`;
   const home = `${prefix}${localizedFile("index.html", lang)}`;
   const contact = `${prefix}${localizedFile("kontakt.html", lang)}`;
   const legal = `${prefix}${localizedFile("impressum.html", lang)}`;
@@ -3214,7 +3227,7 @@ function layout({ file, lang = "de", title, description, body, jsonLd = [], page
         skip: "Aller au contenu",
         menu: "Ouvrir le menu",
         photoDiagnosis: "Diagnostic photo gratuit",
-        brandLine: "Arbres formes · Niwaki · Evergreen Design",
+        brandLine: "Baumarchitektur · Arbres formes · Niwaki",
         footerDescription: "Art japonais de l'arbre, niwaki, bonsai de jardin et taille de forme dans la region de Zurich.",
         footerServices: "Services",
         footerNiwaki: "Niwaki",
@@ -3239,7 +3252,7 @@ function layout({ file, lang = "de", title, description, body, jsonLd = [], page
           skip: "Vai al contenuto",
           menu: "Apri menu",
           photoDiagnosis: "Diagnosi fotografica gratuita",
-          brandLine: "Alberi modellati · Niwaki · Evergreen Design",
+          brandLine: "Baumarchitektur · Alberi modellati · Niwaki",
           footerDescription: "Arte giapponese degli alberi, niwaki, bonsai da giardino e potatura di forma nella regione di Zurigo.",
           footerServices: "Servizi",
           footerNiwaki: "Niwaki",
@@ -3264,7 +3277,7 @@ function layout({ file, lang = "de", title, description, body, jsonLd = [], page
         skip: "Перейти до змісту",
         menu: "Відкрити меню",
         photoDiagnosis: "Безкоштовна фото-діагностика",
-        brandLine: "Формовані дерева · Niwaki · Evergreen Design",
+        brandLine: "Baumarchitektur · Формовані дерева · Niwaki",
         footerDescription: "Японська деревна архітектура, niwaki, садовий бонсай і формування дерев у регіоні Цюриха.",
         footerServices: "Послуги",
         footerNiwaki: "Niwaki",
@@ -3289,7 +3302,7 @@ function layout({ file, lang = "de", title, description, body, jsonLd = [], page
           skip: "Zum Inhalt springen",
           menu: "Menü öffnen",
           photoDiagnosis: "Kostenlose Foto-Diagnose",
-          brandLine: "Gartenbonsais · Gartengestaltung · Formgehölze",
+          brandLine: "Baumarchitektur · Gartenbonsais · Gartengestaltung · Formgehölze",
           footerDescription: "Japanische Baumkunst, Niwaki, Garten-Bonsai und Formschnitt in der Region Zürich.",
           footerServices: "Leistungen",
           footerNiwaki: "Niwaki",
@@ -3313,7 +3326,7 @@ function layout({ file, lang = "de", title, description, body, jsonLd = [], page
           skip: "Skip to content",
           menu: "Open menu",
           photoDiagnosis: "Free photo diagnosis",
-          brandLine: "Shaped trees · Niwaki · Evergreen Design",
+          brandLine: "Baumarchitektur · Shaped trees · Niwaki",
           footerDescription: "Japanese tree art, niwaki, garden bonsai and shaping in the Zurich region.",
           footerServices: "Services",
           footerNiwaki: "Niwaki",
@@ -3383,7 +3396,8 @@ function layout({ file, lang = "de", title, description, body, jsonLd = [], page
     </button>
     <nav class="site-nav" id="site-nav" data-nav>
       ${nav(lang, prefix, file)}
-      <span class="lang-switch" aria-label="Language switcher">${languageSwitch}</span>
+      ${languageSwitch}
+      <a class="header-phone" href="${telHref}" data-event="cta_call_click" aria-label="${ui.call}: ${phoneDisplay}" title="${ui.call}: ${phoneDisplay}"><span aria-hidden="true">☎</span><span class="sr-only">${ui.call}: ${phoneDisplay}</span></a>
       ${headerHeroSwitcher}
     </nav>
   </header>
@@ -3800,7 +3814,7 @@ function galleryPage(lang = "de") {
           beforeText: "Im oberen Block bleiben nur bestätigte Fälle. Ein Contact Sheet ist kein Beweis; jedes Paar wird einzeln geprüft.",
           workEyebrow: "Fertige Niwaki",
           workTitle: "Die stärksten fertigen Bäume und Gartenbonsais.",
-          workText: "Kuratiert statt Foto-Lager: Form, Proportion, Wolkenetagen und Baum-Maßstab. Diese Sektion zeigt fertige Wirkung, nicht Vorher-/Nachher-Beweis."
+          workText: "Kuratiert statt Foto-Lager: Form, Proportion, Wolkenetagen und Baum-Massstab. Diese Sektion zeigt fertige Wirkung, nicht Vorher-/Nachher-Beweis."
         }
       : {
           eyebrow: "Gallery",
@@ -3991,7 +4005,7 @@ function pricesDe() {
   <section class="page-hero section">
     <span class="eyebrow">Preise</span>
     <h1>Preise - Qualität statt Eile.</h1>
-    <p>Was kostet professionelle <strong>japanische Baumpflege</strong>? Vier Stunden gute Arbeit sind mehr wert als zwei Stunden schnelle. Wer am Schnitt spart, zahlt mit der Form und der Gesundheit des Baumes - oft über Jahre.</p>
+    <p>Was kostet professionelle <strong>japanische Baumpflege</strong>ss Vier Stunden gute Arbeit sind mehr wert als zwei Stunden schnelle. Wer am Schnitt spart, zahlt mit der Form und der Gesundheit des Baumes - oft über Jahre.</p>
   </section>
   <section class="section price-grid">
     <article class="card"><span class="eyebrow">Arbeit</span><h2>ab 110 CHF/Std.</h2><p>Feinarbeit von Hand. Keine pauschale Schnellpflege.</p></article>
@@ -4033,7 +4047,7 @@ function articleTopiaryDe() {
     ${photoSlot({ folder: "07_viktor", file: "viktor-01.webp", lang: "de", label: "Ich beim Formschnitt mit Topiarschere", ratio: "16 / 9" })}
     <p>Ein guter Formschnitt beginnt nicht mit Tempo, sondern mit dem richtigen Werkzeug. Bei Niwaki, Kiefer-Formschnitt und japanischer Baumpflege reicht es nicht, die äussere Kontur schnell zu glätten. Der Baum ist kein grüner Block. Er ist ein lebendes System aus Krone, Stamm und Wurzeln.</p>
     <p>Eine Heckenschere reisst. Zurück bleiben Fasern - feine Härchen, die der Baum als Verletzung behandelt. Er schickt Energie dorthin, statt sie in gesundes Wachstum, neue Triebe und stabile Wolken zu führen. Was im ersten Moment ordentlich aussieht, kann dem Baum über Monate Kraft nehmen.</p>
-    <p>Mit der Topiarschere arbeite ich anders. Jeder Schnitt ist sichtbar entschieden: Wo braucht die Wolke Licht? Wo muss Luft durch die Krone? Welche Knospe bleibt, damit die Form in einem Jahr noch stimmt? Die scharfe japanische Schere macht einen sauberen Schnitt, der schneller verheilt und dem Baum weniger Kraft raubt.</p>
+    <p>Mit der Topiarschere arbeite ich anders. Jeder Schnitt ist sichtbar entschieden: Wo braucht die Wolke Lichtss Wo muss Luft durch die Kroness Welche Knospe bleibt, damit die Form in einem Jahr noch stimmtss Die scharfe japanische Schere macht einen sauberen Schnitt, der schneller verheilt und dem Baum weniger Kraft raubt.</p>
     <p>Das ist der Unterschied zwischen gewöhnlichem Gartenunterhalt und Feinarbeit. Ich schneide nicht jede Knospe nach Schema. Ich lese die Architektur des Baumes. Besonders bei Pinus, Taxus, Juniperus und Acer palmatum entscheidet diese Ruhe darüber, ob der Baum nur kurz gut aussieht - oder über Jahre Form und Gesundheit behält.</p>
     <p>Wenn Sie unsicher sind, ob Ihr Baum falsch geschnitten wurde, senden Sie mir Fotos. Oft erkennt man an Nadeln, trockenen Ästen und dichter Krone schon, ob ein sauberer Formschnitt helfen kann.</p>
     <div class="btn-row">${cta("Foto senden - kostenlose Diagnose")}</div>
@@ -4723,6 +4737,10 @@ function cssResponsiveFixes() {
   return `html,body{max-width:100%;overflow-x:hidden}h1,h2,h3,p,.brand-name{overflow-wrap:break-word}.hero-panel,.card,.form-card,.note-block,.price-teaser,.image-slot,.site-nav{min-width:0}.brand-logo{width:53px;height:53px;border-radius:50%;object-fit:cover;object-position:center 24%;background:var(--surface);border:1px solid var(--line);box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--surface) 70%,transparent)}.footer-logo{width:min(240px,100%);height:auto;max-height:120px;object-fit:contain;margin-top:18px;padding:12px;background:#fff;border:1px solid color-mix(in srgb,var(--primary-ink) 22%,transparent);border-radius:8px;box-shadow:0 10px 28px rgba(0,0,0,.16)}.image-slot>img{width:100%;height:100%;object-fit:cover}.image-slot{position:relative}.hero-slot>img{object-position:70% center}.hero-img-mobile{display:none}.hero-slot>div{place-content:center end;text-align:right;padding-right:max(24px,10vw)}.hero-slot span,.hero-slot strong,.hero-slot small{max-width:280px}.gallery-real-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.gallery-photo{display:block;aspect-ratio:4/3;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow)}.gallery-photo img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}.gallery-portrait-grid .gallery-photo{aspect-ratio:3/4}.gallery-portrait-grid .gallery-photo img{object-position:center center}.gallery-photo:hover img{transform:scale(1.04)}.article-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.article-card .image-slot{margin-bottom:16px}.comparison-grid,.process-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:24px 0}.process-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.comparison-grid>div,.process-grid>div,.science-card,.source-list,.article-nav{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}.science-card{margin:24px 0}.source-list{margin:28px 0;color:var(--muted)}.source-list h2{color:var(--text);font-size:1.35rem}.source-list ul{margin:10px 0 0;padding-left:20px}.source-list a{color:var(--primary);font-weight:800}.article-nav{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0}.article-nav a{border:1px solid var(--line);border-radius:999px;padding:8px 10px;text-decoration:none;color:var(--primary);font-weight:800}.stress-chain{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;align-items:center;text-align:center}.stress-chain span,.stress-chain strong{border:1px solid var(--line);border-radius:8px;padding:10px;background:color-mix(in srgb,var(--surface) 70%,var(--bg))}.stress-chain strong{background:var(--primary);color:var(--primary-ink)}.cookie-banner .btn{white-space:nowrap;min-width:110px}@media (max-width:1100px){.gallery-real-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media (max-width:920px){.article-grid,.gallery-real-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.comparison-grid,.process-grid,.stress-chain{grid-template-columns:1fr}}@media (max-width:620px){.site-header{width:100%;min-height:84px;padding:10px 76px 10px 16px;gap:12px}.nav-toggle{display:block;position:fixed;right:16px;top:20px;width:44px;height:44px;z-index:40;background:var(--primary);border-color:var(--primary);box-shadow:var(--shadow)}.nav-toggle span:not(.sr-only){background:var(--primary-ink)}.brand{flex:1 1 auto;max-width:none;min-width:0;gap:12px}.brand-logo{flex:0 0 53px}.brand-text{min-width:0;max-width:calc(100vw - 158px);line-height:1.16}.brand-name{display:block;font-size:1.05rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.brand-line{display:block;font-size:.78rem;font-weight:720;line-height:1.18;white-space:normal;overflow-wrap:anywhere;color:color-mix(in srgb,var(--muted) 88%,var(--text))}.hero{display:block;padding:32px 16px 50px}.hero>*{grid-column:auto}.hero-media{display:block;min-height:180px;margin:0 0 14px}.hero-slot{border-radius:var(--radius)}.hero-slot>img{object-position:78% center}.hero-img-desktop{display:none}.hero-img-mobile{display:block}.hero-panel{width:100%;max-width:none;margin:0;padding:22px;overflow:hidden}.hero-panel h1{font-size:1.85rem;line-height:1.08}.hero-panel .motto{font-size:1.15rem}.hero-services{grid-template-columns:1fr;margin-top:14px}.hero-slot>div{place-content:center;text-align:center;padding-right:22px}.article-grid,.gallery-real-grid{grid-template-columns:1fr}.footer-logo{width:min(200px,100%);max-height:100px}.cookie-banner div{flex-direction:column}.cookie-banner .btn{width:100%;white-space:normal}}`;
 }
 
+function headerCompactCss() {
+  return `.lang-switch{position:relative;display:inline-flex;align-items:center;border:0!important;border-radius:999px;padding:0!important}.lang-current{display:inline-flex;align-items:center;justify-content:center;min-width:54px;min-height:38px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--surface) 88%,transparent);color:var(--primary);box-shadow:0 8px 22px rgba(0,0,0,.08);font:900 .82rem/1 var(--font-body);cursor:pointer}.lang-current:after{content:"";width:0;height:0;margin-left:7px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid currentColor;display:inline-block;vertical-align:middle}.lang-current[aria-expanded=true]:after{transform:rotate(180deg)}.lang-menu{position:absolute;top:calc(100% + 8px);right:0;z-index:90;display:grid;grid-template-columns:repeat(2,minmax(42px,1fr));gap:6px;min-width:118px;padding:8px;border:1px solid var(--line);border-radius:12px;background:color-mix(in srgb,var(--surface) 96%,transparent);box-shadow:0 16px 42px rgba(0,0,0,.18);backdrop-filter:blur(16px)}.lang-menu[hidden]{display:none!important}.site-nav .lang-menu a{display:grid;place-items:center;min-height:34px;padding:7px 9px;border:1px solid color-mix(in srgb,var(--primary) 18%,var(--line));border-radius:8px;color:var(--primary);font-weight:900;text-decoration:none}.site-nav .lang-menu a:hover,.site-nav .lang-menu a:focus-visible,.site-nav .lang-menu a[aria-current=true]{background:var(--primary);border-color:var(--primary);color:var(--primary-ink)}.header-phone{display:grid!important;place-items:center;flex:0 0 auto;width:40px;height:40px;border:1px solid color-mix(in srgb,var(--primary) 28%,var(--line));border-radius:999px;background:var(--primary);color:var(--primary-ink)!important;text-decoration:none!important;box-shadow:0 8px 22px rgba(0,0,0,.10);font-size:1.02rem;line-height:1}.header-phone:hover,.header-phone:focus-visible{background:var(--accent);border-color:var(--accent);color:#102214!important}@media (min-width:921px){body{padding-top:78px}.site-header{position:fixed;inset:0 0 auto 0;z-index:80;min-height:78px;width:100%;background:color-mix(in srgb,var(--bg) 92%,transparent);box-shadow:0 10px 28px rgba(0,0,0,.08)}.site-nav{gap:10px}.site-nav>a{white-space:nowrap}.brand{flex:0 1 430px}.brand-line{white-space:normal;line-height:1.16}.nav-toggle{display:none!important}}@media (max-width:920px){.site-header{z-index:80}.site-nav{z-index:75}.lang-switch{align-self:flex-start}.lang-current{min-width:72px}.lang-menu{position:static;grid-template-columns:repeat(5,minmax(42px,1fr));width:100%;margin-top:8px;box-shadow:none;backdrop-filter:none}.header-phone{width:100%;height:44px;grid-template-columns:auto auto;gap:8px}.header-phone .sr-only{position:static;width:auto;height:auto;overflow:visible;clip:auto;white-space:normal}}@media (max-width:620px){body{padding-top:0}.site-header{position:sticky}.lang-menu{grid-template-columns:repeat(3,minmax(42px,1fr))}.header-phone{display:none!important}}`;
+}
+
 function cssWowPass() {
   return `.hero{position:relative;display:grid;grid-template-columns:minmax(18px,1fr) minmax(0,var(--maxw)) minmax(18px,1fr);height:min(760px,calc(100svh - 112px));min-height:620px;padding:0;align-items:end;overflow:hidden;background:#0f1d14}.hero>*{grid-column:2}.hero-media{position:absolute;inset:0;grid-column:1 / -1;grid-row:1;height:100%;min-height:0}.hero-media:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,18,13,.66) 0%,rgba(9,18,13,.38) 34%,rgba(9,18,13,.05) 68%,rgba(9,18,13,.16) 100%),linear-gradient(0deg,rgba(9,18,13,.42),rgba(9,18,13,0) 42%)}.hero-slot{height:100%;border-radius:0;border:0;box-shadow:none}.hero-slot>img{object-position:48% center}.hero-panel{grid-column:2;grid-row:1;align-self:end;width:min(1040px,100%);margin:0 0 48px;padding:0;background:transparent;border:0;box-shadow:none;color:#fff;text-shadow:0 2px 24px rgba(0,0,0,.48)}.hero-panel h1{font-size:3.45rem;line-height:1.02;max-width:1040px;color:#fff}.hero-panel h1 span{font-size:.96em}.hero-panel p,.hero-panel .motto,.hero-panel .eyebrow{color:#fff}.hero-panel .motto{max-width:620px;border-left-color:var(--accent)}.hero-panel>p:not(.motto){max-width:660px}.hero-panel .eyebrow:before{background:var(--accent)}.hero .btn-primary{box-shadow:0 18px 42px rgba(0,0,0,.28)}.hero .btn-secondary{color:#fff;border-color:rgba(255,255,255,.82);background:rgba(255,255,255,.08);backdrop-filter:blur(12px)}.hero .trust-row span{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28);color:#fff}.rescue-section{padding-top:70px}.before-after-slider{position:relative;max-width:1040px;margin:0 auto;color:#fff}.before-after-stage{position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);border:1px solid var(--line)}.before-after-stage img{width:100%;height:100%;object-fit:cover}.before-layer{position:absolute;inset:0;clip-path:inset(0 calc(100% - var(--split)) 0 0)}.before-layer img{position:absolute;inset:0}.before-after-stage:after{content:"";position:absolute;top:0;bottom:0;left:var(--split);width:2px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.18),0 0 26px rgba(0,0,0,.28)}.before-after-range{width:100%;margin:14px 0 0;accent-color:var(--primary);cursor:ew-resize}.slider-badge{position:absolute;top:14px;z-index:2;border:1px solid rgba(255,255,255,.42);border-radius:999px;background:rgba(9,18,13,.58);backdrop-filter:blur(10px);padding:7px 10px;font-size:.78rem;font-weight:850}.slider-badge-before{left:14px}.slider-badge-after{right:14px}.before-after-slider body.presentation-clean @media (max-width:920px){.hero{height:min(740px,calc(100svh - 104px));min-height:650px}.hero-panel{margin-bottom:34px}.hero-panel h1{font-size:3.35rem}.before-after-stage{aspect-ratio:3/4}.timeline article .image-slot{aspect-ratio:3/2}}@media (max-width:620px){.hero{display:grid;grid-template-columns:1fr;height:auto;min-height:calc(100svh - 118px);padding:0 16px 34px}.hero>*{grid-column:1}.hero-media{display:block;position:absolute;inset:0;margin:0;min-height:0;height:100%}.hero-slot{border-radius:0}.hero-slot>img{object-position:43% center}.hero-panel{grid-column:1;grid-row:1;align-self:end;width:100%;max-width:none;margin:0;padding:0 4px 8px;overflow:visible}.hero-panel h1{font-size:2.45rem;line-height:1}.hero-panel .motto{font-size:1.1rem}.hero-panel .eyebrow{font-size:.66rem}.hero-panel .btn{width:100%}.hero .trust-row span{width:auto;justify-content:flex-start}.before-after-slider .slider-badge{top:10px;font-size:.68rem}.slider-badge-before{left:10px}.slider-badge-after{right:10px}}`;
 }
@@ -4811,6 +4829,31 @@ function jsMain() {
     });
   }
 
+  $$('[data-lang-switch]').forEach((switcher) => {
+    const toggle = $('[data-lang-toggle]', switcher);
+    const menu = $('[data-lang-menu]', switcher);
+    if (!toggle || !menu) return;
+    const setOpen = (open) => {
+      switcher.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      menu.hidden = !open;
+    };
+    setOpen(false);
+    toggle.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      setOpen(menu.hidden);
+    });
+    $$('a', menu).forEach((link) => link.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('click', (event) => {
+      const target = event.target instanceof Element ? event.target : null;
+      if (!target || !switcher.contains(target)) setOpen(false);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') setOpen(false);
+    });
+  });
+
   $$('[data-before-after-slider]').forEach((slider) => {
     const input = $('.before-after-range', slider);
     if (!input) return;
@@ -4824,7 +4867,7 @@ function jsMain() {
   const ensureImageLightbox = () => {
     if (imageLightbox) return imageLightbox;
     const pageLang = document.documentElement.lang || 'de-CH';
-    const closeLabel = pageLang.startsWith('uk') ? 'Закрити' : pageLang.startsWith('en') ? 'Close' : 'Schließen';
+    const closeLabel = pageLang.startsWith('uk') ? 'Закрити' : pageLang.startsWith('en') ? 'Close' : 'Schliessen';
     const modal = document.createElement('div');
     modal.className = 'image-lightbox';
     modal.hidden = true;
@@ -5534,7 +5577,7 @@ for (const file of required) {
   if (!fs.existsSync(path.join(root, file))) errors.push("Missing " + file);
 }
 
-const brandWordmark = "Viktor Baumarchitektur";
+const brandWordmark = "Viktor Garden";
 const requiredContact = {
   phone: "+41783130330",
   whatsapp: "https://wa.me/41783130330",
@@ -5782,6 +5825,7 @@ function inspirationBooksCss() {
 function publicCss() {
   return `${cssBase().replace(/\.brand-symbol\{[^}]+\}/, "")}
 ${cssResponsiveFixes()}
+${headerCompactCss()}
 ${plantNameCss()}
 ${languagePlaceholderCss()}
 ${speedQualityCss()}

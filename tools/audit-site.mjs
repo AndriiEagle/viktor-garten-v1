@@ -25,7 +25,7 @@ for (const file of required) {
   if (!fs.existsSync(path.join(root, file))) errors.push("Missing " + file);
 }
 
-const brandWordmark = "Viktor Baumarchitektur";
+const brandWordmark = "Viktor Garden";
 const requiredContact = {
   phone: "+41783130330",
   whatsapp: "https://wa.me/41783130330",
