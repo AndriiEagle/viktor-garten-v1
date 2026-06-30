@@ -224,9 +224,10 @@
     ad_personalization: 'denied'
   });
 
-  const GA_ID = 'G-XXXXXXX';
-  const ADS_ID = 'AW-XXXXXXX';
-  const isRealId = (id) => id && !id.includes('X') && !id.includes('PLACEHOLDER');
+  const GA_ID = "";
+  const ADS_ID = "";
+  const ADS_CONVERSION_LABEL = "";
+  const hasAnalyticsId = (id) => Boolean(String(id || '').trim());
   const loadScript = (src) => {
     if ($('script[src="' + src + '"]')) return;
     const script = document.createElement('script');
@@ -241,12 +242,12 @@
       ad_user_data: 'granted',
       ad_personalization: 'granted'
     });
-    if (isRealId(GA_ID)) {
+    if (hasAnalyticsId(GA_ID)) {
       loadScript('https://www.googletagmanager.com/gtag/js?id=' + GA_ID);
       window.gtag('js', new Date());
       window.gtag('config', GA_ID);
     }
-    if (isRealId(ADS_ID)) {
+    if (hasAnalyticsId(ADS_ID)) {
       window.gtag('config', ADS_ID);
     }
   };
@@ -338,18 +339,27 @@
     window.setTimeout(() => { toast.hidden = true; }, 4200);
   };
 
+  const trackAdsConversion = () => {
+    if (!hasAnalyticsId(ADS_ID) || !hasAnalyticsId(ADS_CONVERSION_LABEL)) return;
+    window.gtag('event', 'conversion', { send_to: ADS_ID + '/' + ADS_CONVERSION_LABEL });
+  };
   const track = (name, params = {}) => {
     window.gtag('event', name, params);
-    if ((name === 'cta_whatsapp_click' || name === 'contact_form_submit') && isRealId(ADS_ID)) {
-      window.gtag('event', 'conversion', { send_to: ADS_ID + '/PLACEHOLDER' });
-    }
+    if (name === 'generate_lead') trackAdsConversion();
   };
   window.trackSiteEvent = track;
 
   $$('[data-event]').forEach((el) => {
     if (el.tagName === 'FORM') return;
     el.addEventListener('click', () => {
-      track(el.dataset.event, { label: el.dataset.eventLabel || el.textContent.trim(), path: location.pathname });
+      const eventName = el.dataset.event;
+      const label = el.dataset.eventLabel || el.textContent.trim();
+      track(eventName, { label, path: location.pathname });
+      if (eventName === 'cta_whatsapp_click') {
+        track('generate_lead', { method: 'whatsapp', lead_type: 'whatsapp_click', page_path: location.pathname, language: currentLang, cta_label: label });
+      } else if (eventName === 'cta_call_click') {
+        track('generate_lead', { method: 'phone', lead_type: 'phone_click', page_path: location.pathname, language: currentLang, cta_label: label });
+      }
     });
   });
 
@@ -364,7 +374,9 @@
       payload.sourceUrl = location.href;
       payload.language = currentLang;
       payload.kind = form.dataset.contactKind || 'contact';
-      track(form.dataset.event || 'contact_form_submit', { path: location.pathname, kind: payload.kind });
+      const legacyEvent = form.dataset.event || '';
+      const leadType = payload.kind || 'contact';
+      track('form_submit_attempt', { path: location.pathname, lead_type: leadType, language: currentLang, legacy_event: legacyEvent });
       if (submit) {
         submit.disabled = true;
         submit.textContent = formMessages.loading;
@@ -377,6 +389,16 @@
         });
         const result = await response.json().catch(() => ({}));
         if (!response.ok || !result.ok) throw new Error(result.error || 'contact_failed');
+        const isSpam = Boolean(result.spam || payload.company || payload.website || payload.url);
+        if (!isSpam) {
+          track('generate_lead', {
+            method: leadType === 'callback' ? 'callback_form' : 'contact_form',
+            lead_type: leadType,
+            page_path: location.pathname,
+            language: currentLang,
+            cta_label: originalText || legacyEvent || 'contact_form'
+          });
+        }
         form.reset();
         showToast(formMessages.success);
       } catch (error) {

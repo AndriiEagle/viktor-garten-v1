@@ -1,15 +1,15 @@
-# Viktor Baumarchitektur Static Website
+# Viktor Garden Static Website
 
-Static multipage DE/EN/UK V1 site for Viktor Baumarchitektur. It is prepared for Cloudflare Pages Free at `https://v-garten.ch`.
+Static multipage DE/EN/UK V1 site for Viktor Garden. It is prepared for Cloudflare Pages Free at `https://v-garten.ch`.
 
 ## Edit checklist
 
 - Verify final WhatsApp/phone before publication: `+41 78 313 03 30`.
-- Replace GA4 `G-XXXXXXX`, Google Ads `AW-XXXXXXX` and Search Console verification.
-- Visible header/footer wordmark is **Viktor Baumarchitektur**.
+- GA4, Google Ads and Search Console are disabled until real production IDs/TXT records are approved.
+- Visible header/footer wordmark is **Viktor Garden**.
 - Complete `impressum.html` and `datenschutz.html` with Viktor's legal data before publication.
 - Swap real images using filenames in `assets/img/MANIFEST.md`.
-- TODO: create a final matching logo lockup for **Viktor Baumarchitektur**. The current `assets/img/logo.png` still reads "Viktor Bonsai", so the site crops it to the tree symbol and renders the approved text wordmark beside it.
+- TODO: create a final matching logo lockup for **Viktor Garden**. The current `assets/img/logo.png` still reads "Viktor Bonsai", so the site crops it to the tree symbol and renders the approved text wordmark beside it.
 - Synthetic planning files are visual direction only and must not be presented as real client proof.
 
 ## Blog / knowledge section
@@ -49,7 +49,7 @@ Do not add full `fr/*` or `it/*` hreflang/sitemap coverage until the real transl
 
 ## Logo / wordmark assumption
 
-The confirmed SEO/business/entity and visible name is **Viktor Baumarchitektur**. The supplied legacy logo says **Viktor Bonsai**; do not show the legacy text as the public wordmark. Keep the cropped symbol until a matching logo is approved.
+The confirmed launch SEO/business/entity and visible name is **Viktor Garden**. The supplied legacy logo says **Viktor Bonsai**; do not show the legacy text as the public wordmark. Keep the cropped symbol until a matching logo is approved.
 
 ## Change theme
 
@@ -59,7 +59,7 @@ The active theme is loaded with:
 <link id="theme-link" rel="stylesheet" href="assets/theme-v4.css">
 ```
 
-Switch to another design direction by replacing `theme-v4.css` with `theme-v1.css`, `theme-v2.css`, `theme-v3.css`, or `theme-v5.css`. Use `themes.html` to preview without editing files.
+Switch to another design direction by replacing `theme-v4.css` with `theme-v1.css`, `theme-v2.css`, `theme-v3.css`, or `theme-v5.css`. Theme preview pages are internal source files only and are excluded from Cloudflare `dist`.
 
 ## Placeholders still requiring human approval
 
@@ -68,7 +68,7 @@ Switch to another design direction by replacing `theme-v4.css` with `theme-v1.cs
 - Real before/after photos, Japan postcard and testimonial.
 - Final approval/originals for the supplied real Viktor master/work photos.
 - Public Instagram/website photo usage permission and original files from Viktor.
-- GA4, Google Ads, Search Console and consent wording review.
+- Real GA4 ID, Google Ads ID/conversion label, Search Console DNS TXT and consent wording review.
 - Legal pages under Swiss/DSG/DSGVO requirements.
 - Google rating/testimonial values.
 

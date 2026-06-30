@@ -6,14 +6,14 @@ const required = [
   "index.html","leistungen.html","philosophie.html","galerie.html","preise.html",
   "blog/index.html","blog/topiarschere.html","blog/energie-krone.html","blog/niwaki-bonsai-stile.html","blog/kiefer-kerzen.html","blog/klimastress.html",
   "niwaki-schweiz.html","gartenbonsai-zuerich.html","japanischer-ahorn-pflege-schweiz.html","kiefer-kerzen-schneiden-schweiz.html","kosten-japanische-baumpflege-zuerich.html","zuerichsee.html","zug.html","luzern-aargau.html",
-  "kontakt.html","impressum.html","datenschutz.html","themes.html",
+  "kontakt.html","impressum.html","datenschutz.html",
   "en/index.html","en/leistungen.html","en/philosophie.html","en/galerie.html","en/preise.html",
   "en/blog/index.html","en/blog/topiarschere.html","en/blog/energie-krone.html","en/blog/niwaki-bonsai-stile.html","en/blog/kiefer-kerzen.html","en/blog/klimastress.html",
   "en/niwaki-schweiz.html","en/gartenbonsai-zuerich.html","en/japanischer-ahorn-pflege-schweiz.html","en/kiefer-kerzen-schneiden-schweiz.html","en/kosten-japanische-baumpflege-zuerich.html","en/zuerichsee.html","en/zug.html","en/luzern-aargau.html",
-  "en/kontakt.html","en/impressum.html","en/datenschutz.html","en/themes.html",
+  "en/kontakt.html","en/impressum.html","en/datenschutz.html",
   "uk/index.html","uk/leistungen.html","uk/philosophie.html","uk/galerie.html","uk/preise.html",
   "uk/blog/index.html","uk/blog/topiarschere.html","uk/blog/energie-krone.html","uk/blog/niwaki-bonsai-stile.html","uk/blog/kiefer-kerzen.html","uk/blog/klimastress.html",
-  "uk/kontakt.html","uk/impressum.html","uk/datenschutz.html","uk/themes.html",
+  "uk/kontakt.html","uk/impressum.html","uk/datenschutz.html",
   "fr/index.html","it/index.html",
   "assets/base.css","assets/main.js","assets/theme-v1.css","assets/theme-v2.css","assets/theme-v3.css","assets/theme-v4.css","assets/theme-v5.css",
   "assets/img/logo.png","assets/img/foto/01_hero/hero-viktor-bonsai-main.webp","assets/img/foto/01_hero/hero-viktor-bonsai-mobile.webp","assets/img/foto/01_hero/hero-courtyard-niwaki-desktop.webp","assets/img/foto/01_hero/hero-courtyard-niwaki-mobile.webp","assets/img/foto/02_pryklady-robit/case-parviflora-before.webp","assets/img/foto/02_pryklady-robit/case-parviflora-after.webp","assets/img/foto/02_pryklady-robit/case-watereri-before.webp","assets/img/foto/02_pryklady-robit/case-watereri-after.webp","assets/img/foto/02_pryklady-robit/sosna-bila-17.webp","assets/img/foto/02_pryklady-robit/sosna-bila-18.webp","assets/img/foto/03_galereya/sosna-bila-01.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-01.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-08.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-16.webp","assets/img/foto/06_yaponski-kleny/klen-yaponskyi-01.webp","assets/img/foto/07_viktor/viktor-01.webp","assets/img/foto/08_fonovi/fon-foto-01.webp","assets/img/foto/09_pomylky/pomylka-svichka-01.webp","assets/img/foto/10_vidkrytka-yaponiya/kyoto-viktor-wife-2009.webp","assets/img/foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp","assets/img/MANIFEST.md","site.webmanifest","robots.txt","sitemap.xml","llms.txt","vercel.json","README.md","handoff/ai-local-discovery-checklist.md",".env.example","api/contact.js","api/voice-lead.js","functions/api/contact.js","tools/build-cloudflare-pages.mjs"
@@ -84,6 +84,9 @@ for (const file of htmlFiles) {
   for (const forbidden of ["БРЕНД", "PLATZHALTER", "PLACEHOLDER"]) {
     if (bodyText.includes(forbidden)) errors.push(file + " visible body text contains " + forbidden);
   }
+  for (const forbiddenHtml of ["PLATZHALTER", "G-XXXXXXX", "AW-XXXXXXX", "PLACEHOLDER", '"name":"Viktor Baumarchitektur"']) {
+    if (html.includes(forbiddenHtml)) errors.push(file + " production marker remains: " + forbiddenHtml);
+  }
   const removedPublicMarkers = [
     "Konzept" + "-Labels",
     "Concept " + "labels",
@@ -148,7 +151,7 @@ for (const file of htmlFiles) {
 }
 
 const mainJs = fs.readFileSync(path.join(root, "assets/main.js"), "utf8");
-for (const eventName of ["cta_whatsapp_click","cta_call_click","cta_rueckruf_submit","contact_form_submit"]) {
+for (const eventName of ["cta_whatsapp_click","cta_call_click","form_submit_attempt","generate_lead"]) {
   const siteHas = htmlFiles.some((file) => fs.readFileSync(path.join(root, file), "utf8").includes(eventName)) || mainJs.includes(eventName);
   if (!siteHas) errors.push("Missing event " + eventName);
 }

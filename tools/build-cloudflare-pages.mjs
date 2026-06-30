@@ -3,6 +3,11 @@ import path from "node:path";
 
 const root = process.cwd();
 const dist = path.join(root, "dist");
+const excludedDistFiles = new Set([
+  "themes.html",
+  "en/themes.html",
+  "uk/themes.html"
+]);
 
 const directories = ["assets", "blog", "en", "uk", "fr", "it"];
 const rootFiles = [
@@ -24,7 +29,6 @@ const rootFiles = [
   "robots.txt",
   "site.webmanifest",
   "sitemap.xml",
-  "themes.html",
   "zuerichsee.html",
   "zug.html"
 ];
@@ -56,6 +60,8 @@ async function copyDirectory(name) {
     recursive: true,
     filter: (sourcePath) => {
       const base = path.basename(sourcePath).toLowerCase();
+      const relative = path.relative(root, sourcePath).replaceAll(path.sep, "/");
+      if (excludedDistFiles.has(relative)) return false;
       return base !== ".ds_store" && base !== "thumbs.db";
     }
   });
@@ -91,6 +97,7 @@ await fs.writeFile(path.join(dist, "_redirects"), `https://www.v-garten.ch/* htt
 
 for (const relativePath of forbiddenOutputPaths) await assertAbsent(relativePath);
 await assertAbsent("api/voice-lead.js");
+for (const relativePath of excludedDistFiles) await assertAbsent(relativePath);
 
 const outputText = await fs.readdir(dist);
 if (!outputText.includes("index.html") || !outputText.includes("assets")) {

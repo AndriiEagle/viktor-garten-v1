@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const root = process.cwd();
-const brand = "Viktor Baumarchitektur";
+const brand = "Viktor Garden";
 const brandWordmark = "Viktor Garten";
 const domain = "https://v-garten.ch";
 const phone = "+41783130330";
@@ -25,6 +25,12 @@ const heroCourtyardDesktopFile = "hero-courtyard-niwaki-desktop.webp";
 const heroCourtyardMobileFile = "hero-courtyard-niwaki-mobile.webp";
 const heroPreloadFile = "foto/01_hero/hero-courtyard-niwaki-desktop.webp";
 const ogImageUrl = `${domain}/assets/img/${ogImageFile}`;
+const googleSiteVerification = "";
+const analyticsConfig = {
+  ga4Id: "",
+  googleAdsId: "",
+  googleAdsConversionLabel: ""
+};
 const activeHeroVariant = {
   id: "4",
   desktop: photoPath("01_hero", heroCourtyardDesktopFile),
@@ -334,8 +340,8 @@ const answerPages = [
     slug: "niwaki-schweiz",
     titleDe: "Niwaki Schweiz - Gartenbonsai richtig pflegen",
     titleEn: "Niwaki Switzerland - Garden Bonsai Care",
-    descDe: "Niwaki und Gartenbonsai in der Schweiz: Pflege, Schnitt, Diagnose und kostenlose Foto-Einschätzung durch Viktor Baumarchitektur.",
-    descEn: "Niwaki and garden bonsai care in Switzerland: shaping, diagnosis and free photo assessment by Viktor Baumarchitektur.",
+    descDe: "Niwaki und Gartenbonsai in der Schweiz: Pflege, Schnitt, Diagnose und kostenlose Foto-Einschätzung durch Viktor Garden.",
+    descEn: "Niwaki and garden bonsai care in Switzerland: shaping, diagnosis and free photo assessment by Viktor Garden.",
     eyebrowDe: "Niwaki Schweiz",
     eyebrowEn: "Niwaki Switzerland",
     h1De: "Niwaki in der Schweiz: Wenn ein Baum Form, Luft und Ruhe braucht.",
@@ -2878,7 +2884,7 @@ Status: repo-side implementation is prepared. External accounts still need human
 ## 3. Google Business Profile
 
 - Default setup: service-area business, no private address displayed unless Viktor explicitly approves.
-- Business name: Viktor Baumarchitektur.
+- Business name: Viktor Garden.
 - Primary category: Baumpflege / tree service equivalent available in GBP. Secondary categories only if accurate.
 - Areas: Zürich, Zürichsee, Zug, Luzern, Aargau, Schwyz, Schaffhausen, Appenzell, Glarus.
 - Services: Niwaki / Garten-Bonsai, Japanischer Ahorn Pflege, Kiefer Formschnitt, Nadelgehölze, kostenlose Foto-Diagnose.
@@ -2898,7 +2904,7 @@ Create or claim profiles only when Viktor can verify ownership:
 
 Keep NAP consistent:
 
-- Name: Viktor Baumarchitektur
+- Name: Viktor Garden
 - Phone: ${phoneDisplay}
 - Website: ${domain}/
 - Address: service-area only unless approved
@@ -3322,7 +3328,7 @@ function layout({ file, lang = "de", title, description, body, jsonLd = [], page
   <title>${title}</title>
   <meta name="description" content="${description}">
   ${noindex ? `<meta name="robots" content="noindex,follow">` : ""}
-  <meta name="google-site-verification" content="PLATZHALTER">
+  ${googleSiteVerification ? `<meta name="google-site-verification" content="${googleSiteVerification}">` : ""}
   <link rel="canonical" href="${cleanUrl(canonicalPath)}">
   <link rel="alternate" hreflang="de-CH" href="${cleanUrl(dePath)}">
   <link rel="alternate" hreflang="en" href="${cleanUrl(enPath)}">
@@ -5007,9 +5013,10 @@ function jsMain() {
     ad_personalization: 'denied'
   });
 
-  const GA_ID = 'G-XXXXXXX';
-  const ADS_ID = 'AW-XXXXXXX';
-  const isRealId = (id) => id && !id.includes('X') && !id.includes('PLACEHOLDER');
+  const GA_ID = ${JSON.stringify(analyticsConfig.ga4Id)};
+  const ADS_ID = ${JSON.stringify(analyticsConfig.googleAdsId)};
+  const ADS_CONVERSION_LABEL = ${JSON.stringify(analyticsConfig.googleAdsConversionLabel)};
+  const hasAnalyticsId = (id) => Boolean(String(id || '').trim());
   const loadScript = (src) => {
     if ($('script[src="' + src + '"]')) return;
     const script = document.createElement('script');
@@ -5024,12 +5031,12 @@ function jsMain() {
       ad_user_data: 'granted',
       ad_personalization: 'granted'
     });
-    if (isRealId(GA_ID)) {
+    if (hasAnalyticsId(GA_ID)) {
       loadScript('https://www.googletagmanager.com/gtag/js?id=' + GA_ID);
       window.gtag('js', new Date());
       window.gtag('config', GA_ID);
     }
-    if (isRealId(ADS_ID)) {
+    if (hasAnalyticsId(ADS_ID)) {
       window.gtag('config', ADS_ID);
     }
   };
@@ -5121,18 +5128,27 @@ function jsMain() {
     window.setTimeout(() => { toast.hidden = true; }, 4200);
   };
 
+  const trackAdsConversion = () => {
+    if (!hasAnalyticsId(ADS_ID) || !hasAnalyticsId(ADS_CONVERSION_LABEL)) return;
+    window.gtag('event', 'conversion', { send_to: ADS_ID + '/' + ADS_CONVERSION_LABEL });
+  };
   const track = (name, params = {}) => {
     window.gtag('event', name, params);
-    if ((name === 'cta_whatsapp_click' || name === 'contact_form_submit') && isRealId(ADS_ID)) {
-      window.gtag('event', 'conversion', { send_to: ADS_ID + '/PLACEHOLDER' });
-    }
+    if (name === 'generate_lead') trackAdsConversion();
   };
   window.trackSiteEvent = track;
 
   $$('[data-event]').forEach((el) => {
     if (el.tagName === 'FORM') return;
     el.addEventListener('click', () => {
-      track(el.dataset.event, { label: el.dataset.eventLabel || el.textContent.trim(), path: location.pathname });
+      const eventName = el.dataset.event;
+      const label = el.dataset.eventLabel || el.textContent.trim();
+      track(eventName, { label, path: location.pathname });
+      if (eventName === 'cta_whatsapp_click') {
+        track('generate_lead', { method: 'whatsapp', lead_type: 'whatsapp_click', page_path: location.pathname, language: currentLang, cta_label: label });
+      } else if (eventName === 'cta_call_click') {
+        track('generate_lead', { method: 'phone', lead_type: 'phone_click', page_path: location.pathname, language: currentLang, cta_label: label });
+      }
     });
   });
 
@@ -5147,7 +5163,9 @@ function jsMain() {
       payload.sourceUrl = location.href;
       payload.language = currentLang;
       payload.kind = form.dataset.contactKind || 'contact';
-      track(form.dataset.event || 'contact_form_submit', { path: location.pathname, kind: payload.kind });
+      const legacyEvent = form.dataset.event || '';
+      const leadType = payload.kind || 'contact';
+      track('form_submit_attempt', { path: location.pathname, lead_type: leadType, language: currentLang, legacy_event: legacyEvent });
       if (submit) {
         submit.disabled = true;
         submit.textContent = formMessages.loading;
@@ -5160,6 +5178,16 @@ function jsMain() {
         });
         const result = await response.json().catch(() => ({}));
         if (!response.ok || !result.ok) throw new Error(result.error || 'contact_failed');
+        const isSpam = Boolean(result.spam || payload.company || payload.website || payload.url);
+        if (!isSpam) {
+          track('generate_lead', {
+            method: leadType === 'callback' ? 'callback_form' : 'contact_form',
+            lead_type: leadType,
+            page_path: location.pathname,
+            language: currentLang,
+            cta_label: originalText || legacyEvent || 'contact_form'
+          });
+        }
         form.reset();
         showToast(formMessages.success);
       } catch (error) {
@@ -5261,8 +5289,8 @@ The public site now uses Viktor's supplied real WebP photo set for hero, service
 
 function siteManifest() {
   return JSON.stringify({
-    name: "Viktor Baumarchitektur",
-    short_name: "Baumarchitektur",
+    name: brand,
+    short_name: "Viktor Garden",
     lang: "de-CH",
     start_url: "/",
     display: "standalone",
@@ -5276,11 +5304,11 @@ function siteManifest() {
 
 function sitemap() {
   const paths = [
-    "/", "/leistungen", "/philosophie", "/galerie", "/preise", "/blog", "/blog/topiarschere", "/blog/energie-krone", "/blog/niwaki-bonsai-stile", "/blog/kiefer-kerzen", "/blog/klimastress", "/kontakt", "/impressum", "/datenschutz", "/themes",
+    "/", "/leistungen", "/philosophie", "/galerie", "/preise", "/blog", "/blog/topiarschere", "/blog/energie-krone", "/blog/niwaki-bonsai-stile", "/blog/kiefer-kerzen", "/blog/klimastress", "/kontakt", "/impressum", "/datenschutz",
     ...discoveryPaths,
-    "/en/", "/en/leistungen", "/en/philosophie", "/en/galerie", "/en/preise", "/en/blog", "/en/blog/topiarschere", "/en/blog/energie-krone", "/en/blog/niwaki-bonsai-stile", "/en/blog/kiefer-kerzen", "/en/blog/klimastress", "/en/kontakt", "/en/impressum", "/en/datenschutz", "/en/themes",
+    "/en/", "/en/leistungen", "/en/philosophie", "/en/galerie", "/en/preise", "/en/blog", "/en/blog/topiarschere", "/en/blog/energie-krone", "/en/blog/niwaki-bonsai-stile", "/en/blog/kiefer-kerzen", "/en/blog/klimastress", "/en/kontakt", "/en/impressum", "/en/datenschutz",
     ...discoveryPaths.map((p) => `/en${p}`),
-    "/uk/", "/uk/leistungen", "/uk/philosophie", "/uk/galerie", "/uk/preise", "/uk/blog", "/uk/blog/topiarschere", "/uk/blog/energie-krone", "/uk/blog/niwaki-bonsai-stile", "/uk/blog/kiefer-kerzen", "/uk/blog/klimastress", "/uk/kontakt", "/uk/impressum", "/uk/datenschutz", "/uk/themes"
+    "/uk/", "/uk/leistungen", "/uk/philosophie", "/uk/galerie", "/uk/preise", "/uk/blog", "/uk/blog/topiarschere", "/uk/blog/energie-krone", "/uk/blog/niwaki-bonsai-stile", "/uk/blog/kiefer-kerzen", "/uk/blog/klimastress", "/uk/kontakt", "/uk/impressum", "/uk/datenschutz"
   ];
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -5289,14 +5317,14 @@ ${paths.map((p) => `  <url><loc>${cleanUrl(p)}</loc></url>`).join("\n")}
 }
 
 function readme() {
-  return `# Viktor Baumarchitektur Static Website
+  return `# Viktor Garden Static Website
 
-Static multipage DE/EN site for Viktor Baumarchitektur. It opens directly from \`index.html\` and is ready for static hosting on Vercel.
+Static multipage DE/EN site for Viktor Garden. It opens directly from \`index.html\` and is ready for static hosting on Vercel.
 
 ## Edit checklist
 
 - Verify final WhatsApp/phone before publication: \`${phoneDisplay}\`.
-- Replace GA4 \`G-XXXXXXX\`, Google Ads \`AW-XXXXXXX\`, Search Console verification and form backend.
+- GA4, Google Ads and Search Console are disabled until real production IDs/TXT records are approved.
 - Visible header/footer wordmark is currently **Bonsai**.
 - Complete \`impressum.html\` and \`datenschutz.html\` with Viktor's legal data before publication.
 - Swap real images using filenames in \`assets/img/MANIFEST.md\`.
@@ -5305,7 +5333,7 @@ Static multipage DE/EN site for Viktor Baumarchitektur. It opens directly from \
 
 ## Logo / wordmark assumption
 
-The confirmed SEO/business/entity name in \`project_brief\` is **Viktor Baumarchitektur**. The supplied \`Лого.jpg\` was converted to a real PNG at \`assets/img/logo.png\`, and the visible header/footer wordmark is **Bonsai** per the latest naming instruction. Keep SEO, JSON-LD and canonical entity names as **Viktor Baumarchitektur** until Viktor changes the business name.
+The confirmed SEO/business/entity name in \`project_brief\` is **Viktor Garden**. The supplied \`Лого.jpg\` was converted to a real PNG at \`assets/img/logo.png\`, and the visible header/footer wordmark is **Bonsai** per the latest naming instruction. Keep SEO, JSON-LD and canonical entity names as **Viktor Garden** until Viktor changes the business name.
 
 ## Change theme
 
@@ -5315,13 +5343,13 @@ The active theme is loaded with:
 <link id="theme-link" rel="stylesheet" href="assets/theme-v4.css">
 \`\`\`
 
-Switch to another design direction by replacing \`theme-v4.css\` with \`theme-v1.css\`, \`theme-v2.css\`, \`theme-v3.css\`, or \`theme-v5.css\`. Use \`themes.html\` to preview without editing files.
+Switch to another design direction by replacing \`theme-v4.css\` with \`theme-v1.css\`, \`theme-v2.css\`, \`theme-v3.css\`, or \`theme-v5.css\`. Theme preview pages are internal source files only and are excluded from Cloudflare \`dist\`.
 
 ## Placeholders still requiring human approval
 
 - Contact delivery uses \`/api/contact\` and needs production \`TELEGRAM_BOT_TOKEN\` plus \`TELEGRAM_CHAT_ID\`.
 - Real before/after photos, master photos and Japan postcard.
-- GA4, Google Ads, Search Console and consent wording review.
+- Real GA4 ID, Google Ads ID/conversion label, Search Console DNS TXT and consent wording review.
 - Legal pages under Swiss/DSG/DSGVO requirements.
 - Google rating/testimonial values.
 
@@ -5338,18 +5366,18 @@ No build step is required for visitors. The generator is kept only as a maintena
 }
 
 function readmeV2() {
-  return `# Viktor Baumarchitektur Static Website
+  return `# Viktor Garden Static Website
 
-Static multipage DE/EN/UK V1 site for Viktor Baumarchitektur. It is prepared for Cloudflare Pages Free at \`${domain}\`.
+Static multipage DE/EN/UK V1 site for Viktor Garden. It is prepared for Cloudflare Pages Free at \`${domain}\`.
 
 ## Edit checklist
 
 - Verify final WhatsApp/phone before publication: \`${phoneDisplay}\`.
-- Replace GA4 \`G-XXXXXXX\`, Google Ads \`AW-XXXXXXX\` and Search Console verification.
-- Visible header/footer wordmark is **Viktor Baumarchitektur**.
+- GA4, Google Ads and Search Console are disabled until real production IDs/TXT records are approved.
+- Visible header/footer wordmark is **Viktor Garden**.
 - Complete \`impressum.html\` and \`datenschutz.html\` with Viktor's legal data before publication.
 - Swap real images using filenames in \`assets/img/MANIFEST.md\`.
-- TODO: create a final matching logo lockup for **Viktor Baumarchitektur**. The current \`assets/img/logo.png\` still reads "Viktor Bonsai", so the site crops it to the tree symbol and renders the approved text wordmark beside it.
+- TODO: create a final matching logo lockup for **Viktor Garden**. The current \`assets/img/logo.png\` still reads "Viktor Bonsai", so the site crops it to the tree symbol and renders the approved text wordmark beside it.
 - Synthetic planning files are visual direction only and must not be presented as real client proof.
 
 ## Blog / knowledge section
@@ -5383,7 +5411,7 @@ Do not add full \`fr/*\` or \`it/*\` hreflang/sitemap coverage until the real tr
 
 ## Logo / wordmark assumption
 
-The confirmed SEO/business/entity and visible name is **Viktor Baumarchitektur**. The supplied legacy logo says **Viktor Bonsai**; do not show the legacy text as the public wordmark. Keep the cropped symbol until a matching logo is approved.
+The confirmed launch SEO/business/entity and visible name is **Viktor Garden**. The supplied legacy logo says **Viktor Bonsai**; do not show the legacy text as the public wordmark. Keep the cropped symbol until a matching logo is approved.
 
 ## Change theme
 
@@ -5393,7 +5421,7 @@ The active theme is loaded with:
 <link id="theme-link" rel="stylesheet" href="assets/theme-v4.css">
 \`\`\`
 
-Switch to another design direction by replacing \`theme-v4.css\` with \`theme-v1.css\`, \`theme-v2.css\`, \`theme-v3.css\`, or \`theme-v5.css\`. Use \`themes.html\` to preview without editing files.
+Switch to another design direction by replacing \`theme-v4.css\` with \`theme-v1.css\`, \`theme-v2.css\`, \`theme-v3.css\`, or \`theme-v5.css\`. Theme preview pages are internal source files only and are excluded from Cloudflare \`dist\`.
 
 ## Placeholders still requiring human approval
 
@@ -5402,7 +5430,7 @@ Switch to another design direction by replacing \`theme-v4.css\` with \`theme-v1
 - Real before/after photos, Japan postcard and testimonial.
 - Final approval/originals for the supplied real Viktor master/work photos.
 - Public Instagram/website photo usage permission and original files from Viktor.
-- GA4, Google Ads, Search Console and consent wording review.
+- Real GA4 ID, Google Ads ID/conversion label, Search Console DNS TXT and consent wording review.
 - Legal pages under Swiss/DSG/DSGVO requirements.
 - Google rating/testimonial values.
 
@@ -5435,17 +5463,17 @@ const required = [
     ...answerPages.map((page) => `${page.slug}.html`),
     ...geoPages.map((page) => `${page.slug}.html`)
   ]).slice(1, -1)},
-  "kontakt.html","impressum.html","datenschutz.html","themes.html",
+  "kontakt.html","impressum.html","datenschutz.html",
   "en/index.html","en/leistungen.html","en/philosophie.html","en/galerie.html","en/preise.html",
   "en/blog/index.html","en/blog/topiarschere.html","en/blog/energie-krone.html","en/blog/niwaki-bonsai-stile.html","en/blog/kiefer-kerzen.html","en/blog/klimastress.html",
   ${JSON.stringify([
     ...answerPages.map((page) => `en/${page.slug}.html`),
     ...geoPages.map((page) => `en/${page.slug}.html`)
   ]).slice(1, -1)},
-  "en/kontakt.html","en/impressum.html","en/datenschutz.html","en/themes.html",
+  "en/kontakt.html","en/impressum.html","en/datenschutz.html",
   "uk/index.html","uk/leistungen.html","uk/philosophie.html","uk/galerie.html","uk/preise.html",
   "uk/blog/index.html","uk/blog/topiarschere.html","uk/blog/energie-krone.html","uk/blog/niwaki-bonsai-stile.html","uk/blog/kiefer-kerzen.html","uk/blog/klimastress.html",
-  "uk/kontakt.html","uk/impressum.html","uk/datenschutz.html","uk/themes.html",
+  "uk/kontakt.html","uk/impressum.html","uk/datenschutz.html",
   "fr/index.html","it/index.html",
   "assets/base.css","assets/main.js","assets/theme-v1.css","assets/theme-v2.css","assets/theme-v3.css","assets/theme-v4.css","assets/theme-v5.css",
   "assets/img/logo.png","assets/img/foto/01_hero/hero-viktor-bonsai-main.webp","assets/img/foto/01_hero/hero-viktor-bonsai-mobile.webp","assets/img/foto/01_hero/hero-courtyard-niwaki-desktop.webp","assets/img/foto/01_hero/hero-courtyard-niwaki-mobile.webp","assets/img/foto/02_pryklady-robit/case-parviflora-before.webp","assets/img/foto/02_pryklady-robit/case-parviflora-after.webp","assets/img/foto/02_pryklady-robit/case-watereri-before.webp","assets/img/foto/02_pryklady-robit/case-watereri-after.webp","assets/img/foto/02_pryklady-robit/sosna-bila-17.webp","assets/img/foto/02_pryklady-robit/sosna-bila-18.webp","assets/img/foto/03_galereya/sosna-bila-01.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-01.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-08.webp","assets/img/foto/05_nivaki-khmarky/sosna-watereri-do-pislya-16.webp","assets/img/foto/06_yaponski-kleny/klen-yaponskyi-01.webp","assets/img/foto/07_viktor/viktor-01.webp","assets/img/foto/08_fonovi/fon-foto-01.webp","assets/img/foto/09_pomylky/pomylka-svichka-01.webp","assets/img/foto/10_vidkrytka-yaponiya/kyoto-viktor-wife-2009.webp","assets/img/foto/10_vidkrytka-yaponiya/vidkrytka-yaponiya-01.webp","assets/img/MANIFEST.md","site.webmanifest","robots.txt","sitemap.xml","llms.txt","vercel.json","README.md","handoff/ai-local-discovery-checklist.md",".env.example","api/contact.js","api/voice-lead.js","functions/api/contact.js","tools/build-cloudflare-pages.mjs"
@@ -5521,6 +5549,9 @@ for (const file of htmlFiles) {
   for (const forbidden of ["БРЕНД", "PLATZHALTER", "PLACEHOLDER"]) {
     if (bodyText.includes(forbidden)) errors.push(file + " visible body text contains " + forbidden);
   }
+  for (const forbiddenHtml of ["PLATZHALTER", "G-XXXXXXX", "AW-XXXXXXX", "PLACEHOLDER", '"name":"Viktor Baumarchitektur"']) {
+    if (html.includes(forbiddenHtml)) errors.push(file + " production marker remains: " + forbiddenHtml);
+  }
   const removedPublicMarkers = [
     "Konzept" + "-Labels",
     "Concept " + "labels",
@@ -5585,7 +5616,7 @@ for (const file of htmlFiles) {
 }
 
 const mainJs = fs.readFileSync(path.join(root, "assets/main.js"), "utf8");
-for (const eventName of ["cta_whatsapp_click","cta_call_click","cta_rueckruf_submit","contact_form_submit"]) {
+for (const eventName of ["cta_whatsapp_click","cta_call_click","form_submit_attempt","generate_lead"]) {
   const siteHas = htmlFiles.some((file) => fs.readFileSync(path.join(root, file), "utf8").includes(eventName)) || mainJs.includes(eventName);
   if (!siteHas) errors.push("Missing event " + eventName);
 }
@@ -5810,10 +5841,10 @@ const pages = [
   ...answerPageEntries.filter(([file]) => !file.startsWith("en/")),
   ...geoPageEntries.filter(([file]) => !file.startsWith("en/")),
   ["kontakt.html", "de", "Kontakt & kostenlose Foto-Diagnose - Baumpflege", "Senden Sie mir Fotos, erhalten Sie eine kostenlose Diagnose und fordern Sie einen Rückruf an.", contactDe(), [localBusinessLd()]],
-  ["impressum.html", "de", "Impressum - Viktor Baumarchitektur", "Platzhalter-Impressum für Viktor Baumarchitektur. Vor Veröffentlichung rechtlich ergänzen.", legalDe("impressum"), []],
-  ["datenschutz.html", "de", "Datenschutz - Viktor Baumarchitektur", "Platzhalter-Datenschutzerklärung mit Consent Mode Hinweis. Vor Veröffentlichung rechtlich prüfen.", legalDe("datenschutz"), []],
-  ["themes.html", "de", "Theme Preview - Viktor Baumarchitektur", "Interne Vorschau für Design Themes V1 bis V5.", themesPage(), []],
-  ["en/index.html", "en", "Niwaki & Japanese Tree Art - Viktor Baumarchitektur", "Japanese tree care, niwaki and garden bonsai in the Zurich region. Free photo diagnosis.", homeEn(), [localBusinessLd(), personLd(), faqLd()]],
+  ["impressum.html", "de", "Impressum - Viktor Garden", "Platzhalter-Impressum für Viktor Garden. Vor Veröffentlichung rechtlich ergänzen.", legalDe("impressum"), []],
+  ["datenschutz.html", "de", "Datenschutz - Viktor Garden", "Platzhalter-Datenschutzerklärung mit Consent Mode Hinweis. Vor Veröffentlichung rechtlich prüfen.", legalDe("datenschutz"), []],
+  ["themes.html", "de", "Theme Preview - Viktor Garden", "Interne Vorschau für Design Themes V1 bis V5.", themesPage(), []],
+  ["en/index.html", "en", "Niwaki & Japanese Tree Art - Viktor Garden", "Japanese tree care, niwaki and garden bonsai in the Zurich region. Free photo diagnosis.", homeEn(), [localBusinessLd(), personLd(), faqLd()]],
   ["en/leistungen.html", "en", "Services - Niwaki, Maples & Conifers", "English service page for niwaki, Japanese maple and conifer shaping services.", servicesEn(), [localBusinessLd(), serviceLd("Niwaki, maples and conifers", "Japanese tree care and shaping.")]],
   ["en/philosophie.html", "en", "Philosophy & Master - Japanese Garden Art", "My path from simple cutting to Japanese tree art: Kyoto 2009, respect for the tree and work with nature's laws.", philosophyEn(), [localBusinessLd(), personLd()]],
   ["en/galerie.html", "en", "Before / After - Garden Bonsai & Niwaki", "Real before/after photos, niwaki examples, garden bonsai and work stages from my work.", galleryEn(), [localBusinessLd()]],
@@ -5827,44 +5858,44 @@ const pages = [
   ...answerPageEntries.filter(([file]) => file.startsWith("en/")),
   ...geoPageEntries.filter(([file]) => file.startsWith("en/")),
   ["en/kontakt.html", "en", "Contact & Free Photo Diagnosis", "Send photos of your tree and request a free first assessment.", contactEn(), [localBusinessLd()]],
-  ["en/impressum.html", "en", "Legal Notice - Viktor Baumarchitektur", "Placeholder legal notice. Complete before publication.", legalDe("impressum").replaceAll("Impressum", "Legal Notice").replaceAll("Datenschutzerklärung", "Privacy Policy"), []],
-  ["en/datenschutz.html", "en", "Privacy Policy - Viktor Baumarchitektur", "Placeholder privacy policy. Complete before publication.", legalDe("datenschutz").replaceAll("Datenschutzerklärung", "Privacy Policy"), []]
-  ,["en/themes.html", "en", "Theme Preview - Viktor Baumarchitektur", "Internal preview for design themes V1 to V5.", themesPage(), []],
-  ["fr/index.html", "fr", "Version française en préparation - Viktor Baumarchitektur", "Maquette noindex pour une future version française de Viktor Baumarchitektur. La traduction complète sera préparée plus tard.", frItPlaceholderPage("fr"), [localBusinessLd()]],
-  ["it/index.html", "it", "Versione italiana in preparazione - Viktor Baumarchitektur", "Maquette noindex per una futura versione italiana di Viktor Baumarchitektur. La traduzione completa sarà preparata più tardi.", frItPlaceholderPage("it"), [localBusinessLd()]],
-  ["uk/index.html", "uk", "Viktor Baumarchitektur - український перегляд", "Тимчасове українське дзеркало сайту Viktor Baumarchitektur для внутрішнього перегляду.", homeDe(), [localBusinessLd(), personLd(), faqLd()]],
-  ["uk/leistungen.html", "uk", "Послуги - Niwaki, японські клени та хвойні", "Тимчасове українське дзеркало сторінки послуг Viktor Baumarchitektur.", servicesDe(), [localBusinessLd(), serviceLd("Niwaki, Ahorn und Kiefer-Formschnitt", "Japanische Baumpflege, Niwaki Schnitt und Formschnitt für Nadelgehölze.")]],
-  ["uk/philosophie.html", "uk", "Філософія та майстерність - Viktor Baumarchitektur", "Українська сторінка про мою філософію, досвід і підхід до японської деревної архітектури.", philosophyUk(), [localBusinessLd(), personLd()]],
-  ["uk/galerie.html", "uk", "Галерея - до і після, Garten-Bonsai та Niwaki", "Українська галерея Viktor Baumarchitektur: реальні фото до і після, Niwaki, садовий бонсай і етапи роботи.", galleryUk(), [localBusinessLd()]],
-  ["uk/preise.html", "uk", "Ціни - японський догляд за деревами", "Тимчасове українське дзеркало сторінки цін Viktor Baumarchitektur.", pricesDe(), [localBusinessLd(), faqLd()]],
-  ["uk/blog/index.html", "uk", "Знання Niwaki - стилі, інструменти, сосна і діагностика", "Тимчасове українське дзеркало блогу Viktor Baumarchitektur.", blogIndexDeV2(), [localBusinessLd()]],
+  ["en/impressum.html", "en", "Legal Notice - Viktor Garden", "Placeholder legal notice. Complete before publication.", legalDe("impressum").replaceAll("Impressum", "Legal Notice").replaceAll("Datenschutzerklärung", "Privacy Policy"), []],
+  ["en/datenschutz.html", "en", "Privacy Policy - Viktor Garden", "Placeholder privacy policy. Complete before publication.", legalDe("datenschutz").replaceAll("Datenschutzerklärung", "Privacy Policy"), []]
+  ,["en/themes.html", "en", "Theme Preview - Viktor Garden", "Internal preview for design themes V1 to V5.", themesPage(), []],
+  ["fr/index.html", "fr", "Version française en préparation - Viktor Garden", "Maquette noindex pour une future version française de Viktor Garden. La traduction complète sera préparée plus tard.", frItPlaceholderPage("fr"), [localBusinessLd()]],
+  ["it/index.html", "it", "Versione italiana in preparazione - Viktor Garden", "Maquette noindex per una futura versione italiana di Viktor Garden. La traduzione completa sarà preparata più tardi.", frItPlaceholderPage("it"), [localBusinessLd()]],
+  ["uk/index.html", "uk", "Viktor Garden - український перегляд", "Тимчасове українське дзеркало сайту Viktor Garden для внутрішнього перегляду.", homeDe(), [localBusinessLd(), personLd(), faqLd()]],
+  ["uk/leistungen.html", "uk", "Послуги - Niwaki, японські клени та хвойні", "Тимчасове українське дзеркало сторінки послуг Viktor Garden.", servicesDe(), [localBusinessLd(), serviceLd("Niwaki, Ahorn und Kiefer-Formschnitt", "Japanische Baumpflege, Niwaki Schnitt und Formschnitt für Nadelgehölze.")]],
+  ["uk/philosophie.html", "uk", "Філософія та майстерність - Viktor Garden", "Українська сторінка про мою філософію, досвід і підхід до японської деревної архітектури.", philosophyUk(), [localBusinessLd(), personLd()]],
+  ["uk/galerie.html", "uk", "Галерея - до і після, Garten-Bonsai та Niwaki", "Українська галерея Viktor Garden: реальні фото до і після, Niwaki, садовий бонсай і етапи роботи.", galleryUk(), [localBusinessLd()]],
+  ["uk/preise.html", "uk", "Ціни - японський догляд за деревами", "Тимчасове українське дзеркало сторінки цін Viktor Garden.", pricesDe(), [localBusinessLd(), faqLd()]],
+  ["uk/blog/index.html", "uk", "Знання Niwaki - стилі, інструменти, сосна і діагностика", "Тимчасове українське дзеркало блогу Viktor Garden.", blogIndexDeV2(), [localBusinessLd()]],
   ["uk/blog/topiarschere.html", "uk", "Topiarschere vs. Heckenschere - чистий зріз", "Тимчасове українське дзеркало статті про інструмент і чистий зріз.", articleTopiaryDeV2(), [localBusinessLd()]],
   ["uk/blog/energie-krone.html", "uk", "Відкрити крону - енергія, світло і повітря", "Тимчасове українське дзеркало статті про енергію крони.", articleCrownDeV2(), [localBusinessLd()]],
   ["uk/blog/niwaki-bonsai-stile.html", "uk", "Художнє формування дерев - принципи і методи", "Тимчасове українське дзеркало статті про художнє формування дерев.", articleStylesDeV2(), [localBusinessLd()]],
   ["uk/blog/kiefer-kerzen.html", "uk", "Свічки сосни - помилка у Pinus thunbergii", "Тимчасове українське дзеркало статті про свічки сосни і помилки зі зрізом задерев'янілого приросту.", articleCandlesDeV2(), [localBusinessLd()]],
   ["uk/blog/klimastress.html", "uk", "Кліматичний стрес у преміум-саді Швейцарії", "Тимчасове українське дзеркало статті про кліматичний стрес.", articleClimateDeV2(), [localBusinessLd()]],
-  ["uk/kontakt.html", "uk", "Контакт і безкоштовна фото-діагностика", "Тимчасове українське дзеркало контактної сторінки Viktor Baumarchitektur.", contactDe(), [localBusinessLd()]],
-  ["uk/impressum.html", "uk", "Impressum - Viktor Baumarchitektur", "Тимчасове українське дзеркало legal notice. Перед публікацією перевірити юридично.", legalDe("impressum"), []],
-  ["uk/datenschutz.html", "uk", "Datenschutz - Viktor Baumarchitektur", "Тимчасове українське дзеркало privacy policy. Перед публікацією перевірити юридично.", legalDe("datenschutz"), []],
-  ["uk/themes.html", "uk", "Theme Preview - Viktor Baumarchitektur", "Внутрішній preview дизайн-тем V1-V5.", themesPage(), []]
+  ["uk/kontakt.html", "uk", "Контакт і безкоштовна фото-діагностика", "Тимчасове українське дзеркало контактної сторінки Viktor Garden.", contactDe(), [localBusinessLd()]],
+  ["uk/impressum.html", "uk", "Impressum - Viktor Garden", "Тимчасове українське дзеркало legal notice. Перед публікацією перевірити юридично.", legalDe("impressum"), []],
+  ["uk/datenschutz.html", "uk", "Datenschutz - Viktor Garden", "Тимчасове українське дзеркало privacy policy. Перед публікацією перевірити юридично.", legalDe("datenschutz"), []],
+  ["uk/themes.html", "uk", "Theme Preview - Viktor Garden", "Внутрішній preview дизайн-тем V1-V5.", themesPage(), []]
 ];
 
 const ukPageOverrides = new Map([
-  ["uk/index.html", ["uk/index.html", "uk", "Viktor Baumarchitektur - український перегляд", "Українська версія сайту Viktor Baumarchitektur: Niwaki, японські клени, хвойні дерева і безкоштовна фото-діагностика.", homeUk(), [localBusinessLd(), personLd(), faqLd()]]],
-  ["uk/leistungen.html", ["uk/leistungen.html", "uk", "Послуги - Niwaki, японські клени та хвойні", "Українська сторінка послуг Viktor Baumarchitektur: Niwaki, японські клени, сосни та хвойні дерева.", servicesUk(), [localBusinessLd(), serviceLd("Niwaki, Ahorn und Kiefer-Formschnitt", "Japanische Baumpflege, Niwaki Schnitt und Formschnitt für Nadelgehölze.")]]],
-  ["uk/philosophie.html", ["uk/philosophie.html", "uk", "Філософія та майстерність - Viktor Baumarchitektur", "Українська сторінка про мою філософію, досвід і підхід до японської деревної архітектури.", philosophyUk(), [localBusinessLd(), personLd()]]],
-  ["uk/galerie.html", ["uk/galerie.html", "uk", "Галерея - до і після, Garten-Bonsai та Niwaki", "Українська галерея Viktor Baumarchitektur: реальні фото до і після, Niwaki, садовий бонсай і етапи роботи.", galleryUk(), [localBusinessLd()]]],
-  ["uk/preise.html", ["uk/preise.html", "uk", "Ціни - японський догляд за деревами", "Українська сторінка цін Viktor Baumarchitektur: робота від 110 CHF/год, виїзд від 90 CHF, фото-діагностика безкоштовна.", pricesUk(), [localBusinessLd(), faqLd()]]],
+  ["uk/index.html", ["uk/index.html", "uk", "Viktor Garden - український перегляд", "Українська версія сайту Viktor Garden: Niwaki, японські клени, хвойні дерева і безкоштовна фото-діагностика.", homeUk(), [localBusinessLd(), personLd(), faqLd()]]],
+  ["uk/leistungen.html", ["uk/leistungen.html", "uk", "Послуги - Niwaki, японські клени та хвойні", "Українська сторінка послуг Viktor Garden: Niwaki, японські клени, сосни та хвойні дерева.", servicesUk(), [localBusinessLd(), serviceLd("Niwaki, Ahorn und Kiefer-Formschnitt", "Japanische Baumpflege, Niwaki Schnitt und Formschnitt für Nadelgehölze.")]]],
+  ["uk/philosophie.html", ["uk/philosophie.html", "uk", "Філософія та майстерність - Viktor Garden", "Українська сторінка про мою філософію, досвід і підхід до японської деревної архітектури.", philosophyUk(), [localBusinessLd(), personLd()]]],
+  ["uk/galerie.html", ["uk/galerie.html", "uk", "Галерея - до і після, Garten-Bonsai та Niwaki", "Українська галерея Viktor Garden: реальні фото до і після, Niwaki, садовий бонсай і етапи роботи.", galleryUk(), [localBusinessLd()]]],
+  ["uk/preise.html", ["uk/preise.html", "uk", "Ціни - японський догляд за деревами", "Українська сторінка цін Viktor Garden: робота від 110 CHF/год, виїзд від 90 CHF, фото-діагностика безкоштовна.", pricesUk(), [localBusinessLd(), faqLd()]]],
   ["uk/blog/index.html", ["uk/blog/index.html", "uk", "Знання Niwaki - стилі, інструменти, сосна і діагностика", "Українські матеріали про Niwaki, стилі, японські ножиці, енергію крони, сосни і кліматичний стрес.", blogIndexUk(), [localBusinessLd()]]],
   ["uk/blog/topiarschere.html", ["uk/blog/topiarschere.html", "uk", "Японські ножиці проти тримера - чистий зріз", "Українська стаття про чистий зріз, японські ножиці і контроль майбутньої форми дерева.", articleUk("topiary"), [localBusinessLd()]]],
   ["uk/blog/energie-krone.html", ["uk/blog/energie-krone.html", "uk", "Відкрити крону - енергія, світло і повітря", "Українська стаття про те, чому крону Niwaki треба відкривати для світла, повітря і довгої форми.", articleUk("crown"), [localBusinessLd()]]],
   ["uk/blog/niwaki-bonsai-stile.html", ["uk/blog/niwaki-bonsai-stile.html", "uk", "Художнє формування дерев - принципи і методи", "Українська стаття про те, як зі звичайного дерева через читання структури, світло і вибірковий зріз зробити виразну садову форму.", articleUk("styles"), [localBusinessLd()]]],
   ["uk/blog/kiefer-kerzen.html", ["uk/blog/kiefer-kerzen.html", "uk", "Свічки сосни - помилка у Pinus thunbergii", "Українська стаття про свічки сосни, правильний момент і помилку зі зрізом задерев'янілого приросту.", articleUk("candles"), [localBusinessLd()]]],
   ["uk/blog/klimastress.html", ["uk/blog/klimastress.html", "uk", "Кліматичний стрес у преміум-саді Швейцарії", "Українська стаття про спеку, сухі літа, сильні дощі і ранню фото-діагностику цінних садових дерев.", articleUk("climate"), [localBusinessLd()]]],
-  ["uk/kontakt.html", ["uk/kontakt.html", "uk", "Контакт і безкоштовна фото-діагностика", "Українська контактна сторінка Viktor Baumarchitektur: надішліть фото дерева у WhatsApp або запросіть дзвінок.", contactUk(), [localBusinessLd()]]],
-  ["uk/impressum.html", ["uk/impressum.html", "uk", "Юридична інформація - Viktor Baumarchitektur", "Українська чернетка юридичної сторінки. Перед публікацією потрібна юридична перевірка.", legalUk("impressum"), []]],
-  ["uk/datenschutz.html", ["uk/datenschutz.html", "uk", "Політика приватності - Viktor Baumarchitektur", "Українська чернетка політики приватності. Перед публікацією потрібна юридична перевірка.", legalUk("datenschutz"), []]],
-  ["uk/themes.html", ["uk/themes.html", "uk", "Theme Preview - Viktor Baumarchitektur", "Український внутрішній preview дизайн-тем V1-V5.", themesPageUk(), []]]
+  ["uk/kontakt.html", ["uk/kontakt.html", "uk", "Контакт і безкоштовна фото-діагностика", "Українська контактна сторінка Viktor Garden: надішліть фото дерева у WhatsApp або запросіть дзвінок.", contactUk(), [localBusinessLd()]]],
+  ["uk/impressum.html", ["uk/impressum.html", "uk", "Юридична інформація - Viktor Garden", "Українська чернетка юридичної сторінки. Перед публікацією потрібна юридична перевірка.", legalUk("impressum"), []]],
+  ["uk/datenschutz.html", ["uk/datenschutz.html", "uk", "Політика приватності - Viktor Garden", "Українська чернетка політики приватності. Перед публікацією потрібна юридична перевірка.", legalUk("datenschutz"), []]],
+  ["uk/themes.html", ["uk/themes.html", "uk", "Theme Preview - Viktor Garden", "Український внутрішній preview дизайн-тем V1-V5.", themesPageUk(), []]]
 ]);
 
 const finalPages = pages.map((page) => ukPageOverrides.get(page[0]) || page);
@@ -5882,9 +5913,9 @@ Allow: /
 
 Sitemap: ${domain}/sitemap.xml`);
 writeFile("sitemap.xml", sitemap());
-writeFile("llms.txt", `# Viktor Baumarchitektur
+writeFile("llms.txt", `# Viktor Garden
 
-Viktor Baumarchitektur is a specialist for Niwaki, garden bonsai, Japanese maples and conifer shaping in the Zurich region, Switzerland.
+Viktor Garden is a specialist for Niwaki, garden bonsai, Japanese maples and conifer shaping in the Zurich region, Switzerland.
 
 Canonical website: ${domain}/
 Contact page: ${domain}/kontakt
@@ -5893,7 +5924,7 @@ Instagram: ${instagramUrl}
 Facebook: ${facebookUrl}
 
 Verified facts:
-- Public brand/entity name: Viktor Baumarchitektur.
+- Public brand/entity name: Viktor Garden.
 - Specialist focus: Japanese tree art, Niwaki, garden bonsai, Japanese maples, pines and valuable conifers.
 - Experience: 27 years.
 - Primary language: German for Switzerland; English and Ukrainian mirror pages exist.
@@ -5951,4 +5982,4 @@ writeFile("vercel.json", JSON.stringify({
 writeFile("README.md", readmeV2());
 writeFile("tools/audit-site.mjs", auditScript());
 
-console.log("Generated Viktor Baumarchitektur static site.");
+console.log("Generated Viktor Garden static site.");

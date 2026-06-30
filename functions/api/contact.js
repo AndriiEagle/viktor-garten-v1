@@ -96,7 +96,7 @@ function validateLead(lead) {
 
 function telegramMessage(lead) {
   return [
-    "Neue Rueckruf-Anfrage - Viktor Baumarchitektur",
+    "Neue Rueckruf-Anfrage - Viktor Garden",
     "",
     `Art: ${lead.kind || "callback"}`,
     `Name: ${lead.name || "Nicht genannt"}`,
@@ -159,7 +159,7 @@ export async function onRequestPost({ request, env }) {
     const lead = normalizeLead(body, request);
     const validation = validateLead(lead);
 
-    if (validation.spam) return json({ ok: true });
+    if (validation.spam) return json({ ok: true, spam: true });
     if (!validation.ok) return json({ ok: false, error: validation.error }, 400);
 
     await sendTelegram(telegramMessage(lead), env);
