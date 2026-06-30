@@ -7,6 +7,15 @@
 - Build command: `node tools/generate-site.mjs && node tools/build-cloudflare-pages.mjs`
 - Output directory: `dist`
 
+## Production Handoff Gate
+
+- Legal data is not available yet.
+- Cloudflare Pages preview deployment is OK for technical testing.
+- Do not add production custom domains and do not hand over the site to the client while `impressum.html`, `datenschutz.html`, `en/impressum.html`, `en/datenschutz.html`, `uk/impressum.html`, or `uk/datenschutz.html` contain placeholder legal text.
+- Required legal data is listed in `LEGAL_DATA_REQUIRED.md`.
+- After building `dist`, run `node tools/audit-production-handoff.mjs`.
+- The handoff audit must pass before production custom-domain launch, unless Viktor explicitly approves publishing draft legal pages.
+
 ## Environment Variables
 
 Required for the V1 contact form:
@@ -31,6 +40,12 @@ Add Cloudflare Pages custom domains:
 
 - `v-garten.ch`
 - `www.v-garten.ch`
+
+Only add these production custom domains after:
+
+- Pages preview has been tested.
+- `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` are configured and contact form delivery is verified.
+- Legal placeholders are replaced with approved legal text or explicitly approved for publication by Viktor.
 
 If Cloudflare reports DNS conflicts, remove or replace only old Hostpoint web records that point to parking/origin and are not needed:
 
@@ -64,6 +79,21 @@ Keep mail/service records and keep them DNS-only:
 - Real Google Ads conversion label: TODO.
 - Analytics and Ads stay disabled when IDs are absent.
 - Test `generate_lead` events before ad spend.
+
+## Remaining P2 Items
+
+- Spam timing gate: the contact function already has a honeypot. A min-submit-time gate can be added later, but should be tested with real mobile form submissions before production enforcement.
+- Heavy images to optimize after visual approval:
+  - `assets/img/logo.png`
+  - `assets/img/baumarchitektur-korrektur.png`
+  - `assets/img/baumarchitektur-live-crown-ratio.png`
+  - `assets/img/baumarchitektur-energiefluss-verstehen.png`
+- Suggested optimization workflow:
+  - Create optimized copies first, not destructive overwrites.
+  - Compare desktop and mobile screenshots before replacing originals.
+  - If converting PNG to WebP/AVIF, update references in `tools/generate-site.mjs`, regenerate, rebuild `dist`, and run broken-image checks.
+  - Example with `cwebp` if installed: `cwebp -q 82 assets/img/baumarchitektur-korrektur.png -o assets/img/baumarchitektur-korrektur.webp`.
+  - Example with ImageMagick if installed: `magick assets/img/logo.png -strip -resize 256x256 assets/img/logo-256.png`.
 
 ## Manual Launch Test
 
